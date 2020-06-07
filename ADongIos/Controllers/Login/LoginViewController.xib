@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="ADongIos" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Q3-YP-cB4">
+                    <rect key="frame" x="192" y="433" width="30" height="30"/>
+                    <state key="normal" title="Dev"/>
+                    <connections>
+                        <action selector="login:" destination="-1" eventType="touchUpInside" id="e9I-rL-7B9"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F8z-cN-xa8">
+                    <rect key="frame" x="20" y="373" width="374" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="M8P-zD-c0S"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brr-qm-vLy">
+                    <rect key="frame" x="192" y="494" width="30" height="30"/>
+                    <state key="normal" title="Test"/>
+                    <connections>
+                        <action selector="test:" destination="-1" eventType="touchUpInside" id="1CO-4X-OZO"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="F8z-cN-xa8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="2wG-Sw-OjB"/>
+                <constraint firstItem="9Q3-YP-cB4" firstAttribute="top" secondItem="F8z-cN-xa8" secondAttribute="bottom" constant="20" id="6jL-g7-qi5"/>
+                <constraint firstItem="Brr-qm-vLy" firstAttribute="trailing" secondItem="9Q3-YP-cB4" secondAttribute="trailing" id="6r7-Mb-eVQ"/>
+                <constraint firstItem="Brr-qm-vLy" firstAttribute="top" secondItem="9Q3-YP-cB4" secondAttribute="bottom" constant="31" id="UT2-R3-dQn"/>
+                <constraint firstItem="9Q3-YP-cB4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dXJ-Ju-zcf"/>
+                <constraint firstItem="Brr-qm-vLy" firstAttribute="leading" secondItem="9Q3-YP-cB4" secondAttribute="leading" id="i3Z-VT-O5X"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="F8z-cN-xa8" secondAttribute="trailing" constant="20" id="qPL-RG-LyW"/>
+                <constraint firstItem="9Q3-YP-cB4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="zgw-7y-USI"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-1539.1304347826087" y="-78.348214285714278"/>
+        </view>
+    </objects>
+</document>
