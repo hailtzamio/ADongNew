@@ -21,19 +21,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="539" height="289"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oF0-by-FXb">
-                                <rect key="frame" x="45" y="14.5" width="23" height="21"/>
+                                <rect key="frame" x="45" y="14.5" width="479" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6I-To-df7">
-                                <rect key="frame" x="15" y="40" width="21" height="18"/>
+                                <rect key="frame" x="15" y="40" width="509" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.48627450980392156" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTK-RE-RHh">
-                                <rect key="frame" x="15" y="63" width="21" height="18"/>
+                                <rect key="frame" x="15" y="63" width="509" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.40999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -55,7 +55,10 @@
                             <constraint firstItem="vTK-RE-RHh" firstAttribute="top" secondItem="m6I-To-df7" secondAttribute="bottom" constant="5" id="Hvf-qe-MDv"/>
                             <constraint firstItem="m6I-To-df7" firstAttribute="top" secondItem="cmR-YO-aTe" secondAttribute="bottom" constant="5" id="SAN-v7-9tS"/>
                             <constraint firstItem="vTK-RE-RHh" firstAttribute="leading" secondItem="cmR-YO-aTe" secondAttribute="leading" id="WJY-37-C3J"/>
+                            <constraint firstAttribute="trailing" secondItem="oF0-by-FXb" secondAttribute="trailing" constant="15" id="YwA-tN-rCN"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vTK-RE-RHh" secondAttribute="bottom" constant="3" id="cKm-AF-Eac"/>
+                            <constraint firstAttribute="trailing" secondItem="m6I-To-df7" secondAttribute="trailing" constant="15" id="cZD-OY-IhQ"/>
+                            <constraint firstAttribute="trailing" secondItem="vTK-RE-RHh" secondAttribute="trailing" constant="15" id="dc3-LF-4FC"/>
                             <constraint firstItem="oF0-by-FXb" firstAttribute="centerY" secondItem="cmR-YO-aTe" secondAttribute="centerY" id="yUe-cH-akz"/>
                         </constraints>
                     </view>

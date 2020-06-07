@@ -21,14 +21,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="408" height="170"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="3Wc-X5-ZZt">
-                                <rect key="frame" x="15" y="10" width="45" height="45"/>
+                                <rect key="frame" x="15" y="10" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="W56-y3-xow"/>
-                                    <constraint firstAttribute="width" constant="45" id="jRQ-y2-gE6"/>
+                                    <constraint firstAttribute="height" constant="40" id="W56-y3-xow"/>
+                                    <constraint firstAttribute="width" constant="40" id="jRQ-y2-gE6"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="22.5"/>
+                                        <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="0.0"/>
@@ -36,13 +36,13 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzL-8i-63S">
-                                <rect key="frame" x="70" y="10" width="42" height="21"/>
+                                <rect key="frame" x="65" y="10" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdC-6s-izD">
-                                <rect key="frame" x="70" y="36" width="37.5" height="18"/>
+                                <rect key="frame" x="65" y="36" width="37.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
