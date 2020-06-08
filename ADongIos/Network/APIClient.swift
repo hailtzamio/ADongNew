@@ -224,5 +224,36 @@ class APIClient {
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
         performRequest(route: ApiRouter.createContractor(data: data), decoder: jsonDecoder, completion: completion)
     }
+    
+    // Project
+    static func getProjects(page : Int, name : String,completion:@escaping (Result<BaseResponseList<Project>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getProjects(page: page, name: name), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func getProject(id:Int,completion:@escaping (Result<BaseResponse<Project>, AFError>)->Void) {
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+            performRequest(route: ApiRouter.getProject(id: id), decoder: jsonDecoder, completion: completion)
+        }
+    
+    static func removeProject(id:Int,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+           let jsonDecoder = JSONDecoder()
+           jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+           performRequest(route: ApiRouter.removeProject(id: id), decoder: jsonDecoder, completion: completion)
+       }
+    
+    static func updateProject(data:Project,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.updateProject(data: data), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func createProject(data:Project,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.createProject(data: data), decoder: jsonDecoder, completion: completion)
+    }
 }
 

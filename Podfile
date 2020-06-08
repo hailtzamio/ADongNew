@@ -13,5 +13,5 @@ target 'ADongIos' do
   pod 'Toaster'
   pod 'Kingfisher'
   pod 'Hero'
-
+  pod 'PageMenu'
 end

@@ -87,6 +87,11 @@
 		B54A01B92478329900E5F310 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A01B02478329900E5F310 /* UIViewControllerExtension.swift */; };
 		B54A01BA2478329900E5F310 /* RadiusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A01B12478329900E5F310 /* RadiusTextField.swift */; };
 		B54A01BC24783F5000E5F310 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A01BB24783F5000E5F310 /* BaseResponse.swift */; };
+		B58E15DB248E2EDA0054E9A0 /* Project.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58E15DA248E2EDA0054E9A0 /* Project.storyboard */; };
+		B58E15DD248E2F7F0054E9A0 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E15DC248E2F7F0054E9A0 /* Project.swift */; };
+		B58E15DF248E32BE0054E9A0 /* ListProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E15DE248E32BE0054E9A0 /* ListProjectViewController.swift */; };
+		B58E15E2248E355D0054E9A0 /* ProjectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E15E0248E355D0054E9A0 /* ProjectViewCell.swift */; };
+		B58E15E3248E355D0054E9A0 /* ProjectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B58E15E1248E355D0054E9A0 /* ProjectViewCell.xib */; };
 		B58F8A302487470000E9BB9E /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58F8A2F248746FF00E9BB9E /* Team.storyboard */; };
 		B58F8A322487473200E9BB9E /* ListTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F8A312487473200E9BB9E /* ListTeamViewController.swift */; };
 		B58F8A3424874B1000E9BB9E /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F8A3324874B1000E9BB9E /* Team.swift */; };
@@ -206,6 +211,11 @@
 		B54A01B02478329900E5F310 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		B54A01B12478329900E5F310 /* RadiusTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadiusTextField.swift; sourceTree = "<group>"; };
 		B54A01BB24783F5000E5F310 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		B58E15DA248E2EDA0054E9A0 /* Project.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Project.storyboard; sourceTree = "<group>"; };
+		B58E15DC248E2F7F0054E9A0 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		B58E15DE248E32BE0054E9A0 /* ListProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProjectViewController.swift; sourceTree = "<group>"; };
+		B58E15E0248E355D0054E9A0 /* ProjectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewCell.swift; sourceTree = "<group>"; };
+		B58E15E1248E355D0054E9A0 /* ProjectViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectViewCell.xib; sourceTree = "<group>"; };
 		B58F8A2F248746FF00E9BB9E /* Team.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Team.storyboard; sourceTree = "<group>"; };
 		B58F8A312487473200E9BB9E /* ListTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTeamViewController.swift; sourceTree = "<group>"; };
 		B58F8A3324874B1000E9BB9E /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -397,6 +407,7 @@
 				B58F8A3D2487A8B200E9BB9E /* Address.swift */,
 				B535647F248CBBE700FF5883 /* Driver.swift */,
 				B5356485248CD77E00FF5883 /* Contractor.swift */,
+				B58E15DC248E2F7F0054E9A0 /* Project.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -415,6 +426,7 @@
 		B54A014924782ACD00E5F310 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B58E15D9248E2ECC0054E9A0 /* Project */,
 				B5356487248CDA7B00FF5883 /* Contractor */,
 				B535647A248CB77000FF5883 /* Driver */,
 				B58F8A2E2487454C00E9BB9E /* Team */,
@@ -493,6 +505,8 @@
 				B54A01982478326B00E5F310 /* NavigationBar.xib */,
 				B58F8A372487777100E9BB9E /* SmallInformationViewCell.swift */,
 				B58F8A382487777100E9BB9E /* SmallInformationViewCell.xib */,
+				B58E15E0248E355D0054E9A0 /* ProjectViewCell.swift */,
+				B58E15E1248E355D0054E9A0 /* ProjectViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -512,6 +526,15 @@
 				B51F56252478C3BD00B3851A /* CardView.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B58E15D9248E2ECC0054E9A0 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				B58E15DE248E32BE0054E9A0 /* ListProjectViewController.swift */,
+				B58E15DA248E2EDA0054E9A0 /* Project.storyboard */,
+			);
+			path = Project;
 			sourceTree = "<group>";
 		};
 		B58F8A2E2487454C00E9BB9E /* Team */ = {
@@ -648,11 +671,13 @@
 				B535647C248CB78000FF5883 /* Driver.storyboard in Resources */,
 				B54A015B24782C0100E5F310 /* PermissionCollectionViewCell.xib in Resources */,
 				B5356489248CDA8700FF5883 /* Contractor.storyboard in Resources */,
+				B58E15DB248E2EDA0054E9A0 /* Project.storyboard in Resources */,
 				B54A01A62478326C00E5F310 /* CommonNoAvatarCell.xib in Resources */,
 				B58F8A3A2487777100E9BB9E /* SmallInformationViewCell.xib in Resources */,
 				B54A011524781EA300E5F310 /* LaunchScreen.storyboard in Resources */,
 				B54A015624782BD600E5F310 /* PermissViewController.xib in Resources */,
 				B58F8A302487470000E9BB9E /* Team.storyboard in Resources */,
+				B58E15E3248E355D0054E9A0 /* ProjectViewCell.xib in Resources */,
 				B54A011224781EA300E5F310 /* Preview Assets.xcassets in Resources */,
 				B54A010F24781EA300E5F310 /* Assets.xcassets in Resources */,
 				B54A014F24782B2400E5F310 /* SplashViewController.xib in Resources */,
@@ -728,6 +753,7 @@
 				B51F563C247956DF00B3851A /* Worker.swift in Sources */,
 				B54A013F247829CC00E5F310 /* Article.swift in Sources */,
 				B54A015C24782C0100E5F310 /* PermissionCollectionViewCell.swift in Sources */,
+				B58E15DD248E2F7F0054E9A0 /* Project.swift in Sources */,
 				B58F8A392487777100E9BB9E /* SmallInformationViewCell.swift in Sources */,
 				B54A018224782D7100E5F310 /* Article.swift in Sources */,
 				B51F563E24795F3800B3851A /* LoadMoreActivityIndicator.swift in Sources */,
@@ -743,6 +769,7 @@
 				B5356482248CC2C800FF5883 /* DetailDriverViewController.swift in Sources */,
 				B54A01A42478326C00E5F310 /* CommonTableViewCell.swift in Sources */,
 				B54A01BC24783F5000E5F310 /* BaseResponse.swift in Sources */,
+				B58E15DF248E32BE0054E9A0 /* ListProjectViewController.swift in Sources */,
 				B5B6660B248627C2005660FE /* LoadingCell.swift in Sources */,
 				B54A0194247831EE00E5F310 /* LorryListViewController.swift in Sources */,
 				B54A018024782D7100E5F310 /* User.swift in Sources */,
@@ -793,6 +820,7 @@
 				B54A014824782A4100E5F310 /* APIClient.swift in Sources */,
 				B51F56262478C3BD00B3851A /* CardView.swift in Sources */,
 				B51F562F2478DC1C00B3851A /* DetailProductViewController.swift in Sources */,
+				B58E15E2248E355D0054E9A0 /* ProjectViewCell.swift in Sources */,
 				B54A015124782B2400E5F310 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

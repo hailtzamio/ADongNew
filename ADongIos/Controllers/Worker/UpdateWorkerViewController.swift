@@ -22,6 +22,8 @@ class UpdateWorkerViewController: BaseViewController, UINavigationControllerDele
     @IBOutlet weak var tf4: RadiusTextField!
     @IBOutlet weak var tf5: RadiusTextField!
     @IBOutlet weak var tf6: RadiusTextField!
+    var avatarData:Data? = nil
+    var avatarExtId = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
@@ -34,6 +36,7 @@ class UpdateWorkerViewController: BaseViewController, UINavigationControllerDele
             tf4.text = data.address
             tf5.text = data.bankName
             tf6.text = data.bankAccount
+            avatarExtId = data.avatarExtId ?? ""
             let url = URL(string: data.avatarUrl ?? "")
             self.imvAva.kf.setImage(with: url, placeholder: UIImage(named: "default"))
         }
@@ -69,6 +72,7 @@ class UpdateWorkerViewController: BaseViewController, UINavigationControllerDele
         data.address = tf4.text
         data.bankName = tf5.text
         data.bankAccount = tf6.text
+        data.avatarExtId = avatarExtId
         
         if(isUpdate) {
             // Update
@@ -89,7 +93,7 @@ class UpdateWorkerViewController: BaseViewController, UINavigationControllerDele
             case .success(let response):
                 
                 if response.status == 1 {
-                    self.showToast(content: "Thanh Cong")
+                    self.showToast(content: "Thành công")
                     self.goBack()
                     return
                 } else {
@@ -103,26 +107,26 @@ class UpdateWorkerViewController: BaseViewController, UINavigationControllerDele
     }
     
     func create(pData:Worker) {
-           
-           showLoading()
-           APIClient.createWorker(data: pData) { result in
-               self.stopLoading()
-               switch result {
-               case .success(let response):
-                   
-                   if response.status == 1 {
-                       self.showToast(content: "Thành công")
-                       self.goBack()
-                       return
-                   } else {
-                       self.showToast(content: response.message!)
-                   }
-                   
-               case .failure(let error):
-                   self.showToast(content: error.localizedDescription)
-               }
-           }
-       }
+        
+        showLoading()
+        APIClient.createWorker(data: pData) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if response.status == 1 {
+                    self.showToast(content: "Thành công")
+                    self.goBack()
+                    return
+                } else {
+                    self.showToast(content: response.message!)
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
+    }
 }
 
 extension UpdateWorkerViewController : UIImagePickerControllerDelegate {
@@ -156,11 +160,18 @@ extension UpdateWorkerViewController : TOCropViewControllerDelegate {
         self.present(picker, animated: true, completion: nil)
     }
     
+    
     func cropViewController(_ cropViewController: TOCropViewController, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
         
         
         imvAva.image = image
-//        imvAva.layer.cornerRadius = 40
+        //        imvAva.layer.cornerRadius = 40
+        
+        if(imvAva != nil){
+            uploadAvatar2(arrImage: image, withblock: {_response in
+                
+            })
+        }
         
         cropViewController.dismiss(animated: true, completion: nil)
         
@@ -170,5 +181,47 @@ extension UpdateWorkerViewController : TOCropViewControllerDelegate {
         cropViewController.dismiss(animated: true, completion: {
             
         })
+    }
+    
+    func uploadAvatar2(arrImage:UIImage, withblock:@escaping (_ response: AnyObject?)->Void){
+        showLoading()
+        let url = K.ProductionServer.baseURL + "uploadAvatar"
+        
+        var headers: HTTPHeaders
+        headers = ["Content-type": "multipart/form-data",
+                   "Accept" : "application/json"]
+        headers["Authorization"] = ContentType.token.rawValue
+        AF.upload(multipartFormData: { (multipartFormData) in
+            
+            let randomIntFrom0To10 = Int.random(in: 1..<1000)
+            
+            guard let imgData = arrImage.pngData() else { return }
+            multipartFormData.append(imgData, withName: "image", fileName: "image\(randomIntFrom0To10)", mimeType: "image/jpeg")
+            
+        },to: url, usingThreshold: UInt64.init(),
+          method: .post,
+          headers: headers).response{ response in
+            self.stopLoading()
+            if((response.data != nil)){
+                do{
+                    if let jsonData = response.data {
+                        let parsedData = try JSONSerialization.jsonObject(with: jsonData) as! Dictionary<String, AnyObject>
+                        print(parsedData)
+                        
+                        let status = parsedData["status"] as? NSInteger ?? 0
+                        
+                        if (status == 1){
+                            self.avatarExtId = parsedData["data"]?["id"] as! String
+                        } else{
+                            self.showToast(content: "Không thành công")
+                        }
+                    }
+                } catch{
+                    print("error message")
+                }
+            }else{
+                self.showToast(content: "Không thành công")
+            }
+        }
     }
 }

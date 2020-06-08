@@ -51,7 +51,7 @@ class PermissViewController: BaseViewController {
         
         for (key, value) in self.someProtocol {
             print(key)
-            if(key == "Product" || key == "Lorry" || key == "Worker" || key == "Team" || key == "Driver" || key == "Contractor"  ) {
+            if(key == "Product" || key == "Lorry" || key == "Worker" || key == "Team" || key == "Driver" || key == "Contractor" || key == "Project"  ) {
                 self.permissions.append(value)
             }
             
@@ -109,7 +109,11 @@ extension PermissViewController : UICollectionViewDataSource, UICollectionViewDe
                       vC = vc
                   }
                   break
-            
+            case "Project":
+                      if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListProjectViewController") as? ListProjectViewController {
+                          vC = vc
+                      }
+                      break
             
         default:
             break

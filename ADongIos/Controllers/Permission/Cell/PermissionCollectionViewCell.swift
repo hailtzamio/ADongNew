@@ -28,10 +28,36 @@ class PermissionCollectionViewCell: UICollectionViewCell {
         
         var title = ""
         if(data.appEntityCode == "Product") {
-            title = "Vat Tu"
-        } else {
-            title = data.appEntityCode!
+            title = "Vật Tư"
         }
+        
+        if(data.appEntityCode == "Contractor") {
+                title = "Nhà Thầu Phụ"
+            }
+        
+        if(data.appEntityCode == "Lorry") {
+                title = "Xe"
+            }
+        
+        if(data.appEntityCode == "Team") {
+                title = "Đội Thi Công"
+            }
+        
+        if(data.appEntityCode == "Project") {
+                title = "Công Trình"
+        }
+        
+        if(data.appEntityCode == "Driver") {
+                     title = "Lái Xe"
+             }
+        
+        if(data.appEntityCode == "Worker") {
+                           title = "Công Nhân"
+                   }
+        
+//        else {
+//            title = data.appEntityCode!
+//        }
         
         tbTitle.text = title
     }

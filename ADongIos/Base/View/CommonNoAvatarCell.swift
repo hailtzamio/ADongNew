@@ -58,4 +58,15 @@ class CommonNoAvatarCell: UITableViewCell {
             lb3.text = data.address
         }
     }
+    
+    func setDataProject(data:Project) {
+         lb1.text = data.name
+         lb2.text = data.address
+     
+         if(data.teamType != nil && data.teamType == "ADONG") {
+             lb3.text = "Đội Á đông"
+         } else {
+           lb3.text = "Nhà thầu phụ"
+        }
+     }
 }
