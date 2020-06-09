@@ -305,6 +305,16 @@ class APIClient {
                performRequest(route: ApiRouter.getTrip(id: id), decoder: jsonDecoder, completion: completion)
            }
     
+    static func getTransport(id:Int,completion:@escaping (Result<BaseResponse<Transport>, AFError>)->Void) {
+               let jsonDecoder = JSONDecoder()
+               jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+               performRequest(route: ApiRouter.getTransport(id: id), decoder: jsonDecoder, completion: completion)
+           }
     
+    static func transportPickup(id:Int,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+           let jsonDecoder = JSONDecoder()
+           jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+           performRequest(route: ApiRouter.transportPickup(id: id), decoder: jsonDecoder, completion: completion)
+       }
 }
 

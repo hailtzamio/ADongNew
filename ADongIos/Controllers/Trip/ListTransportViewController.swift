@@ -106,7 +106,7 @@ extension ListTransportViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailTeamViewController") as? DetailTeamViewController {
+        if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "TransportDetailController") as? TransportDetailController {
             vc.id = data[indexPath.row].id!
             navigationController?.pushViewController(vc, animated: true)
         }

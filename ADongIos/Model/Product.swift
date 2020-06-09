@@ -22,4 +22,11 @@ class Product : Codable {
     let updatedByFullName : String?
     let thumbnailUrl : String?
     let thumbnailExtId : String?
+    
+     let productName : String?
+     let productUnit : String?
+     let transportReqCode : String?
+     let transportReqId : Int?
+     let productId : Int?
+
 }

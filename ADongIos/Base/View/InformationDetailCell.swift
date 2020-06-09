@@ -42,4 +42,9 @@ class InformationDetailCell: UITableViewCell {
         lb1.text = data
         lb2.text = "Ahihi"
     }
+    
+    func setDataProduct(data:Product) {
+        lb1.text = data.productName ?? "---"
+        lb2.text = String(describing: data.productUnit)
+      }
 }

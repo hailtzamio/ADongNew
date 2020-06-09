@@ -41,11 +41,11 @@ class WareHouseViewCell: UITableViewCell {
     }
     
     func setData(data:Transport) {
-        lb1.text = data.code
-        lb2.text = data.warehouseName
-        lb3.text = data.projectName
-        lb4.text = data.plannedDatetime
-        lb5.text = data.projectName
+        lb1.text = data.code ?? "---"
+        lb2.text = data.warehouseName ?? "---"
+        lb3.text = data.plannedDatetime ?? "---"
+        lb4.text = data.projectName ?? "---"
+        lb5.text = data.projectAddress ?? "---"
     }
     
     func setDataTrip(data:Trip) {
@@ -55,4 +55,6 @@ class WareHouseViewCell: UITableViewCell {
           lb4.text = data.lorryPlateNumber ?? "---"
           lb5.text = data.plannedDatetime ?? "---"
       }
+    
+
 }

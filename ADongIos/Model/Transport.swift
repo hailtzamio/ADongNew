@@ -28,4 +28,5 @@ var createdById : Int?
 var createdByFullName : String?
 var updatedById : Int?
 var updatedByFullName : String?
+var lines: [Product]?
 }

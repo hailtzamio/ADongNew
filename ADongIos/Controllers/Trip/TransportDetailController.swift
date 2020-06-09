@@ -8,17 +8,17 @@
 
 import UIKit
 
-class TripDetailController: BaseViewController {
-    var item:Trip? = nil
+class TransportDetailController: BaseViewController {
+    var item:Transport? = nil
     
     
-    var itemNames = ["THÔNG TIN CHUNG", "CHI TIẾT"]
+    var itemNames = ["THÔNG TIN CHUNG", "DANH SÁCH VẬT TƯ"]
+    
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
-    
     var id = 0
     var data = [Information]()
-    var data1 = [Transport]()
+    var data1 = [Information]()
     
     
     
@@ -57,14 +57,14 @@ class TripDetailController: BaseViewController {
     func popupHandle() {
         okAction = {
             self.showLoading()
-            APIClient.removeLorry(id: self.id) { result in
+            APIClient.transportPickup(id: self.id) { result in
                 self.stopLoading()
                 switch result {
                 case .success(let response):
                     if (response.status == 1) {
                         self.goBack()
                     }
-                    self.showToast(content: response.message ?? "")
+                    self.showToast(content: response.message ?? "Thành công")
                     break
                     
                 case .failure(let error):
@@ -78,23 +78,27 @@ class TripDetailController: BaseViewController {
     
     func getData() {
         showLoading()
-        APIClient.getTrip(id: id) { result in
+        APIClient.getTransport(id: id) { result in
             self.stopLoading()
             switch result {
             case .success(let response):
                 
                 if let value = response.data  {
                     self.item = value
-                    self.data.append(Information(pKey: "Tên",pValue: value.name!))
-                    self.data.append(Information(pKey: "Tài xế", pValue: value.driverFullName!))
-                        self.data.append(Information(pKey: "Số điện thoại", pValue: value.driverPhone!))
-                     self.data.append(Information(pKey: "Tạo bởi", pValue: value.createdByFullName!))
-                    self.data.append(Information(pKey: "Tạo lúc", pValue: value.createdTime!))
+                    self.data.append(Information(pKey: "Code",pValue: value.code!))
+                    self.data.append(Information(pKey: "Kho / Xưởng", pValue: value.warehouseName!))
+                    self.data.append(Information(pKey: "Tên dự án", pValue: value.projectName!))
                     
-                    if(value.transportRequests != nil) {
-                        self.data1 = value.transportRequests!
+                    if(value.lines != nil) {
+                        value.lines?.forEach({ (t) in
+                            let quantity = t.quantity ?? 0
+                            let model = Information(pKey: "\(quantity)" ,pValue: t.productName!)
+                            self.data1.append(model)
+                        })
                     }
-                
+                    
+                    
+                    
                     self.tbView.reloadData()
                     return
                 }
@@ -105,12 +109,12 @@ class TripDetailController: BaseViewController {
         }
     }
     
-    @IBAction func remove(_ sender: Any) {
-        showYesNoPopup(title: "Xóa", message: "Chắc chắn xóa?")
+    @IBAction func confirm(_ sender: Any) {
+        showYesNoPopup(title: "Xác nhận", message: "Đã nhận hàng?")
     }
 }
 
-extension TripDetailController: UITableViewDataSource, UITableViewDelegate {
+extension TransportDetailController: UITableViewDataSource, UITableViewDelegate {
     
     
     @objc func handleRegister(){
@@ -167,7 +171,7 @@ extension TripDetailController: UITableViewDataSource, UITableViewDelegate {
             }
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: WareHouseViewCell.identifier, for: indexPath) as! WareHouseViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
             cell.setData(data: data1[indexPath.row])
             //            if(indexPath.row == data1.count - 1) {
             //                cell.line.isHidden = true

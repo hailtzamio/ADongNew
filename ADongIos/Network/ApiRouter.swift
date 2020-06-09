@@ -62,15 +62,17 @@ enum ApiRouter: URLRequestConvertible {
     case finishWorkOutline(id: Int)
     
      case getTransports(page:Int,name:String)
+    case getTransport(id: Int)
         case getTrips(page:Int,name:String)
         case getTrip(id: Int)
+    case transportPickup(id: Int)
     
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
         case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout :
             return .post
-        case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline   :
+        case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline, .transportPickup   :
             return .put
         case .removeProduct, .removeWorker,.removeLorry, .removeTeam, .removeDriver, .removeContractor, .removeProject :
             return .delete
@@ -80,7 +82,7 @@ enum ApiRouter: URLRequestConvertible {
              .getTeams, .getTeam, .getTeamWorkers,
              .getDrivers, .getDriver,
              .getContractors, .getContractor,
-             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip
+             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport
             :
             return .get
         }
@@ -194,6 +196,10 @@ enum ApiRouter: URLRequestConvertible {
                     return "trip"
             case .getTrip(let id):
                  return "trip/\(id)"
+            case .getTransport(let id):
+                          return "transportRequest/\(id)"
+        case .transportPickup(let id):
+                            return "transportRequest/\(id)/pickup"
         }
     }
     
@@ -206,7 +212,7 @@ enum ApiRouter: URLRequestConvertible {
             return ["brand": data.brand, "model": data.model,"plateNumber": data.plateNumber, "capacity": data.capacity]
             
             
-        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip:
+        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup:
             return nil
         case .getProducts(let page, let name) :
             return  [ "page": page,
