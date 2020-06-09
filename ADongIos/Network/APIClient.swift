@@ -255,5 +255,35 @@ class APIClient {
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
         performRequest(route: ApiRouter.createProject(data: data), decoder: jsonDecoder, completion: completion)
     }
+    
+    static func getProjectWorkers(id : Int,completion:@escaping (Result<BaseResponseList<Worker>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getProjectWokers(id: id), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func checkin(data:CheckInOut,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+             let jsonDecoder = JSONDecoder()
+             jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+             performRequest(route: ApiRouter.checkin(data: data), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func checkout(data:CheckInOut,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+         performRequest(route: ApiRouter.checkout(data: data), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func getProjectWokerOutline(id : Int,completion:@escaping (Result<BaseResponseList<ProgressProject>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getProjectWokerOutline(id: id), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func finishWorkOutline(id:Int,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+           let jsonDecoder = JSONDecoder()
+           jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+           performRequest(route: ApiRouter.finishWorkOutline(id: id), decoder: jsonDecoder, completion: completion)
+       }
 }
 

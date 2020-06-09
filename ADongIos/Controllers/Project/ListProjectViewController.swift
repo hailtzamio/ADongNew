@@ -107,8 +107,9 @@ extension ListProjectViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard.init(name: "Driver", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailDriverViewController") as? DetailDriverViewController {
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailProjectViewController") as? DetailProjectViewController {
             vc.id = data[indexPath.row].id!
+            vc.ptitle = data[indexPath.row].name!
             navigationController?.pushViewController(vc, animated: true)
         }
     }

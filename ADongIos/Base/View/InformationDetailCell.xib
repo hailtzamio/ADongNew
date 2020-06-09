@@ -66,6 +66,7 @@
             <connections>
                 <outlet property="lb1" destination="7zZ-Pg-Maq" id="qMe-bD-A9h"/>
                 <outlet property="lb2" destination="0rD-1I-eSa" id="AGE-fj-1VP"/>
+                <outlet property="line" destination="Ih6-Si-YOt" id="7AX-el-sb2"/>
             </connections>
             <point key="canvasLocation" x="-18" y="-30"/>
         </tableViewCell>

@@ -10,6 +10,7 @@ import UIKit
 
 class InformationDetailCell: UITableViewCell {
 
+    @IBOutlet weak var line: UIView!
     @IBOutlet weak var lb1: UILabel!
     @IBOutlet weak var lb2: UILabel!
     

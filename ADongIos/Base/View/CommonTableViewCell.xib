@@ -66,6 +66,13 @@
                                     <action selector="check:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ske-C5-lxk"/>
                                 </connections>
                             </button>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="green_dot" translatesAutoresizingMaskIntoConstraints="NO" id="pgJ-Kv-isd">
+                                <rect key="frame" x="426" y="35" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Ur9-w4-LIy"/>
+                                    <constraint firstAttribute="width" constant="20" id="eJx-EZ-4Wp"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -74,6 +81,7 @@
                             <constraint firstAttribute="trailing" secondItem="Ii1-KC-LcY" secondAttribute="trailing" id="Adf-yJ-3Hh"/>
                             <constraint firstItem="Evk-xR-So5" firstAttribute="top" secondItem="T5D-lr-Rn2" secondAttribute="bottom" constant="5" id="GoU-wi-gG0"/>
                             <constraint firstItem="Ii1-KC-LcY" firstAttribute="bottom" secondItem="1mP-ez-jrQ" secondAttribute="bottom" id="NEy-7d-SvQ"/>
+                            <constraint firstAttribute="trailing" secondItem="pgJ-Kv-isd" secondAttribute="trailing" constant="15" id="PjL-LS-LCz"/>
                             <constraint firstItem="Evk-xR-So5" firstAttribute="leading" secondItem="1mP-ez-jrQ" secondAttribute="trailing" constant="10" id="RF5-tf-FmQ"/>
                             <constraint firstItem="1mP-ez-jrQ" firstAttribute="leading" secondItem="FDV-vN-Hkf" secondAttribute="leading" constant="15" id="SZi-6o-bEV"/>
                             <constraint firstItem="Ii1-KC-LcY" firstAttribute="top" secondItem="1mP-ez-jrQ" secondAttribute="top" id="jpc-ea-DOn"/>
@@ -81,6 +89,7 @@
                             <constraint firstItem="T5D-lr-Rn2" firstAttribute="top" secondItem="1mP-ez-jrQ" secondAttribute="top" id="nI8-bU-dep"/>
                             <constraint firstItem="1mP-ez-jrQ" firstAttribute="top" secondItem="FDV-vN-Hkf" secondAttribute="top" constant="10" id="sAY-vT-jrE"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="1mP-ez-jrQ" secondAttribute="bottom" constant="10" id="sEi-4E-iqR"/>
+                            <constraint firstItem="pgJ-Kv-isd" firstAttribute="centerY" secondItem="1mP-ez-jrQ" secondAttribute="centerY" id="ss8-tP-jAj"/>
                             <constraint firstAttribute="trailing" secondItem="u6x-L9-0to" secondAttribute="trailing" constant="15" id="tSw-fp-Wze"/>
                             <constraint firstItem="u6x-L9-0to" firstAttribute="centerY" secondItem="1mP-ez-jrQ" secondAttribute="centerY" id="w2X-GE-Uz3"/>
                         </constraints>
@@ -97,15 +106,17 @@
             <connections>
                 <outlet property="imvAva" destination="1mP-ez-jrQ" id="2LJ-jf-9TV"/>
                 <outlet property="imvCheck" destination="u6x-L9-0to" id="zSv-QW-UxX"/>
+                <outlet property="imvStatus" destination="pgJ-Kv-isd" id="TdL-Q5-wUj"/>
                 <outlet property="lb1" destination="T5D-lr-Rn2" id="NSs-Wp-9g1"/>
                 <outlet property="lb2" destination="Evk-xR-So5" id="7fl-18-n3H"/>
                 <outlet property="lb3" destination="ofz-WQ-Unc" id="sux-nB-Voz"/>
             </connections>
-            <point key="canvasLocation" x="33" y="85"/>
+            <point key="canvasLocation" x="32.608695652173914" y="84.709821428571431"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="correct" width="32" height="32"/>
-        <image name="default" width="128" height="128"/>
+        <image name="default" width="88" height="74"/>
+        <image name="green_dot" width="64" height="64"/>
     </resources>
 </document>

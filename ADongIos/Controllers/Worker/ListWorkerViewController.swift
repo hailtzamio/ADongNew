@@ -124,6 +124,7 @@ extension ListWorkerViewController: UITableViewDataSource, UITableViewDelegate, 
         let cell = tableView.dequeueReusableCell(withIdentifier: CommonTableViewCell.identifier, for: indexPath) as! CommonTableViewCell
         cell.setDataWorker(data: data[indexPath.row])
         cell.check = self
+        cell.imvStatus.isHidden = !isCheckHiden
         cell.imvCheck.isHidden = isCheckHiden
         cell.tag = indexPath.row
         return cell

@@ -55,13 +55,19 @@ enum ApiRouter: URLRequestConvertible {
     case removeProject(id: Int)
     case updateProject(data: Project)
     case createProject(data: Project)
+    case getProjectWokers(id: Int)
+    case checkin(data: CheckInOut)
+    case checkout(data: CheckInOut)
+    case getProjectWokerOutline(id: Int)
+    case finishWorkOutline(id: Int)
+    
     
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
-        case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject :
+        case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout :
             return .post
-        case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject :
+        case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline   :
             return .put
         case .removeProduct, .removeWorker,.removeLorry, .removeTeam, .removeDriver, .removeContractor, .removeProject :
             return .delete
@@ -71,7 +77,7 @@ enum ApiRouter: URLRequestConvertible {
              .getTeams, .getTeam, .getTeamWorkers,
              .getDrivers, .getDriver,
              .getContractors, .getContractor,
-             .getProjects, .getProject
+             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline
             :
             return .get
         }
@@ -157,19 +163,28 @@ enum ApiRouter: URLRequestConvertible {
         case .createContractor:
             return "contractor"
             
-            case .getProjects:
-                return "project"
-            case .getProject(let id):
-                return "project/\(id)"
-            case .removeProject(let id):
-                return "project/\(id)"
-            case .updateProject (let data):
-                let id = data.id ?? 0
-                return "project/\(id)"
-            case .createProject:
-                return "project"
+        case .getProjects:
+            return "project"
+        case .getProject(let id):
+            return "project/\(id)"
+        case .removeProject(let id):
+            return "project/\(id)"
+        case .updateProject (let data):
+            let id = data.id ?? 0
+            return "project/\(id)"
+        case .createProject:
+            return "project"
+        case .getProjectWokers(let id):
+            return "project/\(id)/workers"
+        case .checkin :
+            return "checkin"
+        case .checkout :
+            return "checkout"
+        case .getProjectWokerOutline(let id):
+            return "project/\(id)/workOutlines"
             
-            
+        case .finishWorkOutline(let id):
+            return "projectWorkOutline/\(id)/finish"
         }
     }
     
@@ -182,7 +197,7 @@ enum ApiRouter: URLRequestConvertible {
             return ["brand": data.brand, "model": data.model,"plateNumber": data.plateNumber, "capacity": data.capacity]
             
             
-        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject:
+        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline:
             return nil
         case .getProducts(let page, let name) :
             return  [ "page": page,
@@ -206,7 +221,7 @@ enum ApiRouter: URLRequestConvertible {
         case .updateTeam(let data):
             return ["name": data.name, "address": data.address,"phone": data.phone, "phone2": data.phone2, "districtId": data.districtId, "provinceId": data.provinceId, "leaderId": data.leaderId, "memberIds": data.memberIds]
             
-         
+            
             
             
         case .updateDriver(let data):
@@ -229,14 +244,22 @@ enum ApiRouter: URLRequestConvertible {
         case .updateContractor(let data):
             return ["name": data.name,"phone": data.phone, "password": data.password, "address": data.address, "email": data.email, "provinceId": data.provinceId, "districtId": data.districtId]
             
-            case .createProject(let data):
-                            return ["name": data.name, "address": data.address,"teamType": data.teamType, "deputyManagerId": data.deputyManagerId, "secretaryId": data.secretaryId, "teamId": data.teamId, "contractorId": data.contractorId, "supervisorId": data.supervisorId, "plannedStartDate": data.plannedStartDate, "plannedEndDate": data.plannedEndDate, "latitude": data.latitude, "longitude": data.longitude]
-            case .updateProject(let data):
-                                   return ["name": data.name, "address": data.address,"teamType": data.teamType, "deputyManagerId": data.deputyManagerId, "secretaryId": data.secretaryId, "teamId": data.teamId, "contractorId": data.contractorId, "supervisorId": data.supervisorId, "plannedStartDate": data.plannedStartDate, "plannedEndDate": data.plannedEndDate, "latitude": data.latitude, "longitude": data.longitude]
+        case .createProject(let data):
+            return ["name": data.name, "address": data.address,"teamType": data.teamType, "deputyManagerId": data.deputyManagerId, "secretaryId": data.secretaryId, "teamId": data.teamId, "contractorId": data.contractorId, "supervisorId": data.supervisorId, "plannedStartDate": data.plannedStartDate, "plannedEndDate": data.plannedEndDate, "latitude": data.latitude, "longitude": data.longitude]
+        case .updateProject(let data):
+            return ["name": data.name, "address": data.address,"teamType": data.teamType, "deputyManagerId": data.deputyManagerId, "secretaryId": data.secretaryId, "teamId": data.teamId, "contractorId": data.contractorId, "supervisorId": data.supervisorId, "plannedStartDate": data.plannedStartDate, "plannedEndDate": data.plannedEndDate, "latitude": data.latitude, "longitude": data.longitude]
             
-            case .getProjects(let page, let name) :
-                    return  [ "page": page,
-                              "name": name, "sort" : "id,desc" ]
+        case .getProjects(let page, let name) :
+            return  [ "page": page,
+                      "name": name, "sort" : "id,desc" ]
+            
+            
+        case .checkin(let data) :
+            return  [ "projectId": data.projectId,
+                      "workerIds": data.workerIds]
+        case .checkout(let data) :
+            return  [ "projectId": data.projectId,
+                      "workerIds": data.workerIds]
         }
     }
     

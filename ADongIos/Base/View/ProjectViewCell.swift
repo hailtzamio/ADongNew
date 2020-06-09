@@ -52,7 +52,6 @@ class ProjectViewCell: UITableViewCell {
             }
         }
         
-        
         func setDataContractor(data:Contractor) {
             lb1.text = data.name
             lb2.text = data.phone
@@ -73,4 +72,6 @@ class ProjectViewCell: UITableViewCell {
                lb5.text = "Nhà thầu phụ"
             }
          }
+    
+
     }

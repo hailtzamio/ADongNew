@@ -15,6 +15,7 @@ protocol checkItem {
 
 class CommonTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var imvStatus: UIImageView!
     @IBOutlet weak var imvCheck: UIButton!
     @IBOutlet weak var lb1: UILabel!
     
@@ -63,7 +64,7 @@ class CommonTableViewCell: UITableViewCell {
     }
     
     func setDataWorker(data:Worker) {
-        lb1.text = data.userFullName
+        lb1.text = data.fullName
         if(data.isTeamLeader ?? false) {
             lb2.text = "Đội trưởng"
         } else {
@@ -83,6 +84,16 @@ class CommonTableViewCell: UITableViewCell {
                 imvCheck.setImage(image, for: .normal)
             }
         }
+        
+        if(data.workingStatus == "idle") {
+               if let image = UIImage(named: "free_dot") {
+                   imvStatus.image = image
+               }
+           } else {
+               if let image = UIImage(named: "green_dot") {
+                   imvStatus.image = image
+               }
+        }
     }
     
     func setDataWorkerCheck(data:Worker) {
@@ -97,6 +108,7 @@ class CommonTableViewCell: UITableViewCell {
         
         imvAva.kf.setImage(with: url, placeholder: imageDf)
         
+   
         
         if data.isSelected ?? false {
             if let image = UIImage(named: "Checkmark") {
@@ -117,7 +129,7 @@ class CommonTableViewCell: UITableViewCell {
     func setDataDriver(data:Driver) {
         lb1.text = data.fullName
         lb2.text = data.phone
-    
+        
         if(data.tripName != nil && data.tripName != "") {
             lb3.text = data.email ?? "---"
         }

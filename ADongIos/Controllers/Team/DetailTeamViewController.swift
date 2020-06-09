@@ -207,11 +207,11 @@ extension DetailTeamViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let sectionView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
-        sectionView.backgroundColor = UIColor.init(hexString: "#E8E8E8")
+        sectionView.backgroundColor = UIColor.init(hexString: "#ffffff")
         
         let sectionName = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
         sectionName.text = itemNames[section]
-        sectionName.textColor = UIColor.init(hexString: "#7c7c7c")
+        sectionName.textColor = UIColor.init(hexString: "#4c4c4c")
         sectionName.font = UIFont.systemFont(ofSize: 17)
         sectionName.textAlignment = .left
         
@@ -247,6 +247,11 @@ extension DetailTeamViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
             cell.setData(data: data[indexPath.row])
+            
+            if(indexPath.row == data.count - 1) {
+                cell.line.isHidden = true
+            }
+            
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: SmallInformationViewCell.identifier, for: indexPath) as! SmallInformationViewCell

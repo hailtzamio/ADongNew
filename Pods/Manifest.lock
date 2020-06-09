@@ -8,7 +8,6 @@ PODS:
     - Kingfisher/Core (= 5.14.0)
   - Kingfisher/Core (5.14.0)
   - MBProgressHUD (1.2.0)
-  - Segmentio (4.1)
   - Toaster (2.2.0)
   - TOCropViewController (2.5.2)
 
@@ -20,7 +19,6 @@ DEPENDENCIES:
   - JGProgressHUD
   - Kingfisher
   - MBProgressHUD
-  - Segmentio
   - Toaster
   - TOCropViewController
 
@@ -33,7 +31,6 @@ SPEC REPOS:
     - JGProgressHUD
     - Kingfisher
     - MBProgressHUD
-    - Segmentio
     - Toaster
     - TOCropViewController
 
@@ -45,10 +42,9 @@ SPEC CHECKSUMS:
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   Kingfisher: 7b64389a43139c903ec434788344c288217c792d
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  Segmentio: ab29def64e1bff6e6e9b97671788a99bed3f1d9f
   Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
   TOCropViewController: e9da34f484aedd4e5d5a8ab230ba217cfe16c729
 
-PODFILE CHECKSUM: 4ec15bcacce1e8c64144d57a83bc810738755ca7
+PODFILE CHECKSUM: 776c44b54a18d983c856a541a74f0fe7e6d56974
 
 COCOAPODS: 1.9.1
