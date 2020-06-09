@@ -362,6 +362,60 @@
             </objects>
             <point key="canvasLocation" x="1396" y="-162"/>
         </scene>
+        <!--Base Information Controller-->
+        <scene sceneID="lZN-S0-Jhy">
+            <objects>
+                <viewController storyboardIdentifier="BaseInformationController" id="wMe-Za-wJA" customClass="BaseInformationController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2UF-l2-SSi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CHv-7m-PNC">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOM-cu-zxp" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="jfb-Jc-WvB"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ysJ-Rx-UJ6">
+                                        <rect key="frame" x="0.0" y="55" width="414" height="763"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="ysJ-Rx-UJ6" firstAttribute="leading" secondItem="CHv-7m-PNC" secondAttribute="leading" id="2br-Cn-7gL"/>
+                                    <constraint firstAttribute="trailing" secondItem="ysJ-Rx-UJ6" secondAttribute="trailing" id="3dA-1c-UBH"/>
+                                    <constraint firstItem="bOM-cu-zxp" firstAttribute="top" secondItem="CHv-7m-PNC" secondAttribute="top" id="97J-Mj-Dvi"/>
+                                    <constraint firstAttribute="bottom" secondItem="ysJ-Rx-UJ6" secondAttribute="bottom" id="HZe-mT-69W"/>
+                                    <constraint firstItem="bOM-cu-zxp" firstAttribute="leading" secondItem="CHv-7m-PNC" secondAttribute="leading" id="LmM-1h-hY1"/>
+                                    <constraint firstItem="ysJ-Rx-UJ6" firstAttribute="top" secondItem="bOM-cu-zxp" secondAttribute="bottom" constant="5" id="iH2-S0-XeA"/>
+                                    <constraint firstAttribute="trailing" secondItem="bOM-cu-zxp" secondAttribute="trailing" id="oxD-mL-alx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="CHv-7m-PNC" firstAttribute="top" secondItem="D3c-Eg-Ilf" secondAttribute="top" id="J1v-3O-HIw"/>
+                            <constraint firstItem="CHv-7m-PNC" firstAttribute="leading" secondItem="D3c-Eg-Ilf" secondAttribute="leading" id="b8T-25-Rec"/>
+                            <constraint firstItem="CHv-7m-PNC" firstAttribute="trailing" secondItem="D3c-Eg-Ilf" secondAttribute="trailing" id="ja6-AL-71Z"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="CHv-7m-PNC" secondAttribute="bottom" id="jpT-Sw-GIE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="D3c-Eg-Ilf"/>
+                    </view>
+                    <connections>
+                        <outlet property="header" destination="bOM-cu-zxp" id="VIA-kN-1xS"/>
+                        <outlet property="tbView" destination="ysJ-Rx-UJ6" id="XZQ-tN-0yw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u3q-Ne-9ZE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1730" y="-1608"/>
+        </scene>
         <!--Information List View Controller-->
         <scene sceneID="Fnn-xq-Fyz">
             <objects>
@@ -370,7 +424,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e5R-kL-mRg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e5R-kL-mRg">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>

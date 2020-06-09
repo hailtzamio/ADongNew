@@ -39,7 +39,6 @@ class BaseViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    
     func showToast(content:String){
         Toast(text: content, duration: Delay.short).show()
     }

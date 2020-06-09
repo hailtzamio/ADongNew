@@ -49,6 +49,14 @@ class CommonNoAvatarCell: UITableViewCell {
         }
     }
     
+    func setDataTrip(data:Transport) {
+        lb1.text = data.code
+        lb2.text = data.projectName
+        if(data.projectAddress != nil && data.projectAddress != "") {
+            lb3.text = data.projectAddress
+        }
+    }
+    
     
     func setDataContractor(data:Contractor) {
         lb1.text = data.name

@@ -285,5 +285,26 @@ class APIClient {
            jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
            performRequest(route: ApiRouter.finishWorkOutline(id: id), decoder: jsonDecoder, completion: completion)
        }
+    
+    
+    static func getTransports(page : Int, name : String,completion:@escaping (Result<BaseResponseList<Transport>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getTransports(page: page, name: name), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func getTrips(page : Int, name : String,completion:@escaping (Result<BaseResponseList<Trip>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getTrips(page: page, name: name), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func getTrip(id:Int,completion:@escaping (Result<BaseResponse<Trip>, AFError>)->Void) {
+               let jsonDecoder = JSONDecoder()
+               jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+               performRequest(route: ApiRouter.getTrip(id: id), decoder: jsonDecoder, completion: completion)
+           }
+    
+    
 }
 

@@ -51,10 +51,9 @@ class PermissViewController: BaseViewController {
         
         for (key, value) in self.someProtocol {
             print(key)
-            if(key == "Product" || key == "Lorry" || key == "Worker" || key == "Team" || key == "Driver" || key == "Contractor" || key == "Project"  ) {
+            if(key == "Product" || key == "Lorry" || key == "Worker" || key == "Team" || key == "Driver" || key == "Contractor" || key == "Project" || key == "Transport" || key == "Trip"  ) {
                 self.permissions.append(value)
             }
-            
         }
         
         self.collectionView.reloadData()
@@ -104,17 +103,22 @@ extension PermissViewController : UICollectionViewDataSource, UICollectionViewDe
                 vC = vc
             }
             break
-            case "Contractor":
-                  if let vc = UIStoryboard.init(name: "Contractor", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListContractorViewController") as? ListContractorViewController {
-                      vC = vc
-                  }
-                  break
-            case "Project":
-                      if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListProjectViewController") as? ListProjectViewController {
-                          vC = vc
-                      }
-                      break
+        case "Contractor":
+            if let vc = UIStoryboard.init(name: "Contractor", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListContractorViewController") as? ListContractorViewController {
+                vC = vc
+            }
+            break
+        case "Project":
+            if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListProjectViewController") as? ListProjectViewController {
+                vC = vc
+            }
+            break
             
+        case "Trip":
+            if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "TripTransportViewController") as? TripTransportViewController {
+                vC = vc
+            }
+            break
         default:
             break
         }

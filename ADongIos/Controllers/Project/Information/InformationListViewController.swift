@@ -69,9 +69,26 @@ extension InformationListViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailLorryViewController") as? DetailLorryViewController {
-        //            vc.id = data[indexPath.row].id!
-        //            navigationController?.pushViewController(vc, animated: true)
-        //        }
+    
+        switch indexPath.row {
+        case 0:
+            goToBaseInformation() 
+            break
+        default:
+            break
+        }
+        
+        
+    }
+}
+
+extension InformationListViewController {
+
+
+    func goToBaseInformation() {
+                if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "BaseInformationController") as? BaseInformationController {
+                    vc.id = id
+                    navigationController?.pushViewController(vc, animated: true)
+                }
     }
 }

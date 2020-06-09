@@ -9,7 +9,7 @@
 import UIKit
 
 class PermissionCollectionViewCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var tbTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,9 +21,9 @@ class PermissionCollectionViewCell: UICollectionViewCell {
     }
     
     static var identifier: String {
-          return String(describing: self)
-      }
-
+        return String(describing: self)
+    }
+    
     func setData(data:Permission){
         
         var title = ""
@@ -32,34 +32,42 @@ class PermissionCollectionViewCell: UICollectionViewCell {
         }
         
         if(data.appEntityCode == "Contractor") {
-                title = "Nhà Thầu Phụ"
-            }
+            title = "Nhà Thầu Phụ"
+        }
         
         if(data.appEntityCode == "Lorry") {
-                title = "Xe"
-            }
+            title = "Xe"
+        }
         
         if(data.appEntityCode == "Team") {
-                title = "Đội Thi Công"
-            }
+            title = "Đội Thi Công"
+        }
         
         if(data.appEntityCode == "Project") {
-                title = "Công Trình"
+            title = "Công Trình"
         }
         
         if(data.appEntityCode == "Driver") {
-                     title = "Lái Xe"
-             }
+            title = "Lái Xe"
+        }
         
         if(data.appEntityCode == "Worker") {
-                           title = "Công Nhân"
-                   }
+            title = "Công Nhân"
+        }
         
-//        else {
-//            title = data.appEntityCode!
-//        }
+        if(data.appEntityCode == "Transport") {
+            title = "Vận Chuyển"
+        }
+        
+        if(data.appEntityCode == "Trip") {
+            title = "Chuyến Đi"
+        }
+        
+        //        else {
+        //            title = data.appEntityCode!
+        //        }
         
         tbTitle.text = title
     }
-
+    
 }

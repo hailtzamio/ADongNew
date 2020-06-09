@@ -61,6 +61,9 @@ enum ApiRouter: URLRequestConvertible {
     case getProjectWokerOutline(id: Int)
     case finishWorkOutline(id: Int)
     
+     case getTransports(page:Int,name:String)
+        case getTrips(page:Int,name:String)
+        case getTrip(id: Int)
     
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
@@ -77,7 +80,7 @@ enum ApiRouter: URLRequestConvertible {
              .getTeams, .getTeam, .getTeamWorkers,
              .getDrivers, .getDriver,
              .getContractors, .getContractor,
-             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline
+             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip
             :
             return .get
         }
@@ -185,6 +188,12 @@ enum ApiRouter: URLRequestConvertible {
             
         case .finishWorkOutline(let id):
             return "projectWorkOutline/\(id)/finish"
+        case .getTransports :
+              return "transportRequest"
+            case .getTrips :
+                    return "trip"
+            case .getTrip(let id):
+                 return "trip/\(id)"
         }
     }
     
@@ -197,7 +206,7 @@ enum ApiRouter: URLRequestConvertible {
             return ["brand": data.brand, "model": data.model,"plateNumber": data.plateNumber, "capacity": data.capacity]
             
             
-        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline:
+        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip:
             return nil
         case .getProducts(let page, let name) :
             return  [ "page": page,
@@ -260,6 +269,13 @@ enum ApiRouter: URLRequestConvertible {
         case .checkout(let data) :
             return  [ "projectId": data.projectId,
                       "workerIds": data.workerIds]
+            
+            case .getTransports(let page, let name) :
+                   return  [ "page": page,
+                             "name": name, "sort" : "id,desc" ]
+            case .getTrips(let page, let name) :
+                        return  [ "page": page,
+                                  "name": name, "sort" : "id,desc" ]
         }
     }
     
