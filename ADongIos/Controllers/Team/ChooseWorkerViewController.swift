@@ -58,13 +58,25 @@ class ChooseWorkerViewController: BaseViewController, UISearchBarDelegate, LoadM
             header.title = "Đội Trưởng"
             getLeaders()
             break
+        case TypeOfWorker.manager :
+            header.title = "Trưởng Bộ Phận"
+            getWorkersForTeam(type: "MANAGER")
+            break
+        case TypeOfWorker.deputyManager :
+            header.title = "Đội Trưởng"
+            getWorkersForTeam(type: "DEPUTY_MANAGER")
+            break
+        case TypeOfWorker.secretary :
+            header.title = "Thư Ký"
+            getWorkersForTeam(type: "SECRETARY")
+            break
         default:
             break
         }
     }
     
     func setupHeader() {
-      
+        
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
         }
@@ -79,6 +91,30 @@ class ChooseWorkerViewController: BaseViewController, UISearchBarDelegate, LoadM
     func getData() {
         showLoading()
         APIClient.getWorkers(page : page, name : searchBar.text ?? "") { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if(response.data != nil) {
+                    self.data.append(contentsOf: response.data!)
+                    self.tbView.reloadData()
+                    if(response.pagination != nil && response.pagination?.totalPages != nil) {
+                        self.totalPages = response.pagination?.totalPages as! Int
+                        self.page = self.page + 1
+                    }
+                } else {
+                    self.showToast(content: response.message!)
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
+    }
+    
+    func getWorkersForTeam(type: String) {
+        showLoading()
+        APIClient.getWorkersForTeam(page : page, name : searchBar.text ?? "", type: type) { result in
             self.stopLoading()
             switch result {
             case .success(let response):
@@ -145,7 +181,7 @@ extension ChooseWorkerViewController: UITableViewDataSource, UITableViewDelegate
     
     
     func doCheck(position: Int) {
-
+        
         data[position].isSelected = !(data[position].isSelected ?? false)
         tbView.reloadData()
     }
@@ -171,10 +207,10 @@ extension ChooseWorkerViewController: UITableViewDataSource, UITableViewDelegate
             goBack()
         }
         
-//                if let vc = UIStoryboard.init(name: "Worker", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailWorkerViewController") as? DetailWorkerViewController {
-//                    vc.id = data[indexPath.row].id!
-//                    navigationController?.pushViewController(vc, animated: true)
-//                }
+        //                if let vc = UIStoryboard.init(name: "Worker", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailWorkerViewController") as? DetailWorkerViewController {
+        //                    vc.id = data[indexPath.row].id!
+        //                    navigationController?.pushViewController(vc, animated: true)
+        //                }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

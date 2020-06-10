@@ -13,7 +13,7 @@ class BaseInformationController: BaseViewController {
     
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
-    var itemNames = ["THÔNG TIN CHUNG ", "THỜI GIAN", "THÀNH VIÊN"]
+    var itemNames = ["THÔNG TIN CHUNG ", "", "THỜI GIAN", "", "THÀNH VIÊN"]
     
     
     var id = 0
@@ -28,7 +28,7 @@ class BaseInformationController: BaseViewController {
         tbView.delegate = self
         tbView.register(InformationDetailCell.nib, forCellReuseIdentifier: InformationDetailCell.identifier)
         
-        
+              tbView.register(LineViewCell.nib, forCellReuseIdentifier: LineViewCell.identifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,16 +92,20 @@ class BaseInformationController: BaseViewController {
                     
                     if(value.teamType == "ADONG") {
                         self.data2.append(Information(pKey: "Đội thi công",pValue: "Đội Á đông"))
+                           self.data2.append(Information(pKey: "Tên đội",pValue: value.teamName ?? "---"))
+                        self.data2.append(Information(pKey: "Đội trưởng",pValue: value.teamLeaderFullName ?? "---"))
+                     
                     } else {
-                        self.data2.append(Information(pKey: "Đội thi công",pValue: "Nhà thầu phụ"))
+                        self.data2.append(Information(pKey: "Nhà thầu phụ",pValue: value.contractorName  ?? "---"))
+                         self.data2.append(Information(pKey: "Giám sát",pValue: value.supervisorFullName  ?? "---"))
                     }
                     
-                    self.data2.append(Information(pKey: "Tên đội",pValue: value.teamName ?? "---"))
+                 
                     
                     self.data2.append(Information(pKey: "Trưởng bộ phận",pValue: value.managerFullName ?? "---"))
                     
                     self.data2.append(Information(pKey: "Phó bộ phận",pValue: value.deputyManagerFullName ?? "---"))
-                    
+                       self.data2.append(Information(pKey: "Thư Ký",pValue: value.secretaryFullName ?? "---"))
                     
                     self.tbView.reloadData()
                     return
@@ -127,27 +131,27 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let sectionView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
-        sectionView.backgroundColor = UIColor.init(hexString: "#ffffff")
-        
-        let sectionName = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
-        sectionName.text = itemNames[section]
-        sectionName.textColor = UIColor.init(hexString: "#4c4c4c")
-        sectionName.font = UIFont.systemFont(ofSize: 17)
-        sectionName.textAlignment = .left
-        
-        let uiButton = UIButton(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
-        uiButton.addTarget(self, action:#selector(handleRegister),
-                           for: .touchUpInside)
-        sectionView.addSubview(sectionName)
-        sectionView.addSubview(uiButton)
-        return sectionView
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//
+//        let sectionView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
+//        sectionView.backgroundColor = UIColor.init(hexString: "#ffffff")
+//
+//        let sectionName = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
+//        sectionName.text = itemNames[section]
+//        sectionName.textColor = UIColor.init(hexString: "#4c4c4c")
+//        sectionName.font = UIFont.systemFont(ofSize: 17)
+//        sectionName.textAlignment = .left
+//
+//        let uiButton = UIButton(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
+//        uiButton.addTarget(self, action:#selector(handleRegister),
+//                           for: .touchUpInside)
+//        sectionView.addSubview(sectionName)
+//        sectionView.addSubview(uiButton)
+//        return sectionView
+//    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -155,12 +159,12 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
         switch (section) {
         case 0:
             return data.count
-        case 1:
-            return data1.count
         case 2:
+            return data1.count
+        case 4:
             return data2.count
         default:
-            return 0
+            return 1
         }
     }
     
@@ -175,17 +179,23 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
                 cell.line.isHidden = true
             }
             break
-        case 1:
+        case 2:
             cell.setData(data: data1[indexPath.row])
             if(indexPath.row == data1.count - 1) {
                 cell.line.isHidden = true
             }
             break
-        default:
+        case 4:
             cell.setData(data: data2[indexPath.row])
             if(indexPath.row == data2.count - 1) {
                 cell.line.isHidden = true
             }
+            break
+        case 1,3 :
+            let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell
+            return cell
+            
+        default :
             break
         }
         return cell

@@ -15,7 +15,8 @@ class ListTeamViewController: BaseViewController, UISearchBarDelegate, LoadMoreC
     fileprivate var activityIndicator: LoadMoreActivityIndicator!
     var page = 0
     var totalPages = 0
-    
+    var callback : ((Team?) -> Void)?
+    var isChooseTeam = false
     var removeTeamId = 0
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
@@ -27,9 +28,13 @@ class ListTeamViewController: BaseViewController, UISearchBarDelegate, LoadMoreC
         tbView.dataSource = self
         tbView.delegate = self
         tbView.register(CommonNoAvatarCell.nib, forCellReuseIdentifier: CommonNoAvatarCell.identifier)
-    
+        
         loadMoreControl = LoadMoreControl(scrollView: tbView, spacingFromLastCell: 10, indicatorHeight: 60)
         loadMoreControl.delegate = self
+        
+        if(isChooseTeam) {
+                
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,10 +50,10 @@ class ListTeamViewController: BaseViewController, UISearchBarDelegate, LoadMoreC
         }
         
         header.rightAction = {
-           if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateTeamViewController") as? UpdateTeamViewController {
-                           vc.isUpdate = false
-                           self.navigationController?.pushViewController(vc, animated: true)
-           }
+            if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateTeamViewController") as? UpdateTeamViewController {
+                vc.isUpdate = false
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     
@@ -106,10 +111,17 @@ extension ListTeamViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailTeamViewController") as? DetailTeamViewController {
-            vc.id = data[indexPath.row].id!
-            navigationController?.pushViewController(vc, animated: true)
+        if(isChooseTeam) {
+            callback!(data[indexPath.row])
+            goBack()
+        } else {
+            if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailTeamViewController") as? DetailTeamViewController {
+                vc.id = data[indexPath.row].id!
+                navigationController?.pushViewController(vc, animated: true)
+            }
         }
+        
+        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -117,10 +129,10 @@ extension ListTeamViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-           if (editingStyle == .delete) {
+        if (editingStyle == .delete) {
             removeTeamId = data[indexPath.row].id!
-               showYesNoPopup(title: "Xác nhận", message: "Chắc chắn xóa?")
-           }
+            showYesNoPopup(title: "Xác nhận", message: "Chắc chắn xóa?")
+        }
     }
     
     func popupHandle() {
@@ -136,7 +148,7 @@ extension ListTeamViewController: UITableViewDataSource, UITableViewDelegate {
                 switch result {
                 case .success(let response):
                     if (response.status == 1) {
-                       self?.showToast(content: "Thành công")
+                        self?.showToast(content: "Thành công")
                         self?.data.removeAll()
                         self?.page = 0
                         self?.getData()

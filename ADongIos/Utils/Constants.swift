@@ -43,6 +43,11 @@ struct StoreKey {
 struct TypeOfWorker {
     static let worker = 0
     static let leader = 1
+    static let manager = 2
+    static let deputyManager = 3
+    static let secretary = 4
+    
+    
     static let emaifullNamel = "username"
 }
 

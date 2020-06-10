@@ -94,6 +94,12 @@ class APIClient {
         performRequest(route: ApiRouter.getWorkers(page: page, name: name), decoder: jsonDecoder, completion: completion)
     }
     
+    static func getWorkersForTeam(page : Int, name: String, type : String,completion:@escaping (Result<BaseResponseList<Worker>, AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getWorkersForTeam(page: page, name: name, type : type), decoder: jsonDecoder, completion: completion)
+     }
+    
     static func getLeaders(page : Int, name : String,completion:@escaping (Result<BaseResponseList<Worker>, AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)

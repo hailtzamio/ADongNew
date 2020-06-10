@@ -42,7 +42,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="tel"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ngày bắt đầu" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SQX-It-LGH">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ngày bắt đầu" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SQX-It-LGH" customClass="IQDropDownTextField">
                                         <rect key="frame" x="15" y="185" width="185" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="Zar-Cj-hBj"/>
@@ -50,7 +50,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ngày kết thúc" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZNt-7Z-KqH">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ngày kết thúc" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZNt-7Z-KqH" customClass="IQDropDownTextField">
                                         <rect key="frame" x="215" y="185" width="184" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="RXA-Me-HfC"/>
@@ -64,7 +64,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="L82-oH-a2D"/>
                                         </constraints>
-                                        <state key="normal" title="CHỌN CÔNG NHÂN">
+                                        <state key="normal" title="ĐỒNG Ý">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -72,6 +72,9 @@
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="createOrUpdate:" destination="afj-T9-WO6" eventType="touchUpInside" id="r99-p0-Gru"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Vị trí" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R6J-Qo-z1X" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="15" y="245" width="384" height="45"/>
@@ -81,7 +84,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Chọn đội trưởng *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xOO-46-XDT" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Chọn đội *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xOO-46-XDT" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="15" y="305" width="384" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="0rA-YD-ryF"/>
@@ -105,8 +108,11 @@
                                                 <real key="value" value="0.5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="chooseTeam:" destination="afj-T9-WO6" eventType="touchUpInside" id="yG4-9R-asM"/>
+                                        </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Số điện thoại 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wCg-gM-sad" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trưởng bộ phận" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wCg-gM-sad" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="15" y="365" width="384" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="YSc-d2-PKM"/>
@@ -122,16 +128,65 @@
                                             <constraint firstAttribute="width" constant="20" id="coe-pG-EU0"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BJ-c1-r58">
+                                        <rect key="frame" x="20" y="249" width="374" height="41"/>
+                                        <connections>
+                                            <action selector="location:" destination="afj-T9-WO6" eventType="touchUpInside" id="rtd-Up-hRK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xo2-8g-aQ3">
+                                        <rect key="frame" x="20" y="365" width="374" height="41"/>
+                                        <connections>
+                                            <action selector="chooseManager:" destination="afj-T9-WO6" eventType="touchUpInside" id="noq-CP-NHg"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phó bộ phận" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1tj-ho-gHb" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="425" width="384" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="TSq-XO-N9M"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSl-qO-2Td">
+                                        <rect key="frame" x="15" y="425" width="374" height="41"/>
+                                        <connections>
+                                            <action selector="chooseDeputyManager:" destination="afj-T9-WO6" eventType="touchUpInside" id="7MC-hR-Cax"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Thư ký" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rpa-xP-AM6" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="485" width="384" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="ee6-2D-As6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvt-mj-kjU">
+                                        <rect key="frame" x="15" y="485" width="374" height="41"/>
+                                        <connections>
+                                            <action selector="chooseSecretary:" destination="afj-T9-WO6" eventType="touchUpInside" id="KqB-bD-atm"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="ZNt-7Z-KqH" firstAttribute="leading" secondItem="SQX-It-LGH" secondAttribute="trailing" constant="15" id="4L0-iS-v27"/>
+                                    <constraint firstItem="xo2-8g-aQ3" firstAttribute="width" secondItem="wCg-gM-sad" secondAttribute="width" multiplier="0.973958" id="4QK-RF-cNT"/>
+                                    <constraint firstItem="1tj-ho-gHb" firstAttribute="top" secondItem="wCg-gM-sad" secondAttribute="bottom" constant="15" id="4TI-4Q-v8F"/>
                                     <constraint firstItem="D9k-lc-Tps" firstAttribute="top" secondItem="R6J-Qo-z1X" secondAttribute="bottom" constant="15" id="6Da-jC-pvV"/>
+                                    <constraint firstAttribute="trailing" secondItem="1tj-ho-gHb" secondAttribute="trailing" constant="15" id="8Xf-qV-XjH"/>
                                     <constraint firstItem="D9k-lc-Tps" firstAttribute="trailing" secondItem="wCg-gM-sad" secondAttribute="trailing" id="8hj-BR-BCX"/>
+                                    <constraint firstItem="PSl-qO-2Td" firstAttribute="height" secondItem="1tj-ho-gHb" secondAttribute="height" multiplier="0.911111" id="AmR-Rq-pyS"/>
+                                    <constraint firstItem="7BJ-c1-r58" firstAttribute="height" secondItem="R6J-Qo-z1X" secondAttribute="height" multiplier="0.911111" id="DXh-Hm-vYv"/>
                                     <constraint firstItem="xOO-46-XDT" firstAttribute="leading" secondItem="D9k-lc-Tps" secondAttribute="leading" id="HQK-Fl-P8h"/>
                                     <constraint firstItem="ZNt-7Z-KqH" firstAttribute="trailing" secondItem="BLg-QU-7gM" secondAttribute="trailing" id="IQm-xQ-MyW"/>
                                     <constraint firstItem="BLg-QU-7gM" firstAttribute="trailing" secondItem="trF-Xo-24C" secondAttribute="trailing" id="JE8-Co-gNg"/>
+                                    <constraint firstItem="7BJ-c1-r58" firstAttribute="leading" secondItem="R6J-Qo-z1X" secondAttribute="leading" id="KFU-4s-cGX"/>
+                                    <constraint firstItem="7BJ-c1-r58" firstAttribute="width" secondItem="R6J-Qo-z1X" secondAttribute="width" multiplier="0.973958" id="Kxr-v6-VGX"/>
                                     <constraint firstItem="R6J-Qo-z1X" firstAttribute="leading" secondItem="SQX-It-LGH" secondAttribute="leading" id="LwH-Gh-bEO"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rpa-xP-AM6" secondAttribute="trailing" constant="15" id="M3k-BJ-dGO"/>
+                                    <constraint firstItem="7BJ-c1-r58" firstAttribute="top" secondItem="R6J-Qo-z1X" secondAttribute="top" id="Mht-mj-tqm"/>
                                     <constraint firstItem="wCg-gM-sad" firstAttribute="top" secondItem="xOO-46-XDT" secondAttribute="bottom" constant="15" id="NUp-4r-wiL"/>
                                     <constraint firstItem="R6J-Qo-z1X" firstAttribute="trailing" secondItem="ZNt-7Z-KqH" secondAttribute="trailing" id="NiK-IT-GAO"/>
                                     <constraint firstItem="ZNt-7Z-KqH" firstAttribute="top" secondItem="SQX-It-LGH" secondAttribute="top" id="Nph-Hd-CKv"/>
@@ -139,23 +194,36 @@
                                     <constraint firstItem="FhC-oq-K0D" firstAttribute="leading" secondItem="Y8L-o4-DZ0" secondAttribute="leading" constant="20" id="PCZ-3O-GST"/>
                                     <constraint firstItem="SQX-It-LGH" firstAttribute="width" secondItem="ZNt-7Z-KqH" secondAttribute="width" constant="1" id="S6W-Ox-fuY"/>
                                     <constraint firstItem="77x-qz-Z6I" firstAttribute="centerY" secondItem="R6J-Qo-z1X" secondAttribute="centerY" id="SsC-g6-lzh"/>
+                                    <constraint firstItem="Rpa-xP-AM6" firstAttribute="top" secondItem="1tj-ho-gHb" secondAttribute="bottom" constant="15" id="T4H-T9-yic"/>
+                                    <constraint firstItem="qvt-mj-kjU" firstAttribute="leading" secondItem="Rpa-xP-AM6" secondAttribute="leading" id="TTO-pb-FDc"/>
                                     <constraint firstItem="trF-Xo-24C" firstAttribute="top" secondItem="zXW-w1-12N" secondAttribute="bottom" constant="15" id="VFg-s7-jZL"/>
+                                    <constraint firstItem="qvt-mj-kjU" firstAttribute="width" secondItem="Rpa-xP-AM6" secondAttribute="width" multiplier="0.973958" id="VMS-DU-A0V"/>
+                                    <constraint firstItem="qvt-mj-kjU" firstAttribute="height" secondItem="Rpa-xP-AM6" secondAttribute="height" multiplier="0.911111" id="Y52-cM-Tcw"/>
                                     <constraint firstItem="R6J-Qo-z1X" firstAttribute="top" secondItem="ZNt-7Z-KqH" secondAttribute="bottom" constant="15" id="a7P-3q-Iib"/>
+                                    <constraint firstItem="xo2-8g-aQ3" firstAttribute="leading" secondItem="wCg-gM-sad" secondAttribute="leading" id="avX-QX-ZZE"/>
                                     <constraint firstAttribute="bottom" secondItem="FhC-oq-K0D" secondAttribute="bottom" constant="15" id="bS8-aX-mfT"/>
+                                    <constraint firstItem="PSl-qO-2Td" firstAttribute="width" secondItem="1tj-ho-gHb" secondAttribute="width" multiplier="0.973958" id="bdZ-lB-KcX"/>
                                     <constraint firstItem="zXW-w1-12N" firstAttribute="top" secondItem="Y8L-o4-DZ0" secondAttribute="top" id="eOM-qo-8bC"/>
+                                    <constraint firstItem="qvt-mj-kjU" firstAttribute="top" secondItem="Rpa-xP-AM6" secondAttribute="top" id="eQU-Iv-Z1m"/>
+                                    <constraint firstItem="Rpa-xP-AM6" firstAttribute="leading" secondItem="Y8L-o4-DZ0" secondAttribute="leading" constant="15" id="gEK-Wc-wGc"/>
                                     <constraint firstItem="D9k-lc-Tps" firstAttribute="leading" secondItem="wCg-gM-sad" secondAttribute="leading" id="hRZ-PZ-MvE"/>
                                     <constraint firstItem="BLg-QU-7gM" firstAttribute="leading" secondItem="trF-Xo-24C" secondAttribute="leading" id="hmX-F6-tEC"/>
                                     <constraint firstItem="xOO-46-XDT" firstAttribute="top" secondItem="D9k-lc-Tps" secondAttribute="top" id="iVy-uu-GY9"/>
                                     <constraint firstItem="SQX-It-LGH" firstAttribute="top" secondItem="BLg-QU-7gM" secondAttribute="bottom" constant="15" id="ixD-Zg-SSB"/>
+                                    <constraint firstItem="1tj-ho-gHb" firstAttribute="leading" secondItem="Y8L-o4-DZ0" secondAttribute="leading" constant="15" id="jUV-C6-CZm"/>
                                     <constraint firstItem="xOO-46-XDT" firstAttribute="trailing" secondItem="D9k-lc-Tps" secondAttribute="trailing" id="kKn-X4-uAk"/>
                                     <constraint firstItem="wCg-gM-sad" firstAttribute="trailing" secondItem="R6J-Qo-z1X" secondAttribute="trailing" id="lym-KS-bia"/>
                                     <constraint firstAttribute="trailing" secondItem="zXW-w1-12N" secondAttribute="trailing" id="mDJ-a6-rU4"/>
+                                    <constraint firstItem="PSl-qO-2Td" firstAttribute="leading" secondItem="1tj-ho-gHb" secondAttribute="leading" id="oXl-Dj-uNM"/>
+                                    <constraint firstItem="xo2-8g-aQ3" firstAttribute="top" secondItem="wCg-gM-sad" secondAttribute="top" id="pJy-dj-3Xc"/>
                                     <constraint firstItem="SQX-It-LGH" firstAttribute="leading" secondItem="BLg-QU-7gM" secondAttribute="leading" id="ppH-TC-EAA"/>
                                     <constraint firstAttribute="trailing" secondItem="77x-qz-Z6I" secondAttribute="trailing" constant="20" id="qGq-n1-gcu"/>
                                     <constraint firstAttribute="trailing" secondItem="trF-Xo-24C" secondAttribute="trailing" constant="15" id="t27-2J-UZj"/>
                                     <constraint firstItem="trF-Xo-24C" firstAttribute="leading" secondItem="Y8L-o4-DZ0" secondAttribute="leading" constant="15" id="tkO-kK-5PW"/>
+                                    <constraint firstItem="xo2-8g-aQ3" firstAttribute="height" secondItem="wCg-gM-sad" secondAttribute="height" multiplier="0.911111" id="uZz-8j-YKu"/>
                                     <constraint firstItem="BLg-QU-7gM" firstAttribute="top" secondItem="trF-Xo-24C" secondAttribute="bottom" constant="15" id="xpV-mh-Jmo"/>
                                     <constraint firstItem="wCg-gM-sad" firstAttribute="leading" secondItem="R6J-Qo-z1X" secondAttribute="leading" id="xvD-Gp-5gp"/>
+                                    <constraint firstItem="PSl-qO-2Td" firstAttribute="top" secondItem="1tj-ho-gHb" secondAttribute="top" id="yzl-hi-JUi"/>
                                     <constraint firstAttribute="trailing" secondItem="FhC-oq-K0D" secondAttribute="trailing" constant="20" id="zrY-pn-Qph"/>
                                 </constraints>
                             </view>
@@ -169,10 +237,22 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aBA-AC-0Xw"/>
                     </view>
+                    <connections>
+                        <outlet property="header" destination="zXW-w1-12N" id="BNF-Tp-H0f"/>
+                        <outlet property="tf1" destination="trF-Xo-24C" id="V1x-Tf-k4t"/>
+                        <outlet property="tf2" destination="BLg-QU-7gM" id="l19-ih-7E8"/>
+                        <outlet property="tf3" destination="SQX-It-LGH" id="KON-uJ-lAP"/>
+                        <outlet property="tf4" destination="ZNt-7Z-KqH" id="to2-nn-xz5"/>
+                        <outlet property="tf5" destination="R6J-Qo-z1X" id="6IL-pu-Ode"/>
+                        <outlet property="tf6" destination="xOO-46-XDT" id="Zdj-hU-jKM"/>
+                        <outlet property="tf7" destination="wCg-gM-sad" id="uCS-GS-5Kv"/>
+                        <outlet property="tf8" destination="1tj-ho-gHb" id="mq4-OD-7wE"/>
+                        <outlet property="tf9" destination="Rpa-xP-AM6" id="yq0-z6-GZP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNp-fc-JK2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2536.231884057971" y="-40.178571428571423"/>
+            <point key="canvasLocation" x="-2917.3913043478265" y="-48.214285714285715"/>
         </scene>
         <!--Checkinout View Controller-->
         <scene sceneID="Rna-ae-j79">

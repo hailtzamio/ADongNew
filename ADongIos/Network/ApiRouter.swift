@@ -25,6 +25,7 @@ enum ApiRouter: URLRequestConvertible {
     case removeProduct(id: Int)
     
     case getWorkers(page:Int,name:String)
+    case getWorkersForTeam(page:Int,name:String, type:String)
     case getLeaders(page:Int,name:String)
     case getWorker(id: Int)
     case removeWorker(id: Int)
@@ -82,7 +83,7 @@ enum ApiRouter: URLRequestConvertible {
              .getTeams, .getTeam, .getTeamWorkers,
              .getDrivers, .getDriver,
              .getContractors, .getContractor,
-             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport
+             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam
             :
             return .get
         }
@@ -118,6 +119,8 @@ enum ApiRouter: URLRequestConvertible {
             
         case .getWorkers:
             return "worker"
+        case .getWorkersForTeam:
+                return "user"
         case .getLeaders:
             return "worker"
         case .getWorker(let id):
@@ -225,6 +228,10 @@ enum ApiRouter: URLRequestConvertible {
         case .getWorkers(let page, let name) :
             return  [ "page": page,
                       "name": name, "sort" : "id,desc"  ]
+            case .getWorkersForTeam(let page, let name, let type) :
+                      return  [ "authorityCode" : type,"page": page,
+                      "name": name, "sort" : "id,desc"  ]
+            
         case .getLeaders(let page, let name) :
             return  [ "page": page,
                       "name": name, "sort" : "id,desc", "isTeamLeader" : true  ]
