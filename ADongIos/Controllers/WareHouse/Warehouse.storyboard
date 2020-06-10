@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Detail Ware House View Controller-->
+        <scene sceneID="89E-7y-mGO">
+            <objects>
+                <viewController storyboardIdentifier="DetailWareHouseViewController" id="fY7-EP-ePp" customClass="DetailWareHouseViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kh1-ZG-tmI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBy-ys-BOy" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="72E-gF-XOx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="eBy-ys-BOy" firstAttribute="top" secondItem="SAb-Sw-FJC" secondAttribute="top" id="WcU-6x-cN5"/>
+                            <constraint firstItem="eBy-ys-BOy" firstAttribute="trailing" secondItem="SAb-Sw-FJC" secondAttribute="trailing" id="XcQ-eW-oYC"/>
+                            <constraint firstItem="eBy-ys-BOy" firstAttribute="leading" secondItem="SAb-Sw-FJC" secondAttribute="leading" id="arR-Ix-PrC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SAb-Sw-FJC"/>
+                    </view>
+                    <connections>
+                        <outlet property="header" destination="eBy-ys-BOy" id="UBG-ft-Dcl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IgK-0D-WNV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-678" y="44"/>
+        </scene>
+        <!--Factory Titles View Controller-->
+        <scene sceneID="uf3-ae-x9y">
+            <objects>
+                <viewController storyboardIdentifier="FactoryTitlesViewController" id="wIs-vQ-nr6" customClass="FactoryTitlesViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JLh-iJ-gRu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="U0U-qs-Qtb">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="U0U-qs-Qtb" firstAttribute="leading" secondItem="pdp-Sn-5GC" secondAttribute="leading" id="CSR-vR-MLA"/>
+                            <constraint firstItem="pdp-Sn-5GC" firstAttribute="trailing" secondItem="U0U-qs-Qtb" secondAttribute="trailing" id="RFV-dK-aoP"/>
+                            <constraint firstItem="U0U-qs-Qtb" firstAttribute="top" secondItem="pdp-Sn-5GC" secondAttribute="top" id="Wpb-pE-NXA"/>
+                            <constraint firstItem="pdp-Sn-5GC" firstAttribute="bottom" secondItem="U0U-qs-Qtb" secondAttribute="bottom" id="yIR-jT-Fdu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pdp-Sn-5GC"/>
+                    </view>
+                    <connections>
+                        <outlet property="tbView" destination="U0U-qs-Qtb" id="Wqx-aP-2cH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bds-mH-tDZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-496" y="-727"/>
+        </scene>
+        <!--Stock Titles View Controller-->
+        <scene sceneID="TEt-af-DPo">
+            <objects>
+                <viewController storyboardIdentifier="StockTitlesViewController" id="Kox-kn-dnf" customClass="StockTitlesViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nxw-ih-qS9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ihw-Mo-YbP">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="a3P-Wb-fIc" firstAttribute="bottom" secondItem="Ihw-Mo-YbP" secondAttribute="bottom" id="OgZ-aG-4z7"/>
+                            <constraint firstItem="Ihw-Mo-YbP" firstAttribute="top" secondItem="a3P-Wb-fIc" secondAttribute="top" id="i2f-e0-dit"/>
+                            <constraint firstItem="Ihw-Mo-YbP" firstAttribute="leading" secondItem="a3P-Wb-fIc" secondAttribute="leading" id="qEZ-4y-jcr"/>
+                            <constraint firstItem="a3P-Wb-fIc" firstAttribute="trailing" secondItem="Ihw-Mo-YbP" secondAttribute="trailing" id="tIH-3x-vkJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="a3P-Wb-fIc"/>
+                    </view>
+                    <connections>
+                        <outlet property="tbView" destination="Ihw-Mo-YbP" id="ivr-kf-Gsu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L8V-rQ-1BV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="290" y="-613"/>
+        </scene>
+    </scenes>
+</document>

@@ -322,5 +322,17 @@ class APIClient {
            jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
            performRequest(route: ApiRouter.transportPickup(id: id), decoder: jsonDecoder, completion: completion)
        }
+    
+    static func transportUnload(id:Int,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+            performRequest(route: ApiRouter.transportUnload(id: id), decoder: jsonDecoder, completion: completion)
+        }
+    
+    static func getTransportImages(id : Int, completion:@escaping (Result<BaseResponseList<ImageModel>, AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+         performRequest(route: ApiRouter.getTransportImages(id: id), decoder: jsonDecoder, completion: completion)
+     }
 }
 

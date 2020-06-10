@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
-class MapViewController: UIViewController, GMSMapViewDelegate {
+class MapViewController: BaseViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var mapView: GMSMapView!
     
@@ -33,6 +33,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
     
 
+    @IBAction func goBack(_ sender: Any) {
+        goBack()
+    }
     
 }
 

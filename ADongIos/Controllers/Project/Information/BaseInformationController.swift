@@ -42,12 +42,12 @@ class BaseInformationController: BaseViewController {
             self.navigationController?.popViewController(animated: true)
         }
         
-        //        header.rightAction = {
-        //            if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateViewController") as? UpdateViewController {
-        //                vc.data = self.item
-        //                self.navigationController?.pushViewController(vc, animated: true)
-        //            }
-        //        }
+                header.rightAction = {
+                    if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateProjectViewController") as? UpdateProjectViewController {
+                        vc.data = self.item!
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
         
         header.changeUpdateIcon()
     }

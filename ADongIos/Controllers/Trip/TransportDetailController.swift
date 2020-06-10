@@ -7,19 +7,22 @@
 //
 
 import UIKit
-
-class TransportDetailController: BaseViewController {
+import Alamofire
+import Kingfisher
+import TOCropViewController
+class TransportDetailController: BaseViewController, UINavigationControllerDelegate  {
     var item:Transport? = nil
     
     
     var itemNames = ["THÔNG TIN CHUNG", "DANH SÁCH VẬT TƯ"]
     
+    @IBOutlet weak var bt1: UIButton!
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
     var id = 0
     var data = [Information]()
     var data1 = [Information]()
-    
+    var status = 0
     
     
     override func viewDidLoad() {
@@ -35,27 +38,36 @@ class TransportDetailController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         data.removeAll()
+        data1.removeAll()
         getData()
     }
     
     func setupHeader() {
         header.title = "Chi Tiết"
+
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
         }
         
-        //        header.rightAction = {
-        //            if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateViewController") as? UpdateViewController {
-        //                vc.data = self.item
-        //                self.navigationController?.pushViewController(vc, animated: true)
-        //            }
-        //        }
+                header.rightAction = {
+                    if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "TransportImagesViewController") as? TransportImagesViewController {
+                        vc.id = self.id ?? 0
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
         
         header.changeUpdateIcon()
     }
     
     func popupHandle() {
         okAction = {
+            self.pickImage(isLibrary: true)
+        }
+    }
+    
+    func pickup() {
+        
+        if(status == 1 ) {
             self.showLoading()
             APIClient.transportPickup(id: self.id) { result in
                 self.stopLoading()
@@ -71,8 +83,26 @@ class TransportDetailController: BaseViewController {
                     self.showToast(content: error.localizedDescription)
                 }
             }
+        } else if(status == 5) {
+            
+            self.showLoading()
+            APIClient.transportUnload(id: self.id) { result in
+                self.stopLoading()
+                switch result {
+                case .success(let response):
+                    if (response.status == 1) {
+                        self.goBack()
+                    }
+                    self.showToast(content: response.message ?? "Thành công")
+                    break
+                    
+                case .failure(let error):
+                    self.showToast(content: error.localizedDescription)
+                }
+            }
             
         }
+        
         
     }
     
@@ -97,7 +127,20 @@ class TransportDetailController: BaseViewController {
                         })
                     }
                     
-                    
+                    if(value.status != nil) {
+                        self.status = value.status ?? 0
+                        switch value.status {
+                        case 5:
+                            self.bt1.setTitle("GIAO HÀNG", for: .normal)
+                            break
+                        case 3:
+                            self.bt1.isHidden = true
+                            break
+                        default:
+                            break
+                        }
+                        
+                    }
                     
                     self.tbView.reloadData()
                     return
@@ -181,5 +224,99 @@ extension TransportDetailController: UITableViewDataSource, UITableViewDelegate 
             break
         }
         return cell
+    }
+}
+
+extension TransportDetailController : UIImagePickerControllerDelegate {
+    
+    @objc  func imagePickerController(_ picker: UIImagePickerController,
+                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        
+        let cropVC = TOCropViewController.init(croppingStyle: .default, image: image )
+        cropVC.delegate = self
+        cropVC.aspectRatioPreset = .presetSquare
+        
+        cropVC.aspectRatioLockEnabled = true
+        cropVC.resetAspectRatioEnabled = false
+        cropVC.aspectRatioPickerButtonHidden = true
+        picker.dismiss(animated: false) {
+            self.present(cropVC, animated: false, completion: nil)
+        }
+    }
+}
+
+extension TransportDetailController : TOCropViewControllerDelegate {
+    func pickImage(isLibrary: Bool) {
+        
+        let picker = UIImagePickerController()
+        picker.sourceType = isLibrary ?  .photoLibrary : .camera
+        picker.allowsEditing = false;
+        picker.delegate = self;
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+    
+    func cropViewController(_ cropViewController: TOCropViewController, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
+        
+        
+        
+        uploadAvatar2(arrImage: image, withblock: {_response in
+            
+        })
+        
+        
+        cropViewController.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
+        cropViewController.dismiss(animated: true, completion: {
+            
+        })
+    }
+    
+    func uploadAvatar2(arrImage:UIImage, withblock:@escaping (_ response: AnyObject?)->Void){
+        showLoading()
+        let url = K.ProductionServer.baseURL + "transportRequest/\(id)/uploadPhoto"
+        
+        var headers: HTTPHeaders
+        headers = ["Content-type": "multipart/form-data",
+                   "Accept" : "application/json"]
+        headers["Authorization"] = ContentType.token.rawValue
+        AF.upload(multipartFormData: { (multipartFormData) in
+            
+            let randomIntFrom0To10 = Int.random(in: 1..<1000)
+            
+            guard let imgData = arrImage.pngData() else { return }
+            multipartFormData.append(imgData, withName: "image", fileName: "image\(randomIntFrom0To10)", mimeType: "image/jpeg")
+            
+        },to: url, usingThreshold: UInt64.init(),
+          method: .post,
+          headers: headers).response{ response in
+            self.stopLoading()
+            if((response.data != nil)){
+                do{
+                    if let jsonData = response.data {
+                        let parsedData = try JSONSerialization.jsonObject(with: jsonData) as! Dictionary<String, AnyObject>
+                        print(parsedData)
+                        
+                        let status = parsedData["status"] as? NSInteger ?? 0
+                        
+                        if (status == 1){
+                            self.pickup()
+                        } else{
+                            self.showToast(content: "Không thành công")
+                        }
+                    }
+                } catch{
+                    print("error message")
+                }
+            }else{
+                self.showToast(content: "Không thành công")
+            }
+        }
     }
 }

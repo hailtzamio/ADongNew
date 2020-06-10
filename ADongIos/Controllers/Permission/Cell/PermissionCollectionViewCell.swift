@@ -63,6 +63,10 @@ class PermissionCollectionViewCell: UICollectionViewCell {
             title = "Chuyến Đi"
         }
         
+        if(data.appEntityCode == "Warehouse") {
+            title = "Kho / Xưởng"
+         }
+        
         //        else {
         //            title = data.appEntityCode!
         //        }

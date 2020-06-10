@@ -29,7 +29,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     @IBOutlet weak var tfTest: IQDropDownTextField!
     @IBOutlet weak var header: NavigationBar!
     
-    var test = ["a", "b"]
+
     
     var data = Project()
     var isUpdate = true // if false Create
@@ -37,11 +37,10 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         setupHeader()
-         tf3.delegate =  self
-          tf3.itemList = test
-//        tf3.dropDownMode = .dateTimePicker
-       
+        tf3.delegate =  self
+        tf3.dropDownMode = .dateTimePicker
         tf3.tag = 1
+        
         tf4.dropDownMode = .dateTimePicker
         tf4.delegate =  self
         tf4.tag = 2
@@ -51,6 +50,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         } else {
             
         }
+        
     }
     
     //     func openTimePicker()  {
@@ -81,7 +81,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             vc.isTypeOfWorker = TypeOfWorker.leader
             vc.isRightButtonHide = true
             vc.callback = {(worker) in
-//                self.data.leaderId = worker?.id
+                //                self.data.leaderId = worker?.id
             }
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -108,14 +108,14 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     }
     
     @IBAction func chooseTeam(_ sender: Any) {
-      if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListTeamViewController") as? ListTeamViewController {
-        vc.isChooseTeam = true
-                 vc.callback = {(team) in
-                     self.data.teamId = team?.id
-                     self.tf6.text = team?.name ?? "---"
-                 }
-                 self.navigationController?.pushViewController(vc, animated: true)
-             }
+        if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListTeamViewController") as? ListTeamViewController {
+            vc.isChooseTeam = true
+            vc.callback = {(team) in
+                self.data.teamId = team?.id
+                self.tf6.text = team?.name ?? "---"
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func chooseManager(_ sender: Any) {
@@ -140,7 +140,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             vc.isRightButtonHide = true
             vc.callback = {(worker) in
                 self.data.deputyManagerId = worker?.id
-                  self.tf8.text = worker?.fullName
+                self.tf8.text = worker?.fullName
             }
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -152,8 +152,8 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             vc.isTypeOfWorker = TypeOfWorker.secretary
             vc.isRightButtonHide = true
             vc.callback = {(worker) in
-            self.data.secretaryId = worker?.id
-            self.tf9.text = worker?.fullName
+                self.data.secretaryId = worker?.id
+                self.tf9.text = worker?.fullName
             }
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -161,7 +161,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     
     @IBAction func createOrUpdate(_ sender: Any) {
         
-    
+  
         if ( tf1.text == "" || tf2.text == "") {
             showToast(content: "Nhập thiếu thông tin")
             return
@@ -170,21 +170,16 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         
         data.name = tf1.text
         data.address = tf2.text
- 
         
+
         
         if(isUpdate) {
             // Update
             update(pData: data)
         } else {
             
-            let startDate = "2020-09-11T11:11:11"
-               let endDate = "2020-12-11T11:11:11"
-            data.plannedStartDate = startDate
-            data.plannedEndDate = endDate
-            data.teamType = "ADONG"
-            data.latitude = 21.028511
-                 data.longitude = 105.804817
+            
+        
             create(pData: data)
         }
     }
@@ -213,27 +208,38 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     
     func create(pData:Project) {
         
-            
-           
-           showLoading()
-           APIClient.createProject(data: pData) { result in
-               self.stopLoading()
-               switch result {
-               case .success(let response):
-                   
-                   if response.status == 1 {
-                       self.showToast(content: "Thành công")
-                       self.goBack()
-                       return
-                   } else {
-                       self.showToast(content: response.message!)
-                   }
-                   
-               case .failure(let error):
-                   self.showToast(content: error.localizedDescription)
-               }
-           }
-       }
+        if(tf3.date == nil || tf4.date == nil) {
+            showToast(content: "Chọn ngày")
+            return
+        }
+        
+        let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                data.plannedStartDate = formatter.string(from: tf3.date!)
+                data.plannedEndDate = formatter.string(from: tf4.date!)
+                data.teamType = "ADONG"
+                data.latitude = 21.028511
+                data.longitude = 105.804817
+        
+        showLoading()
+        APIClient.createProject(data: pData) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if response.status == 1 {
+                    self.showToast(content: "Thành công")
+                    self.goBack()
+                    return
+                } else {
+                    self.showToast(content: response.message!)
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
+    }
 }
 
 extension UpdateProjectViewController : IQDropDownTextFieldDelegate, IQDropDownTextFieldDataSource {
@@ -246,7 +252,7 @@ extension UpdateProjectViewController : IQDropDownTextFieldDelegate, IQDropDownT
         print("zzzzzzzzzzzzz")
         
         var dateS =  ""
-         var dateShow = ""
+        var dateShow = ""
         
         if let date = formatter.date(from: item ?? "") {
             print(formatter.string(from: date))

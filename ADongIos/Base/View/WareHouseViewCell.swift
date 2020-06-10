@@ -44,17 +44,38 @@ class WareHouseViewCell: UITableViewCell {
         lb1.text = data.code ?? "---"
         lb2.text = data.warehouseName ?? "---"
         lb3.text = data.plannedDatetime ?? "---"
+        var status = "Mới"
+        if(data.status == 1) {
+            status = "Mới"
+        }
+        
+        if(data.status == 2) {
+            status = "Đã hủy"
+        }
+        
+        if(data.status == 3) {
+            status = "Đã xong"
+        }
+        
+        if(data.status == 4) {
+            status = "Đã chọn xe"
+        }
+        
+        if(data.status == 5) {
+            status = "Đã nhận hàng"
+        }
+        
         lb4.text = data.projectName ?? "---"
-        lb5.text = data.projectAddress ?? "---"
+        lb5.text = status
     }
     
     func setDataTrip(data:Trip) {
-          lb1.text = data.code
-          lb2.text = data.driverFullName ?? "---"
-          lb3.text = data.driverPhone ?? "---"
-          lb4.text = data.lorryPlateNumber ?? "---"
-          lb5.text = data.plannedDatetime ?? "---"
-      }
+        lb1.text = data.code
+        lb2.text = data.driverFullName ?? "---"
+        lb3.text = data.driverPhone ?? "---"
+        lb4.text = data.lorryPlateNumber ?? "---"
+        lb5.text = data.plannedDatetime ?? "---"
+    }
     
-
+    
 }

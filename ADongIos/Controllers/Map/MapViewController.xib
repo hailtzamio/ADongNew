@@ -20,19 +20,28 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37H-ld-PDp" customClass="GMSMapView">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="144" width="414" height="718"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vlq-yg-5MA">
-                            <rect key="frame" x="197" y="399" width="20" height="20"/>
+                            <rect key="frame" x="197" y="349" width="20" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="20" id="HbQ-lk-jC2"/>
                                 <constraint firstAttribute="height" constant="20" id="LW6-Rw-onZ"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCN-96-AnD">
+                            <rect key="frame" x="15" y="15" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="goBack:" destination="-1" eventType="touchUpInside" id="Sla-h9-mCx"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
+                        <constraint firstItem="qCN-96-AnD" firstAttribute="leading" secondItem="37H-ld-PDp" secondAttribute="leading" constant="15" id="ByJ-OF-ftl"/>
                         <constraint firstItem="vlq-yg-5MA" firstAttribute="centerX" secondItem="37H-ld-PDp" secondAttribute="centerX" id="L2a-yx-ZA2"/>
+                        <constraint firstItem="qCN-96-AnD" firstAttribute="top" secondItem="37H-ld-PDp" secondAttribute="top" constant="15" id="SuM-dS-nRv"/>
                         <constraint firstItem="vlq-yg-5MA" firstAttribute="centerY" secondItem="37H-ld-PDp" secondAttribute="centerY" id="uDD-5x-ZmP"/>
                     </constraints>
                 </view>
@@ -41,7 +50,7 @@
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="37H-ld-PDp" secondAttribute="bottom" id="2jb-OP-bjM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="37H-ld-PDp" secondAttribute="trailing" id="5RU-Ng-JZq"/>
-                <constraint firstItem="37H-ld-PDp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8IL-cL-K04"/>
+                <constraint firstItem="37H-ld-PDp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="8IL-cL-K04"/>
                 <constraint firstItem="37H-ld-PDp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cIL-tD-ct7"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

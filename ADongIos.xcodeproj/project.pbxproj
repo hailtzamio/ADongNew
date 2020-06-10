@@ -88,6 +88,14 @@
 		B54A01B92478329900E5F310 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A01B02478329900E5F310 /* UIViewControllerExtension.swift */; };
 		B54A01BA2478329900E5F310 /* RadiusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A01B12478329900E5F310 /* RadiusTextField.swift */; };
 		B54A01BC24783F5000E5F310 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A01BB24783F5000E5F310 /* BaseResponse.swift */; };
+		B55CD0282490E5FA00662427 /* TransportImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CD0272490E5F900662427 /* TransportImagesViewController.swift */; };
+		B55CD02C2490E6C000662427 /* TransportViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CD02A2490E6C000662427 /* TransportViewCell.swift */; };
+		B55CD02D2490E6C000662427 /* TransportViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B55CD02B2490E6C000662427 /* TransportViewCell.xib */; };
+		B55CD0312490E7A900662427 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CD0302490E7A900662427 /* ImageModel.swift */; };
+		B55CD0342490EE6B00662427 /* Warehouse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B55CD0332490EE6B00662427 /* Warehouse.storyboard */; };
+		B55CD0362490EF3300662427 /* DetailWareHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CD0352490EF3300662427 /* DetailWareHouseViewController.swift */; };
+		B55CD0392490F07100662427 /* FactoryTitlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CD0372490F07000662427 /* FactoryTitlesViewController.swift */; };
+		B55CD03A2490F07100662427 /* StockTitlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55CD0382490F07100662427 /* StockTitlesViewController.swift */; };
 		B56FD8FE248E731000DCAA54 /* CheckInOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56FD8FD248E731000DCAA54 /* CheckInOut.swift */; };
 		B56FD900248F244200DCAA54 /* UpdateProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56FD8FF248F244200DCAA54 /* UpdateProjectViewController.swift */; };
 		B56FD902248F287700DCAA54 /* ProgressProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56FD901248F287700DCAA54 /* ProgressProject.swift */; };
@@ -245,6 +253,14 @@
 		B54A01B02478329900E5F310 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		B54A01B12478329900E5F310 /* RadiusTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadiusTextField.swift; sourceTree = "<group>"; };
 		B54A01BB24783F5000E5F310 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		B55CD0272490E5F900662427 /* TransportImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportImagesViewController.swift; sourceTree = "<group>"; };
+		B55CD02A2490E6C000662427 /* TransportViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportViewCell.swift; sourceTree = "<group>"; };
+		B55CD02B2490E6C000662427 /* TransportViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransportViewCell.xib; sourceTree = "<group>"; };
+		B55CD0302490E7A900662427 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		B55CD0332490EE6B00662427 /* Warehouse.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Warehouse.storyboard; sourceTree = "<group>"; };
+		B55CD0352490EF3300662427 /* DetailWareHouseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWareHouseViewController.swift; sourceTree = "<group>"; };
+		B55CD0372490F07000662427 /* FactoryTitlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactoryTitlesViewController.swift; sourceTree = "<group>"; };
+		B55CD0382490F07100662427 /* StockTitlesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockTitlesViewController.swift; sourceTree = "<group>"; };
 		B56FD8FD248E731000DCAA54 /* CheckInOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInOut.swift; sourceTree = "<group>"; };
 		B56FD8FF248F244200DCAA54 /* UpdateProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProjectViewController.swift; sourceTree = "<group>"; };
 		B56FD901248F287700DCAA54 /* ProgressProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressProject.swift; sourceTree = "<group>"; };
@@ -481,6 +497,7 @@
 				B56FD90E248F3E8E00DCAA54 /* TitleModel.swift */,
 				B5A68D3D248F7FF100FD76A4 /* Transport.swift */,
 				B5A68D47248F8E5000FD76A4 /* Trip.swift */,
+				B55CD0302490E7A900662427 /* ImageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -499,6 +516,7 @@
 		B54A014924782ACD00E5F310 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B55CD0322490EE0E00662427 /* WareHouse */,
 				B5A68D4D2490B4C600FD76A4 /* Map */,
 				B5A68D36248F78DE00FD76A4 /* Trip */,
 				B58E15D9248E2ECC0054E9A0 /* Project */,
@@ -612,6 +630,26 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		B55CD0292490E69A00662427 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B55CD02A2490E6C000662427 /* TransportViewCell.swift */,
+				B55CD02B2490E6C000662427 /* TransportViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B55CD0322490EE0E00662427 /* WareHouse */ = {
+			isa = PBXGroup;
+			children = (
+				B55CD0372490F07000662427 /* FactoryTitlesViewController.swift */,
+				B55CD0382490F07100662427 /* StockTitlesViewController.swift */,
+				B55CD0352490EF3300662427 /* DetailWareHouseViewController.swift */,
+				B55CD0332490EE6B00662427 /* Warehouse.storyboard */,
+			);
+			path = WareHouse;
+			sourceTree = "<group>";
+		};
 		B56FD907248F3C5400DCAA54 /* Information */ = {
 			isa = PBXGroup;
 			children = (
@@ -680,6 +718,8 @@
 		B5A68D36248F78DE00FD76A4 /* Trip */ = {
 			isa = PBXGroup;
 			children = (
+				B55CD0292490E69A00662427 /* Cell */,
+				B55CD0272490E5F900662427 /* TransportImagesViewController.swift */,
 				B5A68D4B248F9AE200FD76A4 /* TransportDetailController.swift */,
 				B5A68D49248F939400FD76A4 /* TripDetailController.swift */,
 				B5A68D45248F8D0300FD76A4 /* ListTripViewController.swift */,
@@ -816,6 +856,7 @@
 			files = (
 				B51F5639247954CD00B3851A /* Worker.storyboard in Resources */,
 				B56FD90D248F3D7A00DCAA54 /* TitleViewCell.xib in Resources */,
+				B55CD02D2490E6C000662427 /* TransportViewCell.xib in Resources */,
 				B54A01A22478326C00E5F310 /* CommonTableViewCell.xib in Resources */,
 				B56FD906248F2D7500DCAA54 /* ProjectProgressViewCell.xib in Resources */,
 				B51F56292478DB9B00B3851A /* Product.storyboard in Resources */,
@@ -823,6 +864,7 @@
 				B54A015224782B2400E5F310 /* LoginViewController.xib in Resources */,
 				B535647C248CB78000FF5883 /* Driver.storyboard in Resources */,
 				B5A68D42248F847C00FD76A4 /* WareHouseViewCell.xib in Resources */,
+				B55CD0342490EE6B00662427 /* Warehouse.storyboard in Resources */,
 				B54A015B24782C0100E5F310 /* PermissionCollectionViewCell.xib in Resources */,
 				B5356489248CDA8700FF5883 /* Contractor.storyboard in Resources */,
 				B58E15DB248E2EDA0054E9A0 /* Project.storyboard in Resources */,
@@ -965,6 +1007,7 @@
 				B54A01B82478329900E5F310 /* UiViewExtension.swift in Sources */,
 				B54A018524782D7100E5F310 /* Lorry.swift in Sources */,
 				B51F5637247954CD00B3851A /* UpdateWorkerViewController.swift in Sources */,
+				B55CD0392490F07100662427 /* FactoryTitlesViewController.swift in Sources */,
 				B5A68D4C248F9AE200FD76A4 /* TransportDetailController.swift in Sources */,
 				B54A01BA2478329900E5F310 /* RadiusTextField.swift in Sources */,
 				B58E15FF248E3D660054E9A0 /* CAPSPageMenu+Options.swift in Sources */,
@@ -982,15 +1025,18 @@
 				B56FD90F248F3E8E00DCAA54 /* TitleModel.swift in Sources */,
 				B58E1607248E40C70054E9A0 /* CheckinoutViewController.swift in Sources */,
 				B58E1602248E3D660054E9A0 /* CAPSPageMenu+UIScrollViewDelegate.swift in Sources */,
+				B55CD02C2490E6C000662427 /* TransportViewCell.swift in Sources */,
 				B58E1600248E3D660054E9A0 /* MenuItemView.swift in Sources */,
 				B5A68D35248F5C9B00FD76A4 /* BaseInformationController.swift in Sources */,
 				B54A018C2478308B00E5F310 /* Context.swift in Sources */,
+				B55CD0312490E7A900662427 /* ImageModel.swift in Sources */,
 				B54A014724782A4100E5F310 /* ApiRouter.swift in Sources */,
 				B54A01B62478329900E5F310 /* TextfieldExtension.swift in Sources */,
 				B535648D248CDC9200FF5883 /* DetailContractorViewController.swift in Sources */,
 				B51F562D2478DC1C00B3851A /* ListProductViewController.swift in Sources */,
 				B5A68D542490C53900FD76A4 /* MapViewController.swift in Sources */,
 				B54A016024782C3D00E5F310 /* PopupView.swift in Sources */,
+				B55CD03A2490F07100662427 /* StockTitlesViewController.swift in Sources */,
 				B54A01A52478326C00E5F310 /* NavigationBar.swift in Sources */,
 				B54A018724782D7100E5F310 /* Category.swift in Sources */,
 				B54A010B24781E9E00E5F310 /* ADongIos.xcdatamodeld in Sources */,
@@ -1019,11 +1065,13 @@
 				B54A014824782A4100E5F310 /* APIClient.swift in Sources */,
 				B58E1603248E3D660054E9A0 /* CAPSPageMenuConfiguration.swift in Sources */,
 				B56FD90C248F3D7A00DCAA54 /* TitleViewCell.swift in Sources */,
+				B55CD0282490E5FA00662427 /* TransportImagesViewController.swift in Sources */,
 				B51F56262478C3BD00B3851A /* CardView.swift in Sources */,
 				B56FD902248F287700DCAA54 /* ProgressProject.swift in Sources */,
 				B51F562F2478DC1C00B3851A /* DetailProductViewController.swift in Sources */,
 				B58E15E2248E355D0054E9A0 /* ProjectViewCell.swift in Sources */,
 				B54A015124782B2400E5F310 /* SplashViewController.swift in Sources */,
+				B55CD0362490EF3300662427 /* DetailWareHouseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
