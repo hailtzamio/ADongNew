@@ -29,6 +29,8 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     @IBOutlet weak var tfTest: IQDropDownTextField!
     @IBOutlet weak var header: NavigationBar!
     
+    var test = ["a", "b"]
+    
     var data = Project()
     var isUpdate = true // if false Create
     override func viewDidLoad() {
@@ -36,7 +38,8 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         hideKeyboardWhenTappedAround()
         setupHeader()
          tf3.delegate =  self
-        tf3.dropDownMode = .dateTimePicker
+          tf3.itemList = test
+//        tf3.dropDownMode = .dateTimePicker
        
         tf3.tag = 1
         tf4.dropDownMode = .dateTimePicker
@@ -48,9 +51,6 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         } else {
             
         }
-        
-        
-        
     }
     
     //     func openTimePicker()  {
@@ -103,7 +103,8 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     
     
     @IBAction func location(_ sender: Any) {
-        
+        let vc = MapViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func chooseTeam(_ sender: Any) {
@@ -176,6 +177,14 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             // Update
             update(pData: data)
         } else {
+            
+            let startDate = "2020-09-11T11:11:11"
+               let endDate = "2020-12-11T11:11:11"
+            data.plannedStartDate = startDate
+            data.plannedEndDate = endDate
+            data.teamType = "ADONG"
+            data.latitude = 21.028511
+                 data.longitude = 105.804817
             create(pData: data)
         }
     }
@@ -203,6 +212,8 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     }
     
     func create(pData:Project) {
+        
+            
            
            showLoading()
            APIClient.createProject(data: pData) { result in
@@ -232,7 +243,7 @@ extension UpdateProjectViewController : IQDropDownTextFieldDelegate, IQDropDownT
         
         let formatter2 = DateFormatter()
         formatter2.dateFormat = "dd-MM-yyyy HH:mm:ss"
-        
+        print("zzzzzzzzzzzzz")
         
         var dateS =  ""
          var dateShow = ""

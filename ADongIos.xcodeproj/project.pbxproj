@@ -133,6 +133,8 @@
 		B5A68D48248F8E5000FD76A4 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A68D47248F8E5000FD76A4 /* Trip.swift */; };
 		B5A68D4A248F939400FD76A4 /* TripDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A68D49248F939400FD76A4 /* TripDetailController.swift */; };
 		B5A68D4C248F9AE200FD76A4 /* TransportDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A68D4B248F9AE200FD76A4 /* TransportDetailController.swift */; };
+		B5A68D542490C53900FD76A4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A68D522490C53900FD76A4 /* MapViewController.swift */; };
+		B5A68D552490C53900FD76A4 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A68D532490C53900FD76A4 /* MapViewController.xib */; };
 		B5B6660B248627C2005660FE /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B66609248627C1005660FE /* LoadingCell.swift */; };
 		B5B6660C248627C2005660FE /* LoadMoreControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B6660A248627C2005660FE /* LoadMoreControl.swift */; };
 /* End PBXBuildFile section */
@@ -288,6 +290,8 @@
 		B5A68D47248F8E5000FD76A4 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		B5A68D49248F939400FD76A4 /* TripDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailController.swift; sourceTree = "<group>"; };
 		B5A68D4B248F9AE200FD76A4 /* TransportDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportDetailController.swift; sourceTree = "<group>"; };
+		B5A68D522490C53900FD76A4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B5A68D532490C53900FD76A4 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		B5B66609248627C1005660FE /* LoadingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		B5B6660A248627C2005660FE /* LoadMoreControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreControl.swift; sourceTree = "<group>"; };
 		C90D160841DABBAA3377923F /* Pods-ADongIos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADongIos.debug.xcconfig"; path = "Target Support Files/Pods-ADongIos/Pods-ADongIos.debug.xcconfig"; sourceTree = "<group>"; };
@@ -495,6 +499,7 @@
 		B54A014924782ACD00E5F310 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B5A68D4D2490B4C600FD76A4 /* Map */,
 				B5A68D36248F78DE00FD76A4 /* Trip */,
 				B58E15D9248E2ECC0054E9A0 /* Project */,
 				B5356487248CDA7B00FF5883 /* Contractor */,
@@ -685,6 +690,15 @@
 			path = Trip;
 			sourceTree = "<group>";
 		};
+		B5A68D4D2490B4C600FD76A4 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				B5A68D522490C53900FD76A4 /* MapViewController.swift */,
+				B5A68D532490C53900FD76A4 /* MapViewController.xib */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		EB3F6758A88AA809E35C2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,6 +719,7 @@
 				B54A00FF24781E9E00E5F310 /* Frameworks */,
 				B54A010024781E9E00E5F310 /* Resources */,
 				011641EED4D0E974E922CDDE /* [CP] Embed Pods Frameworks */,
+				1D63091DD02F2AC1B758168C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -812,6 +827,7 @@
 				B5356489248CDA8700FF5883 /* Contractor.storyboard in Resources */,
 				B58E15DB248E2EDA0054E9A0 /* Project.storyboard in Resources */,
 				B56FD913248F427400DCAA54 /* LineViewCell.xib in Resources */,
+				B5A68D552490C53900FD76A4 /* MapViewController.xib in Resources */,
 				B54A01A62478326C00E5F310 /* CommonNoAvatarCell.xib in Resources */,
 				B58F8A3A2487777100E9BB9E /* SmallInformationViewCell.xib in Resources */,
 				B54A011524781EA300E5F310 /* LaunchScreen.storyboard in Resources */,
@@ -859,6 +875,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ADongIos/Pods-ADongIos-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1D63091DD02F2AC1B758168C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ADongIos/Pods-ADongIos-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ADongIos/Pods-ADongIos-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ADongIos/Pods-ADongIos-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7299B6F069017BB19EADD43F /* [CP] Check Pods Manifest.lock */ = {
@@ -956,6 +989,7 @@
 				B54A01B62478329900E5F310 /* TextfieldExtension.swift in Sources */,
 				B535648D248CDC9200FF5883 /* DetailContractorViewController.swift in Sources */,
 				B51F562D2478DC1C00B3851A /* ListProductViewController.swift in Sources */,
+				B5A68D542490C53900FD76A4 /* MapViewController.swift in Sources */,
 				B54A016024782C3D00E5F310 /* PopupView.swift in Sources */,
 				B54A01A52478326C00E5F310 /* NavigationBar.swift in Sources */,
 				B54A018724782D7100E5F310 /* Category.swift in Sources */,

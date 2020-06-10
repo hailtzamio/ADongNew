@@ -1,5 +1,12 @@
 PODS:
   - Alamofire (5.2.1)
+  - GoogleMaps (3.9.0):
+    - GoogleMaps/Maps (= 3.9.0)
+  - GoogleMaps/Base (3.9.0)
+  - GoogleMaps/Maps (3.9.0):
+    - GoogleMaps/Base
+  - GooglePlaces (3.9.0):
+    - GoogleMaps/Base (= 3.9.0)
   - Hero (1.5.0)
   - IQDropDownTextField (2.0)
   - IQKeyboardManagerSwift (6.5.5)
@@ -13,6 +20,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - GoogleMaps
+  - GooglePlaces
   - Hero
   - IQDropDownTextField
   - IQKeyboardManagerSwift
@@ -25,6 +34,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - GoogleMaps
+    - GooglePlaces
     - Hero
     - IQDropDownTextField
     - IQKeyboardManagerSwift
@@ -36,6 +47,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
+  GoogleMaps: 4b5346bddfe6911bb89155d43c903020170523ac
+  GooglePlaces: 1634d019549b969d40fe0ccb0b9513055adebe01
   Hero: b7385b75e7259da62f4f85462f59a5082d66b058
   IQDropDownTextField: 79293d19042b6f2ee6f02decf4a0e68e59e4f327
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
@@ -45,6 +58,6 @@ SPEC CHECKSUMS:
   Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
   TOCropViewController: e9da34f484aedd4e5d5a8ab230ba217cfe16c729
 
-PODFILE CHECKSUM: 776c44b54a18d983c856a541a74f0fe7e6d56974
+PODFILE CHECKSUM: e71709eff0a313476b4d9f52453bc23ee93f0958
 
 COCOAPODS: 1.9.1
