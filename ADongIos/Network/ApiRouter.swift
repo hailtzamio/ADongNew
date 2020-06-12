@@ -69,10 +69,16 @@ enum ApiRouter: URLRequestConvertible {
     case transportPickup(id: Int)
     case transportUnload(id: Int)
     case getTransportImages(id: Int)
+    case createWarehouse(data : Warehouse)
+    case getWarehouses(id:Int,name:String, type : String )
+    case getGoodsReceivedNotes
+        case getGoodsReceivedNote(id: Int)
+    
+    
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
-        case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout :
+        case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout, .createWarehouse :
             return .post
         case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline, .transportPickup, .transportUnload   :
             return .put
@@ -84,7 +90,7 @@ enum ApiRouter: URLRequestConvertible {
              .getTeams, .getTeam, .getTeamWorkers,
              .getDrivers, .getDriver,
              .getContractors, .getContractor,
-             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages
+             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote
             :
             return .get
         }
@@ -208,6 +214,18 @@ enum ApiRouter: URLRequestConvertible {
             return "transportRequest/\(id)/unload"
         case .getTransportImages(let id):
             return "transportRequest/\(id)/photos"
+            
+        case .createWarehouse :
+            return "warehouse"
+            
+            case .getWarehouses :
+                return "warehouse"
+            
+        case .getGoodsReceivedNotes :
+            return "goodsReceivedNote"
+     
+            case .getGoodsReceivedNote(let id):
+                return "goodsReceivedNote/\(id)"
         }
     }
     
@@ -220,7 +238,7 @@ enum ApiRouter: URLRequestConvertible {
             return ["brand": data.brand, "model": data.model,"plateNumber": data.plateNumber, "capacity": data.capacity]
             
             
-        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages :
+        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNotes, .getGoodsReceivedNote :
             return nil
         case .getProducts(let page, let name) :
             return  [ "page": page,
@@ -291,6 +309,13 @@ enum ApiRouter: URLRequestConvertible {
         case .getTrips(let page, let name) :
             return  [ "page": page,
                       "name": name, "sort" : "id,desc" ]
+            
+            case .getWarehouses(let page, let name, let type) :
+                    return  [ "page": page,
+                              "name": name, "sort" : "id,desc", "type" : type ]
+            
+            case .createWarehouse(let data):
+                       return ["name": data.name, "address": data.address,"type": data.type, "keeperId": data.keeperId]
         }
     }
     

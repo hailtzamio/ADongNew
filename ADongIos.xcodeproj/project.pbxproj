@@ -107,6 +107,15 @@
 		B56FD90F248F3E8E00DCAA54 /* TitleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56FD90E248F3E8E00DCAA54 /* TitleModel.swift */; };
 		B56FD912248F427400DCAA54 /* LineViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56FD910248F427400DCAA54 /* LineViewCell.swift */; };
 		B56FD913248F427400DCAA54 /* LineViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B56FD911248F427400DCAA54 /* LineViewCell.xib */; };
+		B58561A824932FCC000A5675 /* ListStockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58561A724932FCC000A5675 /* ListStockViewController.swift */; };
+		B58561AA24933182000A5675 /* Warehouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58561A924933182000A5675 /* Warehouse.swift */; };
+		B58561AC249337E9000A5675 /* GoodsReceivedNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58561AB249337E9000A5675 /* GoodsReceivedNote.swift */; };
+		B58561AE2493395B000A5675 /* ListGoodsReceivedNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58561AD2493395B000A5675 /* ListGoodsReceivedNoteViewController.swift */; };
+		B58561B0249340FA000A5675 /* CreateWarehousetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58561AF249340FA000A5675 /* CreateWarehousetViewController.swift */; };
+		B58561B324934E99000A5675 /* DetailGoodsReceivedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58561B224934E99000A5675 /* DetailGoodsReceivedViewController.swift */; };
+		B58561B6249368A9000A5675 /* CountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58561B4249368A9000A5675 /* CountViewCell.swift */; };
+		B58561B7249368A9000A5675 /* CountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B58561B5249368A9000A5675 /* CountViewCell.xib */; };
+		B58561B924936A91000A5675 /* CreateGoodsReceivedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58561B824936A91000A5675 /* CreateGoodsReceivedViewController.swift */; };
 		B58E15DB248E2EDA0054E9A0 /* Project.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58E15DA248E2EDA0054E9A0 /* Project.storyboard */; };
 		B58E15DD248E2F7F0054E9A0 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E15DC248E2F7F0054E9A0 /* Project.swift */; };
 		B58E15DF248E32BE0054E9A0 /* ListProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E15DE248E32BE0054E9A0 /* ListProjectViewController.swift */; };
@@ -272,6 +281,15 @@
 		B56FD90E248F3E8E00DCAA54 /* TitleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleModel.swift; sourceTree = "<group>"; };
 		B56FD910248F427400DCAA54 /* LineViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineViewCell.swift; sourceTree = "<group>"; };
 		B56FD911248F427400DCAA54 /* LineViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineViewCell.xib; sourceTree = "<group>"; };
+		B58561A724932FCC000A5675 /* ListStockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListStockViewController.swift; sourceTree = "<group>"; };
+		B58561A924933182000A5675 /* Warehouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warehouse.swift; sourceTree = "<group>"; };
+		B58561AB249337E9000A5675 /* GoodsReceivedNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsReceivedNote.swift; sourceTree = "<group>"; };
+		B58561AD2493395B000A5675 /* ListGoodsReceivedNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListGoodsReceivedNoteViewController.swift; sourceTree = "<group>"; };
+		B58561AF249340FA000A5675 /* CreateWarehousetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateWarehousetViewController.swift; sourceTree = "<group>"; };
+		B58561B224934E99000A5675 /* DetailGoodsReceivedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailGoodsReceivedViewController.swift; sourceTree = "<group>"; };
+		B58561B4249368A9000A5675 /* CountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountViewCell.swift; sourceTree = "<group>"; };
+		B58561B5249368A9000A5675 /* CountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountViewCell.xib; sourceTree = "<group>"; };
+		B58561B824936A91000A5675 /* CreateGoodsReceivedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGoodsReceivedViewController.swift; sourceTree = "<group>"; };
 		B58E15DA248E2EDA0054E9A0 /* Project.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Project.storyboard; sourceTree = "<group>"; };
 		B58E15DC248E2F7F0054E9A0 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		B58E15DE248E32BE0054E9A0 /* ListProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProjectViewController.swift; sourceTree = "<group>"; };
@@ -498,6 +516,8 @@
 				B5A68D3D248F7FF100FD76A4 /* Transport.swift */,
 				B5A68D47248F8E5000FD76A4 /* Trip.swift */,
 				B55CD0302490E7A900662427 /* ImageModel.swift */,
+				B58561A924933182000A5675 /* Warehouse.swift */,
+				B58561AB249337E9000A5675 /* GoodsReceivedNote.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -609,6 +629,8 @@
 				B56FD911248F427400DCAA54 /* LineViewCell.xib */,
 				B5A68D3F248F847C00FD76A4 /* WareHouseViewCell.swift */,
 				B5A68D40248F847C00FD76A4 /* WareHouseViewCell.xib */,
+				B58561B4249368A9000A5675 /* CountViewCell.swift */,
+				B58561B5249368A9000A5675 /* CountViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -642,9 +664,11 @@
 		B55CD0322490EE0E00662427 /* WareHouse */ = {
 			isa = PBXGroup;
 			children = (
-				B55CD0372490F07000662427 /* FactoryTitlesViewController.swift */,
-				B55CD0382490F07100662427 /* StockTitlesViewController.swift */,
+				B58561B124934E56000A5675 /* goodsreceived */,
+				B58561A624932EA9000A5675 /* factory */,
+				B58561A524932E98000A5675 /* stock */,
 				B55CD0352490EF3300662427 /* DetailWareHouseViewController.swift */,
+				B58561AF249340FA000A5675 /* CreateWarehousetViewController.swift */,
 				B55CD0332490EE6B00662427 /* Warehouse.storyboard */,
 			);
 			path = WareHouse;
@@ -657,6 +681,33 @@
 				B56FD908248F3C9200DCAA54 /* InformationListViewController.swift */,
 			);
 			path = Information;
+			sourceTree = "<group>";
+		};
+		B58561A524932E98000A5675 /* stock */ = {
+			isa = PBXGroup;
+			children = (
+				B58561A724932FCC000A5675 /* ListStockViewController.swift */,
+				B55CD0382490F07100662427 /* StockTitlesViewController.swift */,
+			);
+			path = stock;
+			sourceTree = "<group>";
+		};
+		B58561A624932EA9000A5675 /* factory */ = {
+			isa = PBXGroup;
+			children = (
+				B55CD0372490F07000662427 /* FactoryTitlesViewController.swift */,
+			);
+			path = factory;
+			sourceTree = "<group>";
+		};
+		B58561B124934E56000A5675 /* goodsreceived */ = {
+			isa = PBXGroup;
+			children = (
+				B58561B824936A91000A5675 /* CreateGoodsReceivedViewController.swift */,
+				B58561AD2493395B000A5675 /* ListGoodsReceivedNoteViewController.swift */,
+				B58561B224934E99000A5675 /* DetailGoodsReceivedViewController.swift */,
+			);
+			path = goodsreceived;
 			sourceTree = "<group>";
 		};
 		B58E15D9248E2ECC0054E9A0 /* Project */ = {
@@ -874,6 +925,7 @@
 				B58F8A3A2487777100E9BB9E /* SmallInformationViewCell.xib in Resources */,
 				B54A011524781EA300E5F310 /* LaunchScreen.storyboard in Resources */,
 				B54A015624782BD600E5F310 /* PermissViewController.xib in Resources */,
+				B58561B7249368A9000A5675 /* CountViewCell.xib in Resources */,
 				B58F8A302487470000E9BB9E /* Team.storyboard in Resources */,
 				B58E15E3248E355D0054E9A0 /* ProjectViewCell.xib in Resources */,
 				B54A011224781EA300E5F310 /* Preview Assets.xcassets in Resources */,
@@ -1006,10 +1058,12 @@
 				B54A018824782D7100E5F310 /* CreateRes.swift in Sources */,
 				B54A01B82478329900E5F310 /* UiViewExtension.swift in Sources */,
 				B54A018524782D7100E5F310 /* Lorry.swift in Sources */,
+				B58561AC249337E9000A5675 /* GoodsReceivedNote.swift in Sources */,
 				B51F5637247954CD00B3851A /* UpdateWorkerViewController.swift in Sources */,
 				B55CD0392490F07100662427 /* FactoryTitlesViewController.swift in Sources */,
 				B5A68D4C248F9AE200FD76A4 /* TransportDetailController.swift in Sources */,
 				B54A01BA2478329900E5F310 /* RadiusTextField.swift in Sources */,
+				B58561B924936A91000A5675 /* CreateGoodsReceivedViewController.swift in Sources */,
 				B58E15FF248E3D660054E9A0 /* CAPSPageMenu+Options.swift in Sources */,
 				B535648F248CE20D00FF5883 /* UpdateContractorViewController.swift in Sources */,
 				B51F562E2478DC1C00B3851A /* UpdateProductViewController.swift in Sources */,
@@ -1032,9 +1086,11 @@
 				B55CD0312490E7A900662427 /* ImageModel.swift in Sources */,
 				B54A014724782A4100E5F310 /* ApiRouter.swift in Sources */,
 				B54A01B62478329900E5F310 /* TextfieldExtension.swift in Sources */,
+				B58561AE2493395B000A5675 /* ListGoodsReceivedNoteViewController.swift in Sources */,
 				B535648D248CDC9200FF5883 /* DetailContractorViewController.swift in Sources */,
 				B51F562D2478DC1C00B3851A /* ListProductViewController.swift in Sources */,
 				B5A68D542490C53900FD76A4 /* MapViewController.swift in Sources */,
+				B58561B324934E99000A5675 /* DetailGoodsReceivedViewController.swift in Sources */,
 				B54A016024782C3D00E5F310 /* PopupView.swift in Sources */,
 				B55CD03A2490F07100662427 /* StockTitlesViewController.swift in Sources */,
 				B54A01A52478326C00E5F310 /* NavigationBar.swift in Sources */,
@@ -1052,6 +1108,9 @@
 				B56FD8FE248E731000DCAA54 /* CheckInOut.swift in Sources */,
 				B54A015724782BD600E5F310 /* PermissViewController.swift in Sources */,
 				B54A015024782B2400E5F310 /* LoginViewController.swift in Sources */,
+				B58561AA24933182000A5675 /* Warehouse.swift in Sources */,
+				B58561A824932FCC000A5675 /* ListStockViewController.swift in Sources */,
+				B58561B6249368A9000A5675 /* CountViewCell.swift in Sources */,
 				B58E1604248E3D660054E9A0 /* CAPSPageMenu+UIGestureRecognizerDelegate.swift in Sources */,
 				B5A68D48248F8E5000FD76A4 /* Trip.swift in Sources */,
 				B51F56312478F06B00B3851A /* Product.swift in Sources */,
@@ -1066,6 +1125,7 @@
 				B58E1603248E3D660054E9A0 /* CAPSPageMenuConfiguration.swift in Sources */,
 				B56FD90C248F3D7A00DCAA54 /* TitleViewCell.swift in Sources */,
 				B55CD0282490E5FA00662427 /* TransportImagesViewController.swift in Sources */,
+				B58561B0249340FA000A5675 /* CreateWarehousetViewController.swift in Sources */,
 				B51F56262478C3BD00B3851A /* CardView.swift in Sources */,
 				B56FD902248F287700DCAA54 /* ProgressProject.swift in Sources */,
 				B51F562F2478DC1C00B3851A /* DetailProductViewController.swift in Sources */,
@@ -1239,7 +1299,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ADongIos/Preview Content\"";
-				DEVELOPMENT_TEAM = VFNZ7V75WQ;
+				DEVELOPMENT_TEAM = 8HLH79724S;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ADongIos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -1247,7 +1307,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zamio.adong;
+				PRODUCT_BUNDLE_IDENTIFIER = zamio.adonggggg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1261,7 +1321,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ADongIos/Preview Content\"";
-				DEVELOPMENT_TEAM = VFNZ7V75WQ;
+				DEVELOPMENT_TEAM = 8HLH79724S;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ADongIos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -1269,7 +1329,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zamio.adong;
+				PRODUCT_BUNDLE_IDENTIFIER = zamio.adonggggg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -67,10 +67,10 @@
                                 </connections>
                             </button>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="green_dot" translatesAutoresizingMaskIntoConstraints="NO" id="pgJ-Kv-isd">
-                                <rect key="frame" x="426" y="35" width="20" height="20"/>
+                                <rect key="frame" x="431" y="37.5" width="15" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Ur9-w4-LIy"/>
-                                    <constraint firstAttribute="width" constant="20" id="eJx-EZ-4Wp"/>
+                                    <constraint firstAttribute="height" constant="15" id="Ur9-w4-LIy"/>
+                                    <constraint firstAttribute="width" constant="15" id="eJx-EZ-4Wp"/>
                                 </constraints>
                             </imageView>
                         </subviews>

@@ -40,4 +40,11 @@ class SmallInformationViewCell: UITableViewCell {
         
         imvAva.kf.setImage(with: url, placeholder: imageDf)
      }
+    
+    func setDataProduct(data:Product) {
+          lb1.text = data.productName
+        let qt = data.quantity ?? 0
+        lb2.text = "\(qt) \(data.productUnit ?? "")"
+     
+      }
 }

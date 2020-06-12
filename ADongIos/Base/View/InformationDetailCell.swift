@@ -47,4 +47,9 @@ class InformationDetailCell: UITableViewCell {
         lb1.text = data.productName ?? "---"
         lb2.text = String(describing: data.productUnit)
       }
+    
+    func setDataWareHouse(data:Warehouse) {
+           lb1.text = data.name ?? "---"
+        lb2.text = data.address ?? "---"
+         }
 }

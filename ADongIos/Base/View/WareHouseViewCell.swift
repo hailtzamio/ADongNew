@@ -77,5 +77,20 @@ class WareHouseViewCell: UITableViewCell {
         lb5.text = data.plannedDatetime ?? "---"
     }
     
+    func setDataGoodsReceivedNote(data:GoodsReceivedNote) {
+        lb1.text = data.code
+        lb2.text = data.deliveredBy ?? "---"
+        lb3.text = data.note ?? "---"
+        lb4.text = data.warehouseName ?? "---"
+        
+        if(data.status == "DONE") {
+             lb5.text = "Hoàn thành"
+        } else {
+            lb5.text = "Nháp"
+        }
+        
+       
+    }
+    
     
 }

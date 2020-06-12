@@ -31,19 +31,19 @@ class StockTitlesViewController: BaseViewController {
     
     func getData() {
         
-        data.append(TitleModel(pTitle: "Thông tin cơ bản", pImagePath: "burning"))
+        data.append(TitleModel(pTitle: "Danh sách kho", pImagePath: "burning"))
         data.append(TitleModel(pTitle: "line", pImagePath: "check_green"))
-        data.append(TitleModel(pTitle: "Danh sách vật tư", pImagePath: "print"))
-        data.append(TitleModel(pTitle: "Bản thiết kế", pImagePath: "drawing"))
+        data.append(TitleModel(pTitle: "Danh sách phiếu nhập kho", pImagePath: "print"))
+        data.append(TitleModel(pTitle: "Danh sách phiếu xuất kho", pImagePath: "drawing"))
         data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
-        data.append(TitleModel(pTitle: "Đánh giá công trình", pImagePath: "healthcare"))
-        data.append(TitleModel(pTitle: "An toàn lao động", pImagePath: "hospital"))
-        data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
-        data.append(TitleModel(pTitle: "Thêm công nhân", pImagePath: "add_worker"))
-        data.append(TitleModel(pTitle: "Kho ảnh", pImagePath: "picture"))
-        data.append(TitleModel(pTitle: "Lịch sử điểm danh", pImagePath: "history"))
-        data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
-        data.append(TitleModel(pTitle: "Tạm dừng công trình", pImagePath: "burning"))
+        data.append(TitleModel(pTitle: "Danh sách yêu cầu xuất kho", pImagePath: "healthcare"))
+        //        data.append(TitleModel(pTitle: "An toàn lao động", pImagePath: "hospital"))
+        //        data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
+        //        data.append(TitleModel(pTitle: "Thêm công nhân", pImagePath: "add_worker"))
+        //        data.append(TitleModel(pTitle: "Kho ảnh", pImagePath: "picture"))
+        //        data.append(TitleModel(pTitle: "Lịch sử điểm danh", pImagePath: "history"))
+        //        data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
+        //        data.append(TitleModel(pTitle: "Tạm dừng công trình", pImagePath: "burning"))
     }
     
 }
@@ -56,7 +56,7 @@ extension StockTitlesViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 7 || indexPath.row == 11 {
+        if indexPath.row == 1 || indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell
             
             return cell
@@ -69,10 +69,13 @@ extension StockTitlesViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
+        
         switch indexPath.row {
         case 0:
-            goToBaseInformation() 
+            goToStocks()
+            break
+        case 2:
+            goToGoodsReceivedNote()
             break
         default:
             break
@@ -83,12 +86,21 @@ extension StockTitlesViewController: UITableViewDataSource, UITableViewDelegate 
 }
 
 extension StockTitlesViewController {
-
-
-    func goToBaseInformation() {
-                if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "BaseInformationController") as? BaseInformationController {
-                    vc.id = id
-                    navigationController?.pushViewController(vc, animated: true)
-                }
+    
+    
+    func goToStocks() {
+        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListStockViewController") as? ListStockViewController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
+    
+    func goToGoodsReceivedNote() {
+        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListGoodsReceivedNoteViewController") as? ListGoodsReceivedNoteViewController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
 }

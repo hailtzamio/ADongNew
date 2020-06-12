@@ -334,5 +334,29 @@ class APIClient {
          jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
          performRequest(route: ApiRouter.getTransportImages(id: id), decoder: jsonDecoder, completion: completion)
      }
+    
+    static func getWarehouses(id : Int, name : String, type : String, completion:@escaping (Result<BaseResponseList<Warehouse>, AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getWarehouses(id: id, name : name, type : type), decoder: jsonDecoder, completion: completion)
+     }
+    
+    static func getGoodsReceivedNotes( completion:@escaping (Result<BaseResponseList<GoodsReceivedNote>, AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getGoodsReceivedNotes, decoder: jsonDecoder, completion: completion)
+     }
+    
+    static func createWarehouse(data:Warehouse,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.createWarehouse(data: data), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func getGoodsReceivedNote(id:Int,completion:@escaping (Result<BaseResponse<GoodsReceivedNote>, AFError>)->Void) {
+               let jsonDecoder = JSONDecoder()
+               jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+               performRequest(route: ApiRouter.getGoodsReceivedNote(id: id), decoder: jsonDecoder, completion: completion)
+           }
 }
 

@@ -9,24 +9,26 @@
 import UIKit
 
 class Product : Codable {
-    let id : Int?
-    let name : String?
-    let type : String?
-    let unit : String?
-    let quantity : Int?
-    let code : String?
-    let updatedTime : String?
-    let createdById : Int?
-    let createdByFullName : String?
-    let updatedById : Int?
-    let updatedByFullName : String?
-    let thumbnailUrl : String?
-    let thumbnailExtId : String?
+    var id : Int?
+    var name : String?
+    var type : String?
+    var unit : String?
+    var quantity : Int?
+    var code : String?
+    var updatedTime : String?
+    var createdById : Int?
+    var createdByFullName : String?
+    var updatedById : Int?
+    var updatedByFullName : String?
+    var thumbnailUrl : String?
+    var thumbnailExtId : String?
     
-     let productName : String?
-     let productUnit : String?
-     let transportReqCode : String?
-     let transportReqId : Int?
-     let productId : Int?
+     var productName : String?
+     var productUnit : String?
+     var transportReqCode : String?
+     var transportReqId : Int?
+     var productId : Int?
+    var goodsReceivedNoteId : Int?
+    
 
 }
