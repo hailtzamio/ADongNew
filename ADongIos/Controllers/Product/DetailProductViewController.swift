@@ -27,6 +27,8 @@ class DetailProductViewController: BaseViewController {
     
     func setupHeader() {
         header.title = "Chi Tiết"
+        
+        
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
         }

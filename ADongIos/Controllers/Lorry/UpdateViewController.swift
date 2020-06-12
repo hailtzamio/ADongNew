@@ -54,10 +54,7 @@ class UpdateViewController: BaseViewController {
     
     @IBAction func createOrUpdate(_ sender: Any) {
         
-        if(data == nil) {
-            return
-        }
-        
+
         if ( tfBrand.text == "" || tfCapacity.text == "" || tfPlateNumber.text == "" || tfModel.text == "") {
             showToast(content: "Nhập thiếu thông tin")
             return
@@ -75,6 +72,7 @@ class UpdateViewController: BaseViewController {
             update(pData: dataRq)
         } else {
             // Create
+            create(pData: dataRq)
             
         }
     }
@@ -83,6 +81,28 @@ class UpdateViewController: BaseViewController {
         
         showLoading()
         APIClient.updateLorry(data: pData) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if response.status == 1 {
+                    self.showToast(content: "Thành công")
+                    self.goBack()
+                    return
+                } else {
+                    self.showToast(content: response.message!)
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
+    }
+    
+    func create(pData:Lorry) {
+        
+        showLoading()
+        APIClient.createLorry(data: pData) { result in
             self.stopLoading()
             switch result {
             case .success(let response):

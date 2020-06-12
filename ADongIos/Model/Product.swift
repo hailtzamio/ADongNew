@@ -30,5 +30,7 @@ class Product : Codable {
      var productId : Int?
     var goodsReceivedNoteId : Int?
     
+    var count : String? 
+    
 
 }

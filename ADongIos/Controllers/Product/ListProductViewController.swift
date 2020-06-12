@@ -11,7 +11,7 @@ import UIKit
 class ListProductViewController: BaseViewController {
     
     var data = [Product]()
- 
+    
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
     
@@ -36,14 +36,56 @@ class ListProductViewController: BaseViewController {
     
     func setupHeader() {
         header.title = "Vật Tư"
+        
+        if(!isHideTf) {
+            header.changeDoneIcon()
+        }
+        
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
         }
         
         header.rightAction = {
-            if let vc = UIStoryboard.init(name: "Product", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateProductViewController") as? UpdateProductViewController {
-                vc.isUpdate = false
-                self.navigationController?.pushViewController(vc, animated: true)
+            if(self.isHideTf) {
+                if let vc = UIStoryboard.init(name: "Product", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateProductViewController") as? UpdateProductViewController {
+                    vc.isUpdate = false
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            } else {
+                /// Create
+                var lines = [Product]()
+                self.data.forEach { (value) in
+                        
+                    if(value.count != nil) {
+                        value.productId = value.id
+                        value.quantity = Int(value.count!) ?? 0
+                        lines.append(value)
+                    }
+                            
+                     }
+                
+                self.goodsReceivedNote.lines = lines
+                
+                self.createGoodsReceivedNote()
+            }
+            
+        }
+    }
+    
+    func createGoodsReceivedNote() {
+//       showLoading()
+        APIClient.createGoodsReceivedNote(data : goodsReceivedNote) { result in
+//            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if(response.status == 1) {
+                  self.showToast(content: response.message ?? "Thành công")
+                    self.goBack()
+                }
+                
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
@@ -88,17 +130,26 @@ extension ListProductViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if(!isHideTf) {
+            return
+        }
+        
         if let vc = UIStoryboard.init(name: "Product", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailProductViewController") as? DetailProductViewController {
             vc.id = data[indexPath.row].id!
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    
+    
 }
 
 extension  ListProductViewController : UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-//        print(textField.text)
-//        let quantity = (textField.text ?? "0") as Int
-//        data[textField.tag].quantity = quantity
+        //        print(textField.text)
+        //        let quantity = (textField.text ?? "0") as Int
+        data[textField.tag].count = textField.text!
     }
+
 }

@@ -56,6 +56,12 @@ class APIClient {
         performRequest(route: ApiRouter.getLorry(id: id), decoder: jsonDecoder, completion: completion)
     }
     
+    static func createLorry(data:Lorry,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+         performRequest(route: ApiRouter.createLorry(data: data), decoder: jsonDecoder, completion: completion)
+     }
+    
     static func updateLorry(data:Lorry,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
@@ -358,5 +364,11 @@ class APIClient {
                jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
                performRequest(route: ApiRouter.getGoodsReceivedNote(id: id), decoder: jsonDecoder, completion: completion)
            }
+    
+    static func createGoodsReceivedNote(data:GoodsReceivedNote,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.createGoodsReceivedNote(data: data), decoder: jsonDecoder, completion: completion)
+    }
 }
 

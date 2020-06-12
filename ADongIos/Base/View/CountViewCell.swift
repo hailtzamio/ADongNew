@@ -42,8 +42,9 @@ class CountViewCell: UITableViewCell {
         lb2.text = data.createdByFullName
         lb3.text = data.updatedTime
         
-        if(data.quantity != nil) {
-            tf1.text = "\(data.quantity)"
+        if(data.count != nil) {
+            
+            tf1.text = data.count
         } else {
             tf1.text = ""
         }
