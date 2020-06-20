@@ -370,5 +370,11 @@ class APIClient {
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
         performRequest(route: ApiRouter.createGoodsReceivedNote(data: data), decoder: jsonDecoder, completion: completion)
     }
+    
+    static func getProductRequirements(id : Int, completion:@escaping (Result<BaseResponseList<GoodsReceivedNote>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getProductRequirements(id: id), decoder: jsonDecoder, completion: completion)
+    }
 }
 

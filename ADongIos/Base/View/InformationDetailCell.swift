@@ -9,7 +9,7 @@
 import UIKit
 
 class InformationDetailCell: UITableViewCell {
-
+    
     @IBOutlet weak var line: UIView!
     @IBOutlet weak var lb1: UILabel!
     @IBOutlet weak var lb2: UILabel!
@@ -18,10 +18,10 @@ class InformationDetailCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -30,8 +30,8 @@ class InformationDetailCell: UITableViewCell {
     }
     
     static var identifier: String {
-          return String(describing: self)
-      }
+        return String(describing: self)
+    }
     
     func setData(data:Information) {
         lb1.text = data.value
@@ -46,10 +46,18 @@ class InformationDetailCell: UITableViewCell {
     func setDataProduct(data:Product) {
         lb1.text = data.productName ?? "---"
         lb2.text = String(describing: data.productUnit)
-      }
+    }
     
     func setDataWareHouse(data:Warehouse) {
-           lb1.text = data.name ?? "---"
+        lb1.text = data.name ?? "---"
         lb2.text = data.address ?? "---"
-         }
+    }
+    
+    func setDataProductRequirement(data:GoodsReceivedNote) {
+        lb1.text = data.code ?? "---"
+        if(data.status == "NEW") {
+            lb2.text = "Mới"
+        }
+        
+    }
 }

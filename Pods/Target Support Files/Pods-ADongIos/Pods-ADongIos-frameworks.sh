@@ -198,6 +198,7 @@ fi
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Hero/Hero.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQDropDownTextField/IQDropDownTextField.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
@@ -209,6 +210,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Hero/Hero.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQDropDownTextField/IQDropDownTextField.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"

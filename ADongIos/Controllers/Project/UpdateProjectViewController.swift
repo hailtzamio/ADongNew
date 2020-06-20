@@ -11,6 +11,7 @@ import Alamofire
 import Kingfisher
 import TOCropViewController
 import IQDropDownTextField
+import DLRadioButton
 class UpdateProjectViewController: BaseViewController, UINavigationControllerDelegate {
     
     
@@ -25,12 +26,19 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     @IBOutlet weak var tf8: RadiusTextField!
     @IBOutlet weak var tf9: RadiusTextField!
     
+    @IBOutlet weak var tf10: RadiusTextField!
     
     @IBOutlet weak var tfTest: IQDropDownTextField!
     @IBOutlet weak var header: NavigationBar!
     
-
     
+    @IBOutlet weak var tf10Height: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var radio1: DLRadioButton!
+    
+    @IBOutlet weak var radio2: DLRadioButton!
+    @IBOutlet weak var tf10TopSpace: NSLayoutConstraint!
     var data = Project()
     var isUpdate = true // if false Create
     override func viewDidLoad() {
@@ -44,9 +52,37 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         tf4.dropDownMode = .dateTimePicker
         tf4.delegate =  self
         tf4.tag = 2
+        
+        
+        
+        
         if(isUpdate) {
+            
+            if(data.teamType == "ADONG") {
+                tf10Height.constant = 0
+                tf10TopSpace.constant = 0
+                radio1.isSelected = true
+                tf6.text = data.teamName
+            } else {
+                tf10Height.constant = 45
+                tf10TopSpace.constant = 15
+                radio2.isSelected = true
+                tf6.text = data.contractorName
+            }
             tf1.text = data.name
             tf2.text = data.address
+            
+            tf7.text = data.managerFullName
+            tf8.text = data.deputyManagerFullName
+            tf9.text = data.secretaryFullName
+            tf10.text = data.supervisorFullName
+            
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "d MMM yyyy at HH:mm"
+            let date = formatter.date (from: data.plannedStartDate!)
+            tf3.setDate(date, animated: false)
+            
         } else {
             
         }
@@ -75,17 +111,17 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     //     }
     
     
-    @IBAction func btnChooseLeader(_ sender: Any) {
-        if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChooseWorkerViewController") as? ChooseWorkerViewController {
-            vc.isCheckHiden = true
-            vc.isTypeOfWorker = TypeOfWorker.leader
-            vc.isRightButtonHide = true
-            vc.callback = {(worker) in
-                //                self.data.leaderId = worker?.id
-            }
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
+    //    @IBAction func btnChooseLeader(_ sender: Any) {
+    //        if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChooseWorkerViewController") as? ChooseWorkerViewController {
+    //            vc.isCheckHiden = true
+    //            vc.isTypeOfWorker = TypeOfWorker.secretary
+    //            vc.isRightButtonHide = true
+    //            vc.callback = {(worker) in
+    //                //                self.data.leaderId = worker?.id
+    //            }
+    //            self.navigationController?.pushViewController(vc, animated: true)
+    //        }
+    //    }
     
     func setupHeader() {
         header.title = "Cập Nhật"
@@ -104,18 +140,54 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     
     @IBAction func location(_ sender: Any) {
         let vc = MapViewController()
+        vc.data = data
+        vc.callback = {(coordinate) in
+            self.data.latitude = coordinate?.lat
+            self.data.longitude = coordinate?.long
+            self.tf5.text = coordinate?.name
+            
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func chooseTeam(_ sender: Any) {
-        if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListTeamViewController") as? ListTeamViewController {
-            vc.isChooseTeam = true
-            vc.callback = {(team) in
-                self.data.teamId = team?.id
-                self.tf6.text = team?.name ?? "---"
+        if(data.teamType == "ADONG") {
+            if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListTeamViewController") as? ListTeamViewController {
+                vc.isChooseTeam = true
+                vc.callback = {(team) in
+                    self.data.teamId = team?.id
+                    self.tf6.text = team?.name ?? "---"
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
             }
-            self.navigationController?.pushViewController(vc, animated: true)
         }
+        
+        if(data.teamType == "CONTRACTOR") {
+            if let vc = UIStoryboard.init(name: "Contractor", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListContractorViewController") as? ListContractorViewController {
+                vc.isToChoose = true
+                vc.callback = {(team) in
+                    self.data.contractorId = team?.id
+                    self.tf6.text = team?.name ?? "---"
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+        
+        
+    }
+    
+    @IBAction func team(_ sender: Any) {
+        tf6.text = ""
+        tf10Height.constant = 0
+        tf10TopSpace.constant = 0
+        data.teamType = "ADONG"
+    }
+    
+    @IBAction func contractor(_ sender: Any) {
+        tf10Height.constant = 45
+        tf10TopSpace.constant = 15
+        data.teamType = "CONTRACTOR"
+        tf6.text = ""
     }
     
     @IBAction func chooseManager(_ sender: Any) {
@@ -159,11 +231,32 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         }
     }
     
+    
+    @IBAction func chooseSuppervisor(_ sender: Any) {
+        
+        if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChooseWorkerViewController") as? ChooseWorkerViewController {
+            vc.isCheckHiden = true
+            vc.isTypeOfWorker = TypeOfWorker.suppervisor
+            vc.isRightButtonHide = true
+            vc.callback = {(worker) in
+                self.data.supervisorId = worker?.id
+                self.tf10.text = worker?.fullName
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
     @IBAction func createOrUpdate(_ sender: Any) {
         
-  
+        
         if ( tf1.text == "" || tf2.text == "") {
             showToast(content: "Nhập thiếu thông tin")
+            return
+        }
+        
+        if(tf6.text == ""){
+            showToast(content: "Chọn đội")
             return
         }
         
@@ -171,7 +264,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         data.name = tf1.text
         data.address = tf2.text
         
-
+        
         
         if(isUpdate) {
             // Update
@@ -179,12 +272,28 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         } else {
             
             
-        
+            
             create(pData: data)
         }
     }
     
     func update(pData:Project) {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        
+        if(tf3.date != nil) {
+            data.plannedStartDate = formatter.string(from: tf3.date!)
+            
+        }
+        
+        if(tf4.date != nil) {
+            data.plannedEndDate = formatter.string(from: tf4.date!)
+            
+        }
+        
+        
         
         showLoading()
         APIClient.updateProject(data: pData) { result in
@@ -214,13 +323,10 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         }
         
         let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                data.plannedStartDate = formatter.string(from: tf3.date!)
-                data.plannedEndDate = formatter.string(from: tf4.date!)
-                data.teamType = "ADONG"
-                data.latitude = 21.028511
-                data.longitude = 105.804817
-        
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        data.plannedStartDate = formatter.string(from: tf3.date!)
+        data.plannedEndDate = formatter.string(from: tf4.date!)
+ 
         showLoading()
         APIClient.createProject(data: pData) { result in
             self.stopLoading()

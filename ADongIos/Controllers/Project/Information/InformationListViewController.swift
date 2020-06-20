@@ -33,6 +33,7 @@ class InformationListViewController: BaseViewController {
         
         data.append(TitleModel(pTitle: "Thông tin cơ bản", pImagePath: "burning"))
         data.append(TitleModel(pTitle: "line", pImagePath: "check_green"))
+            data.append(TitleModel(pTitle: "Danh sách đăng ký thi công", pImagePath: "print"))
         data.append(TitleModel(pTitle: "Danh sách vật tư", pImagePath: "print"))
         data.append(TitleModel(pTitle: "Bản thiết kế", pImagePath: "drawing"))
         data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
@@ -74,6 +75,10 @@ extension InformationListViewController: UITableViewDataSource, UITableViewDeleg
         case 0:
             goToBaseInformation() 
             break
+            
+        case 3:
+            goToProductRequirement()
+            break
         default:
             break
         }
@@ -87,6 +92,13 @@ extension InformationListViewController {
 
     func goToBaseInformation() {
                 if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "BaseInformationController") as? BaseInformationController {
+                    vc.id = id
+                    navigationController?.pushViewController(vc, animated: true)
+                }
+    }
+    
+    func goToProductRequirement() {
+                if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "ProductRequirementViewController") as? ProductRequirementViewController {
                     vc.id = id
                     navigationController?.pushViewController(vc, animated: true)
                 }

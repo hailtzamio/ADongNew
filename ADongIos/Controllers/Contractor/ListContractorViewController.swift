@@ -10,23 +10,23 @@ import UIKit
 
 class ListContractorViewController: BaseViewController, UISearchBarDelegate, LoadMoreControlDelegate {
     
-
+    
     var data = [Contractor]()
     fileprivate var activityIndicator: LoadMoreActivityIndicator!
     var page = 0
     var totalPages = 0
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
-        @IBOutlet weak var searchBar: UISearchBar!
-
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var loadMoreControl: LoadMoreControl!
     
     // For Adding To Team
-    var isToChooseWorker = false
+    var isToChoose = false
     var team:Team? = nil
     var chooseWorkerId = 0
     var workers = [Contractor]()
-    var callback : ((Int?) -> Void)?
+    var callback : ((Contractor?) -> Void)?
     
     var isCheckHiden = true
     
@@ -41,7 +41,7 @@ class ListContractorViewController: BaseViewController, UISearchBarDelegate, Loa
         loadMoreControl = LoadMoreControl(scrollView: tbView, spacingFromLastCell: 10, indicatorHeight: 60)
         loadMoreControl.delegate = self
         
-        if(isToChooseWorker) {
+        if(isToChoose) {
             header.isRightButtonHide = true
         }
     }
@@ -52,7 +52,7 @@ class ListContractorViewController: BaseViewController, UISearchBarDelegate, Loa
         getData()
     }
     
-
+    
     
     func setupHeader() {
         header.title = "Nhà Thầu Phụ"
@@ -123,9 +123,9 @@ extension ListContractorViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(isToChooseWorker) {
-              workers.insert(data[indexPath.row], at: 0)
-            showYesNoPopup(title: "Xác nhận", message: "Chọn Công nhân này?")
+        if(isToChoose) {
+            callback!(data[indexPath.row])
+            goBack()
         } else {
             if let vc = UIStoryboard.init(name: "Contractor", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailContractorViewController") as? DetailContractorViewController {
                 vc.id = data[indexPath.row].id!
@@ -143,11 +143,11 @@ extension ListContractorViewController {
     
     func popupHandle() {
         okAction = {
- 
+            
         }
         
         noAction = {
-      
+            
         }
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class BaseInformationController: BaseViewController {
-    var item:Project? = nil
+    var item = Project()
     
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
@@ -20,6 +20,7 @@ class BaseInformationController: BaseViewController {
     var data = [Information]()
     var data1 = [Information]()
     var data2 = [Information]()
+    var project = Project()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeader()
@@ -33,6 +34,8 @@ class BaseInformationController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         data.removeAll()
+             data1.removeAll()
+             data2.removeAll()
         getData()
     }
     
@@ -44,7 +47,7 @@ class BaseInformationController: BaseViewController {
         
                 header.rightAction = {
                     if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateProjectViewController") as? UpdateProjectViewController {
-                        vc.data = self.item!
+                        vc.data = self.item
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
@@ -120,6 +123,14 @@ class BaseInformationController: BaseViewController {
     @IBAction func remove(_ sender: Any) {
         showYesNoPopup(title: "Xóa", message: "Chắc chắn xóa?")
     }
+    
+    @IBAction func viewMap(_ sender: Any) {
+        let vc = MapViewController()
+           vc.data = item
+            vc.isJustView = true
+           navigationController?.pushViewController(vc, animated: true)
+        
+    }
 }
 
 extension BaseInformationController: UITableViewDataSource, UITableViewDelegate {
@@ -131,24 +142,25 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
         }
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//
-//        let sectionView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
-//        sectionView.backgroundColor = UIColor.init(hexString: "#ffffff")
-//
-//        let sectionName = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
-//        sectionName.text = itemNames[section]
-//        sectionName.textColor = UIColor.init(hexString: "#4c4c4c")
-//        sectionName.font = UIFont.systemFont(ofSize: 17)
-//        sectionName.textAlignment = .left
-//
-//        let uiButton = UIButton(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
-//        uiButton.addTarget(self, action:#selector(handleRegister),
-//                           for: .touchUpInside)
-//        sectionView.addSubview(sectionName)
-//        sectionView.addSubview(uiButton)
-//        return sectionView
-//    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        let sectionView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
+        sectionView.backgroundColor = UIColor.init(hexString: "#ffffff")
+
+        let sectionName = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
+        sectionName.text = itemNames[section]
+        sectionName.textColor = UIColor.init(hexString: "#fb9214")
+        sectionName.font = UIFont.systemFont(ofSize: 17)
+        sectionName.textAlignment = .left
+        sectionName.font = UIFont.boldSystemFont(ofSize: 16)
+
+        let uiButton = UIButton(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
+        uiButton.addTarget(self, action:#selector(handleRegister),
+                           for: .touchUpInside)
+        sectionView.addSubview(sectionName)
+        sectionView.addSubview(uiButton)
+        return sectionView
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5

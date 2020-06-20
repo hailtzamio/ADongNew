@@ -46,7 +46,9 @@ struct TypeOfWorker {
     static let manager = 2
     static let deputyManager = 3
     static let secretary = 4
+            static let suppervisor = 6
         static let keeper = 5
+    
     
     static let emaifullNamel = "username"
 }

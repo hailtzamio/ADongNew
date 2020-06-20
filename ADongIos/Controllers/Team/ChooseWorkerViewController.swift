@@ -70,6 +70,10 @@ class ChooseWorkerViewController: BaseViewController, UISearchBarDelegate, LoadM
             header.title = "Thư Ký"
             getWorkersForTeam(type: "SECRETARY")
             break
+            case TypeOfWorker.suppervisor :
+                     header.title = "Giám Sát"
+                      getLeaders()
+                     break
         case TypeOfWorker.keeper :
                   header.title = "Thư Ký"
                   getWorkersForTeam(type: "WAREHOUSE_KEEPER")

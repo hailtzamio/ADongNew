@@ -34,12 +34,14 @@ class TransportDetailController: BaseViewController, UINavigationControllerDeleg
         tbView.register(InformationDetailCell.nib, forCellReuseIdentifier: InformationDetailCell.identifier)
         tbView.register(WareHouseViewCell.nib, forCellReuseIdentifier: WareHouseViewCell.identifier)
         
+        data.removeAll()
+            data1.removeAll()
+            getData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        data.removeAll()
-        data1.removeAll()
-        getData()
+    
     }
     
     func setupHeader() {
