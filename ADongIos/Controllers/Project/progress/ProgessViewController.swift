@@ -15,6 +15,8 @@ class ProgessViewController: BaseViewController, UINavigationControllerDelegate 
     var data = [ProgressProject]()
     var currentWorkOutline = ProgressProject()
     @IBOutlet weak var tbView: UITableView!
+    
+    @IBOutlet weak var btnFinish: UIButton!
     var id = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,17 +25,18 @@ class ProgessViewController: BaseViewController, UINavigationControllerDelegate 
         tbView.delegate = self
         tbView.register(ProjectProgressViewCell.nib, forCellReuseIdentifier: ProjectProgressViewCell.identifier)
         
-          getData()
-        
+        getData()
+        getProject()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-  
+        
     }
     
     func popupHandle() {
         okAction = {
-              self.pickImage(isLibrary: false)
+            self.showTakePhotoPopup()
+//            self.pickImage(isLibrary: false)
         }
     }
     
@@ -58,6 +61,29 @@ class ProgessViewController: BaseViewController, UINavigationControllerDelegate 
         }
     }
     
+    func getProject() {
+  
+    APIClient.getProject(id : id) { result in
+   
+        switch result {
+        case .success(let response):
+            
+            if(response.data != nil) {
+                let project = response.data
+                if(project?.status == "DONE") {
+                    self.btnFinish.setTitle("ĐÃ HOÀN THÀNH", for: .normal)
+                    self.btnFinish.isEnabled = false
+                }
+                
+            }
+            
+        case .failure(let error):
+            print(error.localizedDescription)
+        }
+    }
+    
+    }
+    
     func getData() {
         showLoading()
         APIClient.getProjectWokerOutline(id : id) { result in
@@ -68,12 +94,47 @@ class ProgessViewController: BaseViewController, UINavigationControllerDelegate 
                 if(response.data != nil) {
                     self.data = response.data!
                     self.tbView.reloadData()
+                    
+                    var isHideTvOk = false
+                    self.data.forEach { (value) in
+                        if(value.finishDatetime == nil) {
+                            isHideTvOk = true
+                        }
+                    }
+                    
+                    self.btnFinish.isHidden = isHideTvOk
+                    
                 }
                 
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func showTakePhotoPopup() {
+        
+        let alert = UIAlertController(title: "Tùy chọn", message: "", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Album", style: .default , handler:{ (UIAlertAction)in
+            self.pickImage(isLibrary: true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Camera", style: .default , handler:{ (UIAlertAction)in
+            self.pickImage(isLibrary: false)
+        }))
+        
+//        alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
+//            print("User click Delete button")
+//        }))
+        
+        alert.addAction(UIAlertAction(title: "Hủy", style: .cancel, handler:{ (UIAlertAction)in
+            print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
     }
 }
 

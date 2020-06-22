@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ProductRequirementViewController: BaseViewController {
+class CheckinOutListViewController: BaseViewController {
     
-    var data = [GoodsReceivedNote]()
+    var data = [Worker]()
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
     var id = 0
@@ -19,7 +19,7 @@ class ProductRequirementViewController: BaseViewController {
         setupHeader()
         tbView.dataSource = self
         tbView.delegate = self
-        tbView.register(InformationDetailCell.nib, forCellReuseIdentifier: InformationDetailCell.identifier)
+        tbView.register(CommonNoAvatarCell.nib, forCellReuseIdentifier: CommonNoAvatarCell.identifier)
         
     }
     
@@ -29,22 +29,17 @@ class ProductRequirementViewController: BaseViewController {
     }
     
     func setupHeader() {
-        header.title = "Yêu Cầu Vật Tư"
+        header.title = "Lịch Sử Điểm Danh"
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
         }
         
-        header.rightAction = {
-            if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateViewController") as? UpdateViewController {
-                vc.isUpdate = false
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+        header.isRightButtonHide = true
     }
     
     func getData() {
         showLoading()
-        APIClient.getProductRequirements(id: id) { result in
+        APIClient.getProjectCheckOut(id : id) { result in
             self.stopLoading()
             switch result {
             case .success(let response):
@@ -62,22 +57,22 @@ class ProductRequirementViewController: BaseViewController {
     
 }
 
-extension ProductRequirementViewController: UITableViewDataSource, UITableViewDelegate {
+extension CheckinOutListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
-        cell.setDataProductRequirement(data: data[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: CommonNoAvatarCell.identifier, for: indexPath) as! CommonNoAvatarCell
+        cell.imv1.isHidden = true
+       cell.cons2.constant = 0
+        cell.cons1.constant = 0
+        cell.setDataCheckOutIn(data: data[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailLorryViewController") as? DetailLorryViewController {
-            vc.id = data[indexPath.row].id!
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        
     }
 }

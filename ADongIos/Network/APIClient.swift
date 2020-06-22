@@ -376,5 +376,43 @@ class APIClient {
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
         performRequest(route: ApiRouter.getProductRequirements(id: id), decoder: jsonDecoder, completion: completion)
     }
+    
+    static func getBiddings(id : Int,completion:@escaping (Result<BaseResponseList<Contractor>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getBiddings(id: id), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func projectBiddingApprove(id:Int,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+          let jsonDecoder = JSONDecoder()
+          jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+          performRequest(route: ApiRouter.projectBiddingApprove(id: id), decoder: jsonDecoder, completion: completion)
+     }
+    
+    static func addWorkerToProject(id: Int, workerId:Int,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.addWorkerToProject(id: id, workerId: workerId), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func getWorkerNotLeader(page : Int, name : String,completion:@escaping (Result<BaseResponseList<Worker>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getWorkerNotLeader(page: page, name: name), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func getProjectCheckOut(id : Int,completion:@escaping (Result<BaseResponseList<Worker>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getProjectCheckOut(id: id), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func getProjectFiles(id : Int,completion:@escaping (Result<BaseResponseList<Project>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getProjectFiles(id: id), decoder: jsonDecoder, completion: completion)
+    }
+    
+    
 }
 

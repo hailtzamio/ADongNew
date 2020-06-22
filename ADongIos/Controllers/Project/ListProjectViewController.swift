@@ -34,9 +34,13 @@ class ListProjectViewController: BaseViewController, UISearchBarDelegate, LoadMo
     }
     
     override func viewWillAppear(_ animated: Bool) {
+       
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         page = 0
-        data.removeAll()
-        getData()
+               data.removeAll()
+               getData()
     }
     
     func setupHeader() {

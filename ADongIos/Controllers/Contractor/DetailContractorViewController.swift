@@ -12,8 +12,14 @@ class DetailContractorViewController: BaseViewController {
     var id = 0
     var item:Contractor? = nil
     var data = [Information]()
+    
+    @IBOutlet weak var bt1: UIButton!
+    
     @IBOutlet weak var tbView: UITableView!
-       @IBOutlet weak var header: NavigationBar!
+    @IBOutlet weak var header: NavigationBar!
+    var isToChoose = false
+    var status = ""
+    var biddingId = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeader()
@@ -44,28 +50,58 @@ class DetailContractorViewController: BaseViewController {
         }
         
         header.changeUpdateIcon()
+        
+        if(isToChoose) {
+            header.isRightButtonHide = true
+            bt1.setTitle("ĐỒNG Ý", for: .normal)
+        }
     }
     
     func popupHandle() {
         okAction = {
-            self.showLoading()
-            APIClient.removeContractor(id: self.id) { result in
-                self.stopLoading()
-                switch result {
-                case .success(let response):
-                    if (response.status == 1) {
-                        self.goBack()
+            if(self.isToChoose) {
+                self.projectBiddingApprove()
+            } else {
+                self.showLoading()
+                APIClient.removeContractor(id: self.id) { result in
+                    self.stopLoading()
+                    switch result {
+                    case .success(let response):
+                        if (response.status == 1) {
+                            self.goBack()
+                        }
+                        self.showToast(content: response.message ?? "")
+                        break
+                        
+                    case .failure(let error):
+                        self.showToast(content: error.localizedDescription)
                     }
-                    self.showToast(content: response.message ?? "")
-                    break
-                    
-                case .failure(let error):
-                    self.showToast(content: error.localizedDescription)
                 }
             }
-            
         }
         
+    }
+    
+    func projectBiddingApprove() {
+        
+        showLoading()
+        APIClient.projectBiddingApprove(id: biddingId) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if response.status == 1 {
+                    self.showToast(content: "Thành công")
+                    self.goBack()
+                    return
+                } else {
+                    self.showToast(content: response.message!)
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
     }
     
     func getData() {
@@ -78,14 +114,36 @@ class DetailContractorViewController: BaseViewController {
                 if let value = response.data  {
                     self.convertData(value: value)
                     self.item = value
-                    self.data.append(Information(pKey: "Họ tên",pValue: value.name!))
-                    self.data.append(Information(pKey: "Địa chỉ",pValue: value.address ?? "---"))
+                    self.data.append(Information(pKey: "Tên",pValue: value.name!))
+                    
                     self.data.append(Information(pKey: "Số điện thoại",pValue: value.phone!))
                     self.data.append(Information(pKey: "Email",pValue: value.email ?? "---"))
-               
                     
-          
+                    var address = ""
+                    
+        
+                        address = " \(value.districtName ?? "") - \(value.provinceName ?? "") - \(value.address ?? "") "
+                
+                    
+                    self.data.append(Information(pKey: "Địa chỉ",pValue: address))
+                    
+                    var status = "---"
+                    if(value.workingStatus == "idle") {
+                        status = "Đang bận"
+                    } else {
+                        status = "Đang rảnh"
+                    }
+                    self.data.append(Information(pKey: "Trạng thái",pValue: status))
+                    self.data.append(Information(pKey: "Tên dự án",pValue: value.projectName ?? "---"))
+                    
                     self.tbView.reloadData()
+                    
+                    if(self.isToChoose && self.status != "NEW") {
+                        self.bt1.isHidden = true
+                    } else {
+                        self.bt1.isHidden = false
+                    }
+                    
                     return
                 }
                 
@@ -96,18 +154,22 @@ class DetailContractorViewController: BaseViewController {
     }
     
     private func convertData(value:Contractor) {
-          if(value.email == "") {
-              value.email = nil
-          }
-          
-          if(value.address == "") {
-              value.address = nil
-          }
-      }
+        if(value.email == "") {
+            value.email = nil
+        }
+        
+        if(value.address == "") {
+            value.address = nil
+        }
+    }
     
     @IBAction func remove(_ sender: Any) {
-         showYesNoPopup(title: "Xóa", message: "Chắc chắn xóa?")
-     }
+        if(isToChoose) {
+            showYesNoPopup(title: "Xác nhận", message: "Chọn Nhà thầu phụ này?")
+        } else {
+            showYesNoPopup(title: "Xác nhận", message: "Chắc chắn xóa?")
+        }
+    }
     
 }
 

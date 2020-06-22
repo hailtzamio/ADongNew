@@ -27,7 +27,7 @@
                                     <constraint firstAttribute="height" constant="50" id="r7L-Rk-9ox"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Nf-DX-paJ">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Nf-DX-paJ">
                                 <rect key="frame" x="20" y="797" width="374" height="45"/>
                                 <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -64,6 +64,7 @@
                         <viewLayoutGuide key="safeArea" id="8Kf-VK-BU8"/>
                     </view>
                     <connections>
+                        <outlet property="bt1" destination="4Nf-DX-paJ" id="WfK-eh-oeq"/>
                         <outlet property="header" destination="Ykr-s6-e5c" id="Gav-Wv-HVw"/>
                         <outlet property="tbView" destination="pOq-4v-JZl" id="J9Z-Zr-mne"/>
                     </connections>

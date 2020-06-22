@@ -30,6 +30,11 @@ struct K {
     
 }
 
+struct HexColorApp {
+    static let green = "#4c4c4c"
+       static let red = "4c4c4c"
+}
+
 struct APIParameterKey {
     static let password = "password"
     static let email = "username"

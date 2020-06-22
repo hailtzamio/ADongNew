@@ -60,4 +60,15 @@ class InformationDetailCell: UITableViewCell {
         }
         
     }
+    
+    func setDataFile(data:Project) {
+          lb1.text = data.createdByFullName
+          lb2.text = data.createdTime
+      }
+    
+    func setDataFileChild(data:DesignFile) {
+            lb1.text = data.fileName
+        let size = data.fileSize ?? 0.0
+            lb2.text = "\(size) kb"
+        }
 }

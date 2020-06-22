@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="539" height="289"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oF0-by-FXb">
-                                <rect key="frame" x="45" y="14.5" width="479" height="21"/>
+                                <rect key="frame" x="40" y="14.5" width="484" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,20 +45,29 @@
                                     <constraint firstAttribute="width" constant="20" id="T5D-wN-iSx"/>
                                 </constraints>
                             </imageView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="green_dot" translatesAutoresizingMaskIntoConstraints="NO" id="l6t-Wb-yLV">
+                                <rect key="frame" x="509" y="137" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="gas-CN-nD1"/>
+                                    <constraint firstAttribute="width" constant="15" id="rX4-LO-dtS"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="m6I-To-df7" firstAttribute="leading" secondItem="cmR-YO-aTe" secondAttribute="leading" id="3VK-pU-XFv"/>
                             <constraint firstItem="cmR-YO-aTe" firstAttribute="top" secondItem="Q0z-ml-27K" secondAttribute="top" constant="15" id="85T-p9-TlX"/>
-                            <constraint firstItem="oF0-by-FXb" firstAttribute="leading" secondItem="cmR-YO-aTe" secondAttribute="trailing" constant="10" id="8XL-Mx-wti"/>
                             <constraint firstItem="cmR-YO-aTe" firstAttribute="leading" secondItem="Q0z-ml-27K" secondAttribute="leading" constant="15" id="Gzb-Bx-77X"/>
                             <constraint firstItem="vTK-RE-RHh" firstAttribute="top" secondItem="m6I-To-df7" secondAttribute="bottom" constant="5" id="Hvf-qe-MDv"/>
                             <constraint firstItem="m6I-To-df7" firstAttribute="top" secondItem="cmR-YO-aTe" secondAttribute="bottom" constant="5" id="SAN-v7-9tS"/>
+                            <constraint firstItem="oF0-by-FXb" firstAttribute="leading" secondItem="cmR-YO-aTe" secondAttribute="trailing" constant="5" id="U4M-7Y-QDK"/>
                             <constraint firstItem="vTK-RE-RHh" firstAttribute="leading" secondItem="cmR-YO-aTe" secondAttribute="leading" id="WJY-37-C3J"/>
                             <constraint firstAttribute="trailing" secondItem="oF0-by-FXb" secondAttribute="trailing" constant="15" id="YwA-tN-rCN"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vTK-RE-RHh" secondAttribute="bottom" constant="3" id="cKm-AF-Eac"/>
                             <constraint firstAttribute="trailing" secondItem="m6I-To-df7" secondAttribute="trailing" constant="15" id="cZD-OY-IhQ"/>
                             <constraint firstAttribute="trailing" secondItem="vTK-RE-RHh" secondAttribute="trailing" constant="15" id="dc3-LF-4FC"/>
+                            <constraint firstAttribute="trailing" secondItem="l6t-Wb-yLV" secondAttribute="trailing" constant="15" id="ezX-lX-XEn"/>
+                            <constraint firstItem="l6t-Wb-yLV" firstAttribute="centerY" secondItem="Q0z-ml-27K" secondAttribute="centerY" id="vzO-Ce-mVL"/>
                             <constraint firstItem="oF0-by-FXb" firstAttribute="centerY" secondItem="cmR-YO-aTe" secondAttribute="centerY" id="yUe-cH-akz"/>
                         </constraints>
                     </view>
@@ -72,14 +81,19 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cons1" destination="U4M-7Y-QDK" id="4ad-87-RBI"/>
+                <outlet property="cons2" destination="T5D-wN-iSx" id="l11-Gc-Xlw"/>
+                <outlet property="imv1" destination="cmR-YO-aTe" id="X5U-Qs-gav"/>
+                <outlet property="imvStatus" destination="l6t-Wb-yLV" id="xeb-T7-RxS"/>
                 <outlet property="lb1" destination="oF0-by-FXb" id="nAV-Ub-Ulb"/>
                 <outlet property="lb2" destination="m6I-To-df7" id="rQY-gK-mBM"/>
                 <outlet property="lb3" destination="vTK-RE-RHh" id="iCn-a7-eof"/>
             </connections>
-            <point key="canvasLocation" x="10.869565217391305" y="57.254464285714285"/>
+            <point key="canvasLocation" x="-260" y="-2"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="correct" width="32" height="32"/>
+        <image name="green_dot" width="64" height="64"/>
     </resources>
 </document>

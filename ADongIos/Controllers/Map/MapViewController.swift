@@ -19,12 +19,13 @@ class MapViewController: BaseViewController, GMSMapViewDelegate {
     var callback : ((LocationAddress?) -> Void)?
     var lat = 0.0
     var long = 0.0
+    var isCreateNewOne = false
     var data = Project()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lat = data.latitude ?? 0.0
-        long = data.longitude ?? 0.0
+        lat = data.latitude ?? 21.0278
+        long = data.longitude ?? 105.8342
         
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: lat, longitude: long)

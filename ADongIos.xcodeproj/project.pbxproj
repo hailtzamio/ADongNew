@@ -153,6 +153,10 @@
 		B5A68D4C248F9AE200FD76A4 /* TransportDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A68D4B248F9AE200FD76A4 /* TransportDetailController.swift */; };
 		B5A68D542490C53900FD76A4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A68D522490C53900FD76A4 /* MapViewController.swift */; };
 		B5A68D552490C53900FD76A4 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A68D532490C53900FD76A4 /* MapViewController.xib */; };
+		B5B0084F249EEA4600A9EEFB /* BiddingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B0084E249EEA4600A9EEFB /* BiddingListViewController.swift */; };
+		B5B00853249F2A4700A9EEFB /* CheckinOutListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B00852249F2A4700A9EEFB /* CheckinOutListViewController.swift */; };
+		B5B00856249F58A000A9EEFB /* FileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B00855249F58A000A9EEFB /* FileListViewController.swift */; };
+		B5B00858249F5B9B00A9EEFB /* FileChildListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B00857249F5B9B00A9EEFB /* FileChildListViewController.swift */; };
 		B5B6660B248627C2005660FE /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B66609248627C1005660FE /* LoadingCell.swift */; };
 		B5B6660C248627C2005660FE /* LoadMoreControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B6660A248627C2005660FE /* LoadMoreControl.swift */; };
 		B5DACF2B249E089D007656ED /* CheckBoxCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DACF2A249E089D007656ED /* CheckBoxCustom.swift */; };
@@ -331,6 +335,10 @@
 		B5A68D4B248F9AE200FD76A4 /* TransportDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportDetailController.swift; sourceTree = "<group>"; };
 		B5A68D522490C53900FD76A4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B5A68D532490C53900FD76A4 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		B5B0084E249EEA4600A9EEFB /* BiddingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiddingListViewController.swift; sourceTree = "<group>"; };
+		B5B00852249F2A4700A9EEFB /* CheckinOutListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckinOutListViewController.swift; sourceTree = "<group>"; };
+		B5B00855249F58A000A9EEFB /* FileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListViewController.swift; sourceTree = "<group>"; };
+		B5B00857249F5B9B00A9EEFB /* FileChildListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileChildListViewController.swift; sourceTree = "<group>"; };
 		B5B66609248627C1005660FE /* LoadingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		B5B6660A248627C2005660FE /* LoadMoreControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreControl.swift; sourceTree = "<group>"; };
 		B5DACF2A249E089D007656ED /* CheckBoxCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxCustom.swift; sourceTree = "<group>"; };
@@ -732,6 +740,8 @@
 		B58E15D9248E2ECC0054E9A0 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				B5B00854249F588A00A9EEFB /* file */,
+				B5B0084D249EEA2300A9EEFB /* bidding */,
 				B57BE2FD249C727C0004E428 /* product-requirement */,
 				B56FD907248F3C5400DCAA54 /* Information */,
 				B58E1608248E4A270054E9A0 /* progress */,
@@ -761,6 +771,7 @@
 		B58E1605248E409E0054E9A0 /* checkinout */ = {
 			isa = PBXGroup;
 			children = (
+				B5B00852249F2A4700A9EEFB /* CheckinOutListViewController.swift */,
 				B58E1606248E40C70054E9A0 /* CheckinoutViewController.swift */,
 			);
 			path = checkinout;
@@ -808,6 +819,23 @@
 				B5A68D532490C53900FD76A4 /* MapViewController.xib */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		B5B0084D249EEA2300A9EEFB /* bidding */ = {
+			isa = PBXGroup;
+			children = (
+				B5B0084E249EEA4600A9EEFB /* BiddingListViewController.swift */,
+			);
+			path = bidding;
+			sourceTree = "<group>";
+		};
+		B5B00854249F588A00A9EEFB /* file */ = {
+			isa = PBXGroup;
+			children = (
+				B5B00857249F5B9B00A9EEFB /* FileChildListViewController.swift */,
+				B5B00855249F58A000A9EEFB /* FileListViewController.swift */,
+			);
+			path = file;
 			sourceTree = "<group>";
 		};
 		EB3F6758A88AA809E35C2B65 /* Frameworks */ = {
@@ -1047,10 +1075,13 @@
 				B58F8A392487777100E9BB9E /* SmallInformationViewCell.swift in Sources */,
 				B54A018224782D7100E5F310 /* Article.swift in Sources */,
 				B58E1601248E3D660054E9A0 /* CAPSPageMenu.swift in Sources */,
+				B5B00856249F58A000A9EEFB /* FileListViewController.swift in Sources */,
 				B51F563E24795F3800B3851A /* LoadMoreActivityIndicator.swift in Sources */,
 				B54A01B92478329900E5F310 /* UIViewControllerExtension.swift in Sources */,
+				B5B00853249F2A4700A9EEFB /* CheckinOutListViewController.swift in Sources */,
 				B53564792488992F00FF5883 /* ChooseWorkerViewController.swift in Sources */,
 				B54A0140247829CC00E5F310 /* Category.swift in Sources */,
+				B5B0084F249EEA4600A9EEFB /* BiddingListViewController.swift in Sources */,
 				B54A018924782D7100E5F310 /* Permission.swift in Sources */,
 				B535648B248CDAC100FF5883 /* ListContractorViewController.swift in Sources */,
 				B54A018324782D7100E5F310 /* DateFormatter.swift in Sources */,
@@ -1064,6 +1095,7 @@
 				B54A01BC24783F5000E5F310 /* BaseResponse.swift in Sources */,
 				B58E15DF248E32BE0054E9A0 /* ListProjectViewController.swift in Sources */,
 				B5B6660B248627C2005660FE /* LoadingCell.swift in Sources */,
+				B5B00858249F5B9B00A9EEFB /* FileChildListViewController.swift in Sources */,
 				B54A0194247831EE00E5F310 /* LorryListViewController.swift in Sources */,
 				B54A018024782D7100E5F310 /* User.swift in Sources */,
 				B5356480248CBBE700FF5883 /* Driver.swift in Sources */,

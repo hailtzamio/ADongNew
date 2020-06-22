@@ -16,4 +16,5 @@ target 'ADongIos' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'DLRadioButton'
+  pod 'DKImagePickerController'
 end

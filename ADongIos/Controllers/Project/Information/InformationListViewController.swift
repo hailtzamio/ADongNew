@@ -33,7 +33,7 @@ class InformationListViewController: BaseViewController {
         
         data.append(TitleModel(pTitle: "Thông tin cơ bản", pImagePath: "burning"))
         data.append(TitleModel(pTitle: "line", pImagePath: "check_green"))
-            data.append(TitleModel(pTitle: "Danh sách đăng ký thi công", pImagePath: "print"))
+        data.append(TitleModel(pTitle: "Danh sách đăng ký thi công", pImagePath: "print"))
         data.append(TitleModel(pTitle: "Danh sách vật tư", pImagePath: "print"))
         data.append(TitleModel(pTitle: "Bản thiết kế", pImagePath: "drawing"))
         data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
@@ -57,7 +57,7 @@ extension InformationListViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 1 || indexPath.row == 4 || indexPath.row == 7 || indexPath.row == 11 {
+        if indexPath.row == 1 || indexPath.row == 5 || indexPath.row == 8 || indexPath.row == 12 {
             let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell
             
             return cell
@@ -70,14 +70,25 @@ extension InformationListViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
+        
         switch indexPath.row {
         case 0:
             goToBaseInformation() 
             break
-            
+        case 2:
+            goToProjectBidding()
+            break
         case 3:
             goToProductRequirement()
+            break
+        case 4:
+            goToFiles()
+            break
+        case 9:
+            goToChooseWorker()
+            break
+        case 11:
+            goToCheckinOutList()
             break
         default:
             break
@@ -88,19 +99,50 @@ extension InformationListViewController: UITableViewDataSource, UITableViewDeleg
 }
 
 extension InformationListViewController {
-
-
+    
+    
     func goToBaseInformation() {
-                if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "BaseInformationController") as? BaseInformationController {
-                    vc.id = id
-                    navigationController?.pushViewController(vc, animated: true)
-                }
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "BaseInformationController") as? BaseInformationController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func goToProductRequirement() {
-                if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "ProductRequirementViewController") as? ProductRequirementViewController {
-                    vc.id = id
-                    navigationController?.pushViewController(vc, animated: true)
-                }
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "ProductRequirementViewController") as? ProductRequirementViewController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    }
+    
+    func goToProjectBidding() {
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "BiddingListViewController") as? BiddingListViewController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func goToChooseWorker() {
+        if let vc = UIStoryboard.init(name: "Worker", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListWorkerViewController") as? ListWorkerViewController {
+            vc.isToChooseWorker = true
+            vc.isAddWorkerToProject = true
+            vc.projectId = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func goToCheckinOutList() {
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "CheckinOutListViewController") as? CheckinOutListViewController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func goToFiles() {
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "FileListViewController") as? FileListViewController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

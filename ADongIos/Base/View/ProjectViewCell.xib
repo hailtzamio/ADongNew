@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="534" height="240"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="re9-iE-QmV">
-                                <rect key="frame" x="45" y="14.5" width="474" height="21"/>
+                                <rect key="frame" x="40" y="14.5" width="479" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -63,7 +63,7 @@
                             <constraint firstItem="whr-So-hlD" firstAttribute="top" secondItem="Ebr-z8-nhT" secondAttribute="bottom" constant="5" id="0Ad-7y-JRH"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wOX-aV-Juc" secondAttribute="bottom" constant="3" id="9uO-Sf-ied"/>
                             <constraint firstAttribute="trailing" secondItem="whr-So-hlD" secondAttribute="trailing" constant="15" id="DWY-eB-mnA"/>
-                            <constraint firstItem="re9-iE-QmV" firstAttribute="leading" secondItem="TUt-9o-qQL" secondAttribute="trailing" constant="10" id="Gzh-aP-8hl"/>
+                            <constraint firstItem="re9-iE-QmV" firstAttribute="leading" secondItem="TUt-9o-qQL" secondAttribute="trailing" constant="5" id="Gzh-aP-8hl"/>
                             <constraint firstItem="TUt-9o-qQL" firstAttribute="leading" secondItem="LvC-qB-TS6" secondAttribute="leading" constant="15" id="HIb-Rj-sRJ"/>
                             <constraint firstItem="Ebr-z8-nhT" firstAttribute="leading" secondItem="TUt-9o-qQL" secondAttribute="leading" id="LJO-lL-tXU"/>
                             <constraint firstItem="wOX-aV-Juc" firstAttribute="trailing" secondItem="whr-So-hlD" secondAttribute="trailing" id="VNs-Ez-rat"/>

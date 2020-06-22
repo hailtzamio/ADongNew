@@ -17,6 +17,13 @@ class CommonNoAvatarCell: UITableViewCell {
     
     @IBOutlet weak var lb3: UILabel!
     
+    @IBOutlet weak var imv1: UIImageView!
+    
+    @IBOutlet weak var cons1: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var cons2: NSLayoutConstraint!
+    @IBOutlet weak var imvStatus: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -78,5 +85,50 @@ class CommonNoAvatarCell: UITableViewCell {
         }
     }
     
- 
+  
+    
+    func setDataBidding(data:Contractor) {
+        lb1.text = data.contractorName
+        lb2.text = data.contractorPhone
+        
+        if(data.status == "REJECTED") {
+            lb3.text = "Từ chối"
+            lb3.textColor = UIColor.red
+        } else if(data.status == "NEW") {
+            lb3.text = "Mới"
+            lb3.textColor = UIColor.init(hexString: HexColorApp.green)
+        } else {
+            lb3.text = "Đã duyệt"
+            lb3.textColor = UIColor.init(hexString: HexColorApp.green)
+        }
+        
+        if(data.workingStatus == "idle") {
+            if let image = UIImage(named: "free_dot") {
+                imvStatus.image = image
+            }
+        } else {
+            if let image = UIImage(named: "green_dot") {
+                imvStatus.image = image
+            }
+        }
+    }
+    
+    func setDataCheckOutIn(data:Worker) {
+        lb1.text = data.workerFullName
+        if(data.checkinTime == nil) {
+            lb2.text = "Chưa điểm danh vào"
+        } else {
+            lb2.text = data.checkinTime
+        }
+        
+        if(data.checkoutTime == nil) {
+            lb3.text = "Chưa điểm danh ra"
+        } else {
+            lb3.text = data.checkoutTime
+        }
+        
+        
+    }
+    
+    
 }

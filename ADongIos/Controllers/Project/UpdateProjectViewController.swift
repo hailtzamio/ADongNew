@@ -255,10 +255,17 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             return
         }
         
-        if(tf6.text == ""){
+        if(data.teamType == "ADONG" &&  tf6.text == ""){
             showToast(content: "Chọn đội")
             return
         }
+        
+        if(data.teamType != "ADONG" &&  tf9.text == ""){
+                 showToast(content: "Chọn thư ký")
+                 return
+        }
+        
+        
         
         
         data.name = tf1.text

@@ -24,9 +24,14 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
     var team:Team? = nil
     var chooseWorkerId = 0
     var workers = [Worker]()
+    var worker = Worker()
     var callback : ((Int?) -> Void)?
     
+    var isAddWorkerToProject = false
+    var projectId = 0
+    
     var isCheckHiden = true
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,10 +52,15 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
     override func viewWillAppear(_ animated: Bool) {
         page = 0
         data.removeAll()
-        getData()
+        if(isAddWorkerToProject) {
+            getWorkerNotLeader()
+        } else {
+            getData()
+        }
+        
     }
     
-
+    
     
     func setupHeader() {
         header.title = "Công Nhân"
@@ -62,6 +72,30 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
             if let vc = UIStoryboard.init(name: "Worker", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateWorkerViewController") as? UpdateWorkerViewController {
                 vc.isUpdate = false
                 self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
+    
+    func getWorkerNotLeader() {
+        showLoading()
+        APIClient.getWorkerNotLeader(page : page, name : searchBar.text ?? "") { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if(response.data != nil) {
+                    self.data.append(contentsOf: response.data!)
+                    self.tbView.reloadData()
+                    if(response.pagination != nil && response.pagination?.totalPages != nil) {
+                        self.totalPages = response.pagination?.totalPages as! Int
+                        self.page = self.page + 1
+                    }
+                } else {
+                    self.showToast(content: response.message!)
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
             }
         }
     }
@@ -132,7 +166,8 @@ extension ListWorkerViewController: UITableViewDataSource, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(isToChooseWorker) {
-              workers.insert(data[indexPath.row], at: 0)
+            worker = data[indexPath.row]
+            workers.insert(data[indexPath.row], at: 0)
             showYesNoPopup(title: "Xác nhận", message: "Chọn Công nhân này?")
         } else {
             if let vc = UIStoryboard.init(name: "Worker", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailWorkerViewController") as? DetailWorkerViewController {
@@ -151,7 +186,11 @@ extension ListWorkerViewController {
     
     func popupHandle() {
         okAction = {
-            self.addWorkerToTeam()
+            if(self.isAddWorkerToProject) {
+                self.addWorkerToProject()
+            } else {
+                self.addWorkerToTeam()
+            }
         }
         
         noAction = {
@@ -165,10 +204,10 @@ extension ListWorkerViewController {
         for i in 0..<workers.count {
             memberIds.append(workers[i].id!)
         }
-    
+        
         team?.memberIds = memberIds
         
-        self.stopLoading()
+        self.showLoading()
         APIClient.updateTeam(data : team!) { result in
             self.stopLoading()
             switch result {
@@ -185,6 +224,27 @@ extension ListWorkerViewController {
                 self.showToast(content: error.localizedDescription)
             }
         }
+    }
+    
+    func addWorkerToProject() {
+        self.showLoading()
+        APIClient.addWorkerToProject(id : projectId, workerId: worker.id!) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if response.status == 1 {
+                    self.showToast(content: "Thành công")
+                    return
+                } else {
+                    self.showToast(content: response.message!)
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
+        
     }
 }
 

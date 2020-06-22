@@ -22,11 +22,19 @@ var provinceId : Int?
 var provinceName : String?
 var districtId : Int?
 var districtName : String?
-var projectId : String?
+var projectId : Int?
 var projectName : String?
 var createdById : Int?
 var createdByFullName : String?
 var updatedById : Int?
 var updatedByFullName : String?
 var password : String?
+    
+  var note : String?
+    var contractorId : Int?
+    var contractorName : String?
+    var contractorPhone : String?
+    var status : String?
+    var projectAddress : String?
+    
 }

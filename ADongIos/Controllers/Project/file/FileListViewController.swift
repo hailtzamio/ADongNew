@@ -8,11 +8,13 @@
 
 import UIKit
 
-class ProductRequirementViewController: BaseViewController {
+class FileListViewController: BaseViewController {
     
-    var data = [GoodsReceivedNote]()
+    var data = [Project]()
+ 
+    
     @IBOutlet weak var tbView: UITableView!
-    @IBOutlet weak var header: NavigationBar!
+     @IBOutlet weak var header: NavigationBar!
     var id = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,30 +23,31 @@ class ProductRequirementViewController: BaseViewController {
         tbView.delegate = self
         tbView.register(InformationDetailCell.nib, forCellReuseIdentifier: InformationDetailCell.identifier)
         
+        
+        data.removeAll()
+            getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        data.removeAll()
-        getData()
+    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
     }
     
     func setupHeader() {
-        header.title = "Yêu Cầu Vật Tư"
+        header.title = "Danh Sách"
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
         }
         
-        header.rightAction = {
-            if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateViewController") as? UpdateViewController {
-                vc.isUpdate = false
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+        header.isRightButtonHide = true
     }
     
     func getData() {
         showLoading()
-        APIClient.getProductRequirements(id: id) { result in
+        APIClient.getProjectFiles(id : id) { result in
             self.stopLoading()
             switch result {
             case .success(let response):
@@ -62,7 +65,7 @@ class ProductRequirementViewController: BaseViewController {
     
 }
 
-extension ProductRequirementViewController: UITableViewDataSource, UITableViewDelegate {
+extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
@@ -70,13 +73,13 @@ extension ProductRequirementViewController: UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
-        cell.setDataProductRequirement(data: data[indexPath.row])
+        cell.setDataFile(data: data[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailLorryViewController") as? DetailLorryViewController {
-            vc.id = data[indexPath.row].id!
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "FileChildListViewController") as? FileChildListViewController {
+            vc.data = data[indexPath.row].designFiles!
             navigationController?.pushViewController(vc, animated: true)
         }
     }

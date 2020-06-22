@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ProductRequirementViewController: BaseViewController {
+class BiddingListViewController: BaseViewController {
     
-    var data = [GoodsReceivedNote]()
+    
+    var data = [Contractor]()
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
     var id = 0
@@ -19,7 +20,7 @@ class ProductRequirementViewController: BaseViewController {
         setupHeader()
         tbView.dataSource = self
         tbView.delegate = self
-        tbView.register(InformationDetailCell.nib, forCellReuseIdentifier: InformationDetailCell.identifier)
+        tbView.register(CommonNoAvatarCell.nib, forCellReuseIdentifier: CommonNoAvatarCell.identifier)
         
     }
     
@@ -29,22 +30,17 @@ class ProductRequirementViewController: BaseViewController {
     }
     
     func setupHeader() {
-        header.title = "Yêu Cầu Vật Tư"
+        header.title = "Nhà Thầu Phụ"
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
         }
         
-        header.rightAction = {
-            if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateViewController") as? UpdateViewController {
-                vc.isUpdate = false
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+        header.isRightButtonHide = true
     }
     
     func getData() {
         showLoading()
-        APIClient.getProductRequirements(id: id) { result in
+        APIClient.getBiddings(id : id) { result in
             self.stopLoading()
             switch result {
             case .success(let response):
@@ -62,21 +58,25 @@ class ProductRequirementViewController: BaseViewController {
     
 }
 
-extension ProductRequirementViewController: UITableViewDataSource, UITableViewDelegate {
+extension BiddingListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
-        cell.setDataProductRequirement(data: data[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: CommonNoAvatarCell.identifier, for: indexPath) as! CommonNoAvatarCell
+        cell.imvStatus.isHidden = false
+        cell.setDataBidding(data: data[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailLorryViewController") as? DetailLorryViewController {
-            vc.id = data[indexPath.row].id!
+        if let vc = UIStoryboard.init(name: "Contractor", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailContractorViewController") as? DetailContractorViewController {
+            vc.id = data[indexPath.row].contractorId!
+            vc.isToChoose = true
+            vc.status = data[indexPath.row].status ?? "NEW"
+            vc.biddingId = data[indexPath.row].id ?? 0
             navigationController?.pushViewController(vc, animated: true)
         }
     }
