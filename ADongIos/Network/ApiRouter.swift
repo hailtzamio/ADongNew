@@ -81,16 +81,16 @@ enum ApiRouter: URLRequestConvertible {
     case getProductRequirements(id: Int)
     case getBiddings(id:Int)
     case projectBiddingApprove(id:Int)
-     case getProjectCheckOut(id:Int)
-        case getProjectFiles(id:Int)
-    
+    case getProjectCheckOut(id:Int)
+    case getProjectFiles(id:Int)
+    case finishProject(id: Int)
     
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
         case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout, .createWarehouse, .createGoodsReceivedNote, .createLorry, .addWorkerToProject :
             return .post
-        case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline, .transportPickup, .transportUnload, .projectBiddingApprove   :
+        case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline, .transportPickup, .transportUnload, .projectBiddingApprove, .finishProject   :
             return .put
         case .removeProduct, .removeWorker,.removeLorry, .removeTeam, .removeDriver, .removeContractor, .removeProject :
             return .delete
@@ -251,11 +251,12 @@ enum ApiRouter: URLRequestConvertible {
             return "registration/\(id)/approve"
         case .addWorkerToProject(let id, let data):
             return "project/\(id)/addWorker"
-            case .getProjectCheckOut(let id) :
-                     return "project/\(id)/attendances"
-            case .getProjectFiles(let id) :
-                              return "project/\(id)/uploadSessions"
-            
+        case .getProjectCheckOut(let id) :
+            return "project/\(id)/attendances"
+        case .getProjectFiles(let id) :
+            return "project/\(id)/uploadSessions"
+        case .finishProject(let id) :
+            return "project/\(id)/finish"
         }
     }
     
@@ -269,7 +270,7 @@ enum ApiRouter: URLRequestConvertible {
         case .createLorry(let data):
             return ["brand": data.brand, "model": data.model,"plateNumber": data.plateNumber, "capacity": data.capacity]
             
-        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles :
+        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject :
             return nil
         case .getProducts(let page, let name) :
             return  [ "page": page,

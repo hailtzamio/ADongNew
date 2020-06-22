@@ -10,12 +10,13 @@ import UIKit
 import Alamofire
 import Kingfisher
 import TOCropViewController
+import BSImagePicker
 class ProgessViewController: BaseViewController, UINavigationControllerDelegate {
     
     var data = [ProgressProject]()
     var currentWorkOutline = ProgressProject()
-    @IBOutlet weak var tbView: UITableView!
     
+    @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var btnFinish: UIButton!
     var id = 0
     override func viewDidLoad() {
@@ -33,10 +34,13 @@ class ProgessViewController: BaseViewController, UINavigationControllerDelegate 
         
     }
     
+    @IBAction func finishProject(_ sender: Any) {
+        ChooseImagesToFinishProject()
+    }
     func popupHandle() {
         okAction = {
             self.showTakePhotoPopup()
-//            self.pickImage(isLibrary: false)
+            //            self.pickImage(isLibrary: false)
         }
     }
     
@@ -62,26 +66,26 @@ class ProgessViewController: BaseViewController, UINavigationControllerDelegate 
     }
     
     func getProject() {
-  
-    APIClient.getProject(id : id) { result in
-   
-        switch result {
-        case .success(let response):
+        
+        APIClient.getProject(id : id) { result in
             
-            if(response.data != nil) {
-                let project = response.data
-                if(project?.status == "DONE") {
-                    self.btnFinish.setTitle("ĐÃ HOÀN THÀNH", for: .normal)
-                    self.btnFinish.isEnabled = false
+            switch result {
+            case .success(let response):
+                
+                if(response.data != nil) {
+                    let project = response.data
+                    if(project?.status == "DONE") {
+                        self.btnFinish.setTitle("ĐÃ HOÀN THÀNH", for: .normal)
+                        self.btnFinish.isEnabled = false
+                    }
+                    
                 }
                 
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-            
-        case .failure(let error):
-            print(error.localizedDescription)
         }
-    }
-    
+        
     }
     
     func getData() {
@@ -124,9 +128,9 @@ class ProgessViewController: BaseViewController, UINavigationControllerDelegate 
             self.pickImage(isLibrary: false)
         }))
         
-//        alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
-//            print("User click Delete button")
-//        }))
+        //        alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
+        //            print("User click Delete button")
+        //        }))
         
         alert.addAction(UIAlertAction(title: "Hủy", style: .cancel, handler:{ (UIAlertAction)in
             print("User click Dismiss button")
@@ -260,5 +264,46 @@ extension ProgessViewController : TOCropViewControllerDelegate {
                 self.showToast(content: "Không thành công")
             }
         }
+    }
+    
+    
+    
+    func ChooseImagesToFinishProject() {
+        
+        let imagePicker = ImagePickerController()
+        
+        presentImagePicker(imagePicker, select: { (asset) in
+            // User selected an asset. Do something with it. Perhaps begin processing/upload?
+        }, deselect: { (asset) in
+            // User deselected an asset. Cancel whatever you did when asset was selected.
+        }, cancel: { (assets) in
+            // User canceled selection.
+        }, finish: { (assets) in
+            // User finished selection assets.
+            print(assets.count)
+            self.finishProject()
+            
+     
+        })
+    }
+    
+    func finishProject() {
+    
+        showLoading()
+             APIClient.finishProject(id : id) { result in
+                 self.stopLoading()
+                 switch result {
+                 case .success(let response):
+                     
+                     if(response.status == 1) {
+                        self.getProject()
+                     } else {
+                        self.showToast(content: response.message ?? "Có lỗi")
+                    }
+                     
+                 case .failure(let error):
+                     print(error.localizedDescription)
+                 }
+             }
     }
 }

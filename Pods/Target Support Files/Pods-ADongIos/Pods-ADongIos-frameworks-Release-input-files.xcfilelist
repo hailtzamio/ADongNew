@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-ADongIos/Pods-ADongIos-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework
 ${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework
 ${BUILT_PRODUCTS_DIR}/Hero/Hero.framework
 ${BUILT_PRODUCTS_DIR}/IQDropDownTextField/IQDropDownTextField.framework

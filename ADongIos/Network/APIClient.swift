@@ -413,6 +413,12 @@ class APIClient {
         performRequest(route: ApiRouter.getProjectFiles(id: id), decoder: jsonDecoder, completion: completion)
     }
     
+    static func finishProject(id:Int,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.finishProject(id: id), decoder: jsonDecoder, completion: completion)
+    }
+    
     
 }
 
