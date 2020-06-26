@@ -70,6 +70,9 @@ class ListProjectViewController: BaseViewController, UISearchBarDelegate, LoadMo
                     if(response.pagination != nil && response.pagination?.totalPages != nil) {
                         self.totalPages = response.pagination?.totalPages as! Int
                         self.page = self.page + 1
+                        
+                        
+                
                     }
                 } else {
                     self.showToast(content: response.message!)
@@ -99,6 +102,25 @@ class ListProjectViewController: BaseViewController, UISearchBarDelegate, LoadMo
 }
 
 extension ListProjectViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        var numOfSections: Int = 0
+        if data.count > 0 {
+            tableView.separatorStyle = .singleLine
+            numOfSections            = 1
+            tableView.backgroundView = nil
+        } else {
+//            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+//            noDataLabel.text          =  PopupMessages.nodata
+//            noDataLabel.textColor     = UIColor.init(hexString: HexColorApp.gray)
+//            noDataLabel.textAlignment = .center
+//            tableView.backgroundView  = noDataLabel
+//            tableView.separatorStyle  = .none
+        }
+        return numOfSections
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count

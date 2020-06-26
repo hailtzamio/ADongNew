@@ -31,8 +31,23 @@ struct K {
 }
 
 struct HexColorApp {
-    static let green = "#4c4c4c"
-       static let red = "4c4c4c"
+    static let green = "#3ca150"
+    static let red = "#962E34"
+     static let orange = "#FB9214"
+       static let blue = "#3366cc"
+        static let gray = "#90928E"
+       static let white = "#ffffff"
+}
+
+struct PopupMessages {
+      static let nodata = "Không có dữ liệu"
+}
+
+struct ProjectStatus {
+    static let new = "NEW"
+    static let processing = "PROCESSING"
+    static let done = "DONE"
+    static let paused = "PAUSED"
 }
 
 struct APIParameterKey {
@@ -51,8 +66,8 @@ struct TypeOfWorker {
     static let manager = 2
     static let deputyManager = 3
     static let secretary = 4
-            static let suppervisor = 6
-        static let keeper = 5
+    static let suppervisor = 6
+    static let keeper = 5
     
     
     static let emaifullNamel = "username"

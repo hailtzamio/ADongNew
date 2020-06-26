@@ -39,7 +39,7 @@
                                     <constraint firstAttribute="height" constant="0.5" id="imz-Ze-kGW"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="Y2Z-gZ-S3u">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="Y2Z-gZ-S3u">
                                 <rect key="frame" x="328" y="105" width="10" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Iui-sQ-kBC"/>
@@ -73,6 +73,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="imv1" destination="Y2Z-gZ-S3u" id="cbN-mz-yM1"/>
                 <outlet property="lb1" destination="7zZ-Pg-Maq" id="qMe-bD-A9h"/>
                 <outlet property="lb2" destination="0rD-1I-eSa" id="AGE-fj-1VP"/>
                 <outlet property="line" destination="Ih6-Si-YOt" id="7AX-el-sb2"/>

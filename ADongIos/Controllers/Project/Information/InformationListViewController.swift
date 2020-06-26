@@ -90,6 +90,9 @@ extension InformationListViewController: UITableViewDataSource, UITableViewDeleg
         case 11:
             goToCheckinOutList()
             break
+            case 10:
+                goToAlbum()
+                break
         default:
             break
         }
@@ -139,10 +142,19 @@ extension InformationListViewController {
         }
     }
     
-    func goToFiles() {
-        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "FileListViewController") as? FileListViewController {
+    
+    
+    func goToAlbum() {
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "ProjectImagesViewController") as? ProjectImagesViewController {
             vc.id = id
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    func goToFiles() {
+          if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "FileListViewController") as? FileListViewController {
+              vc.id = id
+              navigationController?.pushViewController(vc, animated: true)
+          }
+      }
 }

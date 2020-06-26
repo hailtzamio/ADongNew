@@ -63,7 +63,7 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
     
     
     func setupHeader() {
-        header.title = "Công Nhân"
+        header.title = "Công Nhânnn"
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
         }
@@ -73,6 +73,13 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
                 vc.isUpdate = false
                 self.navigationController?.pushViewController(vc, animated: true)
             }
+        }
+        
+   for textField in searchBar.subviews.first!.subviews where textField is UITextField {
+            textField.subviews.first?.backgroundColor = .white
+            textField.subviews.first?.layer.cornerRadius = 10.5 //I set 10.5 because is approximately the system value
+            textField.subviews.first?.layer.masksToBounds = true
+            //Continue changing more properties...
         }
     }
     

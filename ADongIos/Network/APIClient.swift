@@ -341,6 +341,18 @@ class APIClient {
          performRequest(route: ApiRouter.getTransportImages(id: id), decoder: jsonDecoder, completion: completion)
      }
     
+    static func getProjectImages(id : Int, completion:@escaping (Result<BaseResponseList<ImageModel>, AFError>)->Void) {
+          let jsonDecoder = JSONDecoder()
+          jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+          performRequest(route: ApiRouter.getProjectImages(id: id), decoder: jsonDecoder, completion: completion)
+      }
+    
+    static func getProjectCompletionImages(id : Int, completion:@escaping (Result<BaseResponseList<ImageModel>, AFError>)->Void) {
+          let jsonDecoder = JSONDecoder()
+          jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+          performRequest(route: ApiRouter.getProjectCompletionImages(id: id), decoder: jsonDecoder, completion: completion)
+      }
+    
     static func getWarehouses(id : Int, name : String, type : String, completion:@escaping (Result<BaseResponseList<Warehouse>, AFError>)->Void) {
          let jsonDecoder = JSONDecoder()
          jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
@@ -370,6 +382,12 @@ class APIClient {
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
         performRequest(route: ApiRouter.createGoodsReceivedNote(data: data), decoder: jsonDecoder, completion: completion)
     }
+    
+    static func createProductRequirement(data:CreateProductReq,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+         performRequest(route: ApiRouter.createProductRequirement(data: data), decoder: jsonDecoder, completion: completion)
+     }
     
     static func getProductRequirements(id : Int, completion:@escaping (Result<BaseResponseList<GoodsReceivedNote>, AFError>)->Void) {
         let jsonDecoder = JSONDecoder()

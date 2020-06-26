@@ -15,9 +15,9 @@ class BaseViewController: UIViewController {
     let hud = JGProgressHUD(style: .dark)
     let preferences = UserDefaults.standard
     let indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
-     var okAction: (() -> ())?
+    var okAction: (() -> ())?
     var noAction: (() -> ())?
-       var okActionInt : ((Int?) -> Void)?
+    var okActionInt : ((Int?) -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -94,6 +94,15 @@ class BaseViewController: UIViewController {
 extension BaseViewController:UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+    
+    func showNoDataMessage(tbView : UITableView) {
+        let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tbView.bounds.size.width, height: tbView.bounds.size.height))
+        noDataLabel.text          =  PopupMessages.nodata
+        noDataLabel.textColor     = UIColor.init(hexString: HexColorApp.gray)
+        noDataLabel.textAlignment = .center
+        tbView.backgroundView  = noDataLabel
+        tbView.separatorStyle  = .none
     }
 }
 

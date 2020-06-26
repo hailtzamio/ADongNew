@@ -8,10 +8,12 @@
 
 import UIKit
 
-class TransportImagesViewController: BaseViewController {
+class ProjectImagesViewController: BaseViewController {
+    
+   
     
     @IBOutlet weak var header: NavigationBar!
-    @IBOutlet weak var collectionView: UICollectionView!
+       @IBOutlet weak var collectionView: UICollectionView!
     var id = 0
     var permissions = [ImageModel]()
     override func viewDidLoad() {
@@ -22,7 +24,7 @@ class TransportImagesViewController: BaseViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         setupHeader()
-        getData() 
+        getProjectCompletionImages()
         
     }
     
@@ -36,16 +38,34 @@ class TransportImagesViewController: BaseViewController {
         header.isRightButtonHide = true
     }
     
-    func getData() {
+    func getProjectCompletionImages() {
         showLoading()
-        APIClient.getTransportImages(id : id){ result in
+        APIClient.getProjectCompletionImages(id : id){ result in
+            self.stopLoading()
+            switch result {
+            case .success(let articles):
+                if(articles.data != nil) {
+                    self.permissions = articles.data!
+                }
+                 
+                self.getProjectImages()
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getProjectImages() {
+        showLoading()
+        APIClient.getProjectImages(id : id){ result in
             self.stopLoading()
             switch result {
             case .success(let articles):
                 
                 if(articles.data != nil) {
                  
-                    self.permissions = articles.data!
+                    self.permissions.append(contentsOf: articles.data!)
                      self.collectionView.reloadData()
                 }
                 
@@ -61,7 +81,23 @@ class TransportImagesViewController: BaseViewController {
     
 }
 
-extension TransportImagesViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+extension ProjectImagesViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        var numOfSections: Int = 0
+        if permissions.count > 0 {
+    
+            numOfSections            = 1
+            collectionView.backgroundView = nil
+        } else {
+            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height))
+            noDataLabel.text          =  PopupMessages.nodata
+            noDataLabel.textColor     = UIColor.init(hexString: HexColorApp.gray)
+            noDataLabel.textAlignment = .center
+            collectionView.backgroundView  = noDataLabel
+        }
+        return numOfSections
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return permissions.count
@@ -83,7 +119,7 @@ extension TransportImagesViewController : UICollectionViewDataSource, UICollecti
     }
 }
 
-extension TransportImagesViewController: UICollectionViewDelegateFlowLayout {
+extension ProjectImagesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         
@@ -94,6 +130,6 @@ extension TransportImagesViewController: UICollectionViewDelegateFlowLayout {
         let numberOfItemsPerRow: CGFloat = 2.0
         let itemWidth = (collectionView.bounds.width - layout.minimumLineSpacing) / numberOfItemsPerRow
         
-        return CGSize(width: itemWidth, height: 100)
+        return CGSize(width: itemWidth, height: itemWidth)
     }
 }

@@ -39,6 +39,10 @@ final class NavigationBar: UIView {
         rightSecondButton.setImage(UIImage(named: "edit"), for: .normal)
     }
     
+    func changePhotoIcon() {
+         rightSecondButton.setImage(UIImage(named: "photo"), for: .normal)
+     }
+    
     func changeDoneIcon() {
           rightSecondButton.setImage(UIImage(named: "tick"), for: .normal)
       }

@@ -24,6 +24,7 @@ class Product : Codable {
     var thumbnailExtId : String?
     
      var productName : String?
+     var note : String?
      var productUnit : String?
      var transportReqCode : String?
      var transportReqId : Int?

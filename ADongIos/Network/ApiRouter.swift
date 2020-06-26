@@ -84,11 +84,14 @@ enum ApiRouter: URLRequestConvertible {
     case getProjectCheckOut(id:Int)
     case getProjectFiles(id:Int)
     case finishProject(id: Int)
+        case getProjectImages(id: Int)
+      case getProjectCompletionImages(id: Int)
+        case createProductRequirement(data: CreateProductReq)
     
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
-        case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout, .createWarehouse, .createGoodsReceivedNote, .createLorry, .addWorkerToProject :
+        case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout, .createWarehouse, .createGoodsReceivedNote, .createLorry, .addWorkerToProject, .createProductRequirement :
             return .post
         case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline, .transportPickup, .transportUnload, .projectBiddingApprove, .finishProject   :
             return .put
@@ -100,7 +103,7 @@ enum ApiRouter: URLRequestConvertible {
              .getTeams, .getTeam, .getTeamWorkers,
              .getDrivers, .getDriver,
              .getContractors, .getContractor,
-             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote, .getProductRequirements, .getBiddings, .getWorkerNotLeader, .getProjectCheckOut, .getProjectFiles
+             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote, .getProductRequirements, .getBiddings, .getWorkerNotLeader, .getProjectCheckOut, .getProjectFiles, .getProjectImages, .getProjectCompletionImages
             :
             return .get
         }
@@ -228,6 +231,11 @@ enum ApiRouter: URLRequestConvertible {
             return "transportRequest/\(id)/unload"
         case .getTransportImages(let id):
             return "transportRequest/\(id)/photos"
+        case .getProjectImages(let id):
+                 return "project/\(id)/checkinPhotos"
+                 case .getProjectCompletionImages(let id):
+                               return "project/\(id)/projectCompletionPhotos"
+            
             
         case .createWarehouse :
             return "warehouse"
@@ -257,6 +265,12 @@ enum ApiRouter: URLRequestConvertible {
             return "project/\(id)/uploadSessions"
         case .finishProject(let id) :
             return "project/\(id)/finish"
+            case .createProductRequirement(let data) :
+                  let id = data.projectId ?? 0
+                 return "project/\(id)/productRequirement"
+            
+            
+            
         }
     }
     
@@ -270,7 +284,7 @@ enum ApiRouter: URLRequestConvertible {
         case .createLorry(let data):
             return ["brand": data.brand, "model": data.model,"plateNumber": data.plateNumber, "capacity": data.capacity]
             
-        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject :
+        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject, .getProjectImages, .getProjectCompletionImages :
             return nil
         case .getProducts(let page, let name) :
             return  [ "page": page,
@@ -361,6 +375,8 @@ enum ApiRouter: URLRequestConvertible {
         case .addWorkerToProject(let id, let workerId):
             return  [
                 "workerId" : workerId ]
+        case .createProductRequirement(let data):
+                     return ["note": data.note, "expectedDatetime": data.expectedDatetime,"linesAddNew": data.linesAddNew]
         }
     }
     

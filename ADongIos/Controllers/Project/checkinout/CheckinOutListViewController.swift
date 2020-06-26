@@ -47,6 +47,10 @@ class CheckinOutListViewController: BaseViewController {
                 if(response.data != nil) {
                     self.data = response.data!
                     self.tbView.reloadData()
+                    
+                    if(response.data?.count == 0) {
+                        self.showNoDataMessage(tbView: self.tbView)
+                    }
                 }
                 
             case .failure(let error):
@@ -59,6 +63,25 @@ class CheckinOutListViewController: BaseViewController {
 
 extension CheckinOutListViewController: UITableViewDataSource, UITableViewDelegate {
     
+    
+    //    func numberOfSections(in tableView: UITableView) -> Int
+    //    {
+    //        var numOfSections: Int = 0
+    //        if data.count > 0 {
+    //            tableView.separatorStyle = .none
+    //            numOfSections            = 1
+    //            tableView.backgroundView = nil
+    //        } else {
+    //            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+    //            noDataLabel.text          =  PopupMessages.nodata
+    //            noDataLabel.textColor     = UIColor.init(hexString: HexColorApp.gray)
+    //            noDataLabel.textAlignment = .center
+    //            tableView.backgroundView  = noDataLabel
+    //            tableView.separatorStyle  = .none
+    //        }
+    //        return numOfSections
+    //    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
@@ -66,7 +89,7 @@ extension CheckinOutListViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CommonNoAvatarCell.identifier, for: indexPath) as! CommonNoAvatarCell
         cell.imv1.isHidden = true
-       cell.cons2.constant = 0
+        cell.cons2.constant = 0
         cell.cons1.constant = 0
         cell.setDataCheckOutIn(data: data[indexPath.row])
         return cell

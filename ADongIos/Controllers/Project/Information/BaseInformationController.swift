@@ -13,7 +13,7 @@ class BaseInformationController: BaseViewController {
     
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
-    var itemNames = ["THÔNG TIN CHUNG ", "", "THỜI GIAN", "", "THÀNH VIÊN"]
+    var itemNames = ["THÔNG TIN CHUNG ", "THỜI GIAN","THÀNH VIÊN"]
     
     
     var id = 0
@@ -163,7 +163,7 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -171,9 +171,9 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
         switch (section) {
         case 0:
             return data.count
-        case 2:
+        case 1:
             return data1.count
-        case 4:
+        case 2:
             return data2.count
         default:
             return 1
@@ -182,7 +182,7 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
-        
+        cell.imv1.isHidden = true
         
         switch (indexPath.section) {
         case 0:
@@ -191,21 +191,21 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
                 cell.line.isHidden = true
             }
             break
-        case 2:
+        case 1:
             cell.setData(data: data1[indexPath.row])
             if(indexPath.row == data1.count - 1) {
                 cell.line.isHidden = true
             }
             break
-        case 4:
+        case 2:
             cell.setData(data: data2[indexPath.row])
             if(indexPath.row == data2.count - 1) {
                 cell.line.isHidden = true
             }
             break
-        case 1,3 :
-            let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell
-            return cell
+//        case 1,3 :
+//            let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell
+//            return cell
             
         default :
             break

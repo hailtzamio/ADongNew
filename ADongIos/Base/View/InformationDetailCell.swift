@@ -14,6 +14,7 @@ class InformationDetailCell: UITableViewCell {
     @IBOutlet weak var lb1: UILabel!
     @IBOutlet weak var lb2: UILabel!
     
+    @IBOutlet weak var imv1: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

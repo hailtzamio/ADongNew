@@ -11,11 +11,13 @@ import Alamofire
 import Kingfisher
 import TOCropViewController
 import BSImagePicker
+import Photos
 class ProgessViewController: BaseViewController, UINavigationControllerDelegate {
     
     var data = [ProgressProject]()
     var currentWorkOutline = ProgressProject()
-    
+        var SelectedAssets = [PHAsset]()
+    var PhotoArray = [UIImage]()
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var btnFinish: UIButton!
     var id = 0
@@ -75,8 +77,10 @@ class ProgessViewController: BaseViewController, UINavigationControllerDelegate 
                 if(response.data != nil) {
                     let project = response.data
                     if(project?.status == "DONE") {
-                        self.btnFinish.setTitle("ĐÃ HOÀN THÀNH", for: .normal)
+                        self.btnFinish.setTitle("", for: .normal)
                         self.btnFinish.isEnabled = false
+                        self.btnFinish.tintColor = UIColor.init(hexString: HexColorApp.green)
+                        self.btnFinish.backgroundColor = UIColor.init(hexString: HexColorApp.white)
                     }
                     
                 }
@@ -266,10 +270,52 @@ extension ProgessViewController : TOCropViewControllerDelegate {
         }
     }
     
-    
-    
-    func ChooseImagesToFinishProject() {
+    func uploadProjectCompletionPhoto(arrImage:UIImage, withblock:@escaping (_ response: AnyObject?)->Void){
+        showLoading()
         
+        let url = K.ProductionServer.baseURL + "project/\(id)/uploadProjectCompletionPhoto"
+        
+        var headers: HTTPHeaders
+        headers = ["Content-type": "multipart/form-data",
+                   "Accept" : "application/json"]
+        headers["Authorization"] = ContentType.token.rawValue
+        AF.upload(multipartFormData: { (multipartFormData) in
+            
+            let randomIntFrom0To10 = Int.random(in: 1..<1000)
+            
+            guard let imgData = arrImage.pngData() else { return }
+            multipartFormData.append(imgData, withName: "image", fileName: "image\(randomIntFrom0To10)", mimeType: "image/jpeg")
+            
+        },to: url, usingThreshold: UInt64.init(),
+          method: .post,
+          headers: headers).response{ response in
+            self.stopLoading()
+            if((response.data != nil)){
+                do{
+                    if let jsonData = response.data {
+                        let parsedData = try JSONSerialization.jsonObject(with: jsonData) as! Dictionary<String, AnyObject>
+                        print(parsedData)
+                        
+                        let status = parsedData["status"] as? NSInteger ?? 0
+                        
+                        if (status == 1){
+                           
+                        } else{
+                            self.showToast(content: "Không thành công")
+                        }
+                    }
+                } catch{
+                    print("error message")
+                }
+            }else{
+                self.showToast(content: "Không thành công")
+            }
+        }
+    }
+    
+
+    func ChooseImagesToFinishProject() {
+        self.PhotoArray.removeAll()
         let imagePicker = ImagePickerController()
         
         presentImagePicker(imagePicker, select: { (asset) in
@@ -280,14 +326,35 @@ extension ProgessViewController : TOCropViewControllerDelegate {
             // User canceled selection.
         }, finish: { (assets) in
             // User finished selection assets.
-            print(assets.count)
-            self.finishProject()
-            
-     
+       
+            for i in 0..<assets.count
+            {
+                self.SelectedAssets.append(assets[i])
+            }
+              self.getAllImages()
+            print("ahihi \(self.PhotoArray.count)")
+            self.finishProject(arrImage: self.PhotoArray)
         })
     }
     
-    func finishProject() {
+    func getAllImages() -> Void {
+
+         print("get all images method called here")
+            if SelectedAssets.count != 0{
+                for i in 0..<SelectedAssets.count{
+                    let manager = PHImageManager.default()
+                    let option = PHImageRequestOptions()
+                    var thumbnail = UIImage()
+                    option.isSynchronous = true
+                    manager.requestImage(for: SelectedAssets[i], targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: option, resultHandler: {(result, info)->Void in
+                        thumbnail = result!
+                    })
+                    self.PhotoArray.append(thumbnail)
+                }
+            }
+    }
+    
+    func finishProject(arrImage:[UIImage]) {
     
         showLoading()
              APIClient.finishProject(id : id) { result in
@@ -297,7 +364,16 @@ extension ProgessViewController : TOCropViewControllerDelegate {
                      
                      if(response.status == 1) {
                         self.getProject()
+                        
+                        arrImage.forEach { (image) in
+                            self.uploadProjectCompletionPhoto(arrImage: image, withblock: {_response in
+                                                         
+                            })
+                        }
+                        
+                      
                      } else {
+                        self.PhotoArray.removeAll()
                         self.showToast(content: response.message ?? "Có lỗi")
                     }
                      

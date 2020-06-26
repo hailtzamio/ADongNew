@@ -7,30 +7,30 @@
 //
 
 import UIKit
+import Kingfisher
 
-class TripDetailController: BaseViewController {
-    var item:Trip? = nil
+class DetailProductRequirementViewController: BaseViewController {
+    var id = 0
+    var item:Team? = nil
+    var itemNames = ["THÔNG TIN CƠ BẢN ", "DANH SÁCH VẬT TƯ"]
     
-    
-    var itemNames = ["THÔNG TIN CHUNG", "CHI TIẾT"]
+    var goodsReceivedNote = GoodsReceivedNote()
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
     
-    var id = 0
     var data = [Information]()
-    var data1 = [Transport]()
-    
-    
-    
+    var data2 = [Product]()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeader()
         popupHandle() 
+        
         tbView.dataSource = self
         tbView.delegate = self
         tbView.register(InformationDetailCell.nib, forCellReuseIdentifier: InformationDetailCell.identifier)
-        tbView.register(WareHouseViewCell.nib, forCellReuseIdentifier: WareHouseViewCell.identifier)
+        tbView.register(SmallInformationViewCell.nib, forCellReuseIdentifier: SmallInformationViewCell.identifier)
         
+        getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,20 +44,15 @@ class TripDetailController: BaseViewController {
             self.navigationController?.popViewController(animated: true)
         }
         
-        header.rightAction = {
-            if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "TransportImagesViewController") as? TransportImagesViewController {
-                vc.id = self.id
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+        header.isRightButtonHide = true
         
-        header.changePhotoIcon()
+        header.changeUpdateIcon()
     }
     
     func popupHandle() {
         okAction = {
             self.showLoading()
-            APIClient.removeLorry(id: self.id) { result in
+            APIClient.removeTeam(id: self.id) { result in
                 self.stopLoading()
                 switch result {
                 case .success(let response):
@@ -71,52 +66,78 @@ class TripDetailController: BaseViewController {
                     self.showToast(content: error.localizedDescription)
                 }
             }
-            
         }
         
     }
     
     func getData() {
-        showLoading()
-        APIClient.getTrip(id: id) { result in
-            self.stopLoading()
-            switch result {
-            case .success(let response):
-                
-                if let value = response.data  {
-                    self.item = value
-                    self.data.append(Information(pKey: "Tên",pValue: value.name!))
-                    self.data.append(Information(pKey: "Tài xế", pValue: value.driverFullName!))
-                    self.data.append(Information(pKey: "Số điện thoại", pValue: value.driverPhone!))
-                    self.data.append(Information(pKey: "Tạo bởi", pValue: value.createdByFullName!))
-                    self.data.append(Information(pKey: "Tạo lúc", pValue: value.createdTime!))
-                    
-                    if(value.transportRequests != nil) {
-                        self.data1 = value.transportRequests!
-                    }
-                    
-                    self.tbView.reloadData()
-                    return
-                }
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        
+        data.removeAll()
+        data2.removeAll()
+        self.data.append(Information(pKey: "Code",pValue: goodsReceivedNote.code ?? "---"))
+        
+        self.data.append(Information(pKey: "Ngày dự kiến",pValue: goodsReceivedNote.expectedDatetime ?? "---"))
+        
+        self.data.append(Information(pKey: "Ghi chú",pValue: goodsReceivedNote.note ?? "---"))
+        
+        self.data2 = goodsReceivedNote.lines ?? [Product]()
+        
+        tbView.reloadData()
+    }
+    
+    
+    
+    private func convertData(value:Team) {
+        if(value.address == "") {
+            value.address = nil
+        }
+        
+        if(value.phone == "") {
+            value.phone = nil
+        }
+        
+        if(value.phone2 == "") {
+            value.phone2 = nil
         }
     }
     
     @IBAction func remove(_ sender: Any) {
-        showYesNoPopup(title: "Xóa", message: "Chắc chắn xóa?")
+        showYesNoPopup(title: "Xác nhận", message: "Chắc chắn xóa?")
     }
+    
+    func update(pData : Team) {
+        self.stopLoading()
+        APIClient.updateTeam(data : pData) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if response.status == 1 {
+                    //                    self.showToast(content: "Thành công")
+                    self.getData()
+                    return
+                }else {
+                    self.showToast(content: response.message!)
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
+        
+    }
+    
 }
 
-extension TripDetailController: UITableViewDataSource, UITableViewDelegate {
-    
+extension DetailProductRequirementViewController: UITableViewDataSource, UITableViewDelegate {
     
     @objc func handleRegister(){
-        if let vc = UIStoryboard.init(name: "Worker", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListWorkerViewController") as? ListWorkerViewController {
-            
-        }
+//        if let vc = UIStoryboard.init(name: "Product", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListProductViewController") as? ListProductViewController {
+//
+//            vc.data = data2
+//
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -126,8 +147,9 @@ extension TripDetailController: UITableViewDataSource, UITableViewDelegate {
         
         let sectionName = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
         sectionName.text = itemNames[section]
-        sectionName.textColor = UIColor.init(hexString: "#4c4c4c")
+        sectionName.textColor = UIColor.init(hexString: "#fb9214")
         sectionName.font = UIFont.systemFont(ofSize: 17)
+        sectionName.font = UIFont.boldSystemFont(ofSize: 16)
         sectionName.textAlignment = .left
         
         let uiButton = UIButton(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
@@ -148,34 +170,52 @@ extension TripDetailController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             return data.count
         case 1:
-            return data1.count
+            return data2.count
         default:
-            return 0
+            return data.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = UITableViewCell()
         
-        switch (indexPath.section) {
+        
+        switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
             cell.setData(data: data[indexPath.row])
+            
             if(indexPath.row == data.count - 1) {
                 cell.line.isHidden = true
             }
+            
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: WareHouseViewCell.identifier, for: indexPath) as! WareHouseViewCell
-            cell.setData(data: data1[indexPath.row])
-            //            if(indexPath.row == data1.count - 1) {
-            //                cell.line.isHidden = true
-            //            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: SmallInformationViewCell.identifier, for: indexPath) as! SmallInformationViewCell
+            cell.setDataProduct(data: data2[indexPath.row])
             return cell
         default:
-            break
+            print("no case found")
         }
+        
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        switch indexPath.section {
+        case 0:
+            return false
+        case 1:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            
+        }
+    }
 }
+

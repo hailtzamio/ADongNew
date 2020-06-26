@@ -6,15 +6,15 @@ import Foundation
 	var model : String?
 	var plateNumber : String?
 	var capacity : String?
-	var latitude : Int?
-	var longitude : Int?
+	var latitude : Double?
+	var longitude : Double?
 	var address : String?
-	var status : String?
+	var status : Int?
 	var createdTime : String?
 	var updatedTime : String?
-	var driverId : String?
+	var driverId : Int?
 	var driverFullName : String?
-	var tripId : String?
+	var tripId : Int?
 	var tripName : String?
 	var createdById : Int?
 	var createdByFullName : String?

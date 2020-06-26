@@ -11,6 +11,7 @@ import UIKit
 class ProductRequirementViewController: BaseViewController {
     
     var data = [GoodsReceivedNote]()
+    
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
     var id = 0
@@ -35,8 +36,9 @@ class ProductRequirementViewController: BaseViewController {
         }
         
         header.rightAction = {
-            if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateViewController") as? UpdateViewController {
-                vc.isUpdate = false
+            if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "CreateProductReqViewController") as? CreateProductReqViewController {
+                vc.isHideTf = false
+                vc.projectId = self.id
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
@@ -52,6 +54,10 @@ class ProductRequirementViewController: BaseViewController {
                 if(response.data != nil) {
                     self.data = response.data!
                     self.tbView.reloadData()
+                    
+                    if(response.data?.count == 0) {
+                        self.showNoDataMessage(tbView: self.tbView)
+                    }
                 }
                 
             case .failure(let error):
@@ -75,8 +81,8 @@ extension ProductRequirementViewController: UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailLorryViewController") as? DetailLorryViewController {
-            vc.id = data[indexPath.row].id!
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailProductRequirementViewController") as? DetailProductRequirementViewController {
+            vc.goodsReceivedNote = data[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
     }

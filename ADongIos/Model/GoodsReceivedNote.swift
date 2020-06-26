@@ -25,8 +25,8 @@ class GoodsReceivedNote : Codable {
     var updatedByFullName : String?
     var confirmationDate : String?
     
-    
-    
+    var projectName : String?
+       var expectedDatetime : String?
     
     var lines : [Product]?
 }

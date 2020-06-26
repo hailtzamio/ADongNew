@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		758569A1F07325D9965FD903 /* Pods_ADongIos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7B6E12349ED51D34D317F8 /* Pods_ADongIos.framework */; };
+		B514B4E024A6339A00913E3D /* CardViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B514B4DF24A6339A00913E3D /* CardViewCustom.swift */; };
 		B51F56262478C3BD00B3851A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51F56252478C3BD00B3851A /* CardView.swift */; };
 		B51F56292478DB9B00B3851A /* Product.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51F56282478DB9B00B3851A /* Product.storyboard */; };
 		B51F562D2478DC1C00B3851A /* ListProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51F562A2478DC1C00B3851A /* ListProductViewController.swift */; };
@@ -117,6 +118,10 @@
 		B58561B6249368A9000A5675 /* CountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58561B4249368A9000A5675 /* CountViewCell.swift */; };
 		B58561B7249368A9000A5675 /* CountViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B58561B5249368A9000A5675 /* CountViewCell.xib */; };
 		B58561B924936A91000A5675 /* CreateGoodsReceivedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58561B824936A91000A5675 /* CreateGoodsReceivedViewController.swift */; };
+		B58C5A7124A5EDEB004F6180 /* CreateProductReqViewController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C5A7024A5EDEB004F6180 /* CreateProductReqViewController.swift.swift */; };
+		B58C5A7324A5F133004F6180 /* CreateProductReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C5A7224A5F133004F6180 /* CreateProductReq.swift */; };
+		B58C5A7524A5F804004F6180 /* DetailProductRequirementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C5A7424A5F804004F6180 /* DetailProductRequirementViewController.swift */; };
+		B58C5A7824A60D6B004F6180 /* ProjectImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C5A7724A60D6B004F6180 /* ProjectImagesViewController.swift */; };
 		B58E15DB248E2EDA0054E9A0 /* Project.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58E15DA248E2EDA0054E9A0 /* Project.storyboard */; };
 		B58E15DD248E2F7F0054E9A0 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E15DC248E2F7F0054E9A0 /* Project.swift */; };
 		B58E15DF248E32BE0054E9A0 /* ListProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E15DE248E32BE0054E9A0 /* ListProjectViewController.swift */; };
@@ -184,6 +189,7 @@
 /* Begin PBXFileReference section */
 		7D7B6E12349ED51D34D317F8 /* Pods_ADongIos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ADongIos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EC7718238FE0E3993A8CC68 /* Pods-ADongIos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADongIos.release.xcconfig"; path = "Target Support Files/Pods-ADongIos/Pods-ADongIos.release.xcconfig"; sourceTree = "<group>"; };
+		B514B4DF24A6339A00913E3D /* CardViewCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewCustom.swift; sourceTree = "<group>"; };
 		B51F56252478C3BD00B3851A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		B51F56282478DB9B00B3851A /* Product.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Product.storyboard; sourceTree = "<group>"; };
 		B51F562A2478DC1C00B3851A /* ListProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProductViewController.swift; sourceTree = "<group>"; };
@@ -299,6 +305,10 @@
 		B58561B4249368A9000A5675 /* CountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountViewCell.swift; sourceTree = "<group>"; };
 		B58561B5249368A9000A5675 /* CountViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountViewCell.xib; sourceTree = "<group>"; };
 		B58561B824936A91000A5675 /* CreateGoodsReceivedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGoodsReceivedViewController.swift; sourceTree = "<group>"; };
+		B58C5A7024A5EDEB004F6180 /* CreateProductReqViewController.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProductReqViewController.swift.swift; sourceTree = "<group>"; };
+		B58C5A7224A5F133004F6180 /* CreateProductReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductReq.swift; sourceTree = "<group>"; };
+		B58C5A7424A5F804004F6180 /* DetailProductRequirementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailProductRequirementViewController.swift; sourceTree = "<group>"; };
+		B58C5A7724A60D6B004F6180 /* ProjectImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectImagesViewController.swift; sourceTree = "<group>"; };
 		B58E15DA248E2EDA0054E9A0 /* Project.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Project.storyboard; sourceTree = "<group>"; };
 		B58E15DC248E2F7F0054E9A0 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		B58E15DE248E32BE0054E9A0 /* ListProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProjectViewController.swift; sourceTree = "<group>"; };
@@ -535,6 +545,7 @@
 				B58561A924933182000A5675 /* Warehouse.swift */,
 				B58561AB249337E9000A5675 /* GoodsReceivedNote.swift */,
 				B5DACF2E249E505C007656ED /* LocationAddress.swift */,
+				B58C5A7224A5F133004F6180 /* CreateProductReq.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -650,6 +661,7 @@
 				B5A68D40248F847C00FD76A4 /* WareHouseViewCell.xib */,
 				B58561B4249368A9000A5675 /* CountViewCell.swift */,
 				B58561B5249368A9000A5675 /* CountViewCell.xib */,
+				B514B4DF24A6339A00913E3D /* CardViewCustom.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -696,7 +708,6 @@
 		B56FD907248F3C5400DCAA54 /* Information */ = {
 			isa = PBXGroup;
 			children = (
-				B57BE2FE249C73340004E428 /* ProductRequirementViewController.swift */,
 				B5A68D34248F5C9B00FD76A4 /* BaseInformationController.swift */,
 				B56FD908248F3C9200DCAA54 /* InformationListViewController.swift */,
 			);
@@ -706,6 +717,9 @@
 		B57BE2FD249C727C0004E428 /* product-requirement */ = {
 			isa = PBXGroup;
 			children = (
+				B58C5A7424A5F804004F6180 /* DetailProductRequirementViewController.swift */,
+				B57BE2FE249C73340004E428 /* ProductRequirementViewController.swift */,
+				B58C5A7024A5EDEB004F6180 /* CreateProductReqViewController.swift.swift */,
 			);
 			path = "product-requirement";
 			sourceTree = "<group>";
@@ -737,9 +751,18 @@
 			path = goodsreceived;
 			sourceTree = "<group>";
 		};
+		B58C5A7624A60D44004F6180 /* album */ = {
+			isa = PBXGroup;
+			children = (
+				B58C5A7724A60D6B004F6180 /* ProjectImagesViewController.swift */,
+			);
+			path = album;
+			sourceTree = "<group>";
+		};
 		B58E15D9248E2ECC0054E9A0 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				B58C5A7624A60D44004F6180 /* album */,
 				B5B00854249F588A00A9EEFB /* file */,
 				B5B0084D249EEA2300A9EEFB /* bidding */,
 				B57BE2FD249C727C0004E428 /* product-requirement */,
@@ -1077,6 +1100,7 @@
 				B58E1601248E3D660054E9A0 /* CAPSPageMenu.swift in Sources */,
 				B5B00856249F58A000A9EEFB /* FileListViewController.swift in Sources */,
 				B51F563E24795F3800B3851A /* LoadMoreActivityIndicator.swift in Sources */,
+				B58C5A7324A5F133004F6180 /* CreateProductReq.swift in Sources */,
 				B54A01B92478329900E5F310 /* UIViewControllerExtension.swift in Sources */,
 				B5B00853249F2A4700A9EEFB /* CheckinOutListViewController.swift in Sources */,
 				B53564792488992F00FF5883 /* ChooseWorkerViewController.swift in Sources */,
@@ -1150,6 +1174,7 @@
 				B54A01A52478326C00E5F310 /* NavigationBar.swift in Sources */,
 				B54A018724782D7100E5F310 /* Category.swift in Sources */,
 				B54A010B24781E9E00E5F310 /* ADongIos.xcdatamodeld in Sources */,
+				B58C5A7824A60D6B004F6180 /* ProjectImagesViewController.swift in Sources */,
 				B54A01B22478329900E5F310 /* UIColor.swift in Sources */,
 				B56FD909248F3C9200DCAA54 /* InformationListViewController.swift in Sources */,
 				B54A01A12478326C00E5F310 /* CommonNoAvatarCell.swift in Sources */,
@@ -1158,6 +1183,7 @@
 				B54A01B42478329900E5F310 /* String+Extension.swift in Sources */,
 				B5DACF2D249E0AE8007656ED /* RadioButtonCustom.swift in Sources */,
 				B51F563A247954CD00B3851A /* ListWorkerViewController.swift in Sources */,
+				B58C5A7124A5EDEB004F6180 /* CreateProductReqViewController.swift.swift in Sources */,
 				B54A018624782D7100E5F310 /* ResponseDefault.swift in Sources */,
 				B58F8A36248751E500E9BB9E /* DetailTeamViewController.swift in Sources */,
 				B56FD8FE248E731000DCAA54 /* CheckInOut.swift in Sources */,
@@ -1174,6 +1200,7 @@
 				B5356486248CD77E00FF5883 /* Contractor.swift in Sources */,
 				B5A68D46248F8D0300FD76A4 /* ListTripViewController.swift in Sources */,
 				B54A018D2478308B00E5F310 /* Switcher.swift in Sources */,
+				B58C5A7524A5F804004F6180 /* DetailProductRequirementViewController.swift in Sources */,
 				B5A68D4A248F939400FD76A4 /* TripDetailController.swift in Sources */,
 				B58F8A3C2487A58C00E9BB9E /* UpdateTeamViewController.swift in Sources */,
 				B54A018124782D7100E5F310 /* Information.swift in Sources */,
@@ -1187,6 +1214,7 @@
 				B51F562F2478DC1C00B3851A /* DetailProductViewController.swift in Sources */,
 				B58E15E2248E355D0054E9A0 /* ProjectViewCell.swift in Sources */,
 				B54A015124782B2400E5F310 /* SplashViewController.swift in Sources */,
+				B514B4E024A6339A00913E3D /* CardViewCustom.swift in Sources */,
 				B55CD0362490EF3300662427 /* DetailWareHouseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

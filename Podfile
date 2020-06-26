@@ -17,4 +17,5 @@ target 'ADongIos' do
   pod 'GooglePlaces'
   pod 'DLRadioButton'
   pod "BSImagePicker", "~> 3.1"
+  pod 'SnapKit'
 end
