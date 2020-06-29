@@ -31,16 +31,17 @@ struct K {
 }
 
 struct HexColorApp {
+        static let primary = "#4c4c4c"
     static let green = "#3ca150"
     static let red = "#962E34"
-     static let orange = "#FB9214"
-       static let blue = "#3366cc"
-        static let gray = "#90928E"
-       static let white = "#ffffff"
+    static let orange = "#FB9214"
+    static let blue = "#3366cc"
+    static let gray = "#90928E"
+    static let white = "#ffffff"
 }
 
 struct PopupMessages {
-      static let nodata = "Không có dữ liệu"
+    static let nodata = "Không có dữ liệu"
 }
 
 struct ProjectStatus {
@@ -48,6 +49,21 @@ struct ProjectStatus {
     static let processing = "PROCESSING"
     static let done = "DONE"
     static let paused = "PAUSED"
+}
+
+
+
+struct ProjectTitle {
+    static let title1 = "Thông tin cơ bản"
+       static let title2 = "Danh sách đăng ký thi công"
+       static let title7 = "Bản thiết kế"
+       static let title3 = "Danh sách vật tư"
+       static let title4 = "Đánh giá công trình"
+     static let title8 = "An toàn lao động"
+       static let title5 = "Thêm công nhân"
+       static let title6 = "Lịch sử điểm danh"
+           static let title9 = "Kho ảnh"
+    
 }
 
 struct APIParameterKey {

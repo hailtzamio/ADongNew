@@ -11,6 +11,8 @@ import UIKit
 class ListTripViewController : BaseViewController, UISearchBarDelegate, LoadMoreControlDelegate {
     
     var data = [Trip]()
+      var callback : ((Trip?) -> Void)?
+    var isChoose = false
     fileprivate var activityIndicator: LoadMoreActivityIndicator!
     var page = 0
     var totalPages = 0
@@ -60,7 +62,7 @@ class ListTripViewController : BaseViewController, UISearchBarDelegate, LoadMore
             case .success(let response):
                 
                 if(response.data != nil) {
-                    self.data = response.data!
+                    self.data.append(contentsOf: response.data!)
                     self.tbView.reloadData()
                     if(response.pagination != nil && response.pagination?.totalPages != nil) {
                         self.totalPages = response.pagination?.totalPages as! Int
@@ -102,14 +104,13 @@ extension ListTripViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WareHouseViewCell.identifier, for: indexPath) as! WareHouseViewCell
         cell.setDataTrip(data: data[indexPath.row])
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "TripDetailController") as? TripDetailController {
-            vc.id = data[indexPath.row].id!
-            navigationController?.pushViewController(vc, animated: true)
-        }
+             callback!(data[indexPath.row])
+              goBack()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

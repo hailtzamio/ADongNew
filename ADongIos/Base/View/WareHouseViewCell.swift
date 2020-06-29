@@ -20,7 +20,9 @@ class WareHouseViewCell: UITableViewCell {
     
     @IBOutlet weak var lb5: UILabel!
     
-    
+    @IBOutlet weak var lb6: UILabel!
+    @IBOutlet weak var imv1: UIButton!
+    var check:checkItem? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -41,6 +43,67 @@ class WareHouseViewCell: UITableViewCell {
     }
     
     func setData(data:Transport) {
+        lb1.text = data.code ?? "---"
+        lb2.text = data.warehouseName ?? "---"
+        lb3.text = data.warehouseAddress ?? "---"
+        var status = "Mới"
+        if(data.status == 1) {
+            status = "Mới"
+            lb6.textColor = UIColor.init(hexString: HexColorApp.red)
+        }
+        
+        if(data.status == 2) {
+            status = "Đã hủy"
+        }
+        
+        if(data.status == 3) {
+            status = "Hoàn thành"
+            lb6.textColor = UIColor.init(hexString: HexColorApp.orange)
+        }
+        
+        if(data.status == 4) {
+            status = "Đã ghép xe"
+            lb6.textColor = UIColor.init(hexString: HexColorApp.green)
+        }
+        
+        if(data.status == 5) {
+            status = "Đã nhận hàng"
+            lb6.textColor = UIColor.init(hexString: HexColorApp.green)
+        }
+        
+        lb4.text = data.projectName ?? "---"
+        lb5.text = data.projectAddress ?? "---"
+        lb6.text = status
+    }
+    
+    func setDataTrip(data:Trip) {
+        lb1.text = data.code
+        lb2.text = data.driverFullName ?? "---"
+        lb3.text = data.driverPhone ?? "---"
+        lb4.text = data.lorryPlateNumber ?? "---"
+        lb5.text = data.plannedDatetime ?? "---"
+    }
+    
+    func setDataGoodsReceivedNote(data:GoodsReceivedNote) {
+        lb1.text = data.code
+        lb2.text = data.deliveredBy ?? "---"
+        lb3.text = data.note ?? "---"
+        lb4.text = data.warehouseName ?? "---"
+        
+        if(data.status == "DONE") {
+            lb5.text = "Hoàn thành"
+        } else {
+            lb5.text = "Nháp"
+        }
+        
+        
+    }
+    
+    @IBAction func check(_ sender: Any) {
+        check?.doCheck(position: self.tag)
+    }
+    
+    func setDataCheck(data:Transport) {
         lb1.text = data.code ?? "---"
         lb2.text = data.warehouseName ?? "---"
         lb3.text = data.plannedDatetime ?? "---"
@@ -66,30 +129,18 @@ class WareHouseViewCell: UITableViewCell {
         }
         
         lb4.text = data.projectName ?? "---"
-        lb5.text = status
-    }
-    
-    func setDataTrip(data:Trip) {
-        lb1.text = data.code
-        lb2.text = data.driverFullName ?? "---"
-        lb3.text = data.driverPhone ?? "---"
-        lb4.text = data.lorryPlateNumber ?? "---"
-        lb5.text = data.plannedDatetime ?? "---"
-    }
-    
-    func setDataGoodsReceivedNote(data:GoodsReceivedNote) {
-        lb1.text = data.code
-        lb2.text = data.deliveredBy ?? "---"
-        lb3.text = data.note ?? "---"
-        lb4.text = data.warehouseName ?? "---"
+        lb5.text = data.projectAddress ?? "---"
+        lb6.text = status
         
-        if(data.status == "DONE") {
-             lb5.text = "Hoàn thành"
+        if(data.isSelected ?? false) {
+            if let image = UIImage(named: "tick2") {
+                imv1.setImage(image, for: .normal)
+            }
         } else {
-            lb5.text = "Nháp"
+            if let image = UIImage(named: "round") {
+                imv1.setImage(image, for: .normal)
+            }
         }
-        
-       
     }
     
     

@@ -16,6 +16,15 @@ class APIClient {
                 completion(response.result)
                 print(response.response?.statusCode)
                 print(response.result)
+                
+//                if(response.data != nil) {
+//                    let jsonEncoder = JSONEncoder()
+//                    let jsonData = try? jsonEncoder.encode(response.data)
+//                    let json = String(data: jsonData!, encoding: String.Encoding.utf8)
+//                               
+//                               print(json)
+//                }
+              
         }
     }
     
@@ -436,6 +445,12 @@ class APIClient {
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
         performRequest(route: ApiRouter.finishProject(id: id), decoder: jsonDecoder, completion: completion)
     }
+    
+    static func createTrip(data:Trip,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+         performRequest(route: ApiRouter.createTrip(data: data), decoder: jsonDecoder, completion: completion)
+     }
     
     
 }

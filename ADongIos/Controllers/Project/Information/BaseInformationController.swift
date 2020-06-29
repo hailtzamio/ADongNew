@@ -29,13 +29,13 @@ class BaseInformationController: BaseViewController {
         tbView.delegate = self
         tbView.register(InformationDetailCell.nib, forCellReuseIdentifier: InformationDetailCell.identifier)
         
-              tbView.register(LineViewCell.nib, forCellReuseIdentifier: LineViewCell.identifier)
+        tbView.register(LineViewCell.nib, forCellReuseIdentifier: LineViewCell.identifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         data.removeAll()
-             data1.removeAll()
-             data2.removeAll()
+        data1.removeAll()
+        data2.removeAll()
         getData()
     }
     
@@ -45,12 +45,12 @@ class BaseInformationController: BaseViewController {
             self.navigationController?.popViewController(animated: true)
         }
         
-                header.rightAction = {
-                    if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateProjectViewController") as? UpdateProjectViewController {
-                        vc.data = self.item
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
+        header.rightAction = {
+            if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateProjectViewController") as? UpdateProjectViewController {
+                vc.data = self.item
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
         
         header.changeUpdateIcon()
     }
@@ -95,20 +95,27 @@ class BaseInformationController: BaseViewController {
                     
                     if(value.teamType == "ADONG") {
                         self.data2.append(Information(pKey: "Đội thi công",pValue: "Đội Á đông"))
-                           self.data2.append(Information(pKey: "Tên đội",pValue: value.teamName ?? "---"))
+                        self.data2.append(Information(pKey: "Tên đội",pValue: value.teamName ?? "---"))
                         self.data2.append(Information(pKey: "Đội trưởng",pValue: value.teamLeaderFullName ?? "---"))
-                     
+                        
                     } else {
                         self.data2.append(Information(pKey: "Nhà thầu phụ",pValue: value.contractorName  ?? "---"))
-                         self.data2.append(Information(pKey: "Giám sát",pValue: value.supervisorFullName  ?? "---"))
+                        self.data2.append(Information(pKey: "Giám sát",pValue: value.supervisorFullName  ?? "---"))
                     }
                     
-                 
                     
-                    self.data2.append(Information(pKey: "Trưởng bộ phận",pValue: value.managerFullName ?? "---"))
+                    if(value.investorContacts != nil && value.investorContacts?.manager != nil) {
+                        self.data2.append(Information(pKey: "Trưởng bộ phận",pValue: value.investorContacts?.manager?.name ?? "---"))
+                    }
                     
-                    self.data2.append(Information(pKey: "Phó bộ phận",pValue: value.deputyManagerFullName ?? "---"))
-                       self.data2.append(Information(pKey: "Thư Ký",pValue: value.secretaryFullName ?? "---"))
+                    if(value.investorContacts != nil && value.investorContacts?.deputyManager != nil) {
+                        self.data2.append(Information(pKey: "Trưởng bộ phận",pValue: value.investorContacts?.deputyManager?.name ?? "---"))
+                    }
+                    
+                    
+                    
+                    self.data2.append(Information(pKey: "Quản lý vùng",pValue: value.supervisorFullName ?? "---"))
+                    self.data2.append(Information(pKey: "Thư Ký",pValue: value.secretaryFullName ?? "---"))
                     
                     self.tbView.reloadData()
                     return
@@ -126,9 +133,9 @@ class BaseInformationController: BaseViewController {
     
     @IBAction func viewMap(_ sender: Any) {
         let vc = MapViewController()
-           vc.data = item
-            vc.isJustView = true
-           navigationController?.pushViewController(vc, animated: true)
+        vc.data = item
+        vc.isJustView = true
+        navigationController?.pushViewController(vc, animated: true)
         
     }
 }
@@ -143,17 +150,17 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
+        
         let sectionView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
         sectionView.backgroundColor = UIColor.init(hexString: "#ffffff")
-
+        
         let sectionName = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
         sectionName.text = itemNames[section]
         sectionName.textColor = UIColor.init(hexString: "#fb9214")
         sectionName.font = UIFont.systemFont(ofSize: 17)
         sectionName.textAlignment = .left
         sectionName.font = UIFont.boldSystemFont(ofSize: 16)
-
+        
         let uiButton = UIButton(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
         uiButton.addTarget(self, action:#selector(handleRegister),
                            for: .touchUpInside)
@@ -203,9 +210,9 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
                 cell.line.isHidden = true
             }
             break
-//        case 1,3 :
-//            let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell
-//            return cell
+            //        case 1,3 :
+            //            let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell
+            //            return cell
             
         default :
             break

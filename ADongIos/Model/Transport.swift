@@ -19,6 +19,7 @@ var createdTime : String?
 var updatedTime : String?
 var warehouseId : Int?
 var warehouseName : String?
+    var warehouseAddress : String?
 var projectId : Int?
 var projectName : String?
 var projectAddress : String?
@@ -29,4 +30,6 @@ var createdByFullName : String?
 var updatedById : Int?
 var updatedByFullName : String?
 var lines: [Product]?
+    
+    var isSelected: Bool?
 }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SnapKit
 class PermissViewController: BaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,7 +22,8 @@ class PermissViewController: BaseViewController {
         collectionView.delegate = self
         //        K.ProductionServer.ACCESS_TOKEN = preferences.object(forKey: accessToken) as! String
         
-        getData() 
+        getData()
+
         
     }
     
@@ -50,7 +51,6 @@ class PermissViewController: BaseViewController {
         }
         
         for (key, value) in self.someProtocol {
-            print(key)
             if(key == "Product" || key == "Lorry" || key == "Worker" || key == "Team" || key == "Driver" || key == "Contractor" || key == "Project" || key == "Transport" || key == "Trip" || key == "Warehouse"   ) {
                 self.permissions.append(value)
             }
@@ -70,6 +70,7 @@ extension PermissViewController : UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PermissionCollectionViewCell.identifier, for: indexPath as IndexPath) as! PermissionCollectionViewCell
         cell.setData(data: permissions[indexPath.row])
+        cell.tbTitle.textColor = UIColor.init(hexString: HexColorApp.primary)
         return cell
     }
     
@@ -144,7 +145,7 @@ extension PermissViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
-        layout.minimumLineSpacing = 5.0
+        layout.minimumLineSpacing = 2.5
         layout.minimumInteritemSpacing = 2.5
         
         let numberOfItemsPerRow: CGFloat = 2.0

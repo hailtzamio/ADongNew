@@ -27,5 +27,7 @@ var driverFullName : String?
 var driverPhone : String?
 var note : String?
 var transportRequests : [Transport]?
+var transportReqIds: [Int]?
 
+    var typeToMove : Int?
 }

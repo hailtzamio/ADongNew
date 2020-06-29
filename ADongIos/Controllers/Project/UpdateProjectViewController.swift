@@ -20,15 +20,15 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     @IBOutlet weak var tf3: IQDropDownTextField!
     @IBOutlet weak var tf4: IQDropDownTextField!
     @IBOutlet weak var tf5: RadiusTextField!
-    @IBOutlet weak var tf6: RadiusTextField!
+    @IBOutlet weak var tf6: UIButton!
     
-    @IBOutlet weak var tf7: RadiusTextField!
-    @IBOutlet weak var tf8: RadiusTextField!
-    @IBOutlet weak var tf9: RadiusTextField!
+    @IBOutlet weak var tf7: UIButton!
+    @IBOutlet weak var tf8: UIButton!
+    @IBOutlet weak var tf9: UIButton!
     
-    @IBOutlet weak var tf10: RadiusTextField!
+    @IBOutlet weak var tf10: UIButton!
     
-    @IBOutlet weak var tfTest: IQDropDownTextField!
+    
     @IBOutlet weak var header: NavigationBar!
     
     
@@ -36,7 +36,6 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     
     
     @IBOutlet weak var radio1: DLRadioButton!
-    
     @IBOutlet weak var radio2: DLRadioButton!
     @IBOutlet weak var tf10TopSpace: NSLayoutConstraint!
     var data = Project()
@@ -59,23 +58,20 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         if(isUpdate) {
             
             if(data.teamType == "ADONG") {
-                tf10Height.constant = 0
-                tf10TopSpace.constant = 0
                 radio1.isSelected = true
-                tf6.text = data.teamName
+                tf6.setTitle(data.teamName ?? "Chọn", for: .normal)
             } else {
-                tf10Height.constant = 45
-                tf10TopSpace.constant = 15
                 radio2.isSelected = true
-                tf6.text = data.contractorName
+                tf6.setTitle(data.contractorName ?? "Chọn", for: .normal)
             }
             tf1.text = data.name
             tf2.text = data.address
             
-            tf7.text = data.managerFullName
-            tf8.text = data.deputyManagerFullName
-            tf9.text = data.secretaryFullName
-            tf10.text = data.supervisorFullName
+            tf7.setTitle(data.managerFullName ?? "Chọn", for: .normal)
+            tf8.setTitle(data.deputyManagerFullName ?? "Chọn", for: .normal)
+            tf10.setTitle(data.secretaryFullName ?? "Chọn", for: .normal)
+            tf9.setTitle(data.supervisorFullName ?? "Chọn", for: .normal)
+            
             
             
             let formatter = DateFormatter()
@@ -156,7 +152,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
                 vc.isChooseTeam = true
                 vc.callback = {(team) in
                     self.data.teamId = team?.id
-                    self.tf6.text = team?.name ?? "---"
+                    self.tf6.setTitle(team?.name ?? "Chọn", for: .normal)
                 }
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -167,7 +163,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
                 vc.isToChoose = true
                 vc.callback = {(team) in
                     self.data.contractorId = team?.id
-                    self.tf6.text = team?.name ?? "---"
+                    self.tf6.setTitle(team?.name ?? "Chọn", for: .normal)
                 }
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -177,45 +173,58 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     }
     
     @IBAction func team(_ sender: Any) {
-        tf6.text = ""
-        tf10Height.constant = 0
-        tf10TopSpace.constant = 0
         data.teamType = "ADONG"
     }
     
     @IBAction func contractor(_ sender: Any) {
-        tf10Height.constant = 45
-        tf10TopSpace.constant = 15
         data.teamType = "CONTRACTOR"
-        tf6.text = ""
     }
     
+    let dialog = YesNoPopup.instanceFromNib(title: "TRƯỞNG BỘ PHẬN")
+    let dialog2 = YesNoPopup.instanceFromNib(title: "PHÓ BỘ PHẬN")
     @IBAction func chooseManager(_ sender: Any) {
-        if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChooseWorkerViewController") as? ChooseWorkerViewController {
-            vc.isCheckHiden = true
-            vc.isTypeOfWorker = TypeOfWorker.manager
-            vc.isRightButtonHide = true
-            vc.callback = {(worker) in
-                self.data.managerId = worker?.id
-                self.tf7.text = worker?.fullName
+        
+        
+        
+        dialog.ok = {(worker) in
+            print(worker.fullName)
+            self.tf7.setTitle(worker.fullName ?? "Chọn", for: .normal)
+            self.data.investorManagerName = worker.fullName
+            self.data.investorManagerPhone = worker.phone
+            
+            if(worker.email != nil) {
+                self.data.investorManagerEmail = worker.email
             }
-            self.navigationController?.pushViewController(vc, animated: true)
         }
+        dialog.show()
     }
     
     
     @IBAction func chooseDeputyManager(_ sender: Any) {
         
-        if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChooseWorkerViewController") as? ChooseWorkerViewController {
-            vc.isCheckHiden = true
-            vc.isTypeOfWorker = TypeOfWorker.deputyManager
-            vc.isRightButtonHide = true
-            vc.callback = {(worker) in
-                self.data.deputyManagerId = worker?.id
-                self.tf8.text = worker?.fullName
+        dialog2.ok = {(worker) in
+            print(worker.fullName)
+            self.tf8.setTitle(worker.fullName ?? "Chọn", for: .normal)
+            self.data.investorDeputyManagerName = worker.fullName
+            self.data.investorDeputyManagerPhone = worker.phone
+            
+            if(worker.email != nil) {
+                self.data.investorDeputyManagerEmail = worker.email
             }
-            self.navigationController?.pushViewController(vc, animated: true)
         }
+        dialog2.show()
+        
+        
+        //        if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChooseWorkerViewController") as? ChooseWorkerViewController {
+        //            vc.isCheckHiden = true
+        //            vc.isTypeOfWorker = TypeOfWorker.deputyManager
+        //            vc.isRightButtonHide = true
+        //            vc.callback = {(worker) in
+        //                self.data.deputyManagerId = worker?.id
+        //                self.tf8.text = worker?.fullName
+        //            }
+        //            self.navigationController?.pushViewController(vc, animated: true)
+        //        }
     }
     
     @IBAction func chooseSecretary(_ sender: Any) {
@@ -225,7 +234,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             vc.isRightButtonHide = true
             vc.callback = {(worker) in
                 self.data.secretaryId = worker?.id
-                self.tf9.text = worker?.fullName
+                self.tf10.setTitle(worker?.fullName ?? "Chọn", for: .normal)
             }
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -240,7 +249,8 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             vc.isRightButtonHide = true
             vc.callback = {(worker) in
                 self.data.supervisorId = worker?.id
-                self.tf10.text = worker?.fullName
+                self.tf9.setTitle(worker?.fullName ?? "Chọn", for: .normal)
+                
             }
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -255,15 +265,15 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             return
         }
         
-        if(data.teamType == "ADONG" &&  tf6.text == ""){
-            showToast(content: "Chọn đội")
-            return
-        }
-        
-        if(data.teamType != "ADONG" &&  tf9.text == ""){
-                 showToast(content: "Chọn thư ký")
-                 return
-        }
+//        if(data.teamType == "ADONG"){
+//            showToast(content: "Chọn đội")
+//            return
+//        }
+//        
+//        if(data.teamType != "ADONG"){
+//            showToast(content: "Chọn thư ký")
+//            return
+//        }
         
         
         
@@ -333,7 +343,9 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         data.plannedStartDate = formatter.string(from: tf3.date!)
         data.plannedEndDate = formatter.string(from: tf4.date!)
+        
  
+        
         showLoading()
         APIClient.createProject(data: pData) { result in
             self.stopLoading()

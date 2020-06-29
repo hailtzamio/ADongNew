@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		758569A1F07325D9965FD903 /* Pods_ADongIos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7B6E12349ED51D34D317F8 /* Pods_ADongIos.framework */; };
 		B514B4E024A6339A00913E3D /* CardViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B514B4DF24A6339A00913E3D /* CardViewCustom.swift */; };
+		B514B4E424A74FFB00913E3D /* YesNoPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B514B4E224A74FFB00913E3D /* YesNoPopup.swift */; };
+		B514B4E524A74FFB00913E3D /* YesNoPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = B514B4E324A74FFB00913E3D /* YesNoPopup.xib */; };
+		B514B4E824A7515100913E3D /* NoticePopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B514B4E624A7515100913E3D /* NoticePopupView.xib */; };
+		B514B4E924A7515100913E3D /* NoticePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B514B4E724A7515100913E3D /* NoticePopupView.swift */; };
 		B51F56262478C3BD00B3851A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51F56252478C3BD00B3851A /* CardView.swift */; };
 		B51F56292478DB9B00B3851A /* Product.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51F56282478DB9B00B3851A /* Product.storyboard */; };
 		B51F562D2478DC1C00B3851A /* ListProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51F562A2478DC1C00B3851A /* ListProductViewController.swift */; };
@@ -32,6 +36,7 @@
 		B535648B248CDAC100FF5883 /* ListContractorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535648A248CDAC000FF5883 /* ListContractorViewController.swift */; };
 		B535648D248CDC9200FF5883 /* DetailContractorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535648C248CDC9200FF5883 /* DetailContractorViewController.swift */; };
 		B535648F248CE20D00FF5883 /* UpdateContractorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B535648E248CE20D00FF5883 /* UpdateContractorViewController.swift */; };
+		B53F2E4124A895C9008E4F57 /* CreateNewTripForTransportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53F2E4024A895C9008E4F57 /* CreateNewTripForTransportViewController.swift */; };
 		B54A010624781E9E00E5F310 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A010524781E9E00E5F310 /* AppDelegate.swift */; };
 		B54A010B24781E9E00E5F310 /* ADongIos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B54A010924781E9E00E5F310 /* ADongIos.xcdatamodeld */; };
 		B54A010F24781EA300E5F310 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B54A010E24781EA300E5F310 /* Assets.xcassets */; };
@@ -190,6 +195,10 @@
 		7D7B6E12349ED51D34D317F8 /* Pods_ADongIos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ADongIos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EC7718238FE0E3993A8CC68 /* Pods-ADongIos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADongIos.release.xcconfig"; path = "Target Support Files/Pods-ADongIos/Pods-ADongIos.release.xcconfig"; sourceTree = "<group>"; };
 		B514B4DF24A6339A00913E3D /* CardViewCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewCustom.swift; sourceTree = "<group>"; };
+		B514B4E224A74FFB00913E3D /* YesNoPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YesNoPopup.swift; sourceTree = "<group>"; };
+		B514B4E324A74FFB00913E3D /* YesNoPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YesNoPopup.xib; sourceTree = "<group>"; };
+		B514B4E624A7515100913E3D /* NoticePopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticePopupView.xib; sourceTree = "<group>"; };
+		B514B4E724A7515100913E3D /* NoticePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticePopupView.swift; sourceTree = "<group>"; };
 		B51F56252478C3BD00B3851A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		B51F56282478DB9B00B3851A /* Product.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Product.storyboard; sourceTree = "<group>"; };
 		B51F562A2478DC1C00B3851A /* ListProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProductViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +222,7 @@
 		B535648A248CDAC000FF5883 /* ListContractorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListContractorViewController.swift; sourceTree = "<group>"; };
 		B535648C248CDC9200FF5883 /* DetailContractorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailContractorViewController.swift; sourceTree = "<group>"; };
 		B535648E248CE20D00FF5883 /* UpdateContractorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateContractorViewController.swift; sourceTree = "<group>"; };
+		B53F2E4024A895C9008E4F57 /* CreateNewTripForTransportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateNewTripForTransportViewController.swift; path = ADongIos/Controllers/Trip/CreateNewTripForTransportViewController.swift; sourceTree = SOURCE_ROOT; };
 		B54A010224781E9E00E5F310 /* ADongIos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ADongIos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54A010524781E9E00E5F310 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B54A010A24781E9E00E5F310 /* ADongIos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ADongIos.xcdatamodel; sourceTree = "<group>"; };
@@ -390,6 +400,17 @@
 				8EC7718238FE0E3993A8CC68 /* Pods-ADongIos.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B514B4E124A74FBB00913E3D /* popup */ = {
+			isa = PBXGroup;
+			children = (
+				B514B4E724A7515100913E3D /* NoticePopupView.swift */,
+				B514B4E624A7515100913E3D /* NoticePopupView.xib */,
+				B514B4E224A74FFB00913E3D /* YesNoPopup.swift */,
+				B514B4E324A74FFB00913E3D /* YesNoPopup.xib */,
+			);
+			path = popup;
 			sourceTree = "<group>";
 		};
 		B51F56272478DB6100B3851A /* Product */ = {
@@ -637,6 +658,7 @@
 		B54A01972478324F00E5F310 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B514B4E124A74FBB00913E3D /* popup */,
 				B5B66609248627C1005660FE /* LoadingCell.swift */,
 				B5B6660A248627C2005660FE /* LoadMoreControl.swift */,
 				B54A01992478326B00E5F310 /* CommonNoAvatarCell.swift */,
@@ -825,6 +847,7 @@
 			children = (
 				B55CD0292490E69A00662427 /* Cell */,
 				B55CD0272490E5F900662427 /* TransportImagesViewController.swift */,
+				B53F2E4024A895C9008E4F57 /* CreateNewTripForTransportViewController.swift */,
 				B5A68D4B248F9AE200FD76A4 /* TransportDetailController.swift */,
 				B5A68D49248F939400FD76A4 /* TripDetailController.swift */,
 				B5A68D45248F8D0300FD76A4 /* ListTripViewController.swift */,
@@ -993,6 +1016,7 @@
 				B56FD913248F427400DCAA54 /* LineViewCell.xib in Resources */,
 				B5A68D552490C53900FD76A4 /* MapViewController.xib in Resources */,
 				B54A01A62478326C00E5F310 /* CommonNoAvatarCell.xib in Resources */,
+				B514B4E524A74FFB00913E3D /* YesNoPopup.xib in Resources */,
 				B58F8A3A2487777100E9BB9E /* SmallInformationViewCell.xib in Resources */,
 				B54A011524781EA300E5F310 /* LaunchScreen.storyboard in Resources */,
 				B54A015624782BD600E5F310 /* PermissViewController.xib in Resources */,
@@ -1003,6 +1027,7 @@
 				B54A010F24781EA300E5F310 /* Assets.xcassets in Resources */,
 				B54A014F24782B2400E5F310 /* SplashViewController.xib in Resources */,
 				B5A68D38248F78EF00FD76A4 /* Trip.storyboard in Resources */,
+				B514B4E824A7515100913E3D /* NoticePopupView.xib in Resources */,
 				B54A0193247831EE00E5F310 /* Lorry.storyboard in Resources */,
 				B54A01A32478326C00E5F310 /* InformationDetailCell.xib in Resources */,
 			);
@@ -1152,6 +1177,7 @@
 				B54A01A72478326C00E5F310 /* InformationDetailCell.swift in Sources */,
 				B5DACF2F249E505C007656ED /* LocationAddress.swift in Sources */,
 				B56FD900248F244200DCAA54 /* UpdateProjectViewController.swift in Sources */,
+				B514B4E424A74FFB00913E3D /* YesNoPopup.swift in Sources */,
 				B54A014424782A2000E5F310 /* Constants.swift in Sources */,
 				B54A01B72478329900E5F310 /* UIView+constraints.swift in Sources */,
 				B56FD90F248F3E8E00DCAA54 /* TitleModel.swift in Sources */,
@@ -1163,6 +1189,7 @@
 				B54A018C2478308B00E5F310 /* Context.swift in Sources */,
 				B55CD0312490E7A900662427 /* ImageModel.swift in Sources */,
 				B54A014724782A4100E5F310 /* ApiRouter.swift in Sources */,
+				B53F2E4124A895C9008E4F57 /* CreateNewTripForTransportViewController.swift in Sources */,
 				B54A01B62478329900E5F310 /* TextfieldExtension.swift in Sources */,
 				B58561AE2493395B000A5675 /* ListGoodsReceivedNoteViewController.swift in Sources */,
 				B535648D248CDC9200FF5883 /* DetailContractorViewController.swift in Sources */,
@@ -1188,6 +1215,7 @@
 				B58F8A36248751E500E9BB9E /* DetailTeamViewController.swift in Sources */,
 				B56FD8FE248E731000DCAA54 /* CheckInOut.swift in Sources */,
 				B54A015724782BD600E5F310 /* PermissViewController.swift in Sources */,
+				B514B4E924A7515100913E3D /* NoticePopupView.swift in Sources */,
 				B54A015024782B2400E5F310 /* LoginViewController.swift in Sources */,
 				B58561AA24933182000A5675 /* Warehouse.swift in Sources */,
 				B58561A824932FCC000A5675 /* ListStockViewController.swift in Sources */,

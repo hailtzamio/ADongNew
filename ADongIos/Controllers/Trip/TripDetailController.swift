@@ -12,7 +12,7 @@ class TripDetailController: BaseViewController {
     var item:Trip? = nil
     
     
-    var itemNames = ["THÔNG TIN CHUNG", "CHI TIẾT"]
+    var itemNames = ["DANH SÁCH YCVC","THÔNG TIN CHUNG"]
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
     
@@ -126,9 +126,10 @@ extension TripDetailController: UITableViewDataSource, UITableViewDelegate {
         
         let sectionName = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
         sectionName.text = itemNames[section]
-        sectionName.textColor = UIColor.init(hexString: "#4c4c4c")
-        sectionName.font = UIFont.systemFont(ofSize: 17)
-        sectionName.textAlignment = .left
+        sectionName.textColor = UIColor.init(hexString: HexColorApp.orange)
+       sectionName.font = UIFont.systemFont(ofSize: 17)
+               sectionName.textAlignment = .left
+               sectionName.font = UIFont.boldSystemFont(ofSize: 16)
         
         let uiButton = UIButton(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
         uiButton.addTarget(self, action:#selector(handleRegister),
@@ -146,9 +147,9 @@ extension TripDetailController: UITableViewDataSource, UITableViewDelegate {
         
         switch (section) {
         case 0:
-            return data.count
-        case 1:
             return data1.count
+        case 1:
+            return data.count
         default:
             return 0
         }
@@ -159,14 +160,14 @@ extension TripDetailController: UITableViewDataSource, UITableViewDelegate {
         let cell = UITableViewCell()
         
         switch (indexPath.section) {
-        case 0:
+        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
             cell.setData(data: data[indexPath.row])
             if(indexPath.row == data.count - 1) {
                 cell.line.isHidden = true
             }
             return cell
-        case 1:
+        case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: WareHouseViewCell.identifier, for: indexPath) as! WareHouseViewCell
             cell.setData(data: data1[indexPath.row])
             //            if(indexPath.row == data1.count - 1) {
@@ -177,5 +178,19 @@ extension TripDetailController: UITableViewDataSource, UITableViewDelegate {
             break
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if(indexPath.section == 0) {
+            
+            if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "TransportDetailController") as? TransportDetailController {
+                vc.id = data1[indexPath.row].id!
+                navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        }
+        
+        
     }
 }

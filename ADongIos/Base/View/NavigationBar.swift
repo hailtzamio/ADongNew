@@ -9,6 +9,9 @@ final class NavigationBar: UIView {
     @IBOutlet private weak var leftButton: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var rightSecondButton: UIButton!
+    
+    @IBOutlet weak var btnRight2: UIButton!
+    
     var leftAction: (() -> ())?
     var rightAction: (() -> ())?
     var title: String = "" {
@@ -35,6 +38,15 @@ final class NavigationBar: UIView {
         }
     }
     
+    var isRightButton2Hide: Bool {
+        set {
+            btnRight2.isHidden = newValue
+        }
+        get {
+            return btnRight2.isHidden
+        }
+    }
+    
     func changeUpdateIcon() {
         rightSecondButton.setImage(UIImage(named: "edit"), for: .normal)
     }
@@ -52,6 +64,9 @@ final class NavigationBar: UIView {
          self.leftAction?()
     }
     
+    @IBAction func btnRight2Action(_ sender: Any) {
+         self.rightAction?()
+    }
     
     @IBAction func right(_ sender: Any) {
          self.rightAction?()

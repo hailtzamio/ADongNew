@@ -88,10 +88,12 @@ enum ApiRouter: URLRequestConvertible {
       case getProjectCompletionImages(id: Int)
         case createProductRequirement(data: CreateProductReq)
     
+        case createTrip(data: Trip)
+    
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
-        case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout, .createWarehouse, .createGoodsReceivedNote, .createLorry, .addWorkerToProject, .createProductRequirement :
+        case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout, .createWarehouse, .createGoodsReceivedNote, .createLorry, .addWorkerToProject, .createProductRequirement, .createTrip :
             return .post
         case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline, .transportPickup, .transportUnload, .projectBiddingApprove, .finishProject   :
             return .put
@@ -230,7 +232,7 @@ enum ApiRouter: URLRequestConvertible {
         case .transportUnload(let id):
             return "transportRequest/\(id)/unload"
         case .getTransportImages(let id):
-            return "transportRequest/\(id)/photos"
+            return "trip/\(id)/photos"
         case .getProjectImages(let id):
                  return "project/\(id)/checkinPhotos"
                  case .getProjectCompletionImages(let id):
@@ -269,7 +271,8 @@ enum ApiRouter: URLRequestConvertible {
                   let id = data.projectId ?? 0
                  return "project/\(id)/productRequirement"
             
-            
+            case .createTrip(let data):
+                  return "trip"
             
         }
     }
@@ -377,6 +380,9 @@ enum ApiRouter: URLRequestConvertible {
                 "workerId" : workerId ]
         case .createProductRequirement(let data):
                      return ["note": data.note, "expectedDatetime": data.expectedDatetime,"linesAddNew": data.linesAddNew]
+            
+            case .createTrip(let data):
+                     return ["plannedDatetime": data.plannedDatetime, "lorryId": data.lorryId,"driverId": data.driverId, "transportReqIds": data.transportReqIds,"note": data.note]
         }
     }
     

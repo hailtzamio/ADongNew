@@ -13,6 +13,8 @@ class LorryListViewController: BaseViewController {
     var data = [Lorry]()
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
+    var isToChoose = false
+    var callback : ((Lorry?) -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeader()
@@ -74,9 +76,16 @@ extension LorryListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(isToChoose) {
+            callback!(data[indexPath.row])
+              goBack()
+        } else {
         if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailLorryViewController") as? DetailLorryViewController {
-            vc.id = data[indexPath.row].id!
-            navigationController?.pushViewController(vc, animated: true)
+                  vc.id = data[indexPath.row].id!
+                  navigationController?.pushViewController(vc, animated: true)
+              }
         }
+        
+      
     }
 }

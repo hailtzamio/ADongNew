@@ -17,16 +17,17 @@ class ListTransportViewController : BaseViewController, UISearchBarDelegate, Loa
     
     var removeTeamId = 0
     @IBOutlet weak var tbView: UITableView!
-
+    var callback : ((Int?) -> Void)?
+    var callbackRq : (([Transport]?) -> Void)?
     var loadMoreControl: LoadMoreControl!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupHeader()
+        //        setupHeader()
         popupHandle() 
         tbView.dataSource = self
         tbView.delegate = self
         tbView.register(WareHouseViewCell.nib, forCellReuseIdentifier: WareHouseViewCell.identifier)
-    
+        
         loadMoreControl = LoadMoreControl(scrollView: tbView, spacingFromLastCell: 10, indicatorHeight: 60)
         loadMoreControl.delegate = self
         
@@ -38,19 +39,19 @@ class ListTransportViewController : BaseViewController, UISearchBarDelegate, Loa
         getData()
     }
     
-//    func setupHeader() {
-//        header.title = "Đội Thi Công"
-//        header.leftAction = {
-//            self.navigationController?.popViewController(animated: true)
-//        }
-//
-//        header.rightAction = {
-//           if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateTeamViewController") as? UpdateTeamViewController {
-//                           vc.isUpdate = false
-//                           self.navigationController?.pushViewController(vc, animated: true)
-//           }
-//        }
-//    }
+    //    func setupHeader() {
+    //        header.title = "Đội Thi Công"
+    //        header.leftAction = {
+    //            self.navigationController?.popViewController(animated: true)
+    //        }
+    //
+    //        header.rightAction = {
+    //           if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateTeamViewController") as? UpdateTeamViewController {
+    //                           vc.isUpdate = false
+    //                           self.navigationController?.pushViewController(vc, animated: true)
+    //           }
+    //        }
+    //    }
     
     func getData() {
         showLoading()
@@ -60,7 +61,17 @@ class ListTransportViewController : BaseViewController, UISearchBarDelegate, Loa
             case .success(let response):
                 
                 if(response.data != nil) {
-                    self.data = response.data!
+                    //                    self.data = response.data!
+                    response.data?.forEach({ (trans) in
+                        if(trans.status == 1) {
+                            self.data.append(trans)
+                        }
+                    })
+                    
+                    if(self.data.count == 0) {
+                        self.showNoDataMessage(tbView: self.tbView)
+                    }
+                    
                     self.tbView.reloadData()
                     if(response.pagination != nil && response.pagination?.totalPages != nil) {
                         self.totalPages = response.pagination?.totalPages as! Int
@@ -93,7 +104,16 @@ class ListTransportViewController : BaseViewController, UISearchBarDelegate, Loa
     
 }
 
-extension ListTransportViewController: UITableViewDataSource, UITableViewDelegate {
+extension ListTransportViewController: UITableViewDataSource, UITableViewDelegate, checkItem {
+    
+    func doCheck(position: Int) {
+        data[position].isSelected = !(data[position].isSelected ?? false)
+        callbackRq!(data)
+        tbView.reloadData()
+        //        let indexPath = IndexPath(item: position, section: 0)
+        //        tbView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.top)
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
@@ -101,7 +121,11 @@ extension ListTransportViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WareHouseViewCell.identifier, for: indexPath) as! WareHouseViewCell
-        cell.setData(data: data[indexPath.row])
+        cell.setDataCheck(data: data[indexPath.row])
+        cell.check = self
+        cell.imv1.isHidden = false
+        cell.tag = indexPath.row
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
@@ -117,10 +141,10 @@ extension ListTransportViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-           if (editingStyle == .delete) {
+        if (editingStyle == .delete) {
             removeTeamId = data[indexPath.row].id!
-               showYesNoPopup(title: "Xác nhận", message: "Chắc chắn xóa?")
-           }
+            showYesNoPopup(title: "Xác nhận", message: "Chắc chắn xóa?")
+        }
     }
     
     func popupHandle() {
@@ -136,7 +160,7 @@ extension ListTransportViewController: UITableViewDataSource, UITableViewDelegat
                 switch result {
                 case .success(let response):
                     if (response.status == 1) {
-                       self?.showToast(content: "Thành công")
+                        self?.showToast(content: "Thành công")
                         self?.data.removeAll()
                         self?.page = 0
                         self?.getData()

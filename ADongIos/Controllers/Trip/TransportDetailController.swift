@@ -14,7 +14,7 @@ class TransportDetailController: BaseViewController, UINavigationControllerDeleg
     var item:Transport? = nil
     
     
-    var itemNames = ["THÔNG TIN CHUNG", "DANH SÁCH VẬT TƯ"]
+    var itemNames = ["DANH SÁCH VẬT TƯ","THÔNG TIN CHUNG"]
     
     @IBOutlet weak var bt1: UIButton!
     @IBOutlet weak var tbView: UITableView!
@@ -50,7 +50,7 @@ class TransportDetailController: BaseViewController, UINavigationControllerDeleg
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
         }
-        
+        header.isRightButtonHide = true
                 header.rightAction = {
                     if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "TransportImagesViewController") as? TransportImagesViewController {
                         vc.id = self.id ?? 0
@@ -69,7 +69,7 @@ class TransportDetailController: BaseViewController, UINavigationControllerDeleg
     
     func pickup() {
         
-        if(status == 1 ) {
+        if(status == 4 ) {
             self.showLoading()
             APIClient.transportPickup(id: self.id) { result in
                 self.stopLoading()
@@ -117,14 +117,16 @@ class TransportDetailController: BaseViewController, UINavigationControllerDeleg
                 
                 if let value = response.data  {
                     self.item = value
-                    self.data.append(Information(pKey: "Code",pValue: value.code!))
-                    self.data.append(Information(pKey: "Kho / Xưởng", pValue: value.warehouseName!))
-                    self.data.append(Information(pKey: "Tên dự án", pValue: value.projectName!))
-                    
+                    self.data.append(Information(pKey: "Code",pValue: value.code ?? "---"))
+                           self.data.append(Information(pKey: "Ngày dự kiến",pValue: value.plannedDatetime ?? "---"))
+                    self.data.append(Information(pKey: "Kho / Xưởng", pValue: value.warehouseName ?? "---"))
+                          self.data.append(Information(pKey: "Địa chỉ Kho / Xưởng", pValue: value.warehouseAddress ?? "---"))
+                    self.data.append(Information(pKey: "Tên dự án", pValue: value.projectName ?? "---"))
+                        self.data.append(Information(pKey: "Địa chỉ dự án", pValue: value.projectAddress ?? "---"))
                     if(value.lines != nil) {
                         value.lines?.forEach({ (t) in
                             let quantity = t.quantity ?? 0
-                            let model = Information(pKey: "\(quantity)" ,pValue: t.productName!)
+                            let model = Information(pKey: "\(quantity) \(t.productUnit ?? "")" ,pValue: t.productName ?? "---")
                             self.data1.append(model)
                         })
                     }
@@ -175,10 +177,10 @@ extension TransportDetailController: UITableViewDataSource, UITableViewDelegate 
         
         let sectionName = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
         sectionName.text = itemNames[section]
-        sectionName.textColor = UIColor.init(hexString: "#4c4c4c")
+        sectionName.textColor = UIColor.init(hexString: HexColorApp.orange)
         sectionName.font = UIFont.systemFont(ofSize: 17)
         sectionName.textAlignment = .left
-        
+        sectionName.font = UIFont.boldSystemFont(ofSize: 16)
         let uiButton = UIButton(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
         uiButton.addTarget(self, action:#selector(handleRegister),
                            for: .touchUpInside)
@@ -195,9 +197,9 @@ extension TransportDetailController: UITableViewDataSource, UITableViewDelegate 
         
         switch (section) {
         case 0:
-            return data.count
-        case 1:
             return data1.count
+        case 1:
+            return data.count
         default:
             return 0
         }
@@ -208,19 +210,21 @@ extension TransportDetailController: UITableViewDataSource, UITableViewDelegate 
         let cell = UITableViewCell()
         
         switch (indexPath.section) {
-        case 0:
+        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
             cell.setData(data: data[indexPath.row])
+               cell.selectionStyle = UITableViewCell.SelectionStyle.none
             if(indexPath.row == data.count - 1) {
                 cell.line.isHidden = true
             }
             return cell
-        case 1:
+        case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
             cell.setData(data: data1[indexPath.row])
-            //            if(indexPath.row == data1.count - 1) {
-            //                cell.line.isHidden = true
-            //            }
+                        if(indexPath.row == data1.count - 1) {
+                            cell.line.isHidden = true
+                        }
+               cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         default:
             break

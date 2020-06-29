@@ -21,6 +21,8 @@ class ListDriverViewController: BaseViewController, UISearchBarDelegate, LoadMor
     @IBOutlet weak var header: NavigationBar!
     @IBOutlet weak var searchBar: UISearchBar!
     var loadMoreControl: LoadMoreControl!
+    var isToChoose = false
+    var callback : ((Driver?) -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeader()
@@ -108,10 +110,18 @@ extension ListDriverViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if(isToChoose) {
+            callback!(data[indexPath.row])
+            goBack()
+        } else {
         if let vc = UIStoryboard.init(name: "Driver", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailDriverViewController") as? DetailDriverViewController {
-            vc.id = data[indexPath.row].id!
-            navigationController?.pushViewController(vc, animated: true)
+                vc.id = data[indexPath.row].id!
+                navigationController?.pushViewController(vc, animated: true)
+            }
         }
+        
+    
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

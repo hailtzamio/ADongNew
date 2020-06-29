@@ -15,6 +15,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
             <connections>
+                <outlet property="btnRight2" destination="7Le-JW-2M6" id="NVj-Hu-x9U"/>
                 <outlet property="leftButton" destination="unR-Ml-tWu" id="Bik-XY-I8p"/>
                 <outlet property="rightSecondButton" destination="QFB-fL-7aq" id="oKg-fF-w8g"/>
                 <outlet property="titleLabel" destination="shB-5G-YQw" id="S4M-IG-KQv"/>
@@ -77,6 +78,14 @@
                         <action selector="right:" destination="-1" eventType="touchUpInside" id="cCl-Fh-RHl"/>
                     </connections>
                 </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Le-JW-2M6">
+                    <rect key="frame" x="435" y="114" width="81" height="30"/>
+                    <color key="tintColor" red="0.98431372549999996" green="0.57254901960000004" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Tạo Chuyến"/>
+                    <connections>
+                        <action selector="btnRight2Action:" destination="-1" eventType="touchUpInside" id="KnF-RP-F7P"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.29800295829772949" green="0.29806005954742432" blue="0.29799938201904297" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <color key="tintColor" red="0.29800295829772949" green="0.29806005954742432" blue="0.29799938201904297" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -84,9 +93,11 @@
                 <constraint firstItem="QFB-fL-7aq" firstAttribute="centerY" secondItem="shB-5G-YQw" secondAttribute="centerY" id="1qc-ju-KUl"/>
                 <constraint firstItem="wpF-P1-aoN" firstAttribute="trailing" secondItem="QFB-fL-7aq" secondAttribute="trailing" constant="10" id="C1w-iZ-DZK"/>
                 <constraint firstItem="g3F-Ue-ged" firstAttribute="leading" secondItem="wpF-P1-aoN" secondAttribute="leading" id="GE4-bh-POi"/>
+                <constraint firstItem="7Le-JW-2M6" firstAttribute="centerY" secondItem="shB-5G-YQw" secondAttribute="centerY" id="SD6-IG-hxf"/>
                 <constraint firstItem="unR-Ml-tWu" firstAttribute="leading" secondItem="wpF-P1-aoN" secondAttribute="leading" constant="10" id="SkR-WR-aAK"/>
                 <constraint firstItem="shB-5G-YQw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AB3-JX-r91" secondAttribute="top" constant="12" id="UGf-qM-psF"/>
                 <constraint firstItem="unR-Ml-tWu" firstAttribute="centerY" secondItem="shB-5G-YQw" secondAttribute="centerY" id="XMI-9S-yVd"/>
+                <constraint firstItem="wpF-P1-aoN" firstAttribute="trailing" secondItem="7Le-JW-2M6" secondAttribute="trailing" constant="10" id="Zcp-UK-COA"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="shB-5G-YQw" secondAttribute="bottom" constant="12" id="arD-aA-pBI"/>
                 <constraint firstItem="hL0-RF-hJT" firstAttribute="trailing" secondItem="wpF-P1-aoN" secondAttribute="trailing" id="dht-yJ-HY2"/>
                 <constraint firstItem="g3F-Ue-ged" firstAttribute="centerY" secondItem="AB3-JX-r91" secondAttribute="centerY" id="ebl-WH-RuT"/>

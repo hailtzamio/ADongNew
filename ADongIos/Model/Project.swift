@@ -56,8 +56,27 @@ class Project : Codable {
     var designFiles : [DesignFile]?
     
     
+    var investorManagerName : String?
+    var investorManagerPhone : String?
+    var investorManagerEmail : String?
+    var investorDeputyManagerName : String?
+    var investorDeputyManagerPhone : String?
+    var investorDeputyManagerEmail : String?
+    
+        var investorContacts : investorObject?
+    
+    
     
 }
+
+
+class investorObject : Codable {
+    
+    var manager : User?
+    var deputyManager : User?
+    
+}
+
 class DesignFile : Codable {
     
     var id : Int?

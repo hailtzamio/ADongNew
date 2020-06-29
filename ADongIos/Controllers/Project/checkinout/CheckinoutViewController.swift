@@ -17,7 +17,7 @@ class CheckinoutViewController: BaseViewController, UISearchBarDelegate, LoadMor
     var totalPages = 0
     var id = 0
     var currentData = Worker()
-    
+    var callback : ((Int?) -> Void)?
     var loadMoreControl: LoadMoreControl!
     @IBOutlet weak var tbView: UITableView!
     // For Adding To Team
@@ -38,6 +38,10 @@ class CheckinoutViewController: BaseViewController, UISearchBarDelegate, LoadMor
     override func viewWillAppear(_ animated: Bool) {
         page = 0
         data.removeAll()
+        if(tbView != nil) {
+            tbView.reloadData()
+        }
+    
         getData()
     }
     
@@ -83,7 +87,8 @@ class CheckinoutViewController: BaseViewController, UISearchBarDelegate, LoadMor
     @IBOutlet weak var takePhoto: UIImageView!
     
     @IBAction func takePhoto(_ sender: Any) {
-        pickImage(isLibrary: true)
+        callback!(1)
+//        pickImage(isLibrary: true)
     }
     
 }
@@ -101,6 +106,7 @@ extension CheckinoutViewController: UITableViewDataSource, UITableViewDelegate {
         cell.imvCheck.isHidden = true
         cell.imvStatus.isHidden = false
         cell.tag = indexPath.row
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     

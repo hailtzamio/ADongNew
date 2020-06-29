@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListProjectViewController: BaseViewController, UISearchBarDelegate, LoadMoreControlDelegate {
+class ListProjectViewController: BaseViewController, LoadMoreControlDelegate {
     
     
     var data = [Project]()
@@ -28,19 +28,22 @@ class ListProjectViewController: BaseViewController, UISearchBarDelegate, LoadMo
         tbView.dataSource = self
         tbView.delegate = self
         tbView.register(ProjectViewCell.nib, forCellReuseIdentifier: ProjectViewCell.identifier)
-    
+        
         loadMoreControl = LoadMoreControl(scrollView: tbView, spacingFromLastCell: 10, indicatorHeight: 60)
         loadMoreControl.delegate = self
+        
+        searchBar.delegate = self
+        searchBar.showsCancelButton = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         page = 0
-               data.removeAll()
-               getData()
+        data.removeAll()
+        getData()
     }
     
     func setupHeader() {
@@ -50,10 +53,10 @@ class ListProjectViewController: BaseViewController, UISearchBarDelegate, LoadMo
         }
         
         header.rightAction = {
-           if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateProjectViewController") as? UpdateProjectViewController {
-                           vc.isUpdate = false
-                           self.navigationController?.pushViewController(vc, animated: true)
-           }
+            if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateProjectViewController") as? UpdateProjectViewController {
+                vc.isUpdate = false
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     
@@ -72,7 +75,7 @@ class ListProjectViewController: BaseViewController, UISearchBarDelegate, LoadMo
                         self.page = self.page + 1
                         
                         
-                
+                        
                     }
                 } else {
                     self.showToast(content: response.message!)
@@ -112,12 +115,12 @@ extension ListProjectViewController: UITableViewDataSource, UITableViewDelegate 
             numOfSections            = 1
             tableView.backgroundView = nil
         } else {
-//            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-//            noDataLabel.text          =  PopupMessages.nodata
-//            noDataLabel.textColor     = UIColor.init(hexString: HexColorApp.gray)
-//            noDataLabel.textAlignment = .center
-//            tableView.backgroundView  = noDataLabel
-//            tableView.separatorStyle  = .none
+            //            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            //            noDataLabel.text          =  PopupMessages.nodata
+            //            noDataLabel.textColor     = UIColor.init(hexString: HexColorApp.gray)
+            //            noDataLabel.textAlignment = .center
+            //            tableView.backgroundView  = noDataLabel
+            //            tableView.separatorStyle  = .none
         }
         return numOfSections
     }
@@ -129,6 +132,7 @@ extension ListProjectViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectViewCell.identifier, for: indexPath) as! ProjectViewCell
         cell.setDataProject(data: data[indexPath.row])
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
@@ -145,10 +149,10 @@ extension ListProjectViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-           if (editingStyle == .delete) {
+        if (editingStyle == .delete) {
             removeTeamId = data[indexPath.row].id!
-               showYesNoPopup(title: "Xác nhận", message: "Chắc chắn xóa?")
-           }
+            showYesNoPopup(title: "Xác nhận", message: "Chắc chắn xóa?")
+        }
     }
     
     func popupHandle() {
@@ -164,7 +168,7 @@ extension ListProjectViewController: UITableViewDataSource, UITableViewDelegate 
                 switch result {
                 case .success(let response):
                     if (response.status == 1) {
-                       self?.showToast(content: "Thành công")
+                        self?.showToast(content: "Thành công")
                         self?.data.removeAll()
                         self?.page = 0
                         self?.getData()
@@ -180,5 +184,51 @@ extension ListProjectViewController: UITableViewDataSource, UITableViewDelegate 
         
     }
 }
+
+extension ListProjectViewController: UISearchBarDelegate {
+    
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        
+        
+        return true
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        //          var r = self.view.frame
+        //                r.origin.y = -50
+        //                r.size.height += -50
+        //
+        //                self.view.frame = r
+        //                searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    //    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    //
+    //        var r = self.view.frame
+    //        r.origin.y = -44
+    //        r.size.height += 44
+    //
+    //        self.view.frame = r
+    //        searchBar.setShowsCancelButton(true, animated: true)
+    //    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: false)
+        UIView.animate(withDuration: 0.6, animations: { /*animate here*/ }, completion:  nil)
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        page = 0
+        data.removeAll()
+        getData()
+    }
+}
+
+
 
 

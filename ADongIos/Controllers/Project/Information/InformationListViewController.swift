@@ -13,6 +13,7 @@ class InformationListViewController: BaseViewController {
     @IBOutlet weak var tbView: UITableView!
     var data = [TitleModel]()
     var id = 0
+       var callback : ((TitleModel?) -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         tbView.dataSource = self
@@ -59,10 +60,11 @@ extension InformationListViewController: UITableViewDataSource, UITableViewDeleg
         
         if indexPath.row == 1 || indexPath.row == 5 || indexPath.row == 8 || indexPath.row == 12 {
             let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell
-            
+                cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TitleViewCell.identifier, for: indexPath) as! TitleViewCell
+                cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.setData(data: data[indexPath.row])
             return cell
         }
@@ -70,32 +72,32 @@ extension InformationListViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch indexPath.row {
-        case 0:
-            goToBaseInformation() 
-            break
-        case 2:
-            goToProjectBidding()
-            break
-        case 3:
-            goToProductRequirement()
-            break
-        case 4:
-            goToFiles()
-            break
-        case 9:
-            goToChooseWorker()
-            break
-        case 11:
-            goToCheckinOutList()
-            break
-            case 10:
-                goToAlbum()
-                break
-        default:
-            break
-        }
+        callback!(data[indexPath.row])
+//        switch indexPath.row {
+//        case 0:
+//            goToBaseInformation()
+//            break
+//        case 2:
+//            goToProjectBidding()
+//            break
+//        case 3:
+//            goToProductRequirement()
+//            break
+//        case 4:
+//            goToFiles()
+//            break
+//        case 9:
+//            goToChooseWorker()
+//            break
+//        case 11:
+//            goToCheckinOutList()
+//            break
+//            case 10:
+//                goToAlbum()
+//                break
+//        default:
+//            break
+//        }
         
         
     }

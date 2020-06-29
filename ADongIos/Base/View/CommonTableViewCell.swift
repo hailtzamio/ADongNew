@@ -111,11 +111,11 @@ class CommonTableViewCell: UITableViewCell {
    
         
         if data.isSelected ?? false {
-            if let image = UIImage(named: "Checkmark") {
+            if let image = UIImage(named: "round") {
                 imvCheck.setImage(image, for: .normal)
             }
         } else {
-            if let image = UIImage(named: "Checkmarkempty") {
+            if let image = UIImage(named: "tick2") {
                 imvCheck.setImage(image, for: .normal)
             }
         }

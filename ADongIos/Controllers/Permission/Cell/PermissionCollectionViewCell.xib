@@ -21,26 +21,41 @@
                         <rect key="frame" x="10" y="5" width="316" height="261"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmA-pV-hFw">
-                                <rect key="frame" x="137" y="120" width="42" height="21"/>
+                                <rect key="frame" x="15" y="130.5" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_worker" translatesAutoresizingMaskIntoConstraints="NO" id="5YM-WY-Ae2">
+                                <rect key="frame" x="15" y="105.5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="2rE-vR-VYl"/>
+                                    <constraint firstAttribute="width" constant="20" id="S1L-HU-Z0Q"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="YmA-pV-hFw" firstAttribute="centerY" secondItem="baU-qx-rF5" secondAttribute="centerY" id="ZLy-tU-n8K"/>
-                            <constraint firstItem="YmA-pV-hFw" firstAttribute="centerX" secondItem="baU-qx-rF5" secondAttribute="centerX" id="dQI-ID-Yri"/>
+                            <constraint firstItem="5YM-WY-Ae2" firstAttribute="leading" secondItem="baU-qx-rF5" secondAttribute="leading" constant="15" id="8NO-vS-69Z"/>
+                            <constraint firstItem="YmA-pV-hFw" firstAttribute="leading" secondItem="baU-qx-rF5" secondAttribute="leading" constant="15" id="Asy-Fv-aBW"/>
+                            <constraint firstItem="YmA-pV-hFw" firstAttribute="centerY" secondItem="baU-qx-rF5" secondAttribute="centerY" constant="10" id="Pgd-cI-NXZ"/>
+                            <constraint firstItem="YmA-pV-hFw" firstAttribute="top" secondItem="5YM-WY-Ae2" secondAttribute="bottom" constant="5" id="sah-Ei-VzG"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                <real key="value" value="0.5"/>
+                                <real key="value" value="10"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                <size key="value" width="0.0" height="1"/>
+                                <size key="value" width="1" height="1"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                <color key="value" red="0.7843137255" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
@@ -55,9 +70,13 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="336" height="271"/>
             <connections>
+                <outlet property="imv1" destination="5YM-WY-Ae2" id="dPa-jG-xhI"/>
                 <outlet property="tbTitle" destination="YmA-pV-hFw" id="gLY-Cn-AfJ"/>
             </connections>
             <point key="canvasLocation" x="-52.173913043478265" y="-0.33482142857142855"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="add_worker" width="32" height="32"/>
+    </resources>
 </document>

@@ -55,6 +55,10 @@ class FileListViewController: BaseViewController {
                 if(response.data != nil) {
                     self.data = response.data!
                     self.tbView.reloadData()
+                    
+                    if(response.data?.count == 0) {
+                                      self.showNoDataMessage(tbView: self.tbView)
+                                  }
                 }
                 
             case .failure(let error):

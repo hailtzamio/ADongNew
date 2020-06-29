@@ -92,6 +92,7 @@ extension CheckinOutListViewController: UITableViewDataSource, UITableViewDelega
         cell.cons2.constant = 0
         cell.cons1.constant = 0
         cell.setDataCheckOutIn(data: data[indexPath.row])
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     

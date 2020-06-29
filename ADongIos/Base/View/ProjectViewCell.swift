@@ -20,7 +20,9 @@ class ProjectViewCell: UITableViewCell {
     
     @IBOutlet weak var lb5: UILabel!
     
-    @IBOutlet weak var lb6: UILabel!
+    
+    @IBOutlet weak var bt1: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -75,20 +77,20 @@ class ProjectViewCell: UITableViewCell {
         
         switch data.status {
         case ProjectStatus.new:
-            lb6.text = "Mới"
-            lb6.textColor = UIColor.init(hexString: HexColorApp.red)
+            bt1.setTitle("Mới", for: .normal)
+            bt1.backgroundColor = UIColor.init(hexString: HexColorApp.red)
             break
         case ProjectStatus.processing:
-            lb6.text = "Đang thi công"
-                lb6.textColor = UIColor.init(hexString: HexColorApp.orange)
+            bt1.setTitle("Đang thi công", for: .normal)
+            bt1.backgroundColor = UIColor.init(hexString: HexColorApp.orange)
             break
         case ProjectStatus.done:
-            lb6.text = "Hoàn thành"
-                lb6.textColor = UIColor.init(hexString: HexColorApp.green)
+            bt1.setTitle("Hoàn thành", for: .normal)
+            bt1.backgroundColor = UIColor.init(hexString: HexColorApp.green)
             break
         case ProjectStatus.paused:
-            lb6.text = "Tạm dừng"
-              lb6.textColor = UIColor.init(hexString: HexColorApp.blue)
+            bt1.setTitle("Tạm dừng", for: .normal)
+            bt1.backgroundColor = UIColor.init(hexString: HexColorApp.blue)
             break
         default:
             break
