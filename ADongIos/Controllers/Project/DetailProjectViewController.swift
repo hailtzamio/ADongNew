@@ -154,6 +154,10 @@ class DetailProjectViewController: BaseViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+     
+    }
+    
     
     @objc func didTapGoToLeft() {
         let currentIndex = pageMenu!.currentPageIndex

@@ -31,6 +31,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     
     @IBOutlet weak var header: NavigationBar!
     
+    @IBOutlet weak var lb1: UILabel!
     
     @IBOutlet weak var tf10Height: NSLayoutConstraint!
     
@@ -38,8 +39,10 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     @IBOutlet weak var radio1: DLRadioButton!
     @IBOutlet weak var radio2: DLRadioButton!
     @IBOutlet weak var tf10TopSpace: NSLayoutConstraint!
-    var data = Project()
+    var project = Project()
     var isUpdate = true // if false Create
+    var dialog  =  YesNoPopup.instanceFromNib(title: "TRƯỞNG BỘ PHẬN")
+    var dialog2 = YesNoPopup.instanceFromNib(title: "PHÓ BỘ PHẬN")
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
@@ -52,35 +55,45 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         tf4.delegate =  self
         tf4.tag = 2
         
-        
-        
+
         
         if(isUpdate) {
             
-            if(data.teamType == "ADONG") {
+            if(project.teamType == "ADONG") {
                 radio1.isSelected = true
-                tf6.setTitle(data.teamName ?? "Chọn", for: .normal)
+                tf6.setTitle(project.teamName ?? "Chọn", for: .normal)
             } else {
                 radio2.isSelected = true
-                tf6.setTitle(data.contractorName ?? "Chọn", for: .normal)
+                tf6.setTitle(project.contractorName ?? "Chọn", for: .normal)
             }
-            tf1.text = data.name
-            tf2.text = data.address
+            tf1.text = project.name
+            tf2.text = project.address
             
-            tf7.setTitle(data.managerFullName ?? "Chọn", for: .normal)
-            tf8.setTitle(data.deputyManagerFullName ?? "Chọn", for: .normal)
-            tf10.setTitle(data.secretaryFullName ?? "Chọn", for: .normal)
-            tf9.setTitle(data.supervisorFullName ?? "Chọn", for: .normal)
+            
+            if(project.investorContacts != nil && project.investorContacts?.manager != nil) {
+                tf7.setTitle(project.investorContacts?.manager?.name ?? "Chọn", for: .normal)
+                project.investorManagerName = project.investorContacts?.manager?.name
+            }
+            
+            if(project.investorContacts != nil && project.investorContacts?.deputyManager != nil) {
+                tf8.setTitle(project.investorContacts?.deputyManager?.name ?? "Chọn", for: .normal)
+               project.investorDeputyManagerName =  project.investorContacts?.deputyManager?.name
+            }
+            
+       
+            tf10.setTitle(project.secretaryFullName ?? "Chọn", for: .normal)
+            tf9.setTitle(project.supervisorFullName ?? "Chọn", for: .normal)
             
             
             
             let formatter = DateFormatter()
             formatter.dateFormat = "d MMM yyyy at HH:mm"
-            let date = formatter.date (from: data.plannedStartDate!)
+            let date = formatter.date (from: project.plannedStartDate!)
             tf3.setDate(date, animated: false)
             
         } else {
-            
+            project.teamType = "ADONG"
+              radio1.isSelected = true
         }
         
     }
@@ -136,10 +149,10 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     
     @IBAction func location(_ sender: Any) {
         let vc = MapViewController()
-        vc.data = data
+        vc.data = project
         vc.callback = {(coordinate) in
-            self.data.latitude = coordinate?.lat
-            self.data.longitude = coordinate?.long
+            self.project.latitude = coordinate?.lat
+            self.project.longitude = coordinate?.long
             self.tf5.text = coordinate?.name
             
         }
@@ -147,22 +160,22 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     }
     
     @IBAction func chooseTeam(_ sender: Any) {
-        if(data.teamType == "ADONG") {
+        if(project.teamType == "ADONG") {
             if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListTeamViewController") as? ListTeamViewController {
                 vc.isChooseTeam = true
                 vc.callback = {(team) in
-                    self.data.teamId = team?.id
+                    self.project.teamId = team?.id
                     self.tf6.setTitle(team?.name ?? "Chọn", for: .normal)
                 }
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
         
-        if(data.teamType == "CONTRACTOR") {
+        if(project.teamType == "CONTRACTOR") {
             if let vc = UIStoryboard.init(name: "Contractor", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListContractorViewController") as? ListContractorViewController {
                 vc.isToChoose = true
                 vc.callback = {(team) in
-                    self.data.contractorId = team?.id
+                    self.project.contractorId = team?.id
                     self.tf6.setTitle(team?.name ?? "Chọn", for: .normal)
                 }
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -173,27 +186,35 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     }
     
     @IBAction func team(_ sender: Any) {
-        data.teamType = "ADONG"
+        project.teamType = "ADONG"
+        tf6.setTitle("Chọn", for: .normal)
+        lb1.text = "Tên đội *"
     }
     
     @IBAction func contractor(_ sender: Any) {
-        data.teamType = "CONTRACTOR"
+        project.teamType = "CONTRACTOR"
+        tf6.setTitle("Chọn", for: .normal)
+        lb1.text = "Tên đội"
     }
     
-    let dialog = YesNoPopup.instanceFromNib(title: "TRƯỞNG BỘ PHẬN")
-    let dialog2 = YesNoPopup.instanceFromNib(title: "PHÓ BỘ PHẬN")
+
     @IBAction func chooseManager(_ sender: Any) {
         
         
+//        project.typeOfManager = 1
+//
+//        if(isUpdate) {
+//           dialog =  YesNoPopup.instanceFromNib(data : project, title: "TRƯỞNG BỘ PHẬN")
+//        }
         
         dialog.ok = {(worker) in
             print(worker.fullName)
             self.tf7.setTitle(worker.fullName ?? "Chọn", for: .normal)
-            self.data.investorManagerName = worker.fullName
-            self.data.investorManagerPhone = worker.phone
+            self.project.investorManagerName = worker.fullName
+            self.project.investorManagerPhone = worker.phone
             
             if(worker.email != nil) {
-                self.data.investorManagerEmail = worker.email
+                self.project.investorManagerEmail = worker.email
             }
         }
         dialog.show()
@@ -202,14 +223,20 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     
     @IBAction func chooseDeputyManager(_ sender: Any) {
         
+//        project.typeOfManager = 2
+        
+//        if(isUpdate) {
+//          dialog2 =  YesNoPopup.instanceFromNib(data : project, title: "TRƯỞNG BỘ PHẬN")
+//        }
+        
         dialog2.ok = {(worker) in
             print(worker.fullName)
             self.tf8.setTitle(worker.fullName ?? "Chọn", for: .normal)
-            self.data.investorDeputyManagerName = worker.fullName
-            self.data.investorDeputyManagerPhone = worker.phone
+            self.project.investorDeputyManagerName = worker.fullName
+            self.project.investorDeputyManagerPhone = worker.phone
             
             if(worker.email != nil) {
-                self.data.investorDeputyManagerEmail = worker.email
+                self.project.investorDeputyManagerEmail = worker.email
             }
         }
         dialog2.show()
@@ -233,7 +260,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             vc.isTypeOfWorker = TypeOfWorker.secretary
             vc.isRightButtonHide = true
             vc.callback = {(worker) in
-                self.data.secretaryId = worker?.id
+                self.project.secretaryId = worker?.id
                 self.tf10.setTitle(worker?.fullName ?? "Chọn", for: .normal)
             }
             self.navigationController?.pushViewController(vc, animated: true)
@@ -248,7 +275,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             vc.isTypeOfWorker = TypeOfWorker.suppervisor
             vc.isRightButtonHide = true
             vc.callback = {(worker) in
-                self.data.supervisorId = worker?.id
+                self.project.supervisorId = worker?.id
                 self.tf9.setTitle(worker?.fullName ?? "Chọn", for: .normal)
                 
             }
@@ -264,33 +291,16 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             showToast(content: "Nhập thiếu thông tin")
             return
         }
+
+        project.name = tf1.text
+        project.address = tf2.text
         
-//        if(data.teamType == "ADONG"){
-//            showToast(content: "Chọn đội")
-//            return
-//        }
-//        
-//        if(data.teamType != "ADONG"){
-//            showToast(content: "Chọn thư ký")
-//            return
-//        }
-        
-        
-        
-        
-        data.name = tf1.text
-        data.address = tf2.text
-        
-        
-        
+
         if(isUpdate) {
             // Update
-            update(pData: data)
+            update(pData: project)
         } else {
-            
-            
-            
-            create(pData: data)
+            create(pData: project)
         }
     }
     
@@ -301,16 +311,14 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         
         
         if(tf3.date != nil) {
-            data.plannedStartDate = formatter.string(from: tf3.date!)
+            pData.plannedStartDate = formatter.string(from: tf3.date!)
             
         }
         
         if(tf4.date != nil) {
-            data.plannedEndDate = formatter.string(from: tf4.date!)
+            pData.plannedEndDate = formatter.string(from: tf4.date!)
             
         }
-        
-        
         
         showLoading()
         APIClient.updateProject(data: pData) { result in
@@ -341,8 +349,8 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        data.plannedStartDate = formatter.string(from: tf3.date!)
-        data.plannedEndDate = formatter.string(from: tf4.date!)
+        project.plannedStartDate = formatter.string(from: tf3.date!)
+        project.plannedEndDate = formatter.string(from: tf4.date!)
         
  
         
@@ -389,11 +397,11 @@ extension UpdateProjectViewController : IQDropDownTextFieldDelegate, IQDropDownT
         switch textField.tag {
         case 1:
             tf1.text = dateS
-            data.plannedStartDate = dateShow
+            project.plannedStartDate = dateShow
             break
         case 2:
             tf2.text = dateS
-            data.plannedEndDate = dateShow
+            project.plannedEndDate = dateShow
             break
             
         default: break

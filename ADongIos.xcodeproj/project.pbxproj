@@ -150,6 +150,13 @@
 		B58F8A3A2487777100E9BB9E /* SmallInformationViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B58F8A382487777100E9BB9E /* SmallInformationViewCell.xib */; };
 		B58F8A3C2487A58C00E9BB9E /* UpdateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F8A3B2487A58B00E9BB9E /* UpdateTeamViewController.swift */; };
 		B58F8A3E2487A8B200E9BB9E /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F8A3D2487A8B200E9BB9E /* Address.swift */; };
+		B59AE97424A9F64B002C5BF4 /* BaseSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE97324A9F64B002C5BF4 /* BaseSearchViewController.swift */; };
+		B59AE97724AAF0DA002C5BF4 /* ListGoodsIssueNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE97624AAF0DA002C5BF4 /* ListGoodsIssueNoteViewController.swift */; };
+		B59AE97924AAF29C002C5BF4 /* GoodsIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE97824AAF29C002C5BF4 /* GoodsIssue.swift */; };
+		B59AE97B24AAF6F8002C5BF4 /* DetailGoodsIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE97A24AAF6F8002C5BF4 /* DetailGoodsIssueViewController.swift */; };
+		B59AE97D24AB0720002C5BF4 /* ListGoodsIssueDoccumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE97C24AB0720002C5BF4 /* ListGoodsIssueDoccumentViewController.swift */; };
+		B59AE97F24AB097A002C5BF4 /* ListGoodsIssueRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE97E24AB097A002C5BF4 /* ListGoodsIssueRequestViewController.swift */; };
+		B59AE98124AB0C19002C5BF4 /* DetailGoodsRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE98024AB0C19002C5BF4 /* DetailGoodsRequestViewController.swift */; };
 		B5A68D35248F5C9B00FD76A4 /* BaseInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A68D34248F5C9B00FD76A4 /* BaseInformationController.swift */; };
 		B5A68D38248F78EF00FD76A4 /* Trip.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5A68D37248F78EF00FD76A4 /* Trip.storyboard */; };
 		B5A68D3C248F7EC600FD76A4 /* ListTransportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A68D3B248F7EC600FD76A4 /* ListTransportViewController.swift */; };
@@ -342,6 +349,13 @@
 		B58F8A382487777100E9BB9E /* SmallInformationViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallInformationViewCell.xib; sourceTree = "<group>"; };
 		B58F8A3B2487A58B00E9BB9E /* UpdateTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTeamViewController.swift; sourceTree = "<group>"; };
 		B58F8A3D2487A8B200E9BB9E /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		B59AE97324A9F64B002C5BF4 /* BaseSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseSearchViewController.swift; path = ADongIos/Base/BaseSearchViewController.swift; sourceTree = SOURCE_ROOT; };
+		B59AE97624AAF0DA002C5BF4 /* ListGoodsIssueNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListGoodsIssueNoteViewController.swift; sourceTree = "<group>"; };
+		B59AE97824AAF29C002C5BF4 /* GoodsIssue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsIssue.swift; sourceTree = "<group>"; };
+		B59AE97A24AAF6F8002C5BF4 /* DetailGoodsIssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailGoodsIssueViewController.swift; sourceTree = "<group>"; };
+		B59AE97C24AB0720002C5BF4 /* ListGoodsIssueDoccumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListGoodsIssueDoccumentViewController.swift; path = ADongIos/Controllers/WareHouse/goodsreceived/ListGoodsIssueDoccumentViewController.swift; sourceTree = SOURCE_ROOT; };
+		B59AE97E24AB097A002C5BF4 /* ListGoodsIssueRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListGoodsIssueRequestViewController.swift; sourceTree = "<group>"; };
+		B59AE98024AB0C19002C5BF4 /* DetailGoodsRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailGoodsRequestViewController.swift; sourceTree = "<group>"; };
 		B5A68D34248F5C9B00FD76A4 /* BaseInformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInformationController.swift; sourceTree = "<group>"; };
 		B5A68D37248F78EF00FD76A4 /* Trip.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Trip.storyboard; sourceTree = "<group>"; };
 		B5A68D3B248F7EC600FD76A4 /* ListTransportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTransportViewController.swift; sourceTree = "<group>"; };
@@ -536,6 +550,7 @@
 		B54A01392478298E00E5F310 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B59AE97824AAF29C002C5BF4 /* GoodsIssue.swift */,
 				B54A017824782D7000E5F310 /* Article.swift */,
 				B54A017D24782D7100E5F310 /* Category.swift */,
 				B54A017E24782D7100E5F310 /* CreateRes.swift */,
@@ -637,6 +652,7 @@
 				B58E15E8248E3D070054E9A0 /* MenuPaeg */,
 				B54A01972478324F00E5F310 /* View */,
 				B54A015F24782C3D00E5F310 /* BaseViewController.swift */,
+				B59AE97324A9F64B002C5BF4 /* BaseSearchViewController.swift */,
 				B54A015E24782C3D00E5F310 /* PopupView.swift */,
 				B5DACF2A249E089D007656ED /* CheckBoxCustom.swift */,
 				B5DACF2C249E0AE8007656ED /* RadioButtonCustom.swift */,
@@ -717,6 +733,7 @@
 		B55CD0322490EE0E00662427 /* WareHouse */ = {
 			isa = PBXGroup;
 			children = (
+				B59AE97524AAF0A8002C5BF4 /* googIssue */,
 				B58561B124934E56000A5675 /* goodsreceived */,
 				B58561A624932EA9000A5675 /* factory */,
 				B58561A524932E98000A5675 /* stock */,
@@ -749,6 +766,9 @@
 		B58561A524932E98000A5675 /* stock */ = {
 			isa = PBXGroup;
 			children = (
+				B59AE98024AB0C19002C5BF4 /* DetailGoodsRequestViewController.swift */,
+				B59AE97E24AB097A002C5BF4 /* ListGoodsIssueRequestViewController.swift */,
+				B59AE97C24AB0720002C5BF4 /* ListGoodsIssueDoccumentViewController.swift */,
 				B58561A724932FCC000A5675 /* ListStockViewController.swift */,
 				B55CD0382490F07100662427 /* StockTitlesViewController.swift */,
 			);
@@ -840,6 +860,15 @@
 				B58F8A2F248746FF00E9BB9E /* Team.storyboard */,
 			);
 			path = Team;
+			sourceTree = "<group>";
+		};
+		B59AE97524AAF0A8002C5BF4 /* googIssue */ = {
+			isa = PBXGroup;
+			children = (
+				B59AE97A24AAF6F8002C5BF4 /* DetailGoodsIssueViewController.swift */,
+				B59AE97624AAF0DA002C5BF4 /* ListGoodsIssueNoteViewController.swift */,
+			);
+			path = googIssue;
 			sourceTree = "<group>";
 		};
 		B5A68D36248F78DE00FD76A4 /* Trip */ = {
@@ -1138,6 +1167,7 @@
 				B5B6660C248627C2005660FE /* LoadMoreControl.swift in Sources */,
 				B5356484248CC73300FF5883 /* UpdateDriverViewController.swift in Sources */,
 				B5356482248CC2C800FF5883 /* DetailDriverViewController.swift in Sources */,
+				B59AE97424A9F64B002C5BF4 /* BaseSearchViewController.swift in Sources */,
 				B58E160A248E4A450054E9A0 /* ProgessViewController.swift in Sources */,
 				B5A68D44248F88F200FD76A4 /* TripTransportViewController.swift in Sources */,
 				B54A01A42478326C00E5F310 /* CommonTableViewCell.swift in Sources */,
@@ -1145,6 +1175,7 @@
 				B58E15DF248E32BE0054E9A0 /* ListProjectViewController.swift in Sources */,
 				B5B6660B248627C2005660FE /* LoadingCell.swift in Sources */,
 				B5B00858249F5B9B00A9EEFB /* FileChildListViewController.swift in Sources */,
+				B59AE97F24AB097A002C5BF4 /* ListGoodsIssueRequestViewController.swift in Sources */,
 				B54A0194247831EE00E5F310 /* LorryListViewController.swift in Sources */,
 				B54A018024782D7100E5F310 /* User.swift in Sources */,
 				B5356480248CBBE700FF5883 /* Driver.swift in Sources */,
@@ -1168,6 +1199,7 @@
 				B58561B924936A91000A5675 /* CreateGoodsReceivedViewController.swift in Sources */,
 				B58E15FF248E3D660054E9A0 /* CAPSPageMenu+Options.swift in Sources */,
 				B535648F248CE20D00FF5883 /* UpdateContractorViewController.swift in Sources */,
+				B59AE97D24AB0720002C5BF4 /* ListGoodsIssueDoccumentViewController.swift in Sources */,
 				B51F562E2478DC1C00B3851A /* UpdateProductViewController.swift in Sources */,
 				B56FD912248F427400DCAA54 /* LineViewCell.swift in Sources */,
 				B54A018424782D7100E5F310 /* Error.swift in Sources */,
@@ -1210,9 +1242,11 @@
 				B54A01B42478329900E5F310 /* String+Extension.swift in Sources */,
 				B5DACF2D249E0AE8007656ED /* RadioButtonCustom.swift in Sources */,
 				B51F563A247954CD00B3851A /* ListWorkerViewController.swift in Sources */,
+				B59AE97724AAF0DA002C5BF4 /* ListGoodsIssueNoteViewController.swift in Sources */,
 				B58C5A7124A5EDEB004F6180 /* CreateProductReqViewController.swift.swift in Sources */,
 				B54A018624782D7100E5F310 /* ResponseDefault.swift in Sources */,
 				B58F8A36248751E500E9BB9E /* DetailTeamViewController.swift in Sources */,
+				B59AE97924AAF29C002C5BF4 /* GoodsIssue.swift in Sources */,
 				B56FD8FE248E731000DCAA54 /* CheckInOut.swift in Sources */,
 				B54A015724782BD600E5F310 /* PermissViewController.swift in Sources */,
 				B514B4E924A7515100913E3D /* NoticePopupView.swift in Sources */,
@@ -1238,10 +1272,12 @@
 				B55CD0282490E5FA00662427 /* TransportImagesViewController.swift in Sources */,
 				B58561B0249340FA000A5675 /* CreateWarehousetViewController.swift in Sources */,
 				B51F56262478C3BD00B3851A /* CardView.swift in Sources */,
+				B59AE98124AB0C19002C5BF4 /* DetailGoodsRequestViewController.swift in Sources */,
 				B56FD902248F287700DCAA54 /* ProgressProject.swift in Sources */,
 				B51F562F2478DC1C00B3851A /* DetailProductViewController.swift in Sources */,
 				B58E15E2248E355D0054E9A0 /* ProjectViewCell.swift in Sources */,
 				B54A015124782B2400E5F310 /* SplashViewController.swift in Sources */,
+				B59AE97B24AAF6F8002C5BF4 /* DetailGoodsIssueViewController.swift in Sources */,
 				B514B4E024A6339A00913E3D /* CardViewCustom.swift in Sources */,
 				B55CD0362490EF3300662427 /* DetailWareHouseViewController.swift in Sources */,
 			);

@@ -46,11 +46,12 @@ extension FactoryTitlesViewController: UITableViewDataSource, UITableViewDelegat
         
         if indexPath.row == 1 || indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell
-            
+                cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TitleViewCell.identifier, for: indexPath) as! TitleViewCell
             cell.setData(data: data[indexPath.row])
+                cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
         
@@ -62,6 +63,9 @@ extension FactoryTitlesViewController: UITableViewDataSource, UITableViewDelegat
         case 0:
             goToFatories()
             break
+            case 2:
+                  goToGoodsIssuesList()
+                  break
         default:
             break
         }
@@ -79,4 +83,12 @@ extension FactoryTitlesViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    func goToGoodsIssuesList() {
+           if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListGoodsIssueNoteViewController") as? ListGoodsIssueNoteViewController {
+               vc.id = id
+               vc.titleHeader = "Yêu Cầu Sản Xuất"
+               navigationController?.pushViewController(vc, animated: true)
+           }
+       }
 }

@@ -8,13 +8,13 @@
 
 import UIKit
 
-class GoodsReceivedNote : Codable {
+class GoodsIssue : Codable {
     var id : Int?
     var code : String?
     var deliveredBy : String?
     var ref : String?
     var note : String?
-    var status : String?
+    var status : Int?
     var createdTime : String?
     var updatedTime : String?
     var warehouseId : Int?
@@ -24,11 +24,19 @@ class GoodsReceivedNote : Codable {
     var updatedById : Int?
     var updatedByFullName : String?
     var confirmationDate : String?
-        var projectId : Int?
-      var reason : String?
-    var projectName : String?
-       var expectedDatetime : String?
     
+    var projectName : String?
+    var expectedDatetime : String?
+    
+    var plannedDatetime : String?
+    
+    var productReqCode : String?
+    var transportReqCode : String?
+    var projectAddress : String?
+    var productReqId : Int?
+    var projectId : Int?
+    
+
     var lines : [Product]?
 }
 

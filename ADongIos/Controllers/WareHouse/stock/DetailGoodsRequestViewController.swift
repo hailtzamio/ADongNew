@@ -9,9 +9,9 @@
 import UIKit
 import Kingfisher
 
-class DetailGoodsReceivedViewController: BaseViewController {
+class DetailGoodsRequestViewController: BaseViewController {
     var id = 0
-    var item:GoodsReceivedNote? = nil
+    var item:GoodsIssue? = nil
     var itemNames = ["THÔNG TIN CƠ BẢN ", "DANH SÁCH VẬT TƯ"]
     
     
@@ -80,7 +80,7 @@ class DetailGoodsReceivedViewController: BaseViewController {
         workers.removeAll()
         
         showLoading()
-        APIClient.getGoodsReceivedNote(id: id) { result in
+        APIClient.getGoodsRequest(id: id) { result in
             self.stopLoading()
             switch result {
             case .success(let response):
@@ -92,15 +92,13 @@ class DetailGoodsReceivedViewController: BaseViewController {
                     self.data.append(Information(pKey: "Code",pValue: value.code ?? "---"))
                     
                     
-                    self.data.append(Information(pKey: "Người giao",pValue: value.deliveredBy ?? "---"))
-                    
-                    self.data.append(Information(pKey: "Mã chứng từ gốc",pValue: value.ref ?? "---"))
+                    self.data.append(Information(pKey: "Ngày dự kiến",pValue: value.plannedDatetime ?? "---"))
                     
                     self.data.append(Information(pKey: "Kho",pValue: value.warehouseName ?? "---"))
                     
                     self.data.append(Information(pKey: "Ghi chú",pValue: value.note ?? "---"))
                     
-                    if(value.status == "DONE") {
+                    if(value.status == 1) {
                        self.data.append(Information(pKey: "Trạng thái",pValue: "Hoàn thành"))
                     } else {
                        self.data.append(Information(pKey: "Trạng thái",pValue: "Nháp"))
@@ -120,7 +118,7 @@ class DetailGoodsReceivedViewController: BaseViewController {
         }
     }
     
-    private func convertData(value:GoodsReceivedNote) {
+    private func convertData(value:GoodsIssue) {
         if(value.code == "") {
             value.code = nil
         }
@@ -166,7 +164,7 @@ class DetailGoodsReceivedViewController: BaseViewController {
     
 }
 
-extension DetailGoodsReceivedViewController: UITableViewDataSource, UITableViewDelegate {
+extension DetailGoodsRequestViewController: UITableViewDataSource, UITableViewDelegate {
     
     @objc func handleRegister(){
 //        if let vc = UIStoryboard.init(name: "Worker", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListWorkerViewController") as? ListWorkerViewController {

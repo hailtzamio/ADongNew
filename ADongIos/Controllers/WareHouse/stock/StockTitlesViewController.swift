@@ -58,11 +58,12 @@ extension StockTitlesViewController: UITableViewDataSource, UITableViewDelegate 
         
         if indexPath.row == 1 || indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell
-            
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TitleViewCell.identifier, for: indexPath) as! TitleViewCell
             cell.setData(data: data[indexPath.row])
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
         
@@ -76,6 +77,12 @@ extension StockTitlesViewController: UITableViewDataSource, UITableViewDelegate 
             break
         case 2:
             goToGoodsReceivedNote()
+            break
+        case 3:
+            goToGoodsIssueDoccument()
+            break
+        case 5:
+            goToGoodsRequrement()
             break
         default:
             break
@@ -102,5 +109,18 @@ extension StockTitlesViewController {
         }
     }
     
+    func goToGoodsIssueDoccument() {
+        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListGoodsIssueDoccumentViewController") as? ListGoodsIssueDoccumentViewController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func goToGoodsRequrement() {
+        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListGoodsIssueRequestViewController") as? ListGoodsIssueRequestViewController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
 }

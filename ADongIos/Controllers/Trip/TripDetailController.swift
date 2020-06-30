@@ -163,6 +163,7 @@ extension TripDetailController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
             cell.setData(data: data[indexPath.row])
+                 cell.selectionStyle = UITableViewCell.SelectionStyle.none
             if(indexPath.row == data.count - 1) {
                 cell.line.isHidden = true
             }
@@ -173,6 +174,7 @@ extension TripDetailController: UITableViewDataSource, UITableViewDelegate {
             //            if(indexPath.row == data1.count - 1) {
             //                cell.line.isHidden = true
             //            }
+                 cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         default:
             break

@@ -8,26 +8,20 @@
 
 import UIKit
 
-class ListStockViewController: BaseViewController, UISearchBarDelegate, LoadMoreControlDelegate {
+class ListGoodsIssueDoccumentViewController: BaseViewController, UISearchBarDelegate, LoadMoreControlDelegate {
     
     
-    var data = [Warehouse]()
+    var data = [GoodsReceivedNote]()
     fileprivate var activityIndicator: LoadMoreActivityIndicator!
     var page = 0
     var totalPages = 0
     
     var removeTeamId = 0
     var id = 0
-    var titleHeader = "Kho"
-    var type = "STOCK"
-    var callback : ((Warehouse?) -> Void)?
-    
-    // Create
-    var isChooseWarehouse = false
-    
+    var titleHeader = "Phiếu Xuất Kho"
+  
     @IBOutlet weak var tbView: UITableView!
-    @IBOutlet weak var header: NavigationBar!
-    
+     @IBOutlet weak var header: NavigationBar!
     var loadMoreControl: LoadMoreControl!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +29,8 @@ class ListStockViewController: BaseViewController, UISearchBarDelegate, LoadMore
         popupHandle() 
         tbView.dataSource = self
         tbView.delegate = self
-        tbView.register(InformationDetailCell.nib, forCellReuseIdentifier: InformationDetailCell.identifier)
-        
+        tbView.register(WareHouseViewCell.nib, forCellReuseIdentifier: WareHouseViewCell.identifier)
+    
         loadMoreControl = LoadMoreControl(scrollView: tbView, spacingFromLastCell: 10, indicatorHeight: 60)
         loadMoreControl.delegate = self
     }
@@ -55,17 +49,16 @@ class ListStockViewController: BaseViewController, UISearchBarDelegate, LoadMore
         
         header.isRightButtonHide = true
         header.rightAction = {
-            if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "CreateWarehousetViewController") as? CreateWarehousetViewController {
-                vc.isUpdate = false
-                vc.type = "STOCK"
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
+           if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "CreateGoodsReceivedViewController") as? CreateGoodsReceivedViewController {
+                           vc.isUpdate = false
+                           self.navigationController?.pushViewController(vc, animated: true)
+           }
         }
     }
     
     func getData() {
         showLoading()
-        APIClient.getWarehouses(id : id, name : "", type: type) { result in
+        APIClient.getGoodsIssueDoccuments { result in
             self.stopLoading()
             switch result {
             case .success(let response):
@@ -104,41 +97,36 @@ class ListStockViewController: BaseViewController, UISearchBarDelegate, LoadMore
     
 }
 
-extension ListStockViewController: UITableViewDataSource, UITableViewDelegate {
+extension ListGoodsIssueDoccumentViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
-        cell.setDataWareHouse(data: data[indexPath.row])
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: WareHouseViewCell.identifier, for: indexPath) as! WareHouseViewCell
+        cell.setDataGoodsReceivedNote(data: data[indexPath.row])
+    cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(isChooseWarehouse) {
-            
-            callback!(data[indexPath.row])
-            goBack()}
-        
-        //        if let vc = UIStoryboard.init(name: "Driver", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailDriverViewController") as? DetailDriverViewController {
-        //            vc.id = data[indexPath.row].id!
-        //            navigationController?.pushViewController(vc, animated: true)
-        //        }
+        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailGoodsReceivedViewController") as? DetailGoodsReceivedViewController {
+            vc.id = data[indexPath.row].id!
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         loadMoreControl.didScroll()
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            removeTeamId = data[indexPath.row].id!
-            showYesNoPopup(title: "Xác nhận", message: "Chắc chắn xóa?")
-        }
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//           if (editingStyle == .delete) {
+//            removeTeamId = data[indexPath.row].id!
+//               showYesNoPopup(title: "Xác nhận", message: "Chắc chắn xóa?")
+//           }
+//    }
     
     func popupHandle() {
         
@@ -153,7 +141,7 @@ extension ListStockViewController: UITableViewDataSource, UITableViewDelegate {
                 switch result {
                 case .success(let response):
                     if (response.status == 1) {
-                        self?.showToast(content: "Thành công")
+                       self?.showToast(content: "Thành công")
                         self?.data.removeAll()
                         self?.page = 0
                         self?.getData()

@@ -10,7 +10,6 @@ import UIKit
 
 class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMoreControlDelegate {
     
-    @IBOutlet weak var searchBar: UISearchBar!
     var data = [Worker]()
     fileprivate var activityIndicator: LoadMoreActivityIndicator!
     var page = 0
@@ -19,6 +18,7 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
     @IBOutlet weak var header: NavigationBar!
     var loadMoreControl: LoadMoreControl!
     
+    @IBOutlet weak var tfSearch: UITextField!
     // For Adding To Team
     var isToChooseWorker = false
     var team:Team? = nil
@@ -75,17 +75,23 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
             }
         }
         
-   for textField in searchBar.subviews.first!.subviews where textField is UITextField {
-            textField.subviews.first?.backgroundColor = .white
-            textField.subviews.first?.layer.cornerRadius = 10.5 //I set 10.5 because is approximately the system value
-            textField.subviews.first?.layer.masksToBounds = true
-            //Continue changing more properties...
-        }
+        tfSearch.addPadding(.left(20.0))
+        tfSearch.returnKeyType = UIReturnKeyType.search
+        tfSearch.addTarget(self, action: #selector(enterPressed), for: .editingDidEndOnExit)
+        
+    }
+    
+    @objc func enterPressed(){
+        //do something with typed text if needed
+        tfSearch.resignFirstResponder()
+        page = 0
+        data.removeAll()
+        getData()
     }
     
     func getWorkerNotLeader() {
         showLoading()
-        APIClient.getWorkerNotLeader(page : page, name : searchBar.text ?? "") { result in
+        APIClient.getWorkerNotLeader(page : page, name : tfSearch.text ?? "") { result in
             self.stopLoading()
             switch result {
             case .success(let response):
@@ -109,7 +115,7 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
     
     func getData() {
         showLoading()
-        APIClient.getWorkers(page : page, name : searchBar.text ?? "") { result in
+        APIClient.getWorkers(page : page, name : tfSearch.text ?? "") { result in
             self.stopLoading()
             switch result {
             case .success(let response):

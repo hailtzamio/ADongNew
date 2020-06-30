@@ -47,7 +47,7 @@ class BaseInformationController: BaseViewController {
         
         header.rightAction = {
             if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateProjectViewController") as? UpdateProjectViewController {
-                vc.data = self.item
+                vc.project = self.item
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
@@ -109,7 +109,7 @@ class BaseInformationController: BaseViewController {
                     }
                     
                     if(value.investorContacts != nil && value.investorContacts?.deputyManager != nil) {
-                        self.data2.append(Information(pKey: "Trưởng bộ phận",pValue: value.investorContacts?.deputyManager?.name ?? "---"))
+                        self.data2.append(Information(pKey: "Phó bộ phận",pValue: value.investorContacts?.deputyManager?.name ?? "---"))
                     }
                     
                     
@@ -156,7 +156,7 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
         
         let sectionName = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
         sectionName.text = itemNames[section]
-        sectionName.textColor = UIColor.init(hexString: "#fb9214")
+        sectionName.textColor = UIColor.init(hexString: HexColorApp.orange)
         sectionName.font = UIFont.systemFont(ofSize: 17)
         sectionName.textAlignment = .left
         sectionName.font = UIFont.boldSystemFont(ofSize: 16)
@@ -202,13 +202,17 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
             cell.setData(data: data1[indexPath.row])
             if(indexPath.row == data1.count - 1) {
                 cell.line.isHidden = true
+            } else {
+                cell.line.isHidden = false
             }
             break
         case 2:
             cell.setData(data: data2[indexPath.row])
             if(indexPath.row == data2.count - 1) {
                 cell.line.isHidden = true
-            }
+            } else {
+                           cell.line.isHidden = false
+                       }
             break
             //        case 1,3 :
             //            let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell

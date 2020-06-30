@@ -58,7 +58,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q01-XU-58J">
-                                <rect key="frame" x="434" y="77.5" width="85" height="25"/>
+                                <rect key="frame" x="15" y="129" width="85" height="25"/>
                                 <color key="backgroundColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="W40-Nz-o7Q"/>
@@ -81,20 +81,20 @@
                             <constraint firstAttribute="trailing" secondItem="whr-So-hlD" secondAttribute="trailing" constant="15" id="DWY-eB-mnA"/>
                             <constraint firstItem="re9-iE-QmV" firstAttribute="leading" secondItem="TUt-9o-qQL" secondAttribute="trailing" constant="5" id="Gzh-aP-8hl"/>
                             <constraint firstItem="TUt-9o-qQL" firstAttribute="leading" secondItem="LvC-qB-TS6" secondAttribute="leading" constant="15" id="HIb-Rj-sRJ"/>
+                            <constraint firstItem="q01-XU-58J" firstAttribute="leading" secondItem="LvC-qB-TS6" secondAttribute="leading" constant="15" id="L93-dw-Ke3"/>
                             <constraint firstItem="Ebr-z8-nhT" firstAttribute="leading" secondItem="TUt-9o-qQL" secondAttribute="leading" id="LJO-lL-tXU"/>
                             <constraint firstItem="wOX-aV-Juc" firstAttribute="trailing" secondItem="whr-So-hlD" secondAttribute="trailing" id="VNs-Ez-rat"/>
                             <constraint firstItem="whr-So-hlD" firstAttribute="leading" secondItem="TUt-9o-qQL" secondAttribute="leading" id="Vth-eM-u8S"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wOX-aV-Juc" secondAttribute="bottom" constant="3" id="XdX-a6-rBs"/>
                             <constraint firstAttribute="trailing" secondItem="Ebr-z8-nhT" secondAttribute="trailing" constant="15" id="Xq3-nf-JEp"/>
                             <constraint firstItem="wOX-aV-Juc" firstAttribute="top" secondItem="bj9-TP-V9X" secondAttribute="bottom" constant="5" id="YBO-o9-NRD"/>
                             <constraint firstItem="wOX-aV-Juc" firstAttribute="leading" secondItem="bj9-TP-V9X" secondAttribute="leading" id="cBs-lU-8pE"/>
+                            <constraint firstItem="q01-XU-58J" firstAttribute="top" secondItem="wOX-aV-Juc" secondAttribute="bottom" constant="7" id="cXa-vo-nOd"/>
                             <constraint firstItem="bj9-TP-V9X" firstAttribute="top" secondItem="whr-So-hlD" secondAttribute="bottom" constant="5" id="dav-OJ-pnI"/>
                             <constraint firstItem="Ebr-z8-nhT" firstAttribute="top" secondItem="TUt-9o-qQL" secondAttribute="bottom" constant="5" id="f7l-Wd-Cng"/>
-                            <constraint firstItem="q01-XU-58J" firstAttribute="centerY" secondItem="bj9-TP-V9X" secondAttribute="centerY" id="jLh-rG-65a"/>
                             <constraint firstItem="re9-iE-QmV" firstAttribute="centerY" secondItem="TUt-9o-qQL" secondAttribute="centerY" id="kK7-8G-Gxh"/>
-                            <constraint firstAttribute="trailing" secondItem="q01-XU-58J" secondAttribute="trailing" constant="15" id="qQp-jU-pkb"/>
                             <constraint firstAttribute="trailing" secondItem="re9-iE-QmV" secondAttribute="trailing" constant="15" id="rmm-Me-0jV"/>
                             <constraint firstItem="bj9-TP-V9X" firstAttribute="leading" secondItem="whr-So-hlD" secondAttribute="leading" id="xkq-wA-TAh"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="q01-XU-58J" secondAttribute="bottom" constant="3" id="y6f-tq-wfv"/>
                             <constraint firstItem="TUt-9o-qQL" firstAttribute="top" secondItem="LvC-qB-TS6" secondAttribute="top" constant="15" id="yjd-24-GIY"/>
                         </constraints>
                     </view>

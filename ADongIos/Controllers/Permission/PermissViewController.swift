@@ -59,6 +59,16 @@ class PermissViewController: BaseViewController {
         self.collectionView.reloadData()
     }
     
+    
+    @IBAction func goToProfile(_ sender: Any) {
+        
+        
+    }
+    
+    @IBAction func goToNotification(_ sender: Any) {
+        
+        
+    }
 }
 
 extension PermissViewController : UICollectionViewDataSource, UICollectionViewDelegate {

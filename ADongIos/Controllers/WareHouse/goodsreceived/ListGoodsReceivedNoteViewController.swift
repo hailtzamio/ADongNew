@@ -18,7 +18,7 @@ class ListGoodsReceivedNoteViewController: BaseViewController, UISearchBarDelega
     
     var removeTeamId = 0
     var id = 0
-    var titleHeader = "Danh Sách Phiếu Nhập Kho"
+    var titleHeader = "Phiếu Nhập Kho"
   
     @IBOutlet weak var tbView: UITableView!
      @IBOutlet weak var header: NavigationBar!
@@ -47,6 +47,7 @@ class ListGoodsReceivedNoteViewController: BaseViewController, UISearchBarDelega
             self.navigationController?.popViewController(animated: true)
         }
         
+        header.isRightButtonHide = true
         header.rightAction = {
            if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "CreateGoodsReceivedViewController") as? CreateGoodsReceivedViewController {
                            vc.isUpdate = false
@@ -105,7 +106,7 @@ extension ListGoodsReceivedNoteViewController: UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WareHouseViewCell.identifier, for: indexPath) as! WareHouseViewCell
         cell.setDataGoodsReceivedNote(data: data[indexPath.row])
-
+    cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
@@ -120,12 +121,12 @@ extension ListGoodsReceivedNoteViewController: UITableViewDataSource, UITableVie
         loadMoreControl.didScroll()
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-           if (editingStyle == .delete) {
-            removeTeamId = data[indexPath.row].id!
-               showYesNoPopup(title: "Xác nhận", message: "Chắc chắn xóa?")
-           }
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//           if (editingStyle == .delete) {
+//            removeTeamId = data[indexPath.row].id!
+//               showYesNoPopup(title: "Xác nhận", message: "Chắc chắn xóa?")
+//           }
+//    }
     
     func popupHandle() {
         

@@ -55,7 +55,7 @@ enum ApiRouter: URLRequestConvertible {
     case updateContractor(data: Contractor)
     case createContractor(data: Contractor)
     
-    case getProjects(page:Int,name:String)
+    case getProjects(page:Int,name:String, status:String)
     case getProject(id: Int)
     case removeProject(id: Int)
     case updateProject(data: Project)
@@ -76,9 +76,15 @@ enum ApiRouter: URLRequestConvertible {
     case createWarehouse(data : Warehouse)
     case getWarehouses(id:Int,name:String, type : String )
     case getGoodsReceivedNotes
+    case getGoodsIssueDoccuments
+    case getGoodsIssueRequests
+    case getManuFactureRequest
+    case getManuFactureRequestById(id: Int)
     case getGoodsReceivedNote(id: Int)
     case createGoodsReceivedNote(data: GoodsReceivedNote)
     case getProductRequirements(id: Int)
+    case getGoodsRequest(id: Int)
+    
     case getBiddings(id:Int)
     case projectBiddingApprove(id:Int)
     case getProjectCheckOut(id:Int)
@@ -105,7 +111,7 @@ enum ApiRouter: URLRequestConvertible {
              .getTeams, .getTeam, .getTeamWorkers,
              .getDrivers, .getDriver,
              .getContractors, .getContractor,
-             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote, .getProductRequirements, .getBiddings, .getWorkerNotLeader, .getProjectCheckOut, .getProjectFiles, .getProjectImages, .getProjectCompletionImages
+             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote, .getProductRequirements, .getBiddings, .getWorkerNotLeader, .getProjectCheckOut, .getProjectFiles, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest
             :
             return .get
         }
@@ -151,6 +157,8 @@ enum ApiRouter: URLRequestConvertible {
             return "worker"
         case .getWorker(let id):
             return "worker/\(id)"
+            case .getGoodsRequest(let id):
+                      return "goodsIssueRequest/\(id)"
         case .removeWorker(let id):
             return "worker/\(id)"
         case .updateWorker(let data):
@@ -245,8 +253,16 @@ enum ApiRouter: URLRequestConvertible {
         case .getWarehouses :
             return "warehouse"
             
-        case .getGoodsReceivedNotes :
-            return "goodsReceivedNote"
+        case .getManuFactureRequest :
+            return "manufactureRequest"
+            
+            case .getGoodsReceivedNotes :
+                  return "goodsReceivedNote"
+            case .getGoodsIssueDoccuments :
+                  return "goodsIssueDocument"
+   
+            case .getGoodsIssueRequests :
+                             return "goodsIssueRequest"
             
         case .createGoodsReceivedNote :
             return "goodsReceivedNote"
@@ -273,6 +289,9 @@ enum ApiRouter: URLRequestConvertible {
             
             case .createTrip(let data):
                   return "trip"
+            case .getManuFactureRequestById(let id) :
+                      return "manufactureRequest/\(id)"
+            
             
         }
     }
@@ -287,7 +306,7 @@ enum ApiRouter: URLRequestConvertible {
         case .createLorry(let data):
             return ["brand": data.brand, "model": data.model,"plateNumber": data.plateNumber, "capacity": data.capacity]
             
-        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject, .getProjectImages, .getProjectCompletionImages :
+        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest:
             return nil
         case .getProducts(let page, let name) :
             return  [ "page": page,
@@ -300,7 +319,7 @@ enum ApiRouter: URLRequestConvertible {
             return ["address": data.address, "isTeamLeader": data.isTeamLeader,"lineId": data.lineId, "bankName": data.bankName, "bankAccount": data.bankAccount, "fullName": data.fullName, "email": data.email, "phone": data.phone, "phone2": data.phone2, "avatarExtId": data.avatarExtId]
         case .getWorkers(let page, let name) :
             return  [ "page": page,
-                      "name": name, "sort" : "id,desc"  ]
+                      "fullName": name, "sort" : "id,desc"  ]
         case .getWorkerNotLeader(let page, let name) :
             return  [ "page": page,
                       "name": name, "sort" : "id,desc", "isTeamLeader" : false ]
@@ -340,13 +359,13 @@ enum ApiRouter: URLRequestConvertible {
             return ["name": data.name,"phone": data.phone, "password": data.password, "address": data.address, "email": data.email, "provinceId": data.provinceId, "districtId": data.districtId]
             
         case .createProject(let data):
-            return ["name": data.name, "address": data.address,"teamType": data.teamType,"managerId" : data.managerId, "deputyManagerId": data.deputyManagerId, "secretaryId": data.secretaryId, "teamId": data.teamId, "contractorId": data.contractorId, "supervisorId": data.supervisorId, "plannedStartDate": data.plannedStartDate, "plannedEndDate": data.plannedEndDate, "latitude": data.latitude, "longitude": data.longitude]
+            return ["name": data.name, "address": data.address,"teamType": data.teamType,"managerId" : data.managerId, "deputyManagerId": data.deputyManagerId, "secretaryId": data.secretaryId, "teamId": data.teamId, "contractorId": data.contractorId, "supervisorId": data.supervisorId, "plannedStartDate": data.plannedStartDate, "plannedEndDate": data.plannedEndDate, "latitude": data.latitude, "longitude": data.longitude,"investorManagerName": data.investorManagerName,"investorManagerPhone": data.investorManagerPhone,"investorManagerEmail": data.investorManagerEmail,"investorDeputyManagerName": data.investorDeputyManagerName,"investorDeputyManagerPhone": data.investorDeputyManagerPhone,"investorDeputyManagerEmail": data.investorDeputyManagerEmail]
         case .updateProject(let data):
-            return ["name": data.name, "address": data.address,"teamType": data.teamType,"managerId" : data.managerId, "deputyManagerId": data.deputyManagerId, "secretaryId": data.secretaryId, "teamId": data.teamId, "contractorId": data.contractorId, "supervisorId": data.supervisorId, "plannedStartDate": data.plannedStartDate, "plannedEndDate": data.plannedEndDate, "latitude": data.latitude, "longitude": data.longitude]
+            return ["name": data.name, "address": data.address,"teamType": data.teamType,"managerId" : data.managerId, "deputyManagerId": data.deputyManagerId, "secretaryId": data.secretaryId, "teamId": data.teamId, "contractorId": data.contractorId, "supervisorId": data.supervisorId, "plannedStartDate": data.plannedStartDate, "plannedEndDate": data.plannedEndDate, "latitude": data.latitude, "longitude": data.longitude,"investorManagerName": data.investorManagerName,"investorManagerPhone": data.investorManagerPhone,"investorManagerEmail": data.investorManagerEmail,"investorDeputyManagerName": data.investorDeputyManagerName,"investorDeputyManagerPhone": data.investorDeputyManagerPhone,"investorDeputyManagerEmail": data.investorDeputyManagerEmail]
             
-        case .getProjects(let page, let name) :
+        case .getProjects(let page, let name, let status) :
             return  [ "page": page,
-                      "name": name, "sort" : "id,desc" ]
+                      "search": name, "status" : status, "sort" : "id,desc" ]
             
         case .checkin(let data) :
             return  [ "projectId": data.projectId,

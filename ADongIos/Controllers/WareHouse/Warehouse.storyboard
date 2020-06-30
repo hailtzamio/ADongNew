@@ -55,7 +55,7 @@
                                     <constraint firstAttribute="height" constant="50" id="eqH-j3-she"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fBF-Ms-Gmr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fBF-Ms-Gmr">
                                 <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
@@ -251,7 +251,7 @@
                                     <constraint firstAttribute="height" constant="50" id="5pr-1t-LYB"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y2p-j7-RQb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y2p-j7-RQb">
                                 <rect key="frame" x="0.0" y="99" width="414" height="763"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
@@ -315,7 +315,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="38S-24-6Lk">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="38S-24-6Lk">
                                 <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
@@ -481,6 +481,211 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T3A-T4-2sw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2841" y="-1671"/>
+        </scene>
+        <!--List Goods Issue Note View Controller-->
+        <scene sceneID="yaY-PP-Hfb">
+            <objects>
+                <viewController storyboardIdentifier="ListGoodsIssueNoteViewController" id="ZXR-JZ-d9C" customClass="ListGoodsIssueNoteViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PaG-IM-xYI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6wY-w0-3H8" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="11H-lH-CNF"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ofr-ph-38M">
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Ofr-ph-38M" firstAttribute="top" secondItem="6wY-w0-3H8" secondAttribute="bottom" id="2hW-Ce-7MD"/>
+                            <constraint firstItem="6wY-w0-3H8" firstAttribute="trailing" secondItem="muN-rr-XME" secondAttribute="trailing" id="7Et-DO-Qfb"/>
+                            <constraint firstItem="muN-rr-XME" firstAttribute="trailing" secondItem="Ofr-ph-38M" secondAttribute="trailing" id="9fZ-ks-enj"/>
+                            <constraint firstItem="6wY-w0-3H8" firstAttribute="top" secondItem="muN-rr-XME" secondAttribute="top" id="cUo-wL-eWf"/>
+                            <constraint firstItem="muN-rr-XME" firstAttribute="bottom" secondItem="Ofr-ph-38M" secondAttribute="bottom" id="fXz-Ku-E5x"/>
+                            <constraint firstItem="6wY-w0-3H8" firstAttribute="leading" secondItem="muN-rr-XME" secondAttribute="leading" id="l0c-1V-Grs"/>
+                            <constraint firstItem="Ofr-ph-38M" firstAttribute="leading" secondItem="muN-rr-XME" secondAttribute="leading" id="xjd-YX-vde"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="muN-rr-XME"/>
+                    </view>
+                    <connections>
+                        <outlet property="header" destination="6wY-w0-3H8" id="Zki-KR-Qwq"/>
+                        <outlet property="tbView" destination="Ofr-ph-38M" id="XwJ-jn-f0i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SjA-iY-Vnf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="951" y="70"/>
+        </scene>
+        <!--Detail Goods Issue View Controller-->
+        <scene sceneID="DX5-tY-KgS">
+            <objects>
+                <viewController storyboardIdentifier="DetailGoodsIssueViewController" id="swZ-gG-jaE" customClass="DetailGoodsIssueViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vM7-Xw-jve">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wlf-Eb-MXd" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="jXh-h8-SEC"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="u1T-g9-rT4">
+                                <rect key="frame" x="0.0" y="99" width="414" height="763"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wlf-Eb-MXd" firstAttribute="trailing" secondItem="1HC-fR-LBW" secondAttribute="trailing" id="0W6-Y8-pLp"/>
+                            <constraint firstItem="u1T-g9-rT4" firstAttribute="leading" secondItem="1HC-fR-LBW" secondAttribute="leading" id="Bxy-hb-jg8"/>
+                            <constraint firstItem="wlf-Eb-MXd" firstAttribute="top" secondItem="1HC-fR-LBW" secondAttribute="top" id="gaP-H3-bF6"/>
+                            <constraint firstItem="1HC-fR-LBW" firstAttribute="trailing" secondItem="u1T-g9-rT4" secondAttribute="trailing" id="lkW-wc-lrO"/>
+                            <constraint firstItem="1HC-fR-LBW" firstAttribute="bottom" secondItem="u1T-g9-rT4" secondAttribute="bottom" id="mzV-9v-RcJ"/>
+                            <constraint firstItem="u1T-g9-rT4" firstAttribute="top" secondItem="wlf-Eb-MXd" secondAttribute="bottom" constant="5" id="pOL-Aj-qXa"/>
+                            <constraint firstItem="wlf-Eb-MXd" firstAttribute="leading" secondItem="1HC-fR-LBW" secondAttribute="leading" id="vrz-Bu-zcG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1HC-fR-LBW"/>
+                    </view>
+                    <connections>
+                        <outlet property="header" destination="wlf-Eb-MXd" id="xgx-MB-vON"/>
+                        <outlet property="tbView" destination="u1T-g9-rT4" id="1fL-YY-Dbz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fbu-kU-2UO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-119" y="-1896"/>
+        </scene>
+        <!--List Goods Issue Doccument View Controller-->
+        <scene sceneID="AHc-uB-Pc7">
+            <objects>
+                <viewController storyboardIdentifier="ListGoodsIssueDoccumentViewController" id="8yf-v1-U3c" customClass="ListGoodsIssueDoccumentViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AeN-iE-LzR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7H9-lB-g8X" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="mYf-1H-z8X"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pKT-dR-dy6">
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Ti7-if-xLP" firstAttribute="trailing" secondItem="pKT-dR-dy6" secondAttribute="trailing" id="HPW-fr-DbN"/>
+                            <constraint firstItem="pKT-dR-dy6" firstAttribute="top" secondItem="7H9-lB-g8X" secondAttribute="bottom" id="LZF-Oj-SFn"/>
+                            <constraint firstItem="7H9-lB-g8X" firstAttribute="leading" secondItem="Ti7-if-xLP" secondAttribute="leading" id="OX8-hl-NVc"/>
+                            <constraint firstItem="pKT-dR-dy6" firstAttribute="leading" secondItem="Ti7-if-xLP" secondAttribute="leading" id="WLH-kr-lT9"/>
+                            <constraint firstItem="Ti7-if-xLP" firstAttribute="bottom" secondItem="pKT-dR-dy6" secondAttribute="bottom" id="ecq-EW-TPT"/>
+                            <constraint firstItem="7H9-lB-g8X" firstAttribute="top" secondItem="Ti7-if-xLP" secondAttribute="top" id="hpL-RF-6U7"/>
+                            <constraint firstItem="7H9-lB-g8X" firstAttribute="trailing" secondItem="Ti7-if-xLP" secondAttribute="trailing" id="o7b-uF-krq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ti7-if-xLP"/>
+                    </view>
+                    <connections>
+                        <outlet property="header" destination="7H9-lB-g8X" id="SMg-tE-Xbq"/>
+                        <outlet property="tbView" destination="pKT-dR-dy6" id="ftV-Dc-w7K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mv8-ab-5R2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2506" y="-500"/>
+        </scene>
+        <!--List Goods Issue Request View Controller-->
+        <scene sceneID="DNz-oY-5T5">
+            <objects>
+                <viewController storyboardIdentifier="ListGoodsIssueRequestViewController" id="WzE-ND-imu" customClass="ListGoodsIssueRequestViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Map-mO-4X5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b89-iA-rLN" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="X1f-AL-ODC"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QYv-bx-Lxh">
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="m5r-c7-Vrx" firstAttribute="trailing" secondItem="QYv-bx-Lxh" secondAttribute="trailing" id="3ny-6e-4tV"/>
+                            <constraint firstItem="QYv-bx-Lxh" firstAttribute="top" secondItem="b89-iA-rLN" secondAttribute="bottom" id="9FK-yA-Wj8"/>
+                            <constraint firstItem="b89-iA-rLN" firstAttribute="top" secondItem="m5r-c7-Vrx" secondAttribute="top" id="CUW-LU-5d0"/>
+                            <constraint firstItem="b89-iA-rLN" firstAttribute="leading" secondItem="m5r-c7-Vrx" secondAttribute="leading" id="XM6-9A-zD9"/>
+                            <constraint firstItem="QYv-bx-Lxh" firstAttribute="leading" secondItem="m5r-c7-Vrx" secondAttribute="leading" id="ZFb-gs-zz8"/>
+                            <constraint firstItem="m5r-c7-Vrx" firstAttribute="bottom" secondItem="QYv-bx-Lxh" secondAttribute="bottom" id="aNY-68-vJg"/>
+                            <constraint firstItem="b89-iA-rLN" firstAttribute="trailing" secondItem="m5r-c7-Vrx" secondAttribute="trailing" id="nBq-sa-mEW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="m5r-c7-Vrx"/>
+                    </view>
+                    <connections>
+                        <outlet property="header" destination="b89-iA-rLN" id="AzH-1m-7Pt"/>
+                        <outlet property="tbView" destination="QYv-bx-Lxh" id="NaM-gw-yFH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="znD-85-cIZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4128" y="-500"/>
+        </scene>
+        <!--Detail Goods Request View Controller-->
+        <scene sceneID="zWX-SE-O97">
+            <objects>
+                <viewController storyboardIdentifier="DetailGoodsRequestViewController" id="c0P-qa-443" customClass="DetailGoodsRequestViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L74-2F-QKG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dT5-at-90p" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Bdx-m2-pA0"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="erU-BL-6Gz">
+                                <rect key="frame" x="0.0" y="99" width="414" height="763"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="13M-9x-V4m" firstAttribute="trailing" secondItem="erU-BL-6Gz" secondAttribute="trailing" id="5o6-xr-z5K"/>
+                            <constraint firstItem="13M-9x-V4m" firstAttribute="bottom" secondItem="erU-BL-6Gz" secondAttribute="bottom" id="8UP-mF-8np"/>
+                            <constraint firstItem="erU-BL-6Gz" firstAttribute="top" secondItem="dT5-at-90p" secondAttribute="bottom" constant="5" id="I51-az-DTQ"/>
+                            <constraint firstItem="dT5-at-90p" firstAttribute="trailing" secondItem="13M-9x-V4m" secondAttribute="trailing" id="IEq-W5-BZJ"/>
+                            <constraint firstItem="erU-BL-6Gz" firstAttribute="leading" secondItem="13M-9x-V4m" secondAttribute="leading" id="aKN-zC-MGg"/>
+                            <constraint firstItem="dT5-at-90p" firstAttribute="leading" secondItem="13M-9x-V4m" secondAttribute="leading" id="jtF-4u-0Hu"/>
+                            <constraint firstItem="dT5-at-90p" firstAttribute="top" secondItem="13M-9x-V4m" secondAttribute="top" id="oWW-Bq-orp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="13M-9x-V4m"/>
+                    </view>
+                    <connections>
+                        <outlet property="header" destination="dT5-at-90p" id="D16-Lv-gmJ"/>
+                        <outlet property="tbView" destination="erU-BL-6Gz" id="VMQ-BI-vMD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LFb-ZX-2Bh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1351" y="-2446"/>
         </scene>
     </scenes>
 </document>

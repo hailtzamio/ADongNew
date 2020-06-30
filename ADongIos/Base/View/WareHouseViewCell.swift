@@ -86,17 +86,36 @@ class WareHouseViewCell: UITableViewCell {
     
     func setDataGoodsReceivedNote(data:GoodsReceivedNote) {
         lb1.text = data.code
-        lb2.text = data.deliveredBy ?? "---"
-        lb3.text = data.note ?? "---"
+        lb2.text = data.ref ?? "---"
+        lb3.text = data.deliveredBy ?? "---"
         lb4.text = data.warehouseName ?? "---"
-        
+         lb5.text = data.note ?? "---"
         if(data.status == "DONE") {
-            lb5.text = "Hoàn thành"
+            lb6.textColor = UIColor.init(hexString: HexColorApp.green)
+            lb6.text = "Hoàn thành"
         } else {
-            lb5.text = "Nháp"
+             lb6.textColor = UIColor.init(hexString: HexColorApp.red)
+            lb6.text = "Nháp"
         }
         
         
+    }
+    
+    
+    
+    func setDataGoodsIssue(data:GoodsIssue) {
+        lb1.text = data.code
+        lb2.text = data.warehouseName ?? "---"
+        lb3.text = data.projectName ?? "---"
+        lb4.text = data.projectAddress ?? "---"
+         lb5.text = data.plannedDatetime ?? "---"
+        if(data.status == 1) {
+            lb6.textColor = UIColor.init(hexString: HexColorApp.green)
+            lb6.text = "Hoàn thành"
+        } else {
+             lb6.textColor = UIColor.init(hexString: HexColorApp.red)
+            lb6.text = "Nháp"
+        }
     }
     
     @IBAction func check(_ sender: Any) {

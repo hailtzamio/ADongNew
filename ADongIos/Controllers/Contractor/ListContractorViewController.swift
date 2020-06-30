@@ -17,8 +17,9 @@ class ListContractorViewController: BaseViewController, UISearchBarDelegate, Loa
     var totalPages = 0
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
-    @IBOutlet weak var searchBar: UISearchBar!
     
+    
+    @IBOutlet weak var tfSearch: UITextField!
     var loadMoreControl: LoadMoreControl!
     
     // For Adding To Team
@@ -44,6 +45,10 @@ class ListContractorViewController: BaseViewController, UISearchBarDelegate, Loa
         if(isToChoose) {
             header.isRightButtonHide = true
         }
+        
+        tfSearch.addPadding(.left(20.0))
+        tfSearch.returnKeyType = UIReturnKeyType.search
+        tfSearch.addTarget(self, action: #selector(enterPressed), for: .editingDidEndOnExit)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,9 +73,17 @@ class ListContractorViewController: BaseViewController, UISearchBarDelegate, Loa
         }
     }
     
+    @objc func enterPressed(){
+        //do something with typed text if needed
+        tfSearch.resignFirstResponder()
+        page = 0
+        data.removeAll()
+        getData()
+    }
+    
     func getData() {
         showLoading()
-        APIClient.getContractors(page : page, name : searchBar.text ?? "") { result in
+        APIClient.getContractors(page : page, name : tfSearch.text ?? "") { result in
             self.stopLoading()
             switch result {
             case .success(let response):
@@ -82,6 +95,11 @@ class ListContractorViewController: BaseViewController, UISearchBarDelegate, Loa
                         self.totalPages = response.pagination?.totalPages as! Int
                         self.page = self.page + 1
                     }
+                    
+                    if(self.data.count == 0) {
+                        self.showNoDataMessage(tbView: self.tbView)
+                    }
+                
                 } else {
                     self.showToast(content: response.message!)
                 }
@@ -110,6 +128,18 @@ class ListContractorViewController: BaseViewController, UISearchBarDelegate, Loa
 }
 
 extension ListContractorViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int
+      {
+          var numOfSections: Int = 0
+          if data.count > 0 {
+              tableView.separatorStyle = .singleLine
+              numOfSections            = 1
+              tableView.backgroundView = nil
+          }
+        
+          return numOfSections
+      }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count

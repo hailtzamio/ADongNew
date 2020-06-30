@@ -11,6 +11,8 @@ import GoogleMaps
 import GooglePlaces
 class MapViewController: BaseViewController, GMSMapViewDelegate {
     
+    @IBOutlet weak var imv1: UIImageView!
+    @IBOutlet weak var view1: UIView!
     @IBOutlet weak var lb1: UILabel!
     @IBOutlet weak var mapView: GMSMapView!
     var isJustView = false
@@ -20,22 +22,57 @@ class MapViewController: BaseViewController, GMSMapViewDelegate {
     var lat = 0.0
     var long = 0.0
     var isCreateNewOne = false
+    var zoom = 18.0
     var data = Project()
+    var projects = [Project]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lat = data.latitude ?? 21.0278
-        long = data.longitude ?? 105.8342
         
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        marker.title = data.name
-        marker.snippet = data.address
-        marker.map = mapView
+        
+        
+        if(projects.count > 0) {
+            
+            lat = 21.0278
+            long = 105.8342
+            zoom = 5.0
+            view1.isHidden = true
+            imv1.isHidden = true
+            projects.forEach { (project) in
+                let marker = GMSMarker()
+
+                
+                if(project.status == "PROCESSING") {
+                     marker.icon = UIImage(named: "green_dot")
+                } else if(project.status == "NEW") {
+                     marker.icon = UIImage(named: "dot_red_16")
+                } else {
+                
+                }
+
+                marker.setIconSize(scaledToSize: .init(width: 15, height:15))
+                marker.position = CLLocationCoordinate2D(latitude: project.latitude ?? 0.0, longitude: project.longitude ?? 0.0)
+                marker.title = project.name
+                marker.snippet = project.address
+                marker.map = mapView
+                
+            }
+            
+        } else {
+            
+            lat = data.latitude ?? 21.0278
+            long = data.longitude ?? 105.8342
+            
+            let marker = GMSMarker()
+            marker.position = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            marker.title = data.name
+            marker.snippet = data.address
+            marker.map = mapView
+        }
         
         mapView.delegate = self
         
-        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: lat, longitude: long, zoom: 18.0)
+        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: lat, longitude: long, zoom: Float(zoom))
         mapView.camera = camera
         
         
@@ -121,4 +158,14 @@ extension MapViewController: CLLocationManagerDelegate {
         }
     }
     
+}
+
+extension GMSMarker {
+    func setIconSize(scaledToSize newSize: CGSize) {
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        icon?.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        icon = newImage
+    }
 }

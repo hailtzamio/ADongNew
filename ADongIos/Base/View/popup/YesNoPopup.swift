@@ -15,7 +15,7 @@ class YesNoPopup: PopupView {
     var ok: ((Worker) -> ())?
     var cancel: (() -> ())?
     var close: (() -> ())?
-  
+    
     
     @IBOutlet weak var tf1: RadiusTextField!
     
@@ -24,9 +24,9 @@ class YesNoPopup: PopupView {
     @IBOutlet weak var tf3: RadiusTextField!
     @IBOutlet weak var lbTitle: UILabel!
     
-  
     
- 
+    
+    
     override func awakeFromNib() {
         
         
@@ -35,7 +35,8 @@ class YesNoPopup: PopupView {
     class func instanceFromNib(title:String) -> YesNoPopup {
         let detailView = UINib(nibName: "YesNoPopup", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! YesNoPopup
         detailView.lbTitle.text = title
-    
+        
+        
         
         
         detailView.animationType =  AnimationType.alpha
@@ -43,7 +44,26 @@ class YesNoPopup: PopupView {
         detailView.layer.cornerRadius = 5
         detailView.clipsToBounds = true
         
-    
+        
+//        if(data.typeOfManager == 1) {
+//
+//            if(data.investorContacts != nil && data.investorContacts?.manager != nil) {
+//                detailView.tf1.text = data.investorContacts?.manager?.name ?? ""
+//                        detailView.tf2.text = data.investorContacts?.manager?.phone ?? ""
+//                    detailView.tf3.text = data.investorContacts?.manager?.email ?? ""
+//            }
+//
+//
+//        } else {
+//
+//
+//                 if(data.investorContacts != nil && data.investorContacts?.deputyManager != nil) {
+//                     detailView.tf1.text = data.investorContacts?.deputyManager?.name ?? ""
+//                    detailView.tf2.text = data.investorContacts?.deputyManager?.phone ?? ""
+//                                   detailView.tf3.text = data.investorContacts?.deputyManager?.email ?? ""
+//                 }
+//        }
+        
         
         return detailView
         
@@ -54,8 +74,8 @@ class YesNoPopup: PopupView {
         
         
         if(tf1.text == "" || tf2.text == "") {
-             Toast(text: "Nhập thiếu dữ liệu", duration: Delay.short).show()
-                return
+            Toast(text: "Nhập thiếu dữ liệu", duration: Delay.short).show()
+            return
         }
         
         self.hide()
@@ -64,13 +84,13 @@ class YesNoPopup: PopupView {
         var worker = Worker()
         worker.fullName = tf1.text
         if(tf3.text != "") {
-             worker.email = tf3.text
+            worker.email = tf3.text
         }
         worker.phone = tf2.text
         if let action = ok {
             action(worker)
         }
-
+        
         
     }
     

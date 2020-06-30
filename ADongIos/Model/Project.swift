@@ -66,7 +66,7 @@ class Project : Codable {
         var investorContacts : investorObject?
     
     
-    
+    var typeOfManager : Int?
 }
 
 

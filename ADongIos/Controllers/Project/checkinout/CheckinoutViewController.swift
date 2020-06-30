@@ -59,6 +59,10 @@ class CheckinoutViewController: BaseViewController, UISearchBarDelegate, LoadMor
                         self.totalPages = response.pagination?.totalPages as! Int
                         self.page = self.page + 1
                     }
+                    
+                    if(self.data.count == 0 ) {
+                        self.showNoDataMessage(tbView: self.tbView)
+                    }
                 } else {
                     self.showToast(content: response.message!)
                 }

@@ -82,11 +82,11 @@ class ProjectViewCell: UITableViewCell {
             break
         case ProjectStatus.processing:
             bt1.setTitle("Đang thi công", for: .normal)
-            bt1.backgroundColor = UIColor.init(hexString: HexColorApp.orange)
+            bt1.backgroundColor = UIColor.init(hexString: HexColorApp.green)
             break
         case ProjectStatus.done:
             bt1.setTitle("Hoàn thành", for: .normal)
-            bt1.backgroundColor = UIColor.init(hexString: HexColorApp.green)
+            bt1.backgroundColor = UIColor.init(hexString: HexColorApp.orange)
             break
         case ProjectStatus.paused:
             bt1.setTitle("Tạm dừng", for: .normal)

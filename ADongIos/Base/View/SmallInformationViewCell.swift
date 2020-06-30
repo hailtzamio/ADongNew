@@ -47,4 +47,5 @@ class SmallInformationViewCell: UITableViewCell {
         lb2.text = "\(qt) \(data.productUnit ?? "")"
      
       }
+    
 }

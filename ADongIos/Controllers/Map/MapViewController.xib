@@ -10,9 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="ADongIos" customModuleProvider="target">
             <connections>
+                <outlet property="imv1" destination="vlq-yg-5MA" id="a2d-A5-1qT"/>
                 <outlet property="lb1" destination="FV7-Ul-KJr" id="sE5-SU-RGl"/>
                 <outlet property="mapView" destination="37H-ld-PDp" id="DdO-es-KAn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="view1" destination="1z2-9L-TZr" id="ISA-KP-auh"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

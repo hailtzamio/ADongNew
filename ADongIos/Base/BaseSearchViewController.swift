@@ -10,7 +10,7 @@ import UIKit
 import Toaster
 import JGProgressHUD
 import Alamofire
-class BaseViewController: UIViewController {
+class BaseSearchViewController: UISearchController {
     
     let hud = JGProgressHUD(style: .dark)
     let preferences = UserDefaults.standard
@@ -91,7 +91,7 @@ class BaseViewController: UIViewController {
     
 }
 
-extension BaseViewController:UIGestureRecognizerDelegate {
+extension BaseSearchViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
@@ -104,15 +104,6 @@ extension BaseViewController:UIGestureRecognizerDelegate {
         tbView.backgroundView  = noDataLabel
         tbView.separatorStyle  = .none
     }
-    
-    func hideNoDataMessage(tbView : UITableView) {
-           let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tbView.bounds.size.width, height: tbView.bounds.size.height))
-           noDataLabel.text          =  ""
-           noDataLabel.textColor     = UIColor.init(hexString: HexColorApp.gray)
-           noDataLabel.textAlignment = .center
-           tbView.backgroundView  = noDataLabel
-           tbView.separatorStyle  = .none
-       }
 }
 
 

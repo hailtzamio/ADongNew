@@ -247,10 +247,10 @@ class APIClient {
     }
     
     // Project
-    static func getProjects(page : Int, name : String,completion:@escaping (Result<BaseResponseList<Project>, AFError>)->Void) {
+    static func getProjects(page : Int, name : String, status : String,completion:@escaping (Result<BaseResponseList<Project>, AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
-        performRequest(route: ApiRouter.getProjects(page: page, name: name), decoder: jsonDecoder, completion: completion)
+        performRequest(route: ApiRouter.getProjects(page: page, name: name, status : status), decoder: jsonDecoder, completion: completion)
     }
     
     static func getProject(id:Int,completion:@escaping (Result<BaseResponse<Project>, AFError>)->Void) {
@@ -374,6 +374,30 @@ class APIClient {
         performRequest(route: ApiRouter.getGoodsReceivedNotes, decoder: jsonDecoder, completion: completion)
      }
     
+    static func getGoodsIssueDoccuments( completion:@escaping (Result<BaseResponseList<GoodsReceivedNote>, AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getGoodsIssueDoccuments, decoder: jsonDecoder, completion: completion)
+     }
+    
+    static func getGoodsIssueRequests( completion:@escaping (Result<BaseResponseList<GoodsIssue>, AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getGoodsIssueRequests, decoder: jsonDecoder, completion: completion)
+     }
+    
+    static func getManuFactureRequest( completion:@escaping (Result<BaseResponseList<GoodsIssue>, AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getManuFactureRequest, decoder: jsonDecoder, completion: completion)
+     }
+    
+    static func getManuFactureRequestById(id:Int,completion:@escaping (Result<BaseResponse<GoodsIssue>, AFError>)->Void) {
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+            performRequest(route: ApiRouter.getManuFactureRequestById(id: id), decoder: jsonDecoder, completion: completion)
+        }
+    
     static func createWarehouse(data:Warehouse,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
@@ -384,6 +408,12 @@ class APIClient {
                let jsonDecoder = JSONDecoder()
                jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
                performRequest(route: ApiRouter.getGoodsReceivedNote(id: id), decoder: jsonDecoder, completion: completion)
+           }
+    
+    static func getGoodsRequest(id:Int,completion:@escaping (Result<BaseResponse<GoodsIssue>, AFError>)->Void) {
+               let jsonDecoder = JSONDecoder()
+               jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+               performRequest(route: ApiRouter.getGoodsRequest(id: id), decoder: jsonDecoder, completion: completion)
            }
     
     static func createGoodsReceivedNote(data:GoodsReceivedNote,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
