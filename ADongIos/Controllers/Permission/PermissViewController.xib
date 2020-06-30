@@ -51,17 +51,17 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npe-t8-4OS">
-                    <rect key="frame" x="319" y="72.5" width="35" height="35"/>
+                    <rect key="frame" x="318" y="69.5" width="41" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="41" id="3NH-yr-vXV"/>
+                        <constraint firstAttribute="width" constant="41" id="7ee-5c-evh"/>
+                    </constraints>
                     <connections>
                         <action selector="goToNotification:" destination="-1" eventType="touchUpInside" id="pp7-Ac-7dx"/>
                     </connections>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct_orange" translatesAutoresizingMaskIntoConstraints="NO" id="oRy-oV-wbd">
-                    <rect key="frame" x="319" y="72.5" width="35" height="35"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="jdk-kE-Z9x"/>
-                        <constraint firstAttribute="width" constant="35" id="nLy-Vx-Ink"/>
-                    </constraints>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notification_bell" translatesAutoresizingMaskIntoConstraints="NO" id="oRy-oV-wbd">
+                    <rect key="frame" x="318" y="69.5" width="41" height="41"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -74,7 +74,7 @@
                 <constraint firstItem="npe-t8-4OS" firstAttribute="width" secondItem="oRy-oV-wbd" secondAttribute="width" id="JPQ-au-FUD"/>
                 <constraint firstItem="DMQ-Db-Dae" firstAttribute="top" secondItem="6xl-B5-BO6" secondAttribute="bottom" constant="15" id="Ob2-rN-01U"/>
                 <constraint firstItem="npe-t8-4OS" firstAttribute="height" secondItem="oRy-oV-wbd" secondAttribute="height" id="YT7-Wb-EnI"/>
-                <constraint firstItem="Fqj-mF-34h" firstAttribute="leading" secondItem="oRy-oV-wbd" secondAttribute="trailing" constant="10" id="e7b-8C-d56"/>
+                <constraint firstItem="Fqj-mF-34h" firstAttribute="leading" secondItem="oRy-oV-wbd" secondAttribute="trailing" constant="5" id="e7b-8C-d56"/>
                 <constraint firstItem="Fqj-mF-34h" firstAttribute="centerY" secondItem="6xl-B5-BO6" secondAttribute="centerY" id="ec4-w4-Anj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Fqj-mF-34h" secondAttribute="trailing" constant="15" id="kZm-VK-eOJ"/>
                 <constraint firstItem="ZC7-o6-WFM" firstAttribute="top" secondItem="Fqj-mF-34h" secondAttribute="top" id="l0m-Fx-ryg"/>
@@ -92,6 +92,6 @@
     <resources>
         <image name="add_worker" width="32" height="32"/>
         <image name="adong_logo" width="250" height="124"/>
-        <image name="correct_orange" width="32" height="32"/>
+        <image name="notification_bell" width="64" height="64"/>
     </resources>
 </document>
