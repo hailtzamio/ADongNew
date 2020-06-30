@@ -8,8 +8,11 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
+
 class PermissViewController: BaseViewController {
     
+    @IBOutlet weak var imv1: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     var someProtocol = [String : Permission]()
     var permissions = [Permission]()
@@ -23,7 +26,7 @@ class PermissViewController: BaseViewController {
         //        K.ProductionServer.ACCESS_TOKEN = preferences.object(forKey: accessToken) as! String
         
         getData()
-
+        getMyProfile()
         
     }
     
@@ -61,12 +64,16 @@ class PermissViewController: BaseViewController {
     
     
     @IBAction func goToProfile(_ sender: Any) {
-        
+        if let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
+                navigationController?.pushViewController(vc, animated: true)
+        }
         
     }
     
     @IBAction func goToNotification(_ sender: Any) {
-        
+        if let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "NotificationsViewController") as? NotificationsViewController {
+            navigationController?.pushViewController(vc, animated: true)
+        }
         
     }
 }
@@ -163,4 +170,24 @@ extension PermissViewController: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: itemWidth, height: 100)
     }
+    
+    func getMyProfile() {
+
+           showLoading()
+           let imageDf = UIImage(named: "user_default")
+           APIClient.getMyProfile { result in
+               self.stopLoading()
+               switch result {
+               case .success(let response):
+                   
+                   if let value = response.data  {
+                    let url = URL(string: value.avatarUrl ?? "")
+                    self.imv1.kf.setImage(with: url, placeholder: imageDf)
+                   }
+                   
+               case .failure(let error):
+                   self.showToast(content: error.localizedDescription)
+               }
+           }
+       }
 }

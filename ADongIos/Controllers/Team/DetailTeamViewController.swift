@@ -211,10 +211,10 @@ extension DetailTeamViewController: UITableViewDataSource, UITableViewDelegate {
         
         let sectionName = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
         sectionName.text = itemNames[section]
-        sectionName.textColor = UIColor.init(hexString: "#4c4c4c")
+       sectionName.textColor = UIColor.init(hexString: HexColorApp.orange)
         sectionName.font = UIFont.systemFont(ofSize: 17)
         sectionName.textAlignment = .left
-        
+        sectionName.font = UIFont.boldSystemFont(ofSize: 16)
         let uiButton = UIButton(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
         uiButton.addTarget(self, action:#selector(handleRegister),
                            for: .touchUpInside)

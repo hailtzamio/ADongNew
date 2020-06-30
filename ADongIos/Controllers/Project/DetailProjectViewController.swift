@@ -20,7 +20,7 @@ class DetailProjectViewController: BaseViewController {
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var header: NavigationBar!
-    
+    var project = Project()
     var SelectedAssets = [PHAsset]()
     var PhotoArray = [UIImage]()
     var typeOfUploadingImage = 1 // 1. CheckinOut 2. WorkOutline
@@ -54,17 +54,17 @@ class DetailProjectViewController: BaseViewController {
         // Initialize view controllers to display and place in array
         var controllerArray : [UIViewController] = []
         
-        let controller1 = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "CheckinoutViewController") as? CheckinoutViewController
-        controller1!.title = "Chấm Công"
-        controller1?.id = id
-        controller1?.callback = {(it) in
-            self.typeOfUploadingImage = 1
-            self.showTakePhotoPopup()
+        if(project.teamType == "ADONG") {
+              let controller1 = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "CheckinoutViewController") as? CheckinoutViewController
+              controller1!.title = "Chấm Công"
+              controller1?.id = id
+              controller1?.callback = {(it) in
+                  self.typeOfUploadingImage = 1
+                  self.showTakePhotoPopup()
+              }
+              controllerArray.append(controller1!)
         }
-        controllerArray.append(controller1!)
-        
-        
-        
+
         controller2!.title = "Tiến Độ"
         controller2?.id = id
         controller2?.callback = {(it) in
@@ -327,7 +327,7 @@ extension DetailProjectViewController : TOCropViewControllerDelegate, UINavigati
         var headers: HTTPHeaders
         headers = ["Content-type": "multipart/form-data",
                    "Accept" : "application/json"]
-        headers["Authorization"] = ContentType.token.rawValue
+        headers["Authorization"] = Context.AccessToken
         AF.upload(multipartFormData: { (multipartFormData) in
             
             let randomIntFrom0To10 = Int.random(in: 1..<1000)
@@ -370,7 +370,7 @@ extension DetailProjectViewController : TOCropViewControllerDelegate, UINavigati
         var headers: HTTPHeaders
         headers = ["Content-type": "multipart/form-data",
                    "Accept" : "application/json"]
-        headers["Authorization"] = ContentType.token.rawValue
+        headers["Authorization"] = Context.AccessToken
         AF.upload(multipartFormData: { (multipartFormData) in
             
             let randomIntFrom0To10 = Int.random(in: 1..<1000)
@@ -482,7 +482,7 @@ extension DetailProjectViewController : TOCropViewControllerDelegate, UINavigati
         var headers: HTTPHeaders
         headers = ["Content-type": "multipart/form-data",
                    "Accept" : "application/json"]
-        headers["Authorization"] = ContentType.token.rawValue
+        headers["Authorization"] = Context.AccessToken
         AF.upload(multipartFormData: { (multipartFormData) in
             
             let randomIntFrom0To10 = Int.random(in: 1..<1000)

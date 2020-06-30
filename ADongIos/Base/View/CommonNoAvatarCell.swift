@@ -54,6 +54,16 @@ class CommonNoAvatarCell: UITableViewCell {
         if(data.address != nil && data.address != "") {
             lb3.text = data.address
         }
+        
+        if(data.workingStatus == "idle") {
+                 if let image = UIImage(named: "free_dot") {
+                     imvStatus.image = image
+                 }
+             } else {
+                 if let image = UIImage(named: "green_dot") {
+                     imvStatus.image = image
+                 }
+             }
     }
     
     func setDataTrip(data:Transport) {
@@ -72,6 +82,16 @@ class CommonNoAvatarCell: UITableViewCell {
         if(data.address != nil && data.address != "") {
             lb3.text = data.address
         }
+        
+        if(data.workingStatus == "idle") {
+                 if let image = UIImage(named: "free_dot") {
+                     imvStatus.image = image
+                 }
+             } else {
+                 if let image = UIImage(named: "green_dot") {
+                     imvStatus.image = image
+                 }
+            }
     }
     
     func setDataProject(data:Project) {
@@ -112,6 +132,12 @@ class CommonNoAvatarCell: UITableViewCell {
             }
         }
     }
+    
+    func setDataNotification(data:NotificationOb) {
+        lb1.text = data.title
+           lb2.text = data.content
+        lb3.text = data.userFullName
+       }
     
     func setDataCheckOutIn(data:Worker) {
         lb1.text = data.workerFullName

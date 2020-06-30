@@ -446,6 +446,12 @@ class APIClient {
           performRequest(route: ApiRouter.projectBiddingApprove(id: id), decoder: jsonDecoder, completion: completion)
      }
     
+    static func getMyProfile(completion:@escaping (Result<BaseResponse<Worker>, AFError>)->Void) {
+             let jsonDecoder = JSONDecoder()
+             jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+             performRequest(route: ApiRouter.getMyProfile, decoder: jsonDecoder, completion: completion)
+        }
+    
     static func addWorkerToProject(id: Int, workerId:Int,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
@@ -480,6 +486,12 @@ class APIClient {
          let jsonDecoder = JSONDecoder()
          jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
          performRequest(route: ApiRouter.createTrip(data: data), decoder: jsonDecoder, completion: completion)
+     }
+    
+    static func getNotifications(completion:@escaping (Result<BaseResponseList<NotificationOb>, AFError>)->Void) {
+         let jsonDecoder = JSONDecoder()
+         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+         performRequest(route: ApiRouter.getNotifications, decoder: jsonDecoder, completion: completion)
      }
     
     

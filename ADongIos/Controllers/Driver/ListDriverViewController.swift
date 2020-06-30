@@ -19,7 +19,6 @@ class ListDriverViewController: BaseViewController, UISearchBarDelegate, LoadMor
     var removeTeamId = 0
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
-    @IBOutlet weak var searchBar: UISearchBar!
     var loadMoreControl: LoadMoreControl!
     var isToChoose = false
     var callback : ((Driver?) -> Void)?
@@ -57,7 +56,7 @@ class ListDriverViewController: BaseViewController, UISearchBarDelegate, LoadMor
     
     func getData() {
         showLoading()
-        APIClient.getDrivers(page : page, name : searchBar.text ?? "") { result in
+        APIClient.getDrivers(page : page, name :  "") { result in
             self.stopLoading()
             switch result {
             case .success(let response):

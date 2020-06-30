@@ -21,6 +21,7 @@ class UpdateDriverViewController: BaseViewController, UINavigationControllerDele
     @IBOutlet weak var tf3: RadiusTextField!
     @IBOutlet weak var tf4: RadiusTextField!
     @IBOutlet weak var imvAva: UIImageView!
+    var avatarExtId = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
@@ -31,6 +32,7 @@ class UpdateDriverViewController: BaseViewController, UINavigationControllerDele
             tf2.text = data.phone
             tf3.text = data.phone2
             tf4.text = data.email
+            avatarExtId = data.avatarExtId ?? ""
             let url = URL(string: data.avatarUrl ?? "")
             self.imvAva.kf.setImage(with: url, placeholder: UIImage(named: "default"))
         }
@@ -60,10 +62,11 @@ class UpdateDriverViewController: BaseViewController, UINavigationControllerDele
             return
         }
         
-     data.fullName = tf1.text
-                 data.phone = tf2.text
-                 data.phone2 = tf3.text
-                data.email = tf4.text
+        data.fullName = tf1.text
+        data.phone = tf2.text
+        data.phone2 = tf3.text
+        data.email = tf4.text
+        data.avatarExtId = avatarExtId
         
         if(isUpdate) {
             // Update
@@ -97,26 +100,26 @@ class UpdateDriverViewController: BaseViewController, UINavigationControllerDele
     }
     
     func create(pData:Driver) {
-           
-           showLoading()
-           APIClient.createDriver(data: pData) { result in
-               self.stopLoading()
-               switch result {
-               case .success(let response):
-                   
-                   if response.status == 1 {
-                       self.showToast(content: "Thành công")
-                       self.goBack()
-                       return
-                   } else {
-                       self.showToast(content: response.message!)
-                   }
-                   
-               case .failure(let error):
-                   self.showToast(content: error.localizedDescription)
-               }
-           }
-       }
+        
+        showLoading()
+        APIClient.createDriver(data: pData) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if response.status == 1 {
+                    self.showToast(content: "Thành công")
+                    self.goBack()
+                    return
+                } else {
+                    self.showToast(content: response.message!)
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
+    }
 }
 
 extension UpdateDriverViewController : UIImagePickerControllerDelegate {
@@ -154,7 +157,11 @@ extension UpdateDriverViewController : TOCropViewControllerDelegate {
         
         
         imvAva.image = image
-//        imvAva.layer.cornerRadius = 40
+        if(imvAva != nil){
+            uploadAvatar2(arrImage: image, withblock: {_response in
+                
+            })
+        }
         
         cropViewController.dismiss(animated: true, completion: nil)
         
@@ -164,6 +171,48 @@ extension UpdateDriverViewController : TOCropViewControllerDelegate {
         cropViewController.dismiss(animated: true, completion: {
             
         })
+    }
+    
+    func uploadAvatar2(arrImage:UIImage, withblock:@escaping (_ response: AnyObject?)->Void){
+        showLoading()
+        let url = K.ProductionServer.baseURL + "uploadAvatar"
+        
+        var headers: HTTPHeaders
+        headers = ["Content-type": "multipart/form-data",
+                   "Accept" : "application/json"]
+        headers["Authorization"] = Context.AccessToken
+        AF.upload(multipartFormData: { (multipartFormData) in
+            
+            let randomIntFrom0To10 = Int.random(in: 1..<1000)
+            
+            guard let imgData = arrImage.pngData() else { return }
+            multipartFormData.append(imgData, withName: "image", fileName: "image\(randomIntFrom0To10)", mimeType: "image/jpeg")
+            
+        },to: url, usingThreshold: UInt64.init(),
+          method: .post,
+          headers: headers).response{ response in
+            self.stopLoading()
+            if((response.data != nil)){
+                do{
+                    if let jsonData = response.data {
+                        let parsedData = try JSONSerialization.jsonObject(with: jsonData) as! Dictionary<String, AnyObject>
+                        print(parsedData)
+                        
+                        let status = parsedData["status"] as? NSInteger ?? 0
+                        
+                        if (status == 1){
+                            self.avatarExtId = parsedData["data"]?["id"] as! String
+                        } else{
+                            self.showToast(content: "Không thành công")
+                        }
+                    }
+                } catch{
+                    print("error message")
+                }
+            }else{
+                self.showToast(content: "Không thành công")
+            }
+        }
     }
     
     

@@ -149,6 +149,7 @@ extension ListContractorViewController: UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: CommonNoAvatarCell.identifier, for: indexPath) as! CommonNoAvatarCell
         cell.setDataContractor(data: data[indexPath.row])
         cell.tag = indexPath.row
+        cell.imvStatus.isHidden = false
         return cell
     }
     

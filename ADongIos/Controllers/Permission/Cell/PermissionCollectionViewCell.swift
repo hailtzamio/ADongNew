@@ -45,7 +45,7 @@ class PermissionCollectionViewCell: UICollectionViewCell {
         
         if(data.appEntityCode == "Team") {
              imv1.image = UIImage(named: "team")
-            title = "Đội Thi Công"
+            title = "Đội Á Đông"
         }
         
         if(data.appEntityCode == "Project") {

@@ -82,6 +82,7 @@ class DetailDriverViewController: BaseViewController {
                     self.item = value
                     self.data.append(Information(pKey: "Họ tên",pValue: value.fullName!))
                     self.data.append(Information(pKey: "Số điện thoại",pValue: value.phone!))
+                    self.data.append(Information(pKey: "Số điện thoại 2",pValue: value.phone2!))
                     self.data.append(Information(pKey: "Email",pValue: value.email ?? "---"))
                     self.data.append(Information(pKey: "Chuyến đi",pValue: value.tripName ?? "---"))
                     

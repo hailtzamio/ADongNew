@@ -10,7 +10,7 @@ import UIKit
 
 class ListTeamViewController: BaseViewController, UISearchBarDelegate, LoadMoreControlDelegate {
     
-    @IBOutlet weak var searchBar: UISearchBar!
+
     var data = [Team]()
     fileprivate var activityIndicator: LoadMoreActivityIndicator!
     var page = 0
@@ -21,6 +21,9 @@ class ListTeamViewController: BaseViewController, UISearchBarDelegate, LoadMoreC
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
     var loadMoreControl: LoadMoreControl!
+    
+    @IBOutlet weak var tfSearch: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeader()
@@ -44,7 +47,7 @@ class ListTeamViewController: BaseViewController, UISearchBarDelegate, LoadMoreC
     }
     
     func setupHeader() {
-        header.title = "Đội Thi Công"
+        header.title = "Đội Á Đông"
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
         }
@@ -55,11 +58,23 @@ class ListTeamViewController: BaseViewController, UISearchBarDelegate, LoadMoreC
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
+        
+        tfSearch.addPadding(.left(20.0))
+        tfSearch.returnKeyType = UIReturnKeyType.search
+        tfSearch.addTarget(self, action: #selector(enterPressed), for: .editingDidEndOnExit)
+    }
+    
+    @objc func enterPressed(){
+        //do something with typed text if needed
+        tfSearch.resignFirstResponder()
+        page = 0
+        data.removeAll()
+        getData()
     }
     
     func getData() {
         showLoading()
-        APIClient.getTeams(page : page, name : searchBar.text ?? "") { result in
+        APIClient.getTeams(page : page, name : tfSearch.text ?? "") { result in
             self.stopLoading()
             switch result {
             case .success(let response):
@@ -71,6 +86,11 @@ class ListTeamViewController: BaseViewController, UISearchBarDelegate, LoadMoreC
                         self.totalPages = response.pagination?.totalPages as! Int
                         self.page = self.page + 1
                     }
+                    
+                    if(self.data.count == 0) {
+                                         self.showNoDataMessage(tbView: self.tbView)
+                                     }
+                    
                 } else {
                     self.showToast(content: response.message!)
                 }
@@ -100,6 +120,18 @@ class ListTeamViewController: BaseViewController, UISearchBarDelegate, LoadMoreC
 
 extension ListTeamViewController: UITableViewDataSource, UITableViewDelegate {
     
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        var numOfSections: Int = 0
+        if data.count > 0 {
+            tableView.separatorStyle = .singleLine
+            numOfSections            = 1
+            tableView.backgroundView = nil
+        }
+        
+        return numOfSections
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
@@ -107,6 +139,7 @@ extension ListTeamViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CommonNoAvatarCell.identifier, for: indexPath) as! CommonNoAvatarCell
         cell.setDataTeam(data: data[indexPath.row])
+        cell.imvStatus.isHidden = false
         return cell
     }
     

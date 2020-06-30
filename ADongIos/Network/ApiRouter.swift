@@ -12,7 +12,7 @@ enum ApiRouter: URLRequestConvertible {
     
     case getProvinces
     case getDistrict(id:Int)
-    
+     case getMyProfile
     case login(email:String, password:String)
     case getPermissions
     case getLorries
@@ -95,7 +95,7 @@ enum ApiRouter: URLRequestConvertible {
         case createProductRequirement(data: CreateProductReq)
     
         case createTrip(data: Trip)
-    
+    case getNotifications
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
@@ -111,7 +111,7 @@ enum ApiRouter: URLRequestConvertible {
              .getTeams, .getTeam, .getTeamWorkers,
              .getDrivers, .getDriver,
              .getContractors, .getContractor,
-             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote, .getProductRequirements, .getBiddings, .getWorkerNotLeader, .getProjectCheckOut, .getProjectFiles, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest
+             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote, .getProductRequirements, .getBiddings, .getWorkerNotLeader, .getProjectCheckOut, .getProjectFiles, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest, .getNotifications,  .getMyProfile
             :
             return .get
         }
@@ -124,7 +124,8 @@ enum ApiRouter: URLRequestConvertible {
             return "province"
         case .getDistrict(let id):
             return "province/\(id)/districts"
-            
+            case .getMyProfile :
+                   return "myProfile"
         case .login :
             return "login"
         case .getPermissions:
@@ -180,6 +181,8 @@ enum ApiRouter: URLRequestConvertible {
             return "team"
         case .getTeamWorkers(let id):
             return "team/\(id)/members"
+        case .getNotifications:
+            return "myNotifications"
             
         case .getDrivers:
             return "driver"
@@ -306,7 +309,7 @@ enum ApiRouter: URLRequestConvertible {
         case .createLorry(let data):
             return ["brand": data.brand, "model": data.model,"plateNumber": data.plateNumber, "capacity": data.capacity]
             
-        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest:
+        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest, .getNotifications, .getMyProfile:
             return nil
         case .getProducts(let page, let name) :
             return  [ "page": page,
@@ -421,7 +424,7 @@ enum ApiRouter: URLRequestConvertible {
         // Common Headers
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-        urlRequest.setValue(ContentType.token.rawValue,forHTTPHeaderField: "Authorization")
+        urlRequest.setValue(Context.AccessToken,forHTTPHeaderField: "Authorization")
         urlRequest.setValue("vi",forHTTPHeaderField: "Accept-Language")
         //        URLEncoding.default
         

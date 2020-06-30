@@ -15,7 +15,7 @@ class Context {
         static let PASSWORD_CODE_KEY = "PASSWORD_CODE_KEY"
     }
     
-    static let AccessToken = "AccessToken"
+    static var AccessToken = "AccessToken"
     
     
     //AccessToken

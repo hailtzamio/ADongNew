@@ -27,27 +27,19 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m0R-Co-KUG">
-                                        <rect key="frame" x="0.0" y="106" width="414" height="712"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="768"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableView>
-                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Tuy-rp-MbR">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="56"/>
-                                        <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="m0R-Co-KUG" firstAttribute="top" secondItem="Tuy-rp-MbR" secondAttribute="bottom" id="9mP-cx-2TQ"/>
-                                    <constraint firstItem="Tuy-rp-MbR" firstAttribute="top" secondItem="Yfx-e7-Ege" secondAttribute="bottom" id="EBn-Jr-dEM"/>
                                     <constraint firstAttribute="trailing" secondItem="Yfx-e7-Ege" secondAttribute="trailing" id="Mn2-NZ-4fx"/>
                                     <constraint firstItem="Yfx-e7-Ege" firstAttribute="leading" secondItem="pGU-4a-NDO" secondAttribute="leading" id="NWi-R8-c7Y"/>
+                                    <constraint firstItem="m0R-Co-KUG" firstAttribute="top" secondItem="Yfx-e7-Ege" secondAttribute="bottom" id="Rw5-Ou-2q8"/>
                                     <constraint firstItem="Yfx-e7-Ege" firstAttribute="top" secondItem="pGU-4a-NDO" secondAttribute="top" id="S0f-vf-aSv"/>
                                     <constraint firstItem="m0R-Co-KUG" firstAttribute="leading" secondItem="pGU-4a-NDO" secondAttribute="leading" id="Z28-Nq-MNY"/>
                                     <constraint firstAttribute="bottom" secondItem="m0R-Co-KUG" secondAttribute="bottom" id="jci-yn-5OO"/>
-                                    <constraint firstItem="Tuy-rp-MbR" firstAttribute="leading" secondItem="pGU-4a-NDO" secondAttribute="leading" id="kOn-As-YNR"/>
-                                    <constraint firstAttribute="trailing" secondItem="Tuy-rp-MbR" secondAttribute="trailing" id="qnl-J9-OtN"/>
                                     <constraint firstAttribute="trailing" secondItem="m0R-Co-KUG" secondAttribute="trailing" id="w9i-ke-azX"/>
                                 </constraints>
                             </view>
@@ -63,7 +55,6 @@
                     </view>
                     <connections>
                         <outlet property="header" destination="Yfx-e7-Ege" id="BeU-jd-ZIw"/>
-                        <outlet property="searchBar" destination="Tuy-rp-MbR" id="oW5-ae-kak"/>
                         <outlet property="tbView" destination="m0R-Co-KUG" id="IGK-31-5T5"/>
                     </connections>
                 </viewController>

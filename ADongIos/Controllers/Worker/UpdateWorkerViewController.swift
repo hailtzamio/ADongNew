@@ -190,7 +190,7 @@ extension UpdateWorkerViewController : TOCropViewControllerDelegate {
         var headers: HTTPHeaders
         headers = ["Content-type": "multipart/form-data",
                    "Accept" : "application/json"]
-        headers["Authorization"] = ContentType.token.rawValue
+        headers["Authorization"] = Context.AccessToken
         AF.upload(multipartFormData: { (multipartFormData) in
             
             let randomIntFrom0To10 = Int.random(in: 1..<1000)

@@ -18,9 +18,9 @@ class Switcher {
             
         if(token != nil){
             rootVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "SplashViewController") as! SplashViewController
-        }else{
+        } else {
             // When Logout
-            rootVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            rootVC = LoginViewController()
         }
         
         let nav1 = UINavigationController()

@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PermissViewController" customModule="ADongIos" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="DMQ-Db-Dae" id="ciG-xH-JoD"/>
+                <outlet property="imv1" destination="Fqj-mF-34h" id="unb-oZ-wEU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,29 +38,29 @@
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_worker" translatesAutoresizingMaskIntoConstraints="NO" id="Fqj-mF-34h">
-                    <rect key="frame" x="359" y="70" width="40" height="40"/>
+                    <rect key="frame" x="364" y="72.5" width="35" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="S0g-0b-9qE"/>
-                        <constraint firstAttribute="width" constant="40" id="Y0P-d5-uUg"/>
+                        <constraint firstAttribute="height" constant="35" id="S0g-0b-9qE"/>
+                        <constraint firstAttribute="width" constant="35" id="Y0P-d5-uUg"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZC7-o6-WFM">
-                    <rect key="frame" x="359" y="70" width="40" height="40"/>
+                    <rect key="frame" x="364" y="72.5" width="35" height="35"/>
                     <connections>
                         <action selector="goToProfile:" destination="-1" eventType="touchUpInside" id="49Q-Q6-zWB"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npe-t8-4OS">
-                    <rect key="frame" x="309" y="70" width="40" height="40"/>
+                    <rect key="frame" x="319" y="72.5" width="35" height="35"/>
                     <connections>
                         <action selector="goToNotification:" destination="-1" eventType="touchUpInside" id="pp7-Ac-7dx"/>
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct_orange" translatesAutoresizingMaskIntoConstraints="NO" id="oRy-oV-wbd">
-                    <rect key="frame" x="309" y="70" width="40" height="40"/>
+                    <rect key="frame" x="319" y="72.5" width="35" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="jdk-kE-Z9x"/>
-                        <constraint firstAttribute="width" constant="40" id="nLy-Vx-Ink"/>
+                        <constraint firstAttribute="height" constant="35" id="jdk-kE-Z9x"/>
+                        <constraint firstAttribute="width" constant="35" id="nLy-Vx-Ink"/>
                     </constraints>
                 </imageView>
             </subviews>

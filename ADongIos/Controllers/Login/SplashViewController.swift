@@ -13,10 +13,15 @@ class SplashViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+        
+        
     }
 
-
+    func gotoNextPage(){
+               let vc = LoginViewController()
+               navigationController?.pushViewController(vc, animated: true)
+           }
     /*
     // MARK: - Navigation
 
