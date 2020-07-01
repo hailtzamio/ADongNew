@@ -34,6 +34,7 @@ struct HexColorApp {
     static let primary = "#4c4c4c"
     static let green = "#3ca150"
     static let red = "#962E34"
+        static let red2 = "#FB5252"
     static let orange = "#FB9214"
     static let blue = "#3366cc"
     static let gray = "#90928E"

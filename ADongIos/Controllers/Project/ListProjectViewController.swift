@@ -105,7 +105,7 @@ class ListProjectViewController: BaseViewController, LoadMoreControlDelegate, UI
     
     func getData() {
         showLoading()
-        APIClient.getProjects(page : page, name : textSearch, status : filterType) { result in
+        APIClient.getProjects(page : page, name : textSearch, status : filterType, size : 50) { result in
             self.stopLoading()
             switch result {
             case .success(let response):
@@ -238,6 +238,7 @@ extension ListProjectViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailProjectViewController") as? DetailProjectViewController {
+            vc.project = data[indexPath.row]
             vc.id = data[indexPath.row].id!
             vc.ptitle = data[indexPath.row].name!
             navigationController?.pushViewController(vc, animated: true)

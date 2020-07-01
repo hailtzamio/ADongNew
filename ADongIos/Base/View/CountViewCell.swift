@@ -39,8 +39,22 @@ class CountViewCell: UITableViewCell {
     
     func setDataProduct(data:Product) {
         lb1.text = data.name
-        lb2.text = data.createdByFullName
-        lb3.text = data.updatedTime
+
+        lb3.text = data.unit ?? "---"
+        
+        switch data.type {
+         case "buy":
+             lb2.text = "Mua"
+             break
+             case "manufacture":
+                        lb2.text = "Sản xuất"
+                        break
+             case "tool":
+                        lb2.text = "Công cụ"
+                        break
+         default:
+             break
+         }
         
         if(data.count != nil) {
             

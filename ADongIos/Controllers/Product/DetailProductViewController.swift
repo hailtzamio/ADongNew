@@ -73,10 +73,27 @@ class DetailProductViewController: BaseViewController {
                 
                 if let value = response.data  {
                     self.item = value
-                    self.data.append(Information(pKey: "Thương hiệu",pValue: value.name ?? ""))
-                    self.data.append(Information(pKey: "Model",pValue: value.code ?? "--"))
-                    self.data.append(Information(pKey: "Biển số xe",pValue: value.createdByFullName!))
-                    self.data.append(Information(pKey: "Trọng tải",pValue: value.updatedByFullName!))
+                    self.data.append(Information(pKey: "Tên",pValue: value.name ?? ""))
+                    self.data.append(Information(pKey: "Mã",pValue: value.code ?? "--"))
+                    
+                    var type = ""
+                    switch value.type {
+                         case "buy":
+                             type = "Mua"
+                             break
+                             case "manufacture":
+                                       type = "Sản xuất"
+                                        break
+                             case "tool":
+                                        type = "Công cụ"
+                                        break
+                         default:
+                             break
+                         }
+                    
+                    
+                    self.data.append(Information(pKey: "Loại",pValue: type))
+                    self.data.append(Information(pKey: "Đơn vị tính",pValue: value.unit ?? "---"))
                     self.tbView.reloadData()
                     return
                 }

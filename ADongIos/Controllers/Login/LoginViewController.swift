@@ -79,8 +79,12 @@ class LoginViewController: BaseViewController {
     
     
     func gotoNextPage(){
-        let vc = PermissViewController()
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = PermissViewController()
+//        navigationController?.pushViewController(vc, animated: true)
+        
+        if let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "MainMapViewController") as? MainMapViewController {
+               navigationController?.pushViewController(vc, animated: true)
+           }
     }
     
     

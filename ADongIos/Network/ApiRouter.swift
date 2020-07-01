@@ -55,7 +55,7 @@ enum ApiRouter: URLRequestConvertible {
     case updateContractor(data: Contractor)
     case createContractor(data: Contractor)
     
-    case getProjects(page:Int,name:String, status:String)
+    case getProjects(page:Int,name:String, status:String, size: Int)
     case getProject(id: Int)
     case removeProject(id: Int)
     case updateProject(data: Project)
@@ -366,9 +366,9 @@ enum ApiRouter: URLRequestConvertible {
         case .updateProject(let data):
             return ["name": data.name, "address": data.address,"teamType": data.teamType,"managerId" : data.managerId, "deputyManagerId": data.deputyManagerId, "secretaryId": data.secretaryId, "teamId": data.teamId, "contractorId": data.contractorId, "supervisorId": data.supervisorId, "plannedStartDate": data.plannedStartDate, "plannedEndDate": data.plannedEndDate, "latitude": data.latitude, "longitude": data.longitude,"investorManagerName": data.investorManagerName,"investorManagerPhone": data.investorManagerPhone,"investorManagerEmail": data.investorManagerEmail,"investorDeputyManagerName": data.investorDeputyManagerName,"investorDeputyManagerPhone": data.investorDeputyManagerPhone,"investorDeputyManagerEmail": data.investorDeputyManagerEmail]
             
-        case .getProjects(let page, let name, let status) :
+        case .getProjects(let page, let name, let status, let size) :
             return  [ "page": page,
-                      "search": name, "status" : status, "sort" : "id,desc" ]
+                      "search": name, "status" : status, "sort" : "id,desc", "size" : size ]
             
         case .checkin(let data) :
             return  [ "projectId": data.projectId,

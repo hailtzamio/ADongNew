@@ -12,8 +12,9 @@ class InformationListViewController: BaseViewController {
     
     @IBOutlet weak var tbView: UITableView!
     var data = [TitleModel]()
+    var project = Project()
     var id = 0
-       var callback : ((TitleModel?) -> Void)?
+    var callback : ((TitleModel?) -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         tbView.dataSource = self
@@ -33,19 +34,22 @@ class InformationListViewController: BaseViewController {
     func getData() {
         
         data.append(TitleModel(pTitle: "Thông tin cơ bản", pImagePath: "burning"))
-        data.append(TitleModel(pTitle: "line", pImagePath: "check_green"))
-        data.append(TitleModel(pTitle: "Danh sách đăng ký thi công", pImagePath: "print"))
+        data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
+        if(project.teamType != "ADONG") {
+            data.append(TitleModel(pTitle: "Danh sách đăng ký thi công", pImagePath: "print"))
+        }
         data.append(TitleModel(pTitle: "Danh sách vật tư", pImagePath: "print"))
         data.append(TitleModel(pTitle: "Bản thiết kế", pImagePath: "drawing"))
         data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
         data.append(TitleModel(pTitle: "Đánh giá công trình", pImagePath: "healthcare"))
         data.append(TitleModel(pTitle: "An toàn lao động", pImagePath: "hospital"))
-        data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
-        data.append(TitleModel(pTitle: "Thêm công nhân", pImagePath: "add_worker"))
-        data.append(TitleModel(pTitle: "Kho ảnh", pImagePath: "picture"))
-        data.append(TitleModel(pTitle: "Lịch sử điểm danh", pImagePath: "history"))
-        data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
-        data.append(TitleModel(pTitle: "Tạm dừng công trình", pImagePath: "burning"))
+        
+        if(project.teamType == "ADONG") {
+            data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
+            data.append(TitleModel(pTitle: "Thêm công nhân", pImagePath: "add_worker"))
+            data.append(TitleModel(pTitle: "Kho ảnh", pImagePath: "picture"))
+            data.append(TitleModel(pTitle: "Lịch sử điểm danh", pImagePath: "history"))
+        }
     }
     
 }
@@ -58,13 +62,13 @@ extension InformationListViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 1 || indexPath.row == 5 || indexPath.row == 8 || indexPath.row == 12 {
+        if data[indexPath.row].title == "Line" {
             let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell
-                cell.selectionStyle = UITableViewCell.SelectionStyle.none
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TitleViewCell.identifier, for: indexPath) as! TitleViewCell
-                cell.selectionStyle = UITableViewCell.SelectionStyle.none
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.setData(data: data[indexPath.row])
             return cell
         }
@@ -73,31 +77,31 @@ extension InformationListViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         callback!(data[indexPath.row])
-//        switch indexPath.row {
-//        case 0:
-//            goToBaseInformation()
-//            break
-//        case 2:
-//            goToProjectBidding()
-//            break
-//        case 3:
-//            goToProductRequirement()
-//            break
-//        case 4:
-//            goToFiles()
-//            break
-//        case 9:
-//            goToChooseWorker()
-//            break
-//        case 11:
-//            goToCheckinOutList()
-//            break
-//            case 10:
-//                goToAlbum()
-//                break
-//        default:
-//            break
-//        }
+        //        switch indexPath.row {
+        //        case 0:
+        //            goToBaseInformation()
+        //            break
+        //        case 2:
+        //            goToProjectBidding()
+        //            break
+        //        case 3:
+        //            goToProductRequirement()
+        //            break
+        //        case 4:
+        //            goToFiles()
+        //            break
+        //        case 9:
+        //            goToChooseWorker()
+        //            break
+        //        case 11:
+        //            goToCheckinOutList()
+        //            break
+        //            case 10:
+        //                goToAlbum()
+        //                break
+        //        default:
+        //            break
+        //        }
         
         
     }
@@ -154,9 +158,9 @@ extension InformationListViewController {
     }
     
     func goToFiles() {
-          if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "FileListViewController") as? FileListViewController {
-              vc.id = id
-              navigationController?.pushViewController(vc, animated: true)
-          }
-      }
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "FileListViewController") as? FileListViewController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

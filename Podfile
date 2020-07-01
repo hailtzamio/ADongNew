@@ -18,4 +18,5 @@ target 'ADongIos' do
   pod 'DLRadioButton'
   pod "BSImagePicker", "~> 3.1"
   pod 'SnapKit'
+  pod 'OneSignal', '>= 2.6.2', '< 3.0'
 end

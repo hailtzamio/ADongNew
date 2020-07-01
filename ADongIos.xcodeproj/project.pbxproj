@@ -161,6 +161,10 @@
 		B59AE98724AB2679002C5BF4 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE98624AB2679002C5BF4 /* NotificationsViewController.swift */; };
 		B59AE98924AB286C002C5BF4 /* NotificationOb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE98824AB286C002C5BF4 /* NotificationOb.swift */; };
 		B59AE98B24AB339D002C5BF4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE98A24AB339D002C5BF4 /* ProfileViewController.swift */; };
+		B59AE98F24AC22F7002C5BF4 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE98E24AC22F7002C5BF4 /* MainMapViewController.swift */; };
+		B59AE99224AC3270002C5BF4 /* ProjectMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE99024AC3270002C5BF4 /* ProjectMapViewController.swift */; };
+		B59AE99324AC3270002C5BF4 /* ProjectMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B59AE99124AC3270002C5BF4 /* ProjectMapViewController.xib */; };
+		B59AE99524AC9E21002C5BF4 /* UIImage-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE99424AC9E21002C5BF4 /* UIImage-Extensions.swift */; };
 		B5A68D35248F5C9B00FD76A4 /* BaseInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A68D34248F5C9B00FD76A4 /* BaseInformationController.swift */; };
 		B5A68D38248F78EF00FD76A4 /* Trip.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5A68D37248F78EF00FD76A4 /* Trip.storyboard */; };
 		B5A68D3C248F7EC600FD76A4 /* ListTransportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A68D3B248F7EC600FD76A4 /* ListTransportViewController.swift */; };
@@ -364,6 +368,10 @@
 		B59AE98624AB2679002C5BF4 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		B59AE98824AB286C002C5BF4 /* NotificationOb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationOb.swift; sourceTree = "<group>"; };
 		B59AE98A24AB339D002C5BF4 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		B59AE98E24AC22F7002C5BF4 /* MainMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainMapViewController.swift; path = /Users/cuongvh/Desktop/ADongNew/ADongIos/Controllers/profile/MainMapViewController.swift; sourceTree = "<absolute>"; };
+		B59AE99024AC3270002C5BF4 /* ProjectMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectMapViewController.swift; sourceTree = "<group>"; };
+		B59AE99124AC3270002C5BF4 /* ProjectMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectMapViewController.xib; sourceTree = "<group>"; };
+		B59AE99424AC9E21002C5BF4 /* UIImage-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extensions.swift"; sourceTree = "<group>"; };
 		B5A68D34248F5C9B00FD76A4 /* BaseInformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInformationController.swift; sourceTree = "<group>"; };
 		B5A68D37248F78EF00FD76A4 /* Trip.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Trip.storyboard; sourceTree = "<group>"; };
 		B5A68D3B248F7EC600FD76A4 /* ListTransportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTransportViewController.swift; sourceTree = "<group>"; };
@@ -727,6 +735,7 @@
 				B54A01B02478329900E5F310 /* UIViewControllerExtension.swift */,
 				B54A01AF2478329900E5F310 /* UiViewExtension.swift */,
 				B51F56252478C3BD00B3851A /* CardView.swift */,
+				B59AE99424AC9E21002C5BF4 /* UIImage-Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -885,6 +894,7 @@
 			isa = PBXGroup;
 			children = (
 				B59AE98224AB25E1002C5BF4 /* Profile.storyboard */,
+				B59AE98E24AC22F7002C5BF4 /* MainMapViewController.swift */,
 				B59AE98A24AB339D002C5BF4 /* ProfileViewController.swift */,
 				B59AE98624AB2679002C5BF4 /* NotificationsViewController.swift */,
 			);
@@ -912,6 +922,8 @@
 			children = (
 				B5A68D522490C53900FD76A4 /* MapViewController.swift */,
 				B5A68D532490C53900FD76A4 /* MapViewController.xib */,
+				B59AE99024AC3270002C5BF4 /* ProjectMapViewController.swift */,
+				B59AE99124AC3270002C5BF4 /* ProjectMapViewController.xib */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1080,6 +1092,7 @@
 				B514B4E824A7515100913E3D /* NoticePopupView.xib in Resources */,
 				B54A0193247831EE00E5F310 /* Lorry.storyboard in Resources */,
 				B54A01A32478326C00E5F310 /* InformationDetailCell.xib in Resources */,
+				B59AE99324AC3270002C5BF4 /* ProjectMapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1169,6 +1182,7 @@
 				B54A015C24782C0100E5F310 /* PermissionCollectionViewCell.swift in Sources */,
 				B58E15FE248E3D660054E9A0 /* CAPSPageMenu+UIConfiguration.swift in Sources */,
 				B58E15DD248E2F7F0054E9A0 /* Project.swift in Sources */,
+				B59AE99224AC3270002C5BF4 /* ProjectMapViewController.swift in Sources */,
 				B57BE2FF249C73340004E428 /* ProductRequirementViewController.swift in Sources */,
 				B58F8A392487777100E9BB9E /* SmallInformationViewCell.swift in Sources */,
 				B54A018224782D7100E5F310 /* Article.swift in Sources */,
@@ -1291,6 +1305,7 @@
 				B54A018124782D7100E5F310 /* Information.swift in Sources */,
 				B54A014824782A4100E5F310 /* APIClient.swift in Sources */,
 				B58E1603248E3D660054E9A0 /* CAPSPageMenuConfiguration.swift in Sources */,
+				B59AE99524AC9E21002C5BF4 /* UIImage-Extensions.swift in Sources */,
 				B56FD90C248F3D7A00DCAA54 /* TitleViewCell.swift in Sources */,
 				B55CD0282490E5FA00662427 /* TransportImagesViewController.swift in Sources */,
 				B58561B0249340FA000A5675 /* CreateWarehousetViewController.swift in Sources */,
@@ -1301,6 +1316,7 @@
 				B58E15E2248E355D0054E9A0 /* ProjectViewCell.swift in Sources */,
 				B54A015124782B2400E5F310 /* SplashViewController.swift in Sources */,
 				B59AE98924AB286C002C5BF4 /* NotificationOb.swift in Sources */,
+				B59AE98F24AC22F7002C5BF4 /* MainMapViewController.swift in Sources */,
 				B59AE97B24AAF6F8002C5BF4 /* DetailGoodsIssueViewController.swift in Sources */,
 				B514B4E024A6339A00913E3D /* CardViewCustom.swift in Sources */,
 				B55CD0362490EF3300662427 /* DetailWareHouseViewController.swift in Sources */,

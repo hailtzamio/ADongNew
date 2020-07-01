@@ -63,7 +63,7 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
     
     
     func setupHeader() {
-        header.title = "Công Nhânnn"
+        header.title = "Công Nhân"
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
         }

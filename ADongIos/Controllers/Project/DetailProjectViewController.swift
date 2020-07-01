@@ -29,7 +29,7 @@ class DetailProjectViewController: BaseViewController {
     override func viewDidLoad() {
         // MARK: - UI Setup
         
-        
+        self.tabBarController?.tabBar.isHidden = true
         
         header.title = ptitle
         header.isRightButtonHide = true
@@ -82,6 +82,7 @@ class DetailProjectViewController: BaseViewController {
         let controller3 = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "InformationListViewController") as? InformationListViewController
         controller3!.title = "Thông Tin"
         controller3?.id = id
+        controller3?.project = project
         controller3?.callback = {(data) in
             switch data?.title {
             case ProjectTitle.title1:
@@ -105,7 +106,7 @@ class DetailProjectViewController: BaseViewController {
             case ProjectTitle.title7:
                 self.goToFiles()
             case ProjectTitle.title8:
-                self.pickImage(isLibrary: true)
+//                self.pickImage(isLibrary: true)
                 break
             case ProjectTitle.title9:
                 self.goToAlbum()

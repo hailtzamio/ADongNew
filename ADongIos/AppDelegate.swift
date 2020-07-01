@@ -11,8 +11,30 @@ import CoreData
 import IQKeyboardManagerSwift
 import GoogleMaps
 import GooglePlaces
+import OneSignal
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSSubscriptionObserver  {
+    
+    func onOSPermissionChanged(_ stateChanges: OSPermissionStateChanges!) {
+        // Example of detecting answering the permission prompt
+        if stateChanges.from.status == OSNotificationPermission.notDetermined {
+            if stateChanges.to.status == OSNotificationPermission.authorized {
+                print("Thanks for accepting notifications!")
+            } else if stateChanges.to.status == OSNotificationPermission.denied {
+                print("Notifications not accepted. You can turn them on later under your iOS settings.")
+            }
+        }
+        // prints out all properties
+        print("PermissionStateChanges: \n\(stateChanges)")
+    }
+    
+    func onOSSubscriptionChanged(_ stateChanges: OSSubscriptionStateChanges!) {
+        if !stateChanges.from.subscribed && stateChanges.to.subscribed {
+            print("Subscribed for OneSignal push notifications!")
+        }
+        print("SubscriptionStateChange: \n\(stateChanges)")
+    }
+    
     
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -31,11 +53,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyBEWloW2DR2zmONpY7SK_rjYn1ZDbs9ZKw")
         GMSPlacesClient.provideAPIKey("AIzaSyBEWloW2DR2zmONpY7SK_rjYn1ZDbs9ZKw")
         
+
+        //Remove this method to stop OneSignal Debugging
+        OneSignal.setLogLevel(.LL_VERBOSE, visualLevel: .LL_NONE)
+
+        //START OneSignal initialization code
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false, kOSSettingsKeyInAppLaunchURL: false]
+        
+        // Replace 'YOUR_ONESIGNAL_APP_ID' with your OneSignal App ID.
+        OneSignal.initWithLaunchOptions(launchOptions,
+          appId: "dd299d1f-50fd-497e-9007-4889d0160097",
+          handleNotificationAction: nil,
+          settings: onesignalInitSettings)
+
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+
+        // The promptForPushNotifications function code will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 6)
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+          print("User accepted notifications: \(accepted)")
+        })
+        //END OneSignal initializataion code
+        
+        
+        
         return true
     }
     
     func openSplash() {
-        let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+        let loginVC = SplashViewController(nibName: "SplashViewController", bundle: nil)
         let nav = UINavigationController.init(rootViewController: loginVC)
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = nav

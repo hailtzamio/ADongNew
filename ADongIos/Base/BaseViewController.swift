@@ -21,7 +21,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
+//        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
     }
     
     func showLoading()  {

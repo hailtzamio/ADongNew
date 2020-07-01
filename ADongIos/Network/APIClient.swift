@@ -247,10 +247,10 @@ class APIClient {
     }
     
     // Project
-    static func getProjects(page : Int, name : String, status : String,completion:@escaping (Result<BaseResponseList<Project>, AFError>)->Void) {
+    static func getProjects(page : Int, name : String, status : String, size : Int,completion:@escaping (Result<BaseResponseList<Project>, AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
-        performRequest(route: ApiRouter.getProjects(page: page, name: name, status : status), decoder: jsonDecoder, completion: completion)
+        performRequest(route: ApiRouter.getProjects(page: page, name: name, status : status, size: size), decoder: jsonDecoder, completion: completion)
     }
     
     static func getProject(id:Int,completion:@escaping (Result<BaseResponse<Project>, AFError>)->Void) {

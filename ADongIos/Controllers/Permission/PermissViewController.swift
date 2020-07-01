@@ -65,6 +65,7 @@ class PermissViewController: BaseViewController {
     
     @IBAction func goToProfile(_ sender: Any) {
         if let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
+                vc.hidesBottomBarWhenPushed = true
                 navigationController?.pushViewController(vc, animated: true)
         }
         
@@ -72,6 +73,7 @@ class PermissViewController: BaseViewController {
     
     @IBAction func goToNotification(_ sender: Any) {
         if let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "NotificationsViewController") as? NotificationsViewController {
+                    vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
         }
         
@@ -148,6 +150,7 @@ extension PermissViewController : UICollectionViewDataSource, UICollectionViewDe
             break
         }
         
+        vC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vC, animated: true)
         
         //        if let vc = UIStoryboard.init(name: "Lorry", bundle: Bundle.main).instantiateViewController(withIdentifier: "LorryListViewController") as? LorryListViewController {

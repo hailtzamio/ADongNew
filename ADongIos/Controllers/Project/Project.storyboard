@@ -609,7 +609,7 @@
                                             <constraint firstAttribute="height" constant="40" id="tdX-dr-C3i"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmE-j0-Xkh">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmE-j0-Xkh">
                                         <rect key="frame" x="351" y="763" width="40" height="40"/>
                                         <state key="normal" image="map_vew">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>

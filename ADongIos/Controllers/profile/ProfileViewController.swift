@@ -23,7 +23,7 @@ class ProfileViewController: BaseViewController {
         super.viewDidLoad()
         setupHeader()
         popupHandle()
-        
+        yesNoHandle()
         tbView.dataSource = self
         tbView.delegate = self
         tbView.register(InformationDetailCell.nib, forCellReuseIdentifier: InformationDetailCell.identifier)
@@ -154,12 +154,7 @@ class ProfileViewController: BaseViewController {
     }
     
     @IBAction func logout(_ sender: Any) {
-        preferences.set(nil
-            , forKey: accessToken)
-        Context.AccessToken = ""
-        Switcher.updateRootVC()
-        //           OneSignal.deleteTag("user_id")
-        
+        showYesNoPopup(title: "Xác nhận", message: "Bạn muốn đăng xuất tài khoản này?")
     }
     
     
@@ -178,5 +173,17 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
         cell.setData(data: data[indexPath.row])
         return cell
+    }
+    
+    func yesNoHandle() {
+    
+            okAction = {
+                self.preferences.set(nil
+                        , forKey: accessToken)
+                    Context.AccessToken = ""
+                    Switcher.updateRootVC()
+                    //           One/ignal.deleteTag("user_id")
+        }
+    
     }
 }

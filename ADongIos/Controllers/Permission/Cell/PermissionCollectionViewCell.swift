@@ -74,7 +74,7 @@ class PermissionCollectionViewCell: UICollectionViewCell {
         }
         
         if(data.appEntityCode == "Warehouse") {
-             imv1.image = UIImage(named: "labor")
+             imv1.image = UIImage(named: "factory")
             title = "Kho / Xưởng"
          }
         
