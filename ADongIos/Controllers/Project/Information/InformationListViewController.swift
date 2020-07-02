@@ -148,8 +148,6 @@ extension InformationListViewController {
         }
     }
     
-    
-    
     func goToAlbum() {
         if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "ProjectImagesViewController") as? ProjectImagesViewController {
             vc.id = id

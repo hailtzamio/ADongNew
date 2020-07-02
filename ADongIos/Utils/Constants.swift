@@ -23,7 +23,7 @@ let error_check_internet = "Không có kết nối mạng"
 
 struct K {
     struct ProductionServer {
-        static var baseURL = "http://adong-api-dev.zamio.net/api/"
+        static var baseURL = "http://adong-api.zamio.net/api/"
         static var  ACCESS_TOKEN: String = ""
     }
     

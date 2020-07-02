@@ -21,6 +21,8 @@ enum ApiRouter: URLRequestConvertible {
     case removeLorry(id: Int)
     case createLorry(data: Lorry)
     
+    case createProduct(data: Product)
+       case updateProduct(data: Product)
     case getProducts(page:Int,name:String)
     case getProduct(id: Int)
     case removeProduct(id: Int)
@@ -99,9 +101,9 @@ enum ApiRouter: URLRequestConvertible {
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
-        case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout, .createWarehouse, .createGoodsReceivedNote, .createLorry, .addWorkerToProject, .createProductRequirement, .createTrip :
+        case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout, .createWarehouse, .createGoodsReceivedNote, .createLorry, .addWorkerToProject, .createProductRequirement, .createTrip, .createProduct :
             return .post
-        case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline, .transportPickup, .transportUnload, .projectBiddingApprove, .finishProject   :
+        case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline, .transportPickup, .transportUnload, .projectBiddingApprove, .finishProject, .updateProduct   :
             return .put
         case .removeProduct, .removeWorker,.removeLorry, .removeTeam, .removeDriver, .removeContractor, .removeProject :
             return .delete
@@ -137,10 +139,17 @@ enum ApiRouter: URLRequestConvertible {
         case .updateLorry(let data):
             let id = data.id ?? 0
             return "lorry/\(id)"
+            
+            case .updateProduct(let data):
+                let id = data.id ?? 0
+                return "product/\(id)"
         case .createLorry(let data):
             return "lorry"
         case .removeLorry(let id):
             return "lorry/\(id)"
+        case .createProduct:
+            return "product"
+            
         case .getProducts :
             return "product"
         case .getProduct(let id) :
@@ -344,6 +353,9 @@ enum ApiRouter: URLRequestConvertible {
         case .updateDriver(let data):
             
             return ["fullName": data.fullName,"phone": data.phone, "phone2": data.phone2, "password": data.password, "email": data.email, "avatarExtId": data.avatarExtId]
+            
+            
+            
         case .createDriver(let data):
             
             return ["fullName": data.fullName,"phone": data.phone, "phone2": data.phone2, "password": data.password, "email": data.email, "avatarExtId": data.avatarExtId]
@@ -401,10 +413,18 @@ enum ApiRouter: URLRequestConvertible {
             return  [
                 "workerId" : workerId ]
         case .createProductRequirement(let data):
-                     return ["note": data.note, "expectedDatetime": data.expectedDatetime,"linesAddNew": data.linesAddNew]
+                     return ["note": data.note ?? "", "expectedDatetime": data.expectedDatetime ?? "","linesAddNew": data.linesAddNew ?? [Product]()]
             
             case .createTrip(let data):
                      return ["plannedDatetime": data.plannedDatetime, "lorryId": data.lorryId,"driverId": data.driverId, "transportReqIds": data.transportReqIds,"note": data.note]
+            
+            case .createProduct(let data):
+                      
+                      return ["name": data.name,"type": data.type, "thumbnailExtId": data.thumbnailExtId, "unit": data.unit, "code": data.code]
+            
+            case .updateProduct(let data):
+                           
+                           return ["name": data.name,"type": data.type, "thumbnailExtId": data.thumbnailExtId, "unit": data.unit, "code": data.code]
         }
     }
     

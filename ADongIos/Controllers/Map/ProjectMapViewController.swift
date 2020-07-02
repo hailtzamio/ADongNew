@@ -9,9 +9,9 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
-class ProjectMapViewController: BaseViewController, GMSMapViewDelegate {
+class ProjectMapViewController: BaseViewController, GMSMapViewDelegate, CAAnimationDelegate {
     
-
+    
     @IBOutlet weak var mapView: GMSMapView!
     var isJustView = false
     var location = LocationAddress()
@@ -22,64 +22,91 @@ class ProjectMapViewController: BaseViewController, GMSMapViewDelegate {
     var isCreateNewOne = false
     var zoom = 18.0
     var data = Project()
+    
     var projects = [Project]()
+    var changeColor = true
+    var globalMarker = GMSMarker()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        getData()
-        
-        
-        
-        
-        
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector:#selector(resetData), name: UIApplication.willEnterForegroundNotification, object: UIApplication.shared)
+        projects.removeAll()
+        getData()
+    }
+    
+    @objc func resetData() {
+        projects.removeAll()
+        getData()
+    }
+    
+    func blinkMarker(marker: GMSMarker){
+        let key = "blink"
+        globalMarker = marker
+        let pulseAnimation = CABasicAnimation(keyPath: "backgroundColor")
+        pulseAnimation.delegate = self
+        pulseAnimation.fromValue = 1
+        pulseAnimation.toValue = 0
+        pulseAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        pulseAnimation.repeatCount = HUGE
+        pulseAnimation.autoreverses = true
+        globalMarker.layer.add(pulseAnimation, forKey: key)
+    }
+
     func setupView(){
         if(projects.count > 0) {
-                lat = 17.787203
-                  long = 105.605202
-//         lat = 21.0278
-//         long = 105.8342
-         zoom = 5.5
-    
-         projects.forEach { (project) in
-             let marker = GMSMarker()
-
-             
-             if(project.status == "PROCESSING") {
-                  marker.icon = UIImage(named: "green_dot")
-             } else if(project.status == "NEW") {
-                  marker.icon = UIImage(named: "dot_red2")
-                print("Come")
-             } else {
-             
-             }
+            lat = 17.787203
+            long = 105.605202
+            zoom = 5.5
             
-            var title = " \(project.address ?? "") \n \(project.plannedEndDate ?? "") \n \(project.plannedEndDate ?? "") \n \(project.teamName ?? "---") "
-
-             marker.setIconSize(scaledToSize: .init(width: 12, height:12))
-             marker.position = CLLocationCoordinate2D(latitude: project.latitude ?? 0.0, longitude: project.longitude ?? 0.0)
-             marker.title = project.name
-             marker.snippet = title
-             marker.map = mapView
-             
-         }
-         
-     }
+            projects.forEach { (project) in
+                let marker = GMSMarker()
      
-     mapView.delegate = self
-     
-     let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: lat, longitude: long, zoom: Float(zoom))
-     mapView.camera = camera
-     
-     
-//     mapView.isMyLocationEnabled = true
-//     mapView.settings.myLocationButton = true
-//     locationManager.delegate = self
-//     locationManager.requestWhenInUseAuthorization()
+                var title = " \(project.address ?? "") \n \(project.plannedEndDate ?? "") \n \(project.plannedEndDate ?? "") \n \(project.teamName ?? "---") "
+                
+                marker.setIconSize(scaledToSize: .init(width: 12, height:12))
+                marker.position = CLLocationCoordinate2D(latitude: project.latitude ?? 0.0, longitude: project.longitude ?? 0.0)
+                marker.title = project.name
+                marker.snippet = title
+                marker.map = mapView
+                
+                
+                
+                if(project.status == "PROCESSING") {
+                    marker.iconView = UIImageView(image: UIImage(named: "greendot2"))
+                } else if(project.status == "NEW") {
+                    
+                    marker.iconView = UIImageView(image: UIImage(named: "dotred2"))
+                    
+                } else {
+                    marker.iconView = UIImageView(image: UIImage(named: "dotred2"))
+                }
+                
+                
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat, .autoreverse], animations: {
+                    marker.iconView!.alpha = 0.0
+                }, completion: nil)
+                
+            }
+            
+        }
+        
+        mapView.delegate = self
+        
+        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: lat, longitude: long, zoom: Float(zoom))
+        mapView.camera = camera
+        
+        
+        //     mapView.isMyLocationEnabled = true
+        //     mapView.settings.myLocationButton = true
+        //     locationManager.delegate = self
+        //     locationManager.requestWhenInUseAuthorization()
     }
-    
-    
     
     @IBAction func goBack(_ sender: Any) {
         goBack()
@@ -94,39 +121,37 @@ class ProjectMapViewController: BaseViewController, GMSMapViewDelegate {
     }
     
     func getData() {
-    showLoading()
+        showLoading()
         APIClient.getProjects(page : 0, name : "", status : "", size: 100) { result in
-        self.stopLoading()
-        switch result {
-        case .success(let response):
-            
-            if(response.data != nil) {
-                self.projects.append(contentsOf: response.data!)
-                self.setupView()
-                    
+            self.stopLoading()
+            switch result {
+            case .success(let response):
                 
-            } else {
-                self.showToast(content: response.message!)
+                if(response.data != nil) {
+                    self.projects.append(contentsOf: response.data!)
+                    self.setupView()
+                    
+                    
+                } else {
+                    self.showToast(content: response.message!)
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
             }
-            
-        case .failure(let error):
-            self.showToast(content: error.localizedDescription)
         }
-    }
-    
+        
     }
 }
-
 
 extension ProjectMapViewController: CLLocationManagerDelegate {
     
     
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
-
-        //you can handle zooming and camera update here
-            print("Ahihi")
         
-            return true
+        //you can handle zooming and camera update here
+        
+        return true
     }
     
     // 2
@@ -175,10 +200,8 @@ extension ProjectMapViewController: CLLocationManagerDelegate {
             self.location.long = coordinate.longitude
             self.location.name = lines.joined(separator: "\n")
             
-            
-            
             print(coordinate.latitude)
-
+            
             // 4
             UIView.animate(withDuration: 0.25) {
                 self.view.layoutIfNeeded()

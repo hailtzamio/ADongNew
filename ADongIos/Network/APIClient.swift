@@ -494,6 +494,16 @@ class APIClient {
          performRequest(route: ApiRouter.getNotifications, decoder: jsonDecoder, completion: completion)
      }
     
+    static func createProduct(data:Product,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.createProduct(data: data), decoder: jsonDecoder, completion: completion)
+    }
     
+    static func updateProduct(data:Product,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+           let jsonDecoder = JSONDecoder()
+           jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+           performRequest(route: ApiRouter.updateProduct(data: data), decoder: jsonDecoder, completion: completion)
+       }
 }
 

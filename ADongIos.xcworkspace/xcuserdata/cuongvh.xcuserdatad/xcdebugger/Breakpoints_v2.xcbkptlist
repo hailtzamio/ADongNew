@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D3B8694D-A7E9-4F8B-B3B9-8C1FC2EA9202"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ADongIos/Controllers/Product/DetailProductViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "popupHandle()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "CB764E23-C5CC-49D6-9E37-036FC4A32779"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -49,6 +33,22 @@
             startingLineNumber = "119"
             endingLineNumber = "119"
             landmarkName = "setDataWorkerCheck(data:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3108A41C-2B13-4454-B06C-FFF2524599F5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ADongIos/Controllers/Project/product-requirement/CreateProductReqViewController.swift.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "createProductRequirement()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

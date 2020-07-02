@@ -54,7 +54,6 @@ class CreateProductReqViewController: BaseViewController {
                 /// Create
                 var lines = [Product]()
                 self.data.forEach { (value) in
-                    
                     if(value.count != nil) {
                         value.productId = value.id
                         value.quantity = Int(value.count!) ?? 0

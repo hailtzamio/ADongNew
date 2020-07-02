@@ -142,7 +142,7 @@
                                             <constraint firstAttribute="height" constant="50" id="f1t-k0-Gym"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Thương hiệu *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31L-cl-jLf" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tên *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31L-cl-jLf" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="20" y="70" width="374" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="bmq-0T-SZu"/>
@@ -150,7 +150,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Model *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6FY-5K-VdK" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mã *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6FY-5K-VdK" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="20" y="135" width="374" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="MCH-w8-0iK"/>
@@ -158,7 +158,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Biển số xe *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vf6-FB-MSK" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Đơn vị tính *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vf6-FB-MSK" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="20" y="200" width="374" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="qOz-ko-Lf4"/>
@@ -166,7 +166,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trọng tải" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2Q-Ye-wM5" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Loại" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2Q-Ye-wM5" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="20" y="265" width="374" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="OCZ-fe-tK3"/>
@@ -193,6 +193,12 @@
                                             <action selector="remove:" destination="cj1-6j-n4F" eventType="touchUpInside" id="eRV-rn-FfA"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYi-3e-0ga">
+                                        <rect key="frame" x="20" y="265" width="374" height="30"/>
+                                        <connections>
+                                            <action selector="productType:" destination="Q5d-lp-ZaT" eventType="touchUpInside" id="8av-3X-cl0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -204,11 +210,15 @@
                                     <constraint firstItem="TgE-Ox-3Jy" firstAttribute="top" secondItem="c5O-DR-XPh" secondAttribute="top" id="F7D-jP-ePL"/>
                                     <constraint firstItem="vf6-FB-MSK" firstAttribute="leading" secondItem="6FY-5K-VdK" secondAttribute="leading" id="Gfg-IC-jJO"/>
                                     <constraint firstItem="6FY-5K-VdK" firstAttribute="top" secondItem="31L-cl-jLf" secondAttribute="bottom" constant="20" id="HT9-Q6-V0v"/>
+                                    <constraint firstItem="nYi-3e-0ga" firstAttribute="top" secondItem="z2Q-Ye-wM5" secondAttribute="top" id="I2l-Ja-gc3"/>
+                                    <constraint firstItem="nYi-3e-0ga" firstAttribute="height" secondItem="z2Q-Ye-wM5" secondAttribute="height" multiplier="0.666667" id="Idk-WO-mRK"/>
                                     <constraint firstItem="6FY-5K-VdK" firstAttribute="trailing" secondItem="31L-cl-jLf" secondAttribute="trailing" id="KA3-1g-nkA"/>
                                     <constraint firstItem="TgE-Ox-3Jy" firstAttribute="leading" secondItem="c5O-DR-XPh" secondAttribute="leading" id="MfK-Dh-fsq"/>
                                     <constraint firstItem="z2Q-Ye-wM5" firstAttribute="trailing" secondItem="vf6-FB-MSK" secondAttribute="trailing" id="RDv-3j-JTr"/>
+                                    <constraint firstItem="nYi-3e-0ga" firstAttribute="leading" secondItem="z2Q-Ye-wM5" secondAttribute="leading" id="b4F-kc-lLB"/>
                                     <constraint firstItem="z8r-On-f0C" firstAttribute="top" secondItem="z2Q-Ye-wM5" secondAttribute="bottom" constant="20" id="d0b-sH-nWm"/>
                                     <constraint firstAttribute="trailing" secondItem="TgE-Ox-3Jy" secondAttribute="trailing" id="lSu-S5-tUq"/>
+                                    <constraint firstItem="nYi-3e-0ga" firstAttribute="width" secondItem="z2Q-Ye-wM5" secondAttribute="width" id="o9L-fY-TTP"/>
                                     <constraint firstAttribute="trailing" secondItem="31L-cl-jLf" secondAttribute="trailing" constant="20" id="pYu-qO-t21"/>
                                     <constraint firstItem="vf6-FB-MSK" firstAttribute="top" secondItem="6FY-5K-VdK" secondAttribute="bottom" constant="20" id="reo-mg-fBS"/>
                                     <constraint firstItem="z8r-On-f0C" firstAttribute="leading" secondItem="c5O-DR-XPh" secondAttribute="leading" constant="20" id="suB-oN-TUT"/>
@@ -228,15 +238,15 @@
                     </view>
                     <connections>
                         <outlet property="header" destination="TgE-Ox-3Jy" id="CfI-Ng-VHq"/>
-                        <outlet property="tfBrand" destination="31L-cl-jLf" id="Q49-cW-mhr"/>
-                        <outlet property="tfCapacity" destination="z2Q-Ye-wM5" id="Lpq-8H-4GK"/>
-                        <outlet property="tfModel" destination="6FY-5K-VdK" id="dbC-3Y-oyV"/>
-                        <outlet property="tfPlateNumber" destination="vf6-FB-MSK" id="ZOS-H0-lXA"/>
+                        <outlet property="tf1" destination="31L-cl-jLf" id="fpR-Fg-BA6"/>
+                        <outlet property="tf2" destination="6FY-5K-VdK" id="2Mc-Ek-pKe"/>
+                        <outlet property="tf3" destination="vf6-FB-MSK" id="PkX-UC-FaA"/>
+                        <outlet property="tf4" destination="z2Q-Ye-wM5" id="FEM-LT-9pv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qU5-T5-kZ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1488" y="-1201"/>
+            <point key="canvasLocation" x="-1488.4057971014495" y="-1201.3392857142856"/>
         </scene>
     </scenes>
 </document>

@@ -21,8 +21,13 @@ class DetailProductViewController: BaseViewController {
         tbView.dataSource = self
         tbView.delegate = self
         tbView.register(InformationDetailCell.nib, forCellReuseIdentifier: InformationDetailCell.identifier)
-    
+        
         getData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+              
+                   getData()
     }
     
     func setupHeader() {
@@ -61,7 +66,6 @@ class DetailProductViewController: BaseViewController {
                 }
             }
         }
-        
     }
     
     func getData() {
@@ -73,23 +77,26 @@ class DetailProductViewController: BaseViewController {
                 
                 if let value = response.data  {
                     self.item = value
+                    
+                    self.data.removeAll()
+                    
                     self.data.append(Information(pKey: "Tên",pValue: value.name ?? ""))
                     self.data.append(Information(pKey: "Mã",pValue: value.code ?? "--"))
                     
                     var type = ""
                     switch value.type {
-                         case "buy":
-                             type = "Mua"
-                             break
-                             case "manufacture":
-                                       type = "Sản xuất"
-                                        break
-                             case "tool":
-                                        type = "Công cụ"
-                                        break
-                         default:
-                             break
-                         }
+                    case "buy":
+                        type = "Mua"
+                        break
+                    case "manufacture":
+                        type = "Xuất kho"
+                        break
+                    case "tool":
+                        type = "Sản xuất"
+                        break
+                    default:
+                        break
+                    }
                     
                     
                     self.data.append(Information(pKey: "Loại",pValue: type))
