@@ -14,16 +14,26 @@ import IQDropDownTextField
 import DLRadioButton
 import DateTimePicker
 class UpdateProjectViewController: BaseViewController, UINavigationControllerDelegate, DateTimePickerDelegate  {
+    
+    
     func dateTimePicker(_ picker: DateTimePicker, didSelectDate: Date) {
-        tf5.text = picker.selectedDateString
+        if(typeOfTfDate == 1) {
+            
+            startDate = picker.selectedDateString
+            tf3.text = "".convertDateFormatter(date: picker.selectedDateString)
+        } else {
+          tf4.text = "".convertDateFormatter(date: picker.selectedDateString)
+            endDate = picker.selectedDateString
+        }
+      
     }
     
     
     
     @IBOutlet weak var tf1: RadiusTextField!
     @IBOutlet weak var tf2: RadiusTextField!
-    @IBOutlet weak var tf3: IQDropDownTextField!
-    @IBOutlet weak var tf4: IQDropDownTextField!
+    @IBOutlet weak var tf3: UITextField!
+    @IBOutlet weak var tf4: UITextField!
     @IBOutlet weak var tf5: RadiusTextField!
     @IBOutlet weak var tf6: UIButton!
     
@@ -48,21 +58,14 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     var isUpdate = true // if false Create
     var dialog  =  YesNoPopup.instanceFromNib(title: "TRƯỞNG BỘ PHẬN")
     var dialog2 = YesNoPopup.instanceFromNib(title: "PHÓ BỘ PHẬN")
+    var typeOfTfDate = 1
+    var startDate = ""
+    var endDate = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         setupHeader()
-        tf3.delegate =  self
-        tf3.dropDownMode = .dateTimePicker
-        tf3.dateFormatter?.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        tf3.tag = 1
-        
-        tf4.dropDownMode = .dateTimePicker
-        tf4.delegate =  self
-        tf4.tag = 2
-        
 
-        
         if(isUpdate) {
             
             if(project.teamType == "ADONG") {
@@ -74,7 +77,10 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             }
             tf1.text = project.name
             tf2.text = project.address
-            
+            tf3.text = "".convertDateFormatter(date: project.plannedStartDate ?? "")
+            tf4.text = "".convertDateFormatter(date: project.plannedEndDate ?? "")
+            startDate = project.plannedStartDate ?? ""
+            endDate = project.plannedEndDate ?? ""
             
             if(project.investorContacts != nil && project.investorContacts?.manager != nil) {
                 tf7.setTitle(project.investorContacts?.manager?.name ?? "Chọn", for: .normal)
@@ -91,18 +97,25 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             tf9.setTitle(project.supervisorFullName ?? "Chọn", for: .normal)
             
             
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy MMM HH:mm EEEE"
-            let date = formatter.date (from: project.plannedStartDate!)
-            tf3.setDate(date, animated: false)
-            
         } else {
             project.teamType = "ADONG"
               radio1.isSelected = true
         }
         
     }
+    
+    
+    @IBAction func chooseDate(_ sender: Any) {
+        typeOfTfDate = 1
+        test()
+        
+    }
+    
+    @IBAction func chooseEndDate(_ sender: Any) {
+           typeOfTfDate = 2
+          test()
+       }
+    
     
     //     func openTimePicker()  {
     //        timePicker.datePickerMode = UIDatePicker.Mode.dateAndTime
@@ -191,12 +204,12 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
         
     }
     
+    
+    
     @IBAction func team(_ sender: Any) {
-//        project.teamType = "ADONG"
-//        tf6.setTitle(project.teamName ?? "Chọn", for: .normal)
-//        lb1.text = "Tên đội *"
-        
-        test()
+        project.teamType = "ADONG"
+        tf6.setTitle(project.teamName ?? "Chọn", for: .normal)
+        lb1.text = "Tên đội *"
     }
     
     func test() {
@@ -210,13 +223,13 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
 
     //        picker.todayButtonTitle = "Today"
     //        picker.is12HourFormat = true
-            picker.dateFormat = "dd/MM/YYYY hh:mm aa"
+            picker.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
     //        picker.isDatePickerOnly = true
             picker.includesMonth = true
             picker.includesSecond = false
             picker.highlightColor = UIColor(red: 255.0/255.0, green: 138.0/255.0, blue: 138.0/255.0, alpha: 1)
             picker.doneButtonTitle = "ĐỒNG Ý"
-            picker.doneBackgroundColor = UIColor(red: 255.0/255.0, green: 138.0/255.0, blue: 138.0/255.0, alpha: 1)
+        picker.doneBackgroundColor = UIColor.init(hexString: HexColorApp.primary)
             picker.customFontSetting = DateTimePicker.CustomFontSetting(selectedDateLabelFont: .boldSystemFont(ofSize: 20))
     //        if #available(iOS 13.0, *) {
     //            picker.normalColor = UIColor.secondarySystemGroupedBackground
@@ -231,7 +244,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     //        }
             picker.completionHandler = { date in
                 let formatter = DateFormatter()
-                formatter.dateFormat = "hh:mm:ss aa dd/MM/YYYY"
+                formatter.dateFormat = "hh:mm aa dd/MM/YYYY"
                 self.title = formatter.string(from: date)
             }
             picker.delegate = self
@@ -253,7 +266,7 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     
     @IBAction func contractor(_ sender: Any) {
         project.teamType = "CONTRACTOR"
-        tf6.setTitle(project.teamName ?? "Chọn", for: .normal)
+        tf6.setTitle(project.contractorName ?? "Chọn", for: .normal)
  
         lb1.text = "Tên đội"
     }
@@ -367,17 +380,12 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     
     func update(pData:Project) {
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        
-        
-        if(tf3.date != nil) {
-            pData.plannedStartDate = formatter.string(from: tf3.date!)
-            
+        if(tf3.text != "") {
+            pData.plannedStartDate = startDate
         }
         
-        if(tf4.date != nil) {
-            pData.plannedEndDate = formatter.string(from: tf4.date!)
+        if(tf4.text != "") {
+            pData.plannedEndDate = endDate
             
         }
         
@@ -403,18 +411,15 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     
     func create(pData:Project) {
         
-        if(tf3.date == nil || tf4.date == nil) {
+        if(tf3.text == "" || tf4.text == "") {
             showToast(content: "Chọn ngày")
             return
         }
+
+        project.plannedStartDate = startDate
+        project.plannedEndDate = endDate
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        project.plannedStartDate = formatter.string(from: tf3.date!)
-        project.plannedEndDate = formatter.string(from: tf4.date!)
-        
- 
-        
+
         showLoading()
         APIClient.createProject(data: pData) { result in
             self.stopLoading()

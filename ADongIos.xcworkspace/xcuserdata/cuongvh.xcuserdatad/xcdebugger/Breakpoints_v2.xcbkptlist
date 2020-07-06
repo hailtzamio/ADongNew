@@ -66,6 +66,38 @@
             endingLineNumber = "76"
             landmarkName = "createProductRequirement()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "456ECD88-D0C4-4FDA-9E5C-E7FD2B93B7FE - ee0e5d31927ea558"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ADongIos.CreateProductReqViewController.createProductRequirement() -&gt; ()"
+                  moduleName = "ADongIos"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cuongvh/Desktop/ADongNew/ADongIos/Controllers/Project/product-requirement/CreateProductReqViewController.swift.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "456ECD88-D0C4-4FDA-9E5C-E7FD2B93B7FE - cb72ce645476cacf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;ADongIos.ResponseDefault, Alamofire.AFError&gt;) -&gt; () in ADongIos.CreateProductReqViewController.createProductRequirement() -&gt; ()"
+                  moduleName = "ADongIos"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cuongvh/Desktop/ADongNew/ADongIos/Controllers/Project/product-requirement/CreateProductReqViewController.swift.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "180">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -130,8 +130,8 @@ class BaseInformationController: BaseViewController {
                         self.btnPauseAndResume.isHidden = true
                     }
                     
-                    self.data1.append(Information(pKey: "Ngày bắt đầu",pValue: value.plannedStartDate ?? "---"))
-                    self.data1.append(Information(pKey: "Ngày kết thúc",pValue: value.plannedEndDate ?? "---"))
+                    self.data1.append(Information(pKey: "Ngày bắt đầu",pValue: "".convertDateFormatter(date: value.plannedStartDate ?? "11/11/2020T11:11:11")))
+                    self.data1.append(Information(pKey: "Ngày kết thúc",pValue: "".convertDateFormatter(date: value.plannedEndDate ?? "11/11/2020T11:11:11")))
                     
                     if(value.teamType == "ADONG") {
                         self.data2.append(Information(pKey: "Đội thi công",pValue: "Đội Á đông"))
