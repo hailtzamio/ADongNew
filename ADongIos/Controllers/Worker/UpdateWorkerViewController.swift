@@ -22,8 +22,11 @@ class UpdateWorkerViewController: BaseViewController, UINavigationControllerDele
     @IBOutlet weak var tf4: RadiusTextField!
     @IBOutlet weak var tf5: RadiusTextField!
     @IBOutlet weak var tf6: RadiusTextField!
+    
+    @IBOutlet weak var btnLeader: UIButton!
     var avatarData:Data? = nil
     var avatarExtId = ""
+    var isLeader = false
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
@@ -39,6 +42,13 @@ class UpdateWorkerViewController: BaseViewController, UINavigationControllerDele
             avatarExtId = data.avatarExtId ?? ""
             let url = URL(string: data.avatarUrl ?? "")
             self.imvAva.kf.setImage(with: url, placeholder: UIImage(named: "default"))
+            isLeader = data.isTeamLeader ?? false
+            
+            if(isLeader) {
+                btnLeader.setImage(UIImage(named: "dot2"), for: .normal)
+            } else {
+                btnLeader.setImage(UIImage(named: "dot3"), for: .normal)
+            }
         }
     }
     
@@ -66,6 +76,11 @@ class UpdateWorkerViewController: BaseViewController, UINavigationControllerDele
             return
         }
         
+        if ( avatarExtId == "") {
+            showToast(content: "Chọn ảnh đại diện")
+            return
+        }
+
         data.fullName = tf1.text
         data.phone = tf2.text
         data.lineId = tf3.text
@@ -73,13 +88,11 @@ class UpdateWorkerViewController: BaseViewController, UINavigationControllerDele
         data.bankName = tf5.text
         data.bankAccount = tf6.text
         data.avatarExtId = avatarExtId
+        data.isTeamLeader = isLeader
         
         if(isUpdate) {
-            // Update
             update(pData: data)
         } else {
-            // Create
-            data.isTeamLeader = false
             create(pData: data)
         }
     }
@@ -126,6 +139,17 @@ class UpdateWorkerViewController: BaseViewController, UINavigationControllerDele
                 self.showToast(content: error.localizedDescription)
             }
         }
+    }
+    
+    
+    @IBAction func isLeader(_ sender: Any) {
+        isLeader = !isLeader
+        if(isLeader) {
+            btnLeader.setImage(UIImage(named: "dot2"), for: .normal)
+        } else {
+            btnLeader.setImage(UIImage(named: "dot3"), for: .normal)
+        }
+        
     }
 }
 

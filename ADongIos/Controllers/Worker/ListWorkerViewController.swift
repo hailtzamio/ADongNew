@@ -100,6 +100,8 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
                     self.data.append(contentsOf: response.data!)
                     self.tbView.reloadData()
                     if(response.pagination != nil && response.pagination?.totalPages != nil) {
+                        let total = response.pagination?.totalRecords ?? 0
+                        self.tfSearch.placeholder = "Tìm kiếm trong \(total) Công nhân"
                         self.totalPages = response.pagination?.totalPages as! Int
                         self.page = self.page + 1
                     }
@@ -124,6 +126,8 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
                     self.data.append(contentsOf: response.data!)
                     self.tbView.reloadData()
                     if(response.pagination != nil && response.pagination?.totalPages != nil) {
+                        let total = response.pagination?.totalRecords ?? 0
+                        self.tfSearch.placeholder = "Tìm kiếm trong \(total) Công nhân"
                         self.totalPages = response.pagination?.totalPages as! Int
                         self.page = self.page + 1
                     }

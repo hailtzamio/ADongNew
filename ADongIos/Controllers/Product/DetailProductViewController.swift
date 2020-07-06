@@ -14,6 +14,8 @@ class DetailProductViewController: BaseViewController {
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
     var data = [Information]()
+    @IBOutlet weak var imvAva: UIImageView!
+    var thumbnailExtId = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeader()
@@ -80,8 +82,8 @@ class DetailProductViewController: BaseViewController {
                     
                     self.data.removeAll()
                     
-                    self.data.append(Information(pKey: "Tên",pValue: value.name ?? ""))
-                    self.data.append(Information(pKey: "Mã",pValue: value.code ?? "--"))
+                    self.data.append(Information(pKey: "Tên",pValue: value.name ?? "---"))
+                    self.data.append(Information(pKey: "Mã",pValue: value.code ?? "---"))
                     
                     var type = ""
                     switch value.type {
@@ -98,9 +100,14 @@ class DetailProductViewController: BaseViewController {
                         break
                     }
                     
+                    self.thumbnailExtId = value.thumbnailUrl ?? ""
+                    let url = URL(string: self.thumbnailExtId)
+                    self.imvAva.kf.setImage(with: url, placeholder: UIImage(named: "default"))
                     
-                    self.data.append(Information(pKey: "Loại",pValue: type))
+                    
+              
                     self.data.append(Information(pKey: "Đơn vị tính",pValue: value.unit ?? "---"))
+                    self.data.append(Information(pKey: "Loại",pValue: type))
                     self.tbView.reloadData()
                     return
                 }

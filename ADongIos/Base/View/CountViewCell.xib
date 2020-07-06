@@ -87,6 +87,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="imvAva" destination="sz7-Kb-yaj" id="WzG-vk-Fje"/>
                 <outlet property="lb1" destination="lc3-88-vou" id="5x9-OR-8Cg"/>
                 <outlet property="lb2" destination="PRP-nx-VHF" id="jBt-q2-PAA"/>
                 <outlet property="lb3" destination="h29-ZV-Dzx" id="UEz-e5-tqI"/>

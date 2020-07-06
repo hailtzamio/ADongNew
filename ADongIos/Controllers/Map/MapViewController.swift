@@ -28,9 +28,6 @@ class MapViewController: BaseViewController, GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
         if(projects.count > 0) {
             
             lat = 21.0278

@@ -28,6 +28,7 @@ enum ApiRouter: URLRequestConvertible {
     case removeProduct(id: Int)
     
     case getWorkers(page:Int,name:String)
+    case getWorkersNotInTeam(page:Int,name:String)
     case getWorkersForTeam(page:Int,name:String, type:String)
     case getLeaders(page:Int,name:String)
     case getWorkerNotLeader(page:Int,name:String)
@@ -60,6 +61,8 @@ enum ApiRouter: URLRequestConvertible {
     case getProjects(page:Int,name:String, status:String, size: Int)
     case getProject(id: Int)
     case removeProject(id: Int)
+       case pauseProject(id: Int)
+          case resumeProject(data: Project)
     case updateProject(data: Project)
     case createProject(data: Project)
     case getProjectWokers(id: Int)
@@ -103,7 +106,7 @@ enum ApiRouter: URLRequestConvertible {
         switch self {
         case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout, .createWarehouse, .createGoodsReceivedNote, .createLorry, .addWorkerToProject, .createProductRequirement, .createTrip, .createProduct :
             return .post
-        case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline, .transportPickup, .transportUnload, .projectBiddingApprove, .finishProject, .updateProduct   :
+        case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline, .transportPickup, .transportUnload, .projectBiddingApprove, .finishProject, .updateProduct, .pauseProject , .resumeProject   :
             return .put
         case .removeProduct, .removeWorker,.removeLorry, .removeTeam, .removeDriver, .removeContractor, .removeProject :
             return .delete
@@ -113,7 +116,7 @@ enum ApiRouter: URLRequestConvertible {
              .getTeams, .getTeam, .getTeamWorkers,
              .getDrivers, .getDriver,
              .getContractors, .getContractor,
-             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote, .getProductRequirements, .getBiddings, .getWorkerNotLeader, .getProjectCheckOut, .getProjectFiles, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest, .getNotifications,  .getMyProfile
+             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote, .getProductRequirements, .getBiddings, .getWorkerNotLeader, .getProjectCheckOut, .getProjectFiles, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest, .getNotifications,  .getMyProfile, .getWorkersNotInTeam
             :
             return .get
         }
@@ -159,6 +162,8 @@ enum ApiRouter: URLRequestConvertible {
             
         case .getWorkers:
             return "worker"
+            case .getWorkersNotInTeam:
+                      return "worker"
         case .getWorkerNotLeader:
             return "worker"
         case .getWorkersForTeam:
@@ -223,6 +228,11 @@ enum ApiRouter: URLRequestConvertible {
             return "project/\(id)"
         case .removeProject(let id):
             return "project/\(id)"
+            case .pauseProject(let id):
+                   return "project/\(id)/pause"
+            case .resumeProject(let data):
+                 let id = data.id ?? 0
+                return "project/\(id)/resume"
         case .updateProject (let data):
             let id = data.id ?? 0
             return "project/\(id)"
@@ -320,6 +330,19 @@ enum ApiRouter: URLRequestConvertible {
             
         case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest, .getNotifications, .getMyProfile:
             return nil
+            
+        case .pauseProject :
+            return [ "note": "Tạm dừng công trình" ]
+         case .resumeProject(let data) :
+            
+            if(data.teamId == nil) {
+                     return ["teamType": data.teamType, "contractorId": data.contractorId ?? 0, "note": "Phục hồi công trình" ]
+            } else {
+            
+                  return ["teamType": data.teamType,"teamId": data.teamId ?? 0, "note": "Phục hồi công trình" ]
+            }
+            
+      
         case .getProducts(let page, let name) :
             return  [ "page": page,
                       "name": name, "sort" : "id,desc" ]
@@ -332,12 +355,15 @@ enum ApiRouter: URLRequestConvertible {
         case .getWorkers(let page, let name) :
             return  [ "page": page,
                       "fullName": name, "sort" : "id,desc"  ]
+            case .getWorkersNotInTeam(let page, let name) :
+                     return  [ "page": page,
+                               "fullName": name, "sort" : "id,desc", "inTeam" : false ]
         case .getWorkerNotLeader(let page, let name) :
             return  [ "page": page,
                       "name": name, "sort" : "id,desc", "isTeamLeader" : false ]
         case .getWorkersForTeam(let page, let name, let type) :
             return  [ "authorityCode" : type,"page": page,
-                      "name": name, "sort" : "id,desc"  ]
+                      "name": name, "sort" : "id,desc", "inTeam" : false  ]
             
         case .getLeaders(let page, let name) :
             return  [ "page": page,

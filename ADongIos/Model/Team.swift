@@ -23,7 +23,7 @@ class Team: Codable {
     var updatedTime : String?
     var leaderId : Int?
     var leaderFullName : String?
-    var projectId : String?
+    var projectId : Int?
     var projectName : String?
     var futureProjectId : String?
     var futureProjectName : String?

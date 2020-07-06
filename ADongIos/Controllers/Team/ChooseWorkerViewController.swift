@@ -10,8 +10,8 @@ import UIKit
 
 class ChooseWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMoreControlDelegate {
     
-    @IBOutlet weak var searchBar: UISearchBar!
     var data = [Worker]()
+    var dataChoose = [Worker]()
     fileprivate var activityIndicator: LoadMoreActivityIndicator!
     var page = 0
     var totalPages = 0
@@ -19,17 +19,19 @@ class ChooseWorkerViewController: BaseViewController, UISearchBarDelegate, LoadM
     @IBOutlet weak var header: NavigationBar!
     var loadMoreControl: LoadMoreControl!
     
+    @IBOutlet weak var tfSearch: UITextField!
     // For Adding To Team
     var team:Team? = nil
     var chooseWorkerId = 0
     var callback : ((Worker?) -> Void)?
+    var callbackList : (([Worker]?) -> Void)?
     var goBackToPreviousVc : (() -> ())?
     
     var isCheckHiden = true
     var isTypeOfWorker = TypeOfWorker.worker
     
     var isRightButtonHide = false
-    
+    var isChooseWorkerForTeam = false
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeader()
@@ -85,20 +87,47 @@ class ChooseWorkerViewController: BaseViewController, UISearchBarDelegate, LoadM
     
     func setupHeader() {
         
+        header.changeDoneIcon()
+        
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
         }
         
         header.rightAction = {
-            self.showYesNoPopup(title: "Xác nhận", message: "Tạo Đội thi công?")
+            if(self.isChooseWorkerForTeam) {
+                
+                var members = [Worker]()
+                for i in 0..<self.data.count {
+                    if(self.data[i].isSelected ?? false) {
+                        members.append(self.data[i])
+                    }
+                }
+                
+                self.callbackList!(members)
+                self.goBack()
+            } else {
+                self.showYesNoPopup(title: "Xác nhận", message: "Tạo Đội thi công?")
+            }
+            
         }
         
         header.isRightButtonHide = isRightButtonHide
+        tfSearch.addPadding(.left(20.0))
+        tfSearch.returnKeyType = UIReturnKeyType.search
+        tfSearch.addTarget(self, action: #selector(enterPressed), for: .editingDidEndOnExit)
+    }
+    
+    @objc func enterPressed(){
+        //do something with typed text if needed
+        tfSearch.resignFirstResponder()
+        page = 0
+        data.removeAll()
+        getData()
     }
     
     func getData() {
         showLoading()
-        APIClient.getWorkers(page : page, name : searchBar.text ?? "") { result in
+        APIClient.getWorkersNotInTeam(page : page, name : tfSearch.text ?? "") { result in
             self.stopLoading()
             switch result {
             case .success(let response):
@@ -110,6 +139,16 @@ class ChooseWorkerViewController: BaseViewController, UISearchBarDelegate, LoadM
                         self.totalPages = response.pagination?.totalPages as! Int
                         self.page = self.page + 1
                     }
+                    
+                    for i in 0..<self.data.count {
+                        for j in 0..<self.dataChoose.count {
+                            if(self.data[i].id == self.dataChoose[j].id) {
+                                self.data[i].isSelected = true
+                            }
+                        }
+                    }
+                    
+                    
                 } else {
                     self.showToast(content: response.message!)
                 }
@@ -122,18 +161,31 @@ class ChooseWorkerViewController: BaseViewController, UISearchBarDelegate, LoadM
     
     func getWorkersForTeam(type: String) {
         showLoading()
-        APIClient.getWorkersForTeam(page : page, name : searchBar.text ?? "", type: type) { result in
+        APIClient.getWorkersForTeam(page : page, name : tfSearch.text ?? "", type: type) { result in
             self.stopLoading()
             switch result {
             case .success(let response):
                 
                 if(response.data != nil) {
                     self.data.append(contentsOf: response.data!)
-                    self.tbView.reloadData()
+                    
                     if(response.pagination != nil && response.pagination?.totalPages != nil) {
                         self.totalPages = response.pagination?.totalPages as! Int
                         self.page = self.page + 1
                     }
+                    
+                    
+                    for i in 0..<self.data.count {
+                        for j in 0..<self.dataChoose.count {
+                            if(self.data[i].id == self.dataChoose[j].id) {
+                                self.data[i].isSelected = true
+                            }
+                        }
+                    }
+                    
+                    
+                    self.tbView.reloadData()
+                    
                 } else {
                     self.showToast(content: response.message!)
                 }
@@ -146,7 +198,7 @@ class ChooseWorkerViewController: BaseViewController, UISearchBarDelegate, LoadM
     
     func getLeaders() {
         showLoading()
-        APIClient.getLeaders(page : page, name : searchBar.text ?? "") { result in
+        APIClient.getLeaders(page : page, name : tfSearch.text ?? "") { result in
             self.stopLoading()
             switch result {
             case .success(let response):
@@ -191,6 +243,13 @@ extension ChooseWorkerViewController: UITableViewDataSource, UITableViewDelegate
     func doCheck(position: Int) {
         
         data[position].isSelected = !(data[position].isSelected ?? false)
+        
+        data.forEach { (worker) in
+            if(worker.isSelected ?? false) {
+                dataChoose.append(worker)
+            }
+        }
+        
         tbView.reloadData()
     }
     

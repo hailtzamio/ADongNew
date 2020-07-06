@@ -251,18 +251,18 @@ extension DetailGoodsReceivedViewController: UITableViewDataSource, UITableViewD
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            //            print("remove")
-            //            workers.remove(at: indexPath.row)
-            //            var memberIds = [Int]()
-            //            for i in 0..<workers.count {
-            //                memberIds.append(workers[i].id!)
-            //            }
-            //
-            //            item?.memberIds = memberIds
-            //            update(pData: item!)
-        }
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if (editingStyle == .delete) {
+//            //            print("remove")
+//            //            workers.remove(at: indexPath.row)
+//            //            var memberIds = [Int]()
+//            //            for i in 0..<workers.count {
+//            //                memberIds.append(workers[i].id!)
+//            //            }
+//            //
+//            //            item?.memberIds = memberIds
+//            //            update(pData: item!)
+//        }
+//    }
 }
 

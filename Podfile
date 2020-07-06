@@ -19,4 +19,5 @@ target 'ADongIos' do
   pod "BSImagePicker", "~> 3.1"
   pod 'SnapKit'
   pod 'OneSignal', '>= 2.6.2', '< 3.0'
+  pod 'DateTimePicker'
 end

@@ -68,7 +68,8 @@ class ProjectViewCell: UITableViewCell {
         lb1.text = data.name
         lb2.text = data.address
         lb3.text = data.plannedStartDate
-        lb4.text = data.plannedEndDate
+        lb3.text = "".convertDateFormatter(date: data.plannedStartDate ?? "")
+        lb4.text = "".convertDateFormatter(date: data.plannedEndDate ?? "")
         if(data.teamType != nil && data.teamType == "ADONG") {
             lb5.text = "Đội Á đông"
         } else {

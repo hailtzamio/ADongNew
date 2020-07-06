@@ -11,7 +11,7 @@
         <!--Lorry List View Controller-->
         <scene sceneID="KV9-Jf-Ztk">
             <objects>
-                <viewController restorationIdentifier="LorryListViewController" storyboardIdentifier="LorryListViewController" id="uyn-aX-6Bf" customClass="LorryListViewController" customModule="ADongPr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="LorryListViewController" storyboardIdentifier="LorryListViewController" id="uyn-aX-6Bf" customClass="LorryListViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KRE-cd-R7e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,14 +19,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZTs-wh-LV9">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckD-dO-RPf" customClass="NavigationBar" customModule="ADongPr" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckD-dO-RPf" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <color key="backgroundColor" red="0.29800295829772949" green="0.29806005954742432" blue="0.29799938201904297" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="jHK-xL-fUY"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KVd-zW-eco">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KVd-zW-eco">
                                         <rect key="frame" x="0.0" y="50" width="414" height="768"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -65,12 +65,12 @@
         <!--Detail Lorry View Controller-->
         <scene sceneID="xYl-E5-liH">
             <objects>
-                <viewController storyboardIdentifier="DetailLorryViewController" id="cj1-6j-n4F" customClass="DetailLorryViewController" customModule="ADongPr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailLorryViewController" id="cj1-6j-n4F" customClass="DetailLorryViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IWd-EV-wUW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxW-4d-U4A" customClass="NavigationBar" customModule="ADongPr" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxW-4d-U4A" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -78,11 +78,11 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NJf-55-9bL">
-                                <rect key="frame" x="0.0" y="94" width="414" height="693"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="473"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LwT-qj-T7L">
-                                <rect key="frame" x="20" y="797" width="374" height="45"/>
+                                <rect key="frame" x="15" y="797" width="384" height="45"/>
                                 <color key="backgroundColor" red="0.29800295829772949" green="0.29806005954742432" blue="0.29799938201904297" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="gPc-vE-kTe"/>
@@ -99,35 +99,46 @@
                                     <action selector="remove:" destination="cj1-6j-n4F" eventType="touchUpInside" id="h5Q-m8-VES"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMx-sM-xZY" customClass="GMSMapView">
+                                <rect key="frame" x="15" y="582" width="384" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="sTm-H1-W1R"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="0zv-s6-34V" firstAttribute="bottom" secondItem="LwT-qj-T7L" secondAttribute="bottom" constant="20" id="2fx-bS-tZO"/>
+                            <constraint firstItem="mMx-sM-xZY" firstAttribute="top" secondItem="NJf-55-9bL" secondAttribute="bottom" constant="15" id="6Ec-UA-ucN"/>
                             <constraint firstItem="0zv-s6-34V" firstAttribute="trailing" secondItem="NJf-55-9bL" secondAttribute="trailing" id="7P2-0y-Gyd"/>
-                            <constraint firstItem="LwT-qj-T7L" firstAttribute="top" secondItem="NJf-55-9bL" secondAttribute="bottom" constant="10" id="9ET-cr-J1d"/>
-                            <constraint firstItem="LwT-qj-T7L" firstAttribute="leading" secondItem="0zv-s6-34V" secondAttribute="leading" constant="20" id="FOi-R4-xBx"/>
-                            <constraint firstItem="0zv-s6-34V" firstAttribute="trailing" secondItem="LwT-qj-T7L" secondAttribute="trailing" constant="20" id="Gpf-9i-ohS"/>
+                            <constraint firstItem="0zv-s6-34V" firstAttribute="trailing" secondItem="mMx-sM-xZY" secondAttribute="trailing" constant="15" id="Dyd-6x-gfL"/>
+                            <constraint firstItem="LwT-qj-T7L" firstAttribute="leading" secondItem="0zv-s6-34V" secondAttribute="leading" constant="15" id="FOi-R4-xBx"/>
+                            <constraint firstItem="0zv-s6-34V" firstAttribute="trailing" secondItem="LwT-qj-T7L" secondAttribute="trailing" constant="15" id="Gpf-9i-ohS"/>
                             <constraint firstItem="0zv-s6-34V" firstAttribute="trailing" secondItem="mxW-4d-U4A" secondAttribute="trailing" id="R04-LL-BlH"/>
                             <constraint firstItem="NJf-55-9bL" firstAttribute="top" secondItem="mxW-4d-U4A" secondAttribute="bottom" id="X9a-qz-kfH"/>
                             <constraint firstItem="mxW-4d-U4A" firstAttribute="top" secondItem="0zv-s6-34V" secondAttribute="top" id="acm-vr-eIL"/>
+                            <constraint firstItem="mMx-sM-xZY" firstAttribute="leading" secondItem="0zv-s6-34V" secondAttribute="leading" constant="15" id="jgG-c4-x61"/>
                             <constraint firstItem="NJf-55-9bL" firstAttribute="leading" secondItem="0zv-s6-34V" secondAttribute="leading" id="ulC-8l-JGK"/>
                             <constraint firstItem="mxW-4d-U4A" firstAttribute="leading" secondItem="0zv-s6-34V" secondAttribute="leading" id="w5k-Ac-uTM"/>
+                            <constraint firstItem="LwT-qj-T7L" firstAttribute="top" secondItem="mMx-sM-xZY" secondAttribute="bottom" constant="15" id="xUA-md-EV0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0zv-s6-34V"/>
                     </view>
                     <connections>
                         <outlet property="header" destination="mxW-4d-U4A" id="61k-Jy-i5n"/>
+                        <outlet property="mapView" destination="mMx-sM-xZY" id="Y9k-OT-5kV"/>
                         <outlet property="tbView" destination="NJf-55-9bL" id="JU3-pW-CP3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FCa-Aj-5La" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1487" y="-546"/>
+            <point key="canvasLocation" x="-1488.4057971014495" y="-546.42857142857144"/>
         </scene>
         <!--Update View Controller-->
         <scene sceneID="clb-0S-9ur">
             <objects>
-                <viewController storyboardIdentifier="UpdateViewController" id="Q5d-lp-ZaT" customClass="UpdateViewController" customModule="ADongPr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UpdateViewController" id="Q5d-lp-ZaT" customClass="UpdateViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nt2-90-HHM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -135,14 +146,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5O-DR-XPh">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgE-Ox-3Jy" customClass="NavigationBar" customModule="ADongPr" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgE-Ox-3Jy" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="f1t-k0-Gym"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Thương hiệu *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31L-cl-jLf" customClass="RadiusTextField" customModule="ADongPr" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Thương hiệu *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31L-cl-jLf" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="20" y="70" width="374" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="bmq-0T-SZu"/>
@@ -150,7 +161,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Model *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6FY-5K-VdK" customClass="RadiusTextField" customModule="ADongPr" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Model *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6FY-5K-VdK" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="20" y="135" width="374" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="MCH-w8-0iK"/>
@@ -158,7 +169,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Biển số xe *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vf6-FB-MSK" customClass="RadiusTextField" customModule="ADongPr" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Biển số xe *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vf6-FB-MSK" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="20" y="200" width="374" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="qOz-ko-Lf4"/>
@@ -166,13 +177,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trọng tải" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2Q-Ye-wM5" customClass="RadiusTextField" customModule="ADongPr" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trọng tải" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2Q-Ye-wM5" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
                                         <rect key="frame" x="20" y="265" width="374" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="OCZ-fe-tK3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z8r-On-f0C">
                                         <rect key="frame" x="20" y="330" width="374" height="45"/>

@@ -18,6 +18,7 @@ class CountViewCell: UITableViewCell {
     
     @IBOutlet weak var tf1: UITextField!
     
+    @IBOutlet weak var imvAva: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -41,6 +42,10 @@ class CountViewCell: UITableViewCell {
         lb1.text = data.name
 
         lb3.text = data.unit ?? "---"
+        
+        let thumbnailUrl = data.thumbnailUrl ?? ""
+        let url = URL(string: thumbnailUrl)
+        imvAva.kf.setImage(with: url, placeholder: UIImage(named: "default"))
         
         switch data.type {
          case "buy":

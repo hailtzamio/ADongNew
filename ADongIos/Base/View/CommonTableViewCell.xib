@@ -54,7 +54,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6x-L9-0to">
-                                <rect key="frame" x="414" y="29" width="32" height="32"/>
+                                <rect key="frame" x="426" y="35" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Btu-KB-Tv8"/>
+                                    <constraint firstAttribute="width" constant="20" id="gYR-2X-Qy2"/>
+                                </constraints>
                                 <state key="normal" image="correct"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ii1-KC-LcY">

@@ -122,7 +122,7 @@ class DetailContractorViewController: BaseViewController {
                     var address = ""
                     
         
-                        address = " \(value.districtName ?? "") - \(value.provinceName ?? "") - \(value.address ?? "") "
+                        address = "\(value.districtName ?? "") - \(value.provinceName ?? "") - \(value.address ?? "") "
                 
                     
                     self.data.append(Information(pKey: "Địa chỉ",pValue: address))
@@ -133,7 +133,7 @@ class DetailContractorViewController: BaseViewController {
                     } else {
                         status = "Đang rảnh"
                     }
-                    self.data.append(Information(pKey: "Trạng thái",pValue: status))
+//                    self.data.append(Information(pKey: "Trạng thái",pValue: status))
                     self.data.append(Information(pKey: "Tên dự án",pValue: value.projectName ?? "---"))
                     
                     self.tbView.reloadData()

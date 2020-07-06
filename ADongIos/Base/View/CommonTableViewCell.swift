@@ -76,11 +76,11 @@ class CommonTableViewCell: UITableViewCell {
         imvAva.kf.setImage(with: url, placeholder: imageDf)
         
         if data.isSelected ?? false {
-            if let image = UIImage(named: "correct") {
+            if let image = UIImage(named: "dot2") {
                 imvCheck.setImage(image, for: .normal)
             }
         } else {
-            if let image = UIImage(named: "truck") {
+            if let image = UIImage(named: "dot3") {
                 imvCheck.setImage(image, for: .normal)
             }
         }

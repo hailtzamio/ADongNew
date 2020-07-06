@@ -55,24 +55,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
         
 
         //Remove this method to stop OneSignal Debugging
-        OneSignal.setLogLevel(.LL_VERBOSE, visualLevel: .LL_NONE)
-
-        //START OneSignal initialization code
-        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false, kOSSettingsKeyInAppLaunchURL: false]
-        
-        // Replace 'YOUR_ONESIGNAL_APP_ID' with your OneSignal App ID.
-        OneSignal.initWithLaunchOptions(launchOptions,
-          appId: "dd299d1f-50fd-497e-9007-4889d0160097",
-          handleNotificationAction: nil,
-          settings: onesignalInitSettings)
-
-        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
-
-        // The promptForPushNotifications function code will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 6)
-        OneSignal.promptForPushNotifications(userResponse: { accepted in
-          print("User accepted notifications: \(accepted)")
-        })
-        //END OneSignal initializataion code
+//        OneSignal.setLogLevel(.LL_VERBOSE, visualLevel: .LL_NONE)
+//
+//        //START OneSignal initialization code
+//        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false, kOSSettingsKeyInAppLaunchURL: false]
+//        
+//        // Replace 'YOUR_ONESIGNAL_APP_ID' with your OneSignal App ID.
+//        OneSignal.initWithLaunchOptions(launchOptions,
+//          appId: "dd299d1f-50fd-497e-9007-4889d0160097",
+//          handleNotificationAction: nil,
+//          settings: onesignalInitSettings)
+//
+//        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+//
+//        // The promptForPushNotifications function code will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 6)
+//        OneSignal.promptForPushNotifications(userResponse: { accepted in
+//          print("User accepted notifications: \(accepted)")
+//        })
+//        //END OneSignal initializataion code
         
         
         

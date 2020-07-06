@@ -23,18 +23,16 @@ let error_check_internet = "Không có kết nối mạng"
 
 struct K {
     struct ProductionServer {
-        static var baseURL = "http://adong-api.zamio.net/api/"
+        static var baseURL = "http://adong-api-test.zamio.net/api/"
         static var  ACCESS_TOKEN: String = ""
     }
-    
-    
 }
 
 struct HexColorApp {
     static let primary = "#4c4c4c"
     static let green = "#3ca150"
     static let red = "#962E34"
-        static let red2 = "#FB5252"
+    static let red2 = "#FB5252"
     static let orange = "#FB9214"
     static let blue = "#3366cc"
     static let gray = "#90928E"

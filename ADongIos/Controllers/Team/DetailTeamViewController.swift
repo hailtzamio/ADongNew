@@ -18,6 +18,7 @@ class DetailTeamViewController: BaseViewController {
     
     var data = [Information]()
     var workers = [Worker]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeader()
@@ -31,6 +32,7 @@ class DetailTeamViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         data.removeAll()
+        workers.removeAll()
         getData()
     }
     
@@ -41,10 +43,10 @@ class DetailTeamViewController: BaseViewController {
         }
         
         header.rightAction = {
-                        if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateTeamViewController") as? UpdateTeamViewController {
-                            vc.data = self.item!
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        }
+            if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateTeamViewController") as? UpdateTeamViewController {
+                vc.data = self.item!
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
         
         header.changeUpdateIcon()
@@ -85,10 +87,10 @@ class DetailTeamViewController: BaseViewController {
                 if let value = response.data  {
                     self.item = value
                     self.convertData(value: value)
-                    
+ 
                     self.data.append(Information(pKey: "Tên",pValue: value.name ?? "---"))
-          
-              
+                    
+                    
                     self.data.append(Information(pKey: "Địa chỉ",pValue: value.address ?? "---"))
                     
                     self.data.append(Information(pKey: "Số điện thoại",pValue: value.phone ?? "---"))
@@ -109,6 +111,9 @@ class DetailTeamViewController: BaseViewController {
     }
     
     func getTeamWorkers() {
+        
+        workers.removeAll()
+        
         self.stopLoading()
         APIClient.getTeamWorkers(id : id) { result in
             self.stopLoading()
@@ -169,6 +174,9 @@ class DetailTeamViewController: BaseViewController {
     }
     
     func getTeamLeader(id : Int) {
+        
+           
+        
         showLoading()
         APIClient.getWorker(id: id) { result in
             self.stopLoading()
@@ -195,11 +203,24 @@ class DetailTeamViewController: BaseViewController {
 extension DetailTeamViewController: UITableViewDataSource, UITableViewDelegate {
     
     @objc func handleRegister(){
-        if let vc = UIStoryboard.init(name: "Worker", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListWorkerViewController") as? ListWorkerViewController {
-            vc.isToChooseWorker = true
+        if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChooseWorkerViewController") as? ChooseWorkerViewController {
+            vc.isCheckHiden = false
             vc.team = item
-            vc.workers = workers
-            
+            vc.isChooseWorkerForTeam = true
+            vc.callbackList = { members in
+                self.workers.append(contentsOf: members ?? [Worker]())
+                
+                var memberIds = [Int]()
+                for i in 0..<self.workers.count {
+                    memberIds.append(self.workers[i].id!)
+                }
+                
+                if(memberIds.count > 0) {
+                self.item?.memberIds = memberIds
+                        self.update(pData: self.item!)
+                }
+              
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -211,7 +232,7 @@ extension DetailTeamViewController: UITableViewDataSource, UITableViewDelegate {
         
         let sectionName = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
         sectionName.text = itemNames[section]
-       sectionName.textColor = UIColor.init(hexString: HexColorApp.orange)
+        sectionName.textColor = UIColor.init(hexString: HexColorApp.orange)
         sectionName.font = UIFont.systemFont(ofSize: 17)
         sectionName.textAlignment = .left
         sectionName.font = UIFont.boldSystemFont(ofSize: 16)

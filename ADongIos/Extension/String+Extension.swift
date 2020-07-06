@@ -15,6 +15,25 @@ extension String {
         return self.fromBase64() ?? ""
     }
     
+    func convertDateFormatter(date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"//this your string date format
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        dateFormatter.locale = Locale(identifier: "your_loc_id")
+        let convertedDate = dateFormatter.date(from: date)
+
+        guard dateFormatter.date(from: date) != nil else {
+            assert(false, "no date from string")
+            return ""
+        }
+
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"///this is what you want to convert format
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        let timeStamp = dateFormatter.string(from: convertedDate!)
+
+        return timeStamp
+    }
+    
     func fromBase64() -> String? {
         guard let data = Data(base64Encoded: self) else {
             return nil

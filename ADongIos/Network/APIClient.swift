@@ -109,6 +109,12 @@ class APIClient {
         performRequest(route: ApiRouter.getWorkers(page: page, name: name), decoder: jsonDecoder, completion: completion)
     }
     
+    static func getWorkersNotInTeam(page : Int, name : String,completion:@escaping (Result<BaseResponseList<Worker>, AFError>)->Void) {
+          let jsonDecoder = JSONDecoder()
+          jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+          performRequest(route: ApiRouter.getWorkersNotInTeam(page: page, name: name), decoder: jsonDecoder, completion: completion)
+      }
+    
     static func getWorkersForTeam(page : Int, name: String, type : String,completion:@escaping (Result<BaseResponseList<Worker>, AFError>)->Void) {
          let jsonDecoder = JSONDecoder()
          jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
@@ -505,5 +511,17 @@ class APIClient {
            jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
            performRequest(route: ApiRouter.updateProduct(data: data), decoder: jsonDecoder, completion: completion)
        }
+    
+    static func pauseProject(id:Int,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+             let jsonDecoder = JSONDecoder()
+             jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+             performRequest(route: ApiRouter.pauseProject(id: id), decoder: jsonDecoder, completion: completion)
+         }
+    
+    static func resumeProject(data:Project,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+              let jsonDecoder = JSONDecoder()
+              jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+              performRequest(route: ApiRouter.resumeProject(data: data), decoder: jsonDecoder, completion: completion)
+          }
 }
 

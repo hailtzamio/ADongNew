@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.2.1)
   - BSImagePicker (3.2.0)
+  - DateTimePicker (2.4.1)
   - DLRadioButton (1.4.12)
   - GoogleMaps (3.9.0):
     - GoogleMaps/Maps (= 3.9.0)
@@ -25,6 +26,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - BSImagePicker (~> 3.1)
+  - DateTimePicker
   - DLRadioButton
   - GoogleMaps
   - GooglePlaces
@@ -43,6 +45,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - BSImagePicker
+    - DateTimePicker
     - DLRadioButton
     - GoogleMaps
     - GooglePlaces
@@ -60,6 +63,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   BSImagePicker: 1c0d14fa6f1b55380cd49cbebe47584f10e180c6
+  DateTimePicker: 997176ea28954f3c18817b9565a53b28ee4400b8
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   GoogleMaps: 4b5346bddfe6911bb89155d43c903020170523ac
   GooglePlaces: 1634d019549b969d40fe0ccb0b9513055adebe01
@@ -74,6 +78,6 @@ SPEC CHECKSUMS:
   Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
   TOCropViewController: e9da34f484aedd4e5d5a8ab230ba217cfe16c729
 
-PODFILE CHECKSUM: f9dd28e243562bc0436bb12aed03b182f3671b0d
+PODFILE CHECKSUM: 9b82b96fe6d8721cddfaa494bf9c92dca714f14c
 
 COCOAPODS: 1.9.1

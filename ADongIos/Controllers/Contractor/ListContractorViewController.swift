@@ -92,6 +92,8 @@ class ListContractorViewController: BaseViewController, UISearchBarDelegate, Loa
                     self.data.append(contentsOf: response.data!)
                     self.tbView.reloadData()
                     if(response.pagination != nil && response.pagination?.totalPages != nil) {
+                        let total = response.pagination?.totalRecords ?? 0
+                                       self.tfSearch.placeholder = "Tìm kiếm trong \(total) Nhà thầu phụ"
                         self.totalPages = response.pagination?.totalPages as! Int
                         self.page = self.page + 1
                     }
@@ -133,7 +135,7 @@ extension ListContractorViewController: UITableViewDataSource, UITableViewDelega
       {
           var numOfSections: Int = 0
           if data.count > 0 {
-              tableView.separatorStyle = .singleLine
+//              tableView.separatorStyle = .singleLine
               numOfSections            = 1
               tableView.backgroundView = nil
           }
@@ -149,7 +151,7 @@ extension ListContractorViewController: UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: CommonNoAvatarCell.identifier, for: indexPath) as! CommonNoAvatarCell
         cell.setDataContractor(data: data[indexPath.row])
         cell.tag = indexPath.row
-        cell.imvStatus.isHidden = false
+        cell.imvStatus.isHidden = true
         return cell
     }
     

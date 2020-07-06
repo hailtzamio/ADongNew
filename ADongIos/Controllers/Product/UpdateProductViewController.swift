@@ -7,9 +7,11 @@
         //
         
         import UIKit
-        import Alamofire
+       import Alamofire
+        import Kingfisher
+        import TOCropViewController
         
-        class UpdateProductViewController: BaseViewController {
+        class UpdateProductViewController: BaseViewController, UINavigationControllerDelegate {
             
             @IBOutlet weak var header: NavigationBar!
             var data:Product? = nil
@@ -18,7 +20,10 @@
             @IBOutlet weak var tf2: RadiusTextField!
             @IBOutlet weak var tf3: RadiusTextField!
             @IBOutlet weak var tf4: RadiusTextField!
+            @IBOutlet weak var imvAva: UIImageView!
             var productType = ""
+            var thumbnailExtId = ""
+            var thumbnailUrl = ""
             override func viewDidLoad() {
                 super.viewDidLoad()
                 hideKeyboardWhenTappedAround()
@@ -28,7 +33,9 @@
                     tf1.text = data?.name
                     tf2.text = data?.code
                     tf3.text = data?.unit
-                    
+                    thumbnailUrl = data?.thumbnailUrl ?? ""
+                    let url = URL(string: thumbnailUrl)
+                    imvAva.kf.setImage(with: url, placeholder: UIImage(named: "default"))
                     switch data?.type {
                     case "buy":
                         tf4.text = "Mua"
@@ -50,6 +57,9 @@
             }
             
         
+            @IBAction func chooseImage(_ sender: Any) {
+                self.pickImage(isLibrary: true)
+            }
             
             @IBAction func productType(_ sender: Any) {
                 showTakePhotoPopup()
@@ -83,7 +93,7 @@
                 dataRq.type = productType
                 dataRq.unit = tf3.text
                 dataRq.code = tf2.text
-                
+                dataRq.thumbnailExtId = thumbnailExtId
                 
                 if(isUpdate) {
                     // Update
@@ -169,5 +179,103 @@
                 self.present(alert, animated: true, completion: {
                     print("completion block")
                 })
+            }
+        }
+        
+        
+        extension UpdateProductViewController : UIImagePickerControllerDelegate {
+            
+            @objc  func imagePickerController(_ picker: UIImagePickerController,
+                                              didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+                guard let image = info[.originalImage] as? UIImage else {
+                    fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+                }
+                
+                let cropVC = TOCropViewController.init(croppingStyle: .default, image: image )
+                cropVC.delegate = self
+                cropVC.aspectRatioPreset = .presetSquare
+                
+                cropVC.aspectRatioLockEnabled = true
+                cropVC.resetAspectRatioEnabled = false
+                cropVC.aspectRatioPickerButtonHidden = true
+                picker.dismiss(animated: false) {
+                    self.present(cropVC, animated: false, completion: nil)
+                }
+            }
+        }
+
+        extension UpdateProductViewController : TOCropViewControllerDelegate {
+            func pickImage(isLibrary: Bool) {
+                
+                let picker = UIImagePickerController()
+                picker.sourceType = isLibrary ?  .photoLibrary : .camera
+                picker.allowsEditing = false;
+                picker.delegate = self;
+                self.present(picker, animated: true, completion: nil)
+            }
+            
+            
+            func cropViewController(_ cropViewController: TOCropViewController, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
+                
+                
+                imvAva.image = image
+                //        imvAva.layer.cornerRadius = 40
+                
+                if(imvAva != nil){
+                    uploadAvatar2(arrImage: image, withblock: {_response in
+                        
+                    })
+                }
+                
+                cropViewController.dismiss(animated: true, completion: nil)
+                
+            }
+            
+            func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
+                cropViewController.dismiss(animated: true, completion: {
+                    
+                })
+            }
+            
+            func uploadAvatar2(arrImage:UIImage, withblock:@escaping (_ response: AnyObject?)->Void){
+                showLoading()
+                let url = K.ProductionServer.baseURL + "uploadAvatar"
+                
+                var headers: HTTPHeaders
+                headers = ["Content-type": "multipart/form-data",
+                           "Accept" : "application/json"]
+                headers["Authorization"] = Context.AccessToken
+                AF.upload(multipartFormData: { (multipartFormData) in
+                    
+                    let randomIntFrom0To10 = Int.random(in: 1..<1000)
+                    
+                    guard let imgData = arrImage.pngData() else { return }
+                    multipartFormData.append(imgData, withName: "image", fileName: "image\(randomIntFrom0To10)", mimeType: "image/jpeg")
+                    
+                },to: url, usingThreshold: UInt64.init(),
+                  method: .post,
+                  headers: headers).response{ response in
+                    self.stopLoading()
+                    if((response.data != nil)){
+                        do{
+                            if let jsonData = response.data {
+                                let parsedData = try JSONSerialization.jsonObject(with: jsonData) as! Dictionary<String, AnyObject>
+                                print(parsedData)
+                                
+                                let status = parsedData["status"] as? NSInteger ?? 0
+                                
+                                if (status == 1){
+                                    self.thumbnailExtId = parsedData["data"]?["id"] as! String
+                                } else{
+                                    self.showToast(content: "Không thành công")
+                                }
+                            }
+                        } catch{
+                            print("error message")
+                        }
+                    }else{
+                        self.showToast(content: "Không thành công")
+                    }
+                }
             }
         }

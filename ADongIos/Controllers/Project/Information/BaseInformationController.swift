@@ -16,11 +16,13 @@ class BaseInformationController: BaseViewController {
     var itemNames = ["THÔNG TIN CHUNG ", "THỜI GIAN","THÀNH VIÊN"]
     
     
+    @IBOutlet weak var btnPauseAndResume: UIButton!
     var id = 0
     var data = [Information]()
     var data1 = [Information]()
     var data2 = [Information]()
     var project = Project()
+    var status = "PAUSED"
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeader()
@@ -57,21 +59,40 @@ class BaseInformationController: BaseViewController {
     
     func popupHandle() {
         okAction = {
-            self.showLoading()
-            APIClient.removeLorry(id: self.id) { result in
-                self.stopLoading()
-                switch result {
-                case .success(let response):
-                    if (response.status == 1) {
-                        self.goBack()
+            
+            if(self.status == "PAUSED") {
+                self.showLoading()
+                APIClient.resumeProject(data: self.item) { result in
+                    self.stopLoading()
+                    switch result {
+                    case .success(let response):
+                        if (response.status == 1) {
+                            self.getData()
+                        }
+                        break
+                        
+                    case .failure(let error):
+                        self.showToast(content: error.localizedDescription)
                     }
-                    self.showToast(content: response.message ?? "")
-                    break
-                    
-                case .failure(let error):
-                    self.showToast(content: error.localizedDescription)
+                }
+            } else {
+                self.showLoading()
+                APIClient.pauseProject(id: self.id) { result in
+                    self.stopLoading()
+                    switch result {
+                    case .success(let response):
+                        if (response.status == 1) {
+                            self.getData()
+                        }
+                        break
+                        
+                    case .failure(let error):
+                        self.showToast(content: error.localizedDescription)
+                    }
                 }
             }
+            
+            
             
         }
         
@@ -86,9 +107,28 @@ class BaseInformationController: BaseViewController {
                 
                 if let value = response.data  {
                     self.item = value
+                    self.data.removeAll()
+                    self.data1.removeAll()
+                    self.data2.removeAll()
+                    self.status = value.status ?? ""
+                    
                     self.data.append(Information(pKey: "Tên",pValue: value.name!))
                     self.data.append(Information(pKey: "Địa chỉ", pValue: value.address!))
                     
+                    if(value.status == "PAUSED") {
+                        self.btnPauseAndResume.setTitle("Phục Hồi", for: .normal)
+                        self.data.append(Information(pKey: "Trạng thái", pValue: "Tạm dừng"))
+                    } else if(value.status == "PROCESSING") {
+                        self.btnPauseAndResume.setTitle("Tạm Dừng", for: .normal)
+                        self.data.append(Information(pKey: "Trạng thái", pValue: "Đang thi công"))
+                    } else if(value.status == "NEW") {
+                        self.btnPauseAndResume.setTitle("Tạm Dừng", for: .normal)
+                        self.data.append(Information(pKey: "Trạng thái", pValue: "Mới"))
+                    }
+                    else {
+                        self.data.append(Information(pKey: "Trạng thái", pValue: "Hoàn Thành"))
+                        self.btnPauseAndResume.isHidden = true
+                    }
                     
                     self.data1.append(Information(pKey: "Ngày bắt đầu",pValue: value.plannedStartDate ?? "---"))
                     self.data1.append(Information(pKey: "Ngày kết thúc",pValue: value.plannedEndDate ?? "---"))
@@ -118,6 +158,8 @@ class BaseInformationController: BaseViewController {
                     self.data2.append(Information(pKey: "Thư Ký",pValue: value.secretaryFullName ?? "---"))
                     
                     self.tbView.reloadData()
+                    
+                    
                     return
                 }
                 
@@ -129,6 +171,17 @@ class BaseInformationController: BaseViewController {
     
     @IBAction func remove(_ sender: Any) {
         showYesNoPopup(title: "Xóa", message: "Chắc chắn xóa?")
+    }
+    
+    
+    @IBAction func pauseProject(_ sender: Any) {
+        if(self.status == "PROCESSING") {
+            showYesNoPopup(title: "Xác nhận", message: "Tạm dừng công trình?")
+        } else{
+            showYesNoPopup(title: "Xác nhận", message: "Phục hồi công trình?")
+            
+        }
+        
     }
     
     @IBAction func viewMap(_ sender: Any) {
@@ -211,8 +264,8 @@ extension BaseInformationController: UITableViewDataSource, UITableViewDelegate 
             if(indexPath.row == data2.count - 1) {
                 cell.line.isHidden = true
             } else {
-                           cell.line.isHidden = false
-                       }
+                cell.line.isHidden = false
+            }
             break
             //        case 1,3 :
             //            let cell = tableView.dequeueReusableCell(withIdentifier: LineViewCell.identifier, for: indexPath) as! LineViewCell

@@ -152,6 +152,7 @@ class UpdateTeamViewController: BaseViewController, UINavigationControllerDelega
         if let vc = UIStoryboard.init(name: "Team", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChooseWorkerViewController") as? ChooseWorkerViewController {
             vc.isCheckHiden = false
             vc.team = pData
+            vc.isChooseWorkerForTeam = true
             vc.goBackToPreviousVc = {
                           self.goBack()
                 }

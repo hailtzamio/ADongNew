@@ -83,6 +83,8 @@ class ListTeamViewController: BaseViewController, UISearchBarDelegate, LoadMoreC
                     self.data.append(contentsOf: response.data!)
                     self.tbView.reloadData()
                     if(response.pagination != nil && response.pagination?.totalPages != nil) {
+                        let total = response.pagination?.totalRecords ?? 0
+                        self.tfSearch.placeholder = "Tìm kiếm trong \(total) Đội Á Đông"
                         self.totalPages = response.pagination?.totalPages as! Int
                         self.page = self.page + 1
                     }
@@ -124,7 +126,7 @@ extension ListTeamViewController: UITableViewDataSource, UITableViewDelegate {
     {
         var numOfSections: Int = 0
         if data.count > 0 {
-            tableView.separatorStyle = .singleLine
+//            tableView.separatorStyle = .singleLine
             numOfSections            = 1
             tableView.backgroundView = nil
         }

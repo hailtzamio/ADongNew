@@ -82,18 +82,16 @@ class ProjectMapViewController: BaseViewController, GMSMapViewDelegate, CAAnimat
                 } else if(project.status == "NEW") {
                     
                     marker.iconView = UIImageView(image: UIImage(named: "dotred2"))
-                    
                 } else {
+                    
                     marker.iconView = UIImageView(image: UIImage(named: "dotred2"))
                 }
-                
                 
                 UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat, .autoreverse], animations: {
                     marker.iconView!.alpha = 0.0
                 }, completion: nil)
                 
             }
-            
         }
         
         mapView.delegate = self
