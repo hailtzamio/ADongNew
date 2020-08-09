@@ -17,10 +17,10 @@ class ProjectMapViewController: BaseViewController, GMSMapViewDelegate, CAAnimat
     var location = LocationAddress()
     private let locationManager = CLLocationManager()
     var callback : ((LocationAddress?) -> Void)?
-    var lat = 0.0
-    var long = 0.0
+    var lat = 17.787203
+    var long = 105.605202
     var isCreateNewOne = false
-    var zoom = 18.0
+    var zoom = 5.0
     var data = Project()
     
     var projects = [Project]()
@@ -38,6 +38,7 @@ class ProjectMapViewController: BaseViewController, GMSMapViewDelegate, CAAnimat
         NotificationCenter.default.addObserver(self, selector:#selector(resetData), name: UIApplication.willEnterForegroundNotification, object: UIApplication.shared)
         projects.removeAll()
         getData()
+        //          self.tabBarController?.tabBar.isHidden = false
     }
     
     @objc func resetData() {
@@ -57,7 +58,11 @@ class ProjectMapViewController: BaseViewController, GMSMapViewDelegate, CAAnimat
         pulseAnimation.autoreverses = true
         globalMarker.layer.add(pulseAnimation, forKey: key)
     }
-
+    
+    @objc func handleRegister(){
+        print("!!!")
+    }
+    
     func setupView(){
         if(projects.count > 0) {
             lat = 17.787203
@@ -66,7 +71,7 @@ class ProjectMapViewController: BaseViewController, GMSMapViewDelegate, CAAnimat
             
             projects.forEach { (project) in
                 let marker = GMSMarker()
-     
+                
                 var title = " \(project.address ?? "") \n \(project.plannedEndDate ?? "") \n \(project.plannedEndDate ?? "") \n \(project.teamName ?? "---") "
                 
                 marker.setIconSize(scaledToSize: .init(width: 12, height:12))
@@ -77,20 +82,36 @@ class ProjectMapViewController: BaseViewController, GMSMapViewDelegate, CAAnimat
                 
                 
                 
-                if(project.status == "PROCESSING") {
-                    marker.iconView = UIImageView(image: UIImage(named: "greendot2"))
-                } else if(project.status == "NEW") {
+                //                let uiButton = UIButton(frame: CGRect(x: 15, y: 5, width: 60, height: 20))
+                //                uiButton.addTarget(self, action:#selector(handleRegister),
+                //                                          for: .touchUpInside)
+                //
+                //                marker.iconView?.addSubview(uiButton)
+                
+                if(project.status != "DONE") {
+                
+                  if(project.status == "PROCESSING") {
+                                    if(project.teamType == "ADONG") {
+                                        marker.iconView = UIImageView(image: UIImage(named: "greendot2"))
+                                    } else {
+                                        marker.iconView = UIImageView(image: UIImage(named: "dotblue"))
+                                    }
+                                    
+                                } else if(project.status == "NEW") {
+                                    
+                                    marker.iconView = UIImageView(image: UIImage(named: "dotred2"))
+                                } else {
+                                    
+//                                    marker.iconView = UIImageView(image: UIImage(named: "dotred2"))
+                                }
                     
-                    marker.iconView = UIImageView(image: UIImage(named: "dotred2"))
-                } else {
-                    
-                    marker.iconView = UIImageView(image: UIImage(named: "dotred2"))
+                    UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat, .autoreverse], animations: {
+                                    if(marker.iconView != nil) {
+                                        marker.iconView!.alpha = 0.0
+                                    }
+                           
+                                }, completion: nil)
                 }
-                
-                UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat, .autoreverse], animations: {
-                    marker.iconView!.alpha = 0.0
-                }, completion: nil)
-                
             }
         }
         
@@ -144,10 +165,29 @@ class ProjectMapViewController: BaseViewController, GMSMapViewDelegate, CAAnimat
 
 extension ProjectMapViewController: CLLocationManagerDelegate {
     
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        
+        print(marker.position.latitude)
+        projects.forEach { (project) in
+            if(project.latitude ?? 0.0 == marker.position.latitude && project.longitude ?? 0.0 == marker.position.longitude) {
+                if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "BaseInformationController") as? BaseInformationController {
+                    vc.project = project
+                    vc.id = project.id!
+                    vc.notificationType = "Show"
+                    vc.hidesBottomBarWhenPushed = true
+                    vc.isHideButtonRegister = true
+                    navigationController?.pushViewController(vc, animated: true)
+                }
+                return
+            }
+        }
+    }
+    
     
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
         
         //you can handle zooming and camera update here
+        
         
         return true
     }

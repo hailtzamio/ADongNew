@@ -83,12 +83,66 @@ extension NotificationsViewController : UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        if let vc = UIStoryboard.init(name: "Contractor", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailContractorViewController") as? DetailContractorViewController {
-        //            vc.id = data[indexPath.row].contractorId!
-        //            vc.isToChoose = true
-        //            vc.status = data[indexPath.row].status ?? "NEW"
-        //            vc.biddingId = data[indexPath.row].id ?? 0
-        //            navigationController?.pushViewController(vc, animated: true)
-        //        }
+        readNotification(id: data[indexPath.row].id!)
+          checkIsRegisterOrNot(projectId: data[indexPath.row].objectId!)
+//        if(data[indexPath.row].objectType == "Project") {
+//            if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "BaseInformationController") as? BaseInformationController {
+//                vc.id = data[indexPath.row].objectId!
+//                vc.notificationType =  data[indexPath.row].type ?? ""
+//                navigationController?.pushViewController(vc, animated: true)
+//            }
+//        }
     }
+    
+    func readNotification(id : Int) {
+        
+        showLoading()
+        APIClient.getNotification(id: id) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if let value = response.data  {
+                    print("Đã đọc Notification")
+                    return
+                }
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func checkIsRegisterOrNot(projectId : Int) {
+          
+          let userId =  self.preferences.object(forKey: userIdKey) ?? 0
+          
+          showLoading()
+          APIClient.getProjectIsregister(projectId: projectId, contractorId: userId as! Int) { result in
+              self.stopLoading()
+              switch result {
+              case .success(let response):
+                  
+                  if let value = response.data  {
+                      if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "BaseInformationController") as? BaseInformationController {
+                          vc.id = projectId
+                          vc.notificationType =  NotificationType.new
+                          vc.isHideButtonRegister = value.isRegistered ?? false
+                          self.navigationController?.pushViewController(vc, animated: true)
+                      }
+                  } else {
+                  
+                      self.showToast(content: "Bạn không phải Nhà thầu phụ")
+                  }
+                  
+                  
+                  
+              case .failure(let error):
+                  print(error.localizedDescription)
+              }
+          }
+          
+          
+          
+      }
 }

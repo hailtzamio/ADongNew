@@ -7,13 +7,17 @@
 //
 
 import UIKit
-
-class CreateProductReqViewController: BaseViewController {
+import DateTimePicker
+class CreateProductReqViewController: BaseViewController , DateTimePickerDelegate {
     
     var data = [Product]()
     var projectId = 0
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
+    @IBOutlet weak var tf1: UITextField!
+    @IBOutlet weak var tf2: UITextField!
+    @IBOutlet weak var tfSearch: UITextField!
+    var endDate = ""
     //
     var isHideTf = true
     var createProductReq = CreateProductReq()
@@ -33,9 +37,49 @@ class CreateProductReqViewController: BaseViewController {
         getData()
     }
     
+    @IBAction func chooseDate(_ sender: Any) {
+        showDatePopup()
+    }
+    
+    func showDatePopup() {
+        let min = Date().addingTimeInterval(-0 * 60 * 24 * 4)
+        let max = Date().addingTimeInterval(960 * 60 * 24 * 4)
+        let picker = DateTimePicker.create(minimumDate: min, maximumDate: max)
+        
+        // customize your picker
+        //        picker.timeInterval = DateTimePicker.MinuteInterval.thirty
+        //        picker.locale = Locale(identifier: "en_GB")
+        picker.cancelButtonTitle = "Hủy"
+        picker.todayButtonTitle = "Hôm nay"
+        //        picker.is12HourFormat = true
+        picker.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        //        picker.isDatePickerOnly = true
+        picker.includesMonth = true
+        picker.includesSecond = false
+        picker.highlightColor = UIColor(red: 255.0/255.0, green: 138.0/255.0, blue: 138.0/255.0, alpha: 1)
+        picker.doneButtonTitle = "ĐỒNG Ý"
+        picker.doneBackgroundColor = UIColor.init(hexString: HexColorApp.primary)
+        picker.customFontSetting = DateTimePicker.CustomFontSetting(selectedDateLabelFont: .boldSystemFont(ofSize: 20))
+        picker.completionHandler = { date in
+            let formatter = DateFormatter()
+            formatter.dateFormat = "hh:mm aa dd/MM/YYYY"
+            self.title = formatter.string(from: date)
+        }
+        picker.delegate = self
+        picker.show()
+    }
+    
+    func dateTimePicker(_ picker: DateTimePicker, didSelectDate: Date) {
+        
+        tf2.text = "".convertDateFormatter(date: picker.selectedDateString)
+        endDate = picker.selectedDateString
+        
+    }
+    
     func setupHeader() {
         header.title = "Vật Tư"
-        
+         tfSearch.returnKeyType = UIReturnKeyType.search
+          tfSearch.addPadding(.left(20.0))
         if(!isHideTf) {
             header.changeDoneIcon()
         }
@@ -52,40 +96,47 @@ class CreateProductReqViewController: BaseViewController {
                 }
             } else {
                 /// Create
-                var lines = [Product]()
+                var lines = [NSDictionary]()
                 self.data.forEach { (value) in
                     if(value.count != nil) {
-                        value.productId = value.id
-                        value.quantity = Int(value.count!) ?? 0
-                        lines.append(value)
+                        
+                        let d = LinesAddNew(productId: value.id ?? 0, quantity: Int(value.count!) ?? 0)
+                        lines.append(d.nsDictionary)
                     }
                 }
                 
-                self.createProductReq.expectedDatetime = "2020-10-10T12:12:12"
+                self.createProductReq.expectedDatetime = self.endDate
                 self.createProductReq.projectId = self.projectId
-                self.createProductReq.linesAddNew = lines
+                self.createProductReq.note = self.tf1.text ?? ""
                 
-                self.createProductRequirement()
+                if(lines.count == 0) {
+                
+                    self.showToast(content: "Chọn vật tư")
+                    return
+                }
+                
+                APIClient.createProductRequirement(data : self.createProductReq, lines: lines) { result in
+                    //            self.stopLoading()
+                    switch result {
+                    case .success(let response):
+                        self.showToast(content: response.message ?? "Thành công")
+                        if(response.status == 1) {
+                            self.goBack()
+                        }
+                        
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+                
             }
-            
         }
     }
     
-    func createProductRequirement() {
+    func createProductRequirement(line : [NSDictionary]) {
+        
         //       showLoading()
-        APIClient.createProductRequirement(data : createProductReq) { result in
-            //            self.stopLoading()
-            switch result {
-            case .success(let response):
-                 self.showToast(content: response.message ?? "Thành công")
-                if(response.status == 1) {
-                    self.goBack()
-                }
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+        
     }
     
     func getData() {
@@ -98,6 +149,10 @@ class CreateProductReqViewController: BaseViewController {
                 if(response.data != nil) {
                     self.data = response.data!
                     self.tbView.reloadData()
+                    
+                    let total = response.pagination?.totalRecords ?? 0
+                    self.tfSearch.placeholder = "Tìm kiếm trong \(total) Vật tư"
+                    
                 } else {
                     self.showToast(content: response.message!)
                 }

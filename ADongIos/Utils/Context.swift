@@ -16,7 +16,7 @@ class Context {
     }
     
     static var AccessToken = "AccessToken"
-    
+        static var Permission = "r"
     
     //AccessToken
     class func clearAccessToken() {

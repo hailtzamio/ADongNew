@@ -15,7 +15,7 @@ var address : String?
 var phone : String?
 var email : String?
 var workingStatus : String?
-var rating : Int?
+var rating : Double?
 var createdTime : String?
 var updatedTime : String?
 var provinceId : Int?

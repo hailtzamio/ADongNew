@@ -55,23 +55,25 @@ class ListTransportViewController : BaseViewController, UISearchBarDelegate, Loa
     
     func getData() {
         showLoading()
-        APIClient.getTransports(page : page, name : "") { result in
+        APIClient.getTransports(page : page, name : "" , status : 1) { result in
             self.stopLoading()
             switch result {
             case .success(let response):
                 
                 if(response.data != nil) {
                     //                    self.data = response.data!
-                    response.data?.forEach({ (trans) in
-                        if(trans.status == 1) {
-                            self.data.append(trans)
-                        }
-                    })
+//                    response.data?.forEach({ (trans) in
+//                        if(trans.status == 1) {
+//                            self.data.append(trans)
+//                        }
+//                    })
+                    
+                    self.data.append(contentsOf: response.data!)
                     
                     if(self.data.count == 0) {
                         self.showNoDataMessage(tbView: self.tbView)
                     }
-                    
+                    self.callbackRq!(self.data)
                     self.tbView.reloadData()
                     if(response.pagination != nil && response.pagination?.totalPages != nil) {
                         self.totalPages = response.pagination?.totalPages as! Int

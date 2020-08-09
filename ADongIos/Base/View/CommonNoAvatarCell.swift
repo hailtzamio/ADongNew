@@ -56,14 +56,14 @@ class CommonNoAvatarCell: UITableViewCell {
         }
         
         if(data.workingStatus == "idle") {
-                 if let image = UIImage(named: "free_dot") {
-                     imvStatus.image = image
-                 }
-             } else {
-                 if let image = UIImage(named: "green_dot") {
-                     imvStatus.image = image
-                 }
-             }
+            if let image = UIImage(named: "free_dot") {
+                imvStatus.image = image
+            }
+        } else {
+            if let image = UIImage(named: "green_dot") {
+                imvStatus.image = image
+            }
+        }
     }
     
     func setDataTrip(data:Transport) {
@@ -84,14 +84,14 @@ class CommonNoAvatarCell: UITableViewCell {
         }
         
         if(data.workingStatus == "idle") {
-                 if let image = UIImage(named: "free_dot") {
-                     imvStatus.image = image
-                 }
-             } else {
-                 if let image = UIImage(named: "green_dot") {
-                     imvStatus.image = image
-                 }
+            if let image = UIImage(named: "free_dot") {
+                imvStatus.image = image
             }
+        } else {
+            if let image = UIImage(named: "green_dot") {
+                imvStatus.image = image
+            }
+        }
     }
     
     func setDataProject(data:Project) {
@@ -105,7 +105,7 @@ class CommonNoAvatarCell: UITableViewCell {
         }
     }
     
-  
+    
     
     func setDataBidding(data:Contractor) {
         lb1.text = data.contractorName
@@ -135,22 +135,29 @@ class CommonNoAvatarCell: UITableViewCell {
     
     func setDataNotification(data:NotificationOb) {
         lb1.text = data.title
-           lb2.text = data.content
-        lb3.text = data.userFullName
-       }
+        lb2.text = data.content
+        if(data.seen ?? false) {
+            lb3.text = "Đã đọc"
+            lb3.textColor = UIColor.init(hexString: HexColorApp.green)
+        } else {
+            lb3.textColor = UIColor.init(hexString: HexColorApp.red)
+            lb3.text = "Chưa đọc"
+        }
+        
+    }
     
     func setDataCheckOutIn(data:Worker) {
         lb1.text = data.workerFullName
         if(data.checkinTime == nil) {
             lb2.text = "Chưa điểm danh vào"
         } else {
-            lb2.text = data.checkinTime
+            lb2.text = "".convertDateFormatter(date: data.checkinTime ?? "")
         }
         
         if(data.checkoutTime == nil) {
             lb3.text = "Chưa điểm danh ra"
         } else {
-            lb3.text = data.checkoutTime
+            lb3.text = "".convertDateFormatter(date: data.checkoutTime ?? "")
         }
         
         

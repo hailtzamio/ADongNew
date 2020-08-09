@@ -16,9 +16,10 @@ class ProgessViewController: BaseViewController, UINavigationControllerDelegate 
     
     var data = [ProgressProject]()
     var currentWorkOutline = ProgressProject()
-        var SelectedAssets = [PHAsset]()
+    var SelectedAssets = [PHAsset]()
     var PhotoArray = [UIImage]()
-       var callback : ((Int?) -> Void)?
+    var callback : ((Int?) -> Void)?
+     var callbackPreviewImage : ((String?) -> Void)?
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var btnFinish: UIButton!
     var id = 0
@@ -38,14 +39,14 @@ class ProgessViewController: BaseViewController, UINavigationControllerDelegate 
     }
     
     @IBAction func finishProject(_ sender: Any) {
-//        ChooseImagesToFinishProject()
+        //        ChooseImagesToFinishProject()
         callback!(0)
     }
     func popupHandle() {
-//        okAction = {
-//            self.showTakePhotoPopup()
-//            //            self.pickImage(isLibrary: false)
-//        }
+        //        okAction = {
+        //            self.showTakePhotoPopup()
+        //            //            self.pickImage(isLibrary: false)
+        //        }
     }
     
     func finishWorkOutline() {
@@ -122,30 +123,30 @@ class ProgessViewController: BaseViewController, UINavigationControllerDelegate 
         }
     }
     
-//    func showTakePhotoPopup() {
-//
-//        let alert = UIAlertController(title: "Tùy chọn", message: "", preferredStyle: .actionSheet)
-//
-//        alert.addAction(UIAlertAction(title: "Album", style: .default , handler:{ (UIAlertAction)in
-//            self.pickImage(isLibrary: true)
-//        }))
-//
-//        alert.addAction(UIAlertAction(title: "Camera", style: .default , handler:{ (UIAlertAction)in
-//            self.pickImage(isLibrary: false)
-//        }))
-//
-//        //        alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
-//        //            print("User click Delete button")
-//        //        }))
-//
-//        alert.addAction(UIAlertAction(title: "Hủy", style: .cancel, handler:{ (UIAlertAction)in
-//            print("User click Dismiss button")
-//        }))
-//
-//        self.present(alert, animated: true, completion: {
-//            print("completion block")
-//        })
-//    }
+    //    func showTakePhotoPopup() {
+    //
+    //        let alert = UIAlertController(title: "Tùy chọn", message: "", preferredStyle: .actionSheet)
+    //
+    //        alert.addAction(UIAlertAction(title: "Album", style: .default , handler:{ (UIAlertAction)in
+    //            self.pickImage(isLibrary: true)
+    //        }))
+    //
+    //        alert.addAction(UIAlertAction(title: "Camera", style: .default , handler:{ (UIAlertAction)in
+    //            self.pickImage(isLibrary: false)
+    //        }))
+    //
+    //        //        alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
+    //        //            print("User click Delete button")
+    //        //        }))
+    //
+    //        alert.addAction(UIAlertAction(title: "Hủy", style: .cancel, handler:{ (UIAlertAction)in
+    //            print("User click Dismiss button")
+    //        }))
+    //
+    //        self.present(alert, animated: true, completion: {
+    //            print("completion block")
+    //        })
+    //    }
 }
 
 
@@ -159,17 +160,22 @@ extension ProgessViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectProgressViewCell.identifier, for: indexPath) as! ProjectProgressViewCell
         cell.setDataWorkOutline(data: data[indexPath.row])
-            cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if data[indexPath.row].finishDatetime == nil {
             callback!(data[indexPath.row].id)
-//            currentWorkOutline = data[indexPath.row]
-//            showYesNoPopup(title: "Xác nhận", message: "Hạng mục đã hoàn thành?")
+            //            currentWorkOutline = data[indexPath.row]
+            //            showYesNoPopup(title: "Xác nhận", message: "Hạng mục đã hoàn thành?")
         } else {
             // view Image
+            
+            if(data[indexPath.row].photos?.count ?? 0 > 0) {
+                callbackPreviewImage!(data[indexPath.row].photos?[0].thumbnailUrl ?? "")
+            }
+            
         }
         
     }

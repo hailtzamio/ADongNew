@@ -57,6 +57,8 @@ class ProductRequirementViewController: BaseViewController {
                     
                     if(response.data?.count == 0) {
                         self.showNoDataMessage(tbView: self.tbView)
+                    } else {
+                    
                     }
                 }
                 

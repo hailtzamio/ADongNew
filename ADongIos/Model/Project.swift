@@ -34,6 +34,7 @@ class Project : Codable {
     var contractorId : Int?
     var contractorName : String?
     var supervisorId : Int?
+        var rating : Double?
     var supervisorFullName : String?
     var safetyCriteriaBundleId : Int?
     var safetyCriteriaBundleName : String?
@@ -54,6 +55,7 @@ class Project : Codable {
     var projectAddress : String?
     var projectName : String?
     var designFiles : [DesignFile]?
+    var isRegistered:Bool?
     
     
     var investorManagerName : String?

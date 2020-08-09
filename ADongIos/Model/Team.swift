@@ -18,7 +18,7 @@ class Team: Codable {
     var phone : String?
     var phone2 : String?
     var workingStatus : String?
-    var rating : Int?
+    var rating : Double?
     var createdTime : String?
     var updatedTime : String?
     var leaderId : Int?

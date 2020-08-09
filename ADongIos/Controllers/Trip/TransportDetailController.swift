@@ -243,7 +243,7 @@ extension TransportDetailController : UIImagePickerControllerDelegate {
         
         let cropVC = TOCropViewController.init(croppingStyle: .default, image: image )
         cropVC.delegate = self
-        cropVC.aspectRatioPreset = .presetSquare
+        cropVC.aspectRatioPreset = .presetOriginal
         
         cropVC.aspectRatioLockEnabled = true
         cropVC.resetAspectRatioEnabled = false

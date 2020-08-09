@@ -13,6 +13,7 @@ class Worker: Codable {
     var id : Int?
     var workerId : Int?
     var address : String?
+    var username: String?
     var isTeamLeader : Bool?
     var lineId : String?
     var bankName : String?

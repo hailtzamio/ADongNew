@@ -16,4 +16,6 @@ class NotificationOb: Codable {
     var title : String?
     var userFullName : String?
     var content : String?
+    var notSeenCount: Int?
+    var seen:Bool?
 }

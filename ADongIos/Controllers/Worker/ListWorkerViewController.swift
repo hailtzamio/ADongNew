@@ -14,6 +14,7 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
     fileprivate var activityIndicator: LoadMoreActivityIndicator!
     var page = 0
     var totalPages = 0
+    var total = 0
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var header: NavigationBar!
     var loadMoreControl: LoadMoreControl!
@@ -100,8 +101,10 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
                     self.data.append(contentsOf: response.data!)
                     self.tbView.reloadData()
                     if(response.pagination != nil && response.pagination?.totalPages != nil) {
-                        let total = response.pagination?.totalRecords ?? 0
-                        self.tfSearch.placeholder = "Tìm kiếm trong \(total) Công nhân"
+                        if(self.total == 0) {
+                            self.total = response.pagination?.totalRecords ?? 0
+                        }
+                        self.tfSearch.placeholder = "Tìm kiếm trong \(self.total) Công nhân"
                         self.totalPages = response.pagination?.totalPages as! Int
                         self.page = self.page + 1
                     }

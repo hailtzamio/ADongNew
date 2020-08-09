@@ -12,6 +12,7 @@ import Kingfisher
 
 class PermissViewController: BaseViewController {
     
+    @IBOutlet weak var notificationNum: UIButton!
     @IBOutlet weak var imv1: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     var someProtocol = [String : Permission]()
@@ -25,12 +26,32 @@ class PermissViewController: BaseViewController {
         collectionView.delegate = self
         //        K.ProductionServer.ACCESS_TOKEN = preferences.object(forKey: accessToken) as! String
         
-        getData()
-        getMyProfile()
         
+        getData()
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector:#selector(resetData), name: UIApplication.willEnterForegroundNotification, object: UIApplication.shared)
+        
+        
+        getMyProfile()
+        getNotificationsNotSeen()
+    }
+    
+    @objc func resetData() {
+        getMyProfile()
+        getNotificationsNotSeen()
     }
     
     func getData() {
+        
+        permissions.removeAll()
+        
         showLoading()
         APIClient.getPermissions{ result in
             self.stopLoading()
@@ -59,21 +80,25 @@ class PermissViewController: BaseViewController {
             }
         }
         
+        let per = Permission()
+        per.appEntityCode = "Bidding"
+        self.permissions.append(per)
+        
         self.collectionView.reloadData()
     }
     
     
     @IBAction func goToProfile(_ sender: Any) {
         if let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
-                vc.hidesBottomBarWhenPushed = true
-                navigationController?.pushViewController(vc, animated: true)
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
         }
         
     }
     
     @IBAction func goToNotification(_ sender: Any) {
         if let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "NotificationsViewController") as? NotificationsViewController {
-                    vc.hidesBottomBarWhenPushed = true
+            vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
         }
         
@@ -97,6 +122,15 @@ extension PermissViewController : UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         var vC = UIViewController()
+        var actionString = ""
+        permissions.forEach { (permission) in
+            if(permissions[indexPath.row].appEntityCode == permission.appEntityCode) {
+            actionString = actionString + "-" + (permission.action ?? "")
+            }
+        }
+        
+        Context.Permission = actionString
+        
         switch permissions[indexPath.row].appEntityCode {
         case "Product":
             if let vc = UIStoryboard.init(name: "Product", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListProductViewController") as? ListProductViewController {
@@ -144,6 +178,11 @@ extension PermissViewController : UICollectionViewDataSource, UICollectionViewDe
                 vC = vc
             }
             break
+        case "Bidding":
+            if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "RegistrationsViewController") as? RegistrationsViewController {
+                vC = vc
+            }
+            break
             
             
         default:
@@ -175,22 +214,46 @@ extension PermissViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func getMyProfile() {
-
-           showLoading()
-           let imageDf = UIImage(named: "user_default")
-           APIClient.getMyProfile { result in
-               self.stopLoading()
-               switch result {
-               case .success(let response):
-                   
-                   if let value = response.data  {
+        
+        
+        let imageDf = UIImage(named: "user_default")
+        APIClient.getMyProfile { result in
+            
+            switch result {
+            case .success(let response):
+                
+                if let value = response.data  {
                     let url = URL(string: value.avatarUrl ?? "")
                     self.imv1.kf.setImage(with: url, placeholder: imageDf)
-                   }
-                   
-               case .failure(let error):
-                   self.showToast(content: error.localizedDescription)
-               }
-           }
-       }
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
+    }
+    
+    func getNotificationsNotSeen() {
+        
+        APIClient.getNotificationsNotSeen { result in
+            
+            switch result {
+            case .success(let response):
+                
+                if(response.data != nil) {
+                    
+                    let notSeenCount = response.data!.notSeenCount ?? 0
+                    if(notSeenCount > 0) {
+                        self.notificationNum.isHidden = false
+                        self.notificationNum.setTitle("\(notSeenCount)", for: .normal)
+                    } else {
+                        self.notificationNum.isHidden = true
+                    }
+                }
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

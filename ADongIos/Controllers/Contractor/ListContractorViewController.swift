@@ -60,6 +60,9 @@ class ListContractorViewController: BaseViewController, UISearchBarDelegate, Loa
     
     
     func setupHeader() {
+        
+        header.isRightButtonHide = !Context.Permission.contains("c")
+        
         header.title = "Nhà Thầu Phụ"
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)

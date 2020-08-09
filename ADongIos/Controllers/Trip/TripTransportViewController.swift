@@ -26,31 +26,31 @@ class TripTransportViewController: UIViewController {
         }
         
         header.rightAction = {
-                // Create New Trip for transport
-         
-                   
-                   let alert = UIAlertController(title: "Tùy chọn", message: "", preferredStyle: .actionSheet)
-                   
-                   alert.addAction(UIAlertAction(title: "Tạo mới", style: .default , handler:{ (UIAlertAction)in
-                    self.goToCreateNewTrip()
-                            
-                   }))
-                   
-                   alert.addAction(UIAlertAction(title: "Có sẵn", style: .default , handler:{ (UIAlertAction)in
-                        
-                    
-                    
-                   }))
-                   
+            // Create New Trip for transport
             
-                   alert.addAction(UIAlertAction(title: "Hủy", style: .cancel, handler:{ (UIAlertAction)in
-                       print("User click Dismiss button")
-                   }))
-                   
-                   self.present(alert, animated: true, completion: {
-                       print("completion block")
-                   })
-              
+            
+            let alert = UIAlertController(title: "Tùy chọn", message: "", preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "Tạo mới", style: .default , handler:{ (UIAlertAction)in
+                self.goToCreateNewTrip()
+                
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Có sẵn", style: .default , handler:{ (UIAlertAction)in
+                
+                self.goToListTrip()
+                
+            }))
+            
+            
+            alert.addAction(UIAlertAction(title: "Hủy", style: .cancel, handler:{ (UIAlertAction)in
+                print("User click Dismiss button")
+            }))
+            
+            self.present(alert, animated: true, completion: {
+                print("completion block")
+            })
+            
             
         }
         
@@ -73,7 +73,7 @@ class TripTransportViewController: UIViewController {
         let controller1 = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListTransportViewController") as? ListTransportViewController
         controller1!.title = "Yêu Cầu"
         controller1?.callbackRq = {(trans) in
-        
+            
             var isHide = true
             trans?.forEach { (trans) in
                 if(trans.isSelected ?? false) {
@@ -81,9 +81,9 @@ class TripTransportViewController: UIViewController {
                     isHide = false
                 }
             }
-              self.header.isRightButton2Hide = isHide
+            self.header.isRightButton2Hide = isHide
         }
-
+        
         controllerArray.append(controller1!)
         
         
@@ -91,14 +91,14 @@ class TripTransportViewController: UIViewController {
         controller2!.title = "Chuyến Đi"
         controller2?.callback = {(trip) in
             
-         
-                if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "TripDetailController") as? TripDetailController {
-                                vc.id = trip?.id ?? 0
-                                    self.navigationController?.pushViewController(vc, animated: true)
-                   
+            
+            if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "TripDetailController") as? TripDetailController {
+                vc.id = trip?.id ?? 0
+                self.navigationController?.pushViewController(vc, animated: true)
+                
             }
             
-         
+            
         }
         controllerArray.append(controller2!)
         
@@ -170,14 +170,20 @@ class TripTransportViewController: UIViewController {
 }
 
 extension TripTransportViewController {
-
+    
     func goToCreateNewTrip() {
-    if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "CreateNewTripForTransportViewController") as? CreateNewTripForTransportViewController {
-        vc.transports = transports
-        navigationController?.pushViewController(vc, animated: true)
-    }
+        if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "CreateNewTripForTransportViewController") as? CreateNewTripForTransportViewController {
+            vc.transports = transports
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
+    func goToListTrip() {
+           if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListTripViewController") as? ListTripViewController {
+//               vc.transports = transports
+               navigationController?.pushViewController(vc, animated: true)
+           }
+       }
     
 }
 

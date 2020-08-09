@@ -9,20 +9,24 @@
 import Alamofire
 
 enum ApiRouter: URLRequestConvertible {
-    
+    case updateProfile(data: Worker)
     case getProvinces
     case getDistrict(id:Int)
-     case getMyProfile
+    case registerProject(id:Int)
+    case getMyProfile
     case login(email:String, password:String)
     case getPermissions
     case getLorries
     case getLorry(id: Int)
+    case getMarkSessions(id :Int)
+    case getSysparams
+    case getNotification(id: Int)
     case updateLorry(data: Lorry)
     case removeLorry(id: Int)
     case createLorry(data: Lorry)
-    
+    case getProjectIsregister(projectId:Int, contractorId : Int)
     case createProduct(data: Product)
-       case updateProduct(data: Product)
+    case updateProduct(data: Product)
     case getProducts(page:Int,name:String)
     case getProduct(id: Int)
     case removeProduct(id: Int)
@@ -61,8 +65,8 @@ enum ApiRouter: URLRequestConvertible {
     case getProjects(page:Int,name:String, status:String, size: Int)
     case getProject(id: Int)
     case removeProject(id: Int)
-       case pauseProject(id: Int)
-          case resumeProject(data: Project)
+    case pauseProject(id: Int)
+    case resumeProject(data: Project)
     case updateProject(data: Project)
     case createProject(data: Project)
     case getProjectWokers(id: Int)
@@ -71,7 +75,7 @@ enum ApiRouter: URLRequestConvertible {
     case getProjectWokerOutline(id: Int)
     case finishWorkOutline(id: Int)
     
-    case getTransports(page:Int,name:String)
+    case getTransports(page:Int,name:String, status: Int)
     case getTransport(id: Int)
     case getTrips(page:Int,name:String)
     case getTrip(id: Int)
@@ -82,7 +86,9 @@ enum ApiRouter: URLRequestConvertible {
     case getWarehouses(id:Int,name:String, type : String )
     case getGoodsReceivedNotes
     case getGoodsIssueDoccuments
+    case getGoodsIssueDoccument(id : Int)
     case getGoodsIssueRequests
+    case getIssueDocs
     case getManuFactureRequest
     case getManuFactureRequestById(id: Int)
     case getGoodsReceivedNote(id: Int)
@@ -91,22 +97,24 @@ enum ApiRouter: URLRequestConvertible {
     case getGoodsRequest(id: Int)
     
     case getBiddings(id:Int)
+    case getRegistrations
     case projectBiddingApprove(id:Int)
     case getProjectCheckOut(id:Int)
     case getProjectFiles(id:Int)
     case finishProject(id: Int)
-        case getProjectImages(id: Int)
-      case getProjectCompletionImages(id: Int)
-        case createProductRequirement(data: CreateProductReq)
+    case getProjectImages(id: Int)
+    case getProjectCompletionImages(id: Int)
+    case createProductRequirement(data: CreateProductReq, lines : [NSDictionary])
     
-        case createTrip(data: Trip)
+    case createTrip(data: Trip)
     case getNotifications
+    case getNotificationsNotSeen
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
-        case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout, .createWarehouse, .createGoodsReceivedNote, .createLorry, .addWorkerToProject, .createProductRequirement, .createTrip, .createProduct :
+        case .login, .createWorker, .createTeam, .createDriver, .createContractor, .createProject,.checkin, .checkout, .createWarehouse, .createGoodsReceivedNote, .createLorry, .addWorkerToProject, .createProductRequirement, .createTrip, .createProduct, .registerProject :
             return .post
-        case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline, .transportPickup, .transportUnload, .projectBiddingApprove, .finishProject, .updateProduct, .pauseProject , .resumeProject   :
+        case .updateLorry, .updateWorker, .updateTeam, .updateDriver, .updateContractor, .updateProject, .finishWorkOutline, .transportPickup, .transportUnload, .projectBiddingApprove, .finishProject, .updateProduct, .pauseProject , .resumeProject, .updateProfile :
             return .put
         case .removeProduct, .removeWorker,.removeLorry, .removeTeam, .removeDriver, .removeContractor, .removeProject :
             return .delete
@@ -116,7 +124,7 @@ enum ApiRouter: URLRequestConvertible {
              .getTeams, .getTeam, .getTeamWorkers,
              .getDrivers, .getDriver,
              .getContractors, .getContractor,
-             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote, .getProductRequirements, .getBiddings, .getWorkerNotLeader, .getProjectCheckOut, .getProjectFiles, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest, .getNotifications,  .getMyProfile, .getWorkersNotInTeam
+             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote, .getProductRequirements, .getBiddings, .getWorkerNotLeader, .getProjectCheckOut, .getProjectFiles, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest, .getNotifications,  .getMyProfile, .getWorkersNotInTeam, .getNotificationsNotSeen, .getNotification, .getRegistrations, .getProjectIsregister, .getMarkSessions, .getSysparams, .getIssueDocs, .getGoodsIssueDoccument
             :
             return .get
         }
@@ -125,34 +133,60 @@ enum ApiRouter: URLRequestConvertible {
     // MARK: - Path
     private var path: String {
         switch self {
+        case .getGoodsIssueDoccument(let id) :
+            
+            return "goodsIssueDocument/\(id)"
+        case .getIssueDocs :
+            
+            return "goodsIssueDocument"
+        case .getMarkSessions(let id) :
+            
+            return "project/\(id)/markSessions"
+            
+        case .getSysparams :
+            return "sysParam"
+            
         case .getProvinces :
             return "province"
         case .getDistrict(let id):
             return "province/\(id)/districts"
-            case .getMyProfile :
-                   return "myProfile"
+        case .registerProject(let id):
+            return "project/\(id)/register"
+        case .getMyProfile :
+            return "myProfile"
+        case .updateProfile :
+            
+            return "updateMyProfile"
         case .login :
             return "login"
         case .getPermissions:
             return "myPermissions"
         case .getLorries:
             return "lorry"
+            
+        case .getProjectIsregister :
+            
+            return "isRegistered"
         case .getLorry(let id):
             return "lorry/\(id)"
+        case .getNotification(let id) :
+            return "notification/\(id)"
         case .updateLorry(let data):
             let id = data.id ?? 0
             return "lorry/\(id)"
             
-            case .updateProduct(let data):
-                let id = data.id ?? 0
-                return "product/\(id)"
+        case .updateProduct(let data):
+            let id = data.id ?? 0
+            return "product/\(id)"
         case .createLorry(let data):
             return "lorry"
         case .removeLorry(let id):
             return "lorry/\(id)"
         case .createProduct:
             return "product"
+        case .getRegistrations :
             
+            return "project/registrable"
         case .getProducts :
             return "product"
         case .getProduct(let id) :
@@ -162,8 +196,8 @@ enum ApiRouter: URLRequestConvertible {
             
         case .getWorkers:
             return "worker"
-            case .getWorkersNotInTeam:
-                      return "worker"
+        case .getWorkersNotInTeam:
+            return "worker"
         case .getWorkerNotLeader:
             return "worker"
         case .getWorkersForTeam:
@@ -172,8 +206,8 @@ enum ApiRouter: URLRequestConvertible {
             return "worker"
         case .getWorker(let id):
             return "worker/\(id)"
-            case .getGoodsRequest(let id):
-                      return "goodsIssueRequest/\(id)"
+        case .getGoodsRequest(let id):
+            return "goodsIssueRequest/\(id)"
         case .removeWorker(let id):
             return "worker/\(id)"
         case .updateWorker(let data):
@@ -197,6 +231,8 @@ enum ApiRouter: URLRequestConvertible {
             return "team/\(id)/members"
         case .getNotifications:
             return "myNotifications"
+        case .getNotificationsNotSeen :
+            return "myNotifications/countNotSeen"
             
         case .getDrivers:
             return "driver"
@@ -228,11 +264,11 @@ enum ApiRouter: URLRequestConvertible {
             return "project/\(id)"
         case .removeProject(let id):
             return "project/\(id)"
-            case .pauseProject(let id):
-                   return "project/\(id)/pause"
-            case .resumeProject(let data):
-                 let id = data.id ?? 0
-                return "project/\(id)/resume"
+        case .pauseProject(let id):
+            return "project/\(id)/pause"
+        case .resumeProject(let data):
+            let id = data.id ?? 0
+            return "project/\(id)/resume"
         case .updateProject (let data):
             let id = data.id ?? 0
             return "project/\(id)"
@@ -264,9 +300,9 @@ enum ApiRouter: URLRequestConvertible {
         case .getTransportImages(let id):
             return "trip/\(id)/photos"
         case .getProjectImages(let id):
-                 return "project/\(id)/checkinPhotos"
-                 case .getProjectCompletionImages(let id):
-                               return "project/\(id)/projectCompletionPhotos"
+            return "project/\(id)/checkinPhotos"
+        case .getProjectCompletionImages(let id):
+            return "project/\(id)/projectCompletionPhotos"
             
             
         case .createWarehouse :
@@ -278,13 +314,13 @@ enum ApiRouter: URLRequestConvertible {
         case .getManuFactureRequest :
             return "manufactureRequest"
             
-            case .getGoodsReceivedNotes :
-                  return "goodsReceivedNote"
-            case .getGoodsIssueDoccuments :
-                  return "goodsIssueDocument"
-   
-            case .getGoodsIssueRequests :
-                             return "goodsIssueRequest"
+        case .getGoodsReceivedNotes :
+            return "goodsReceivedNote"
+        case .getGoodsIssueDoccuments :
+            return "goodsIssueDocument"
+            
+        case .getGoodsIssueRequests :
+            return "goodsIssueRequest"
             
         case .createGoodsReceivedNote :
             return "goodsReceivedNote"
@@ -305,14 +341,14 @@ enum ApiRouter: URLRequestConvertible {
             return "project/\(id)/uploadSessions"
         case .finishProject(let id) :
             return "project/\(id)/finish"
-            case .createProductRequirement(let data) :
-                  let id = data.projectId ?? 0
-                 return "project/\(id)/productRequirement"
+        case .createProductRequirement(let data, let lines) :
+            let id = data.projectId ?? 0
+            return "project/\(id)/productRequirement"
             
-            case .createTrip(let data):
-                  return "trip"
-            case .getManuFactureRequestById(let id) :
-                      return "manufactureRequest/\(id)"
+        case .createTrip(let data):
+            return "trip"
+        case .getManuFactureRequestById(let id) :
+            return "manufactureRequest/\(id)"
             
             
         }
@@ -328,36 +364,53 @@ enum ApiRouter: URLRequestConvertible {
         case .createLorry(let data):
             return ["brand": data.brand, "model": data.model,"plateNumber": data.plateNumber, "capacity": data.capacity]
             
-        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest, .getNotifications, .getMyProfile:
+        case .getPermissions, .getProvinces, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById,  .getGoodsIssueRequests, .getGoodsRequest, .getNotifications, .getMyProfile, .getNotificationsNotSeen, .getNotification, .getRegistrations, .getGoodsIssueDoccument:
             return nil
+            
+        case .registerProject :
+            return [ "note": "Đăng ký thi công" ]
             
         case .pauseProject :
             return [ "note": "Tạm dừng công trình" ]
-         case .resumeProject(let data) :
+        case .resumeProject(let data) :
             
             if(data.teamId == nil) {
-                     return ["teamType": data.teamType, "contractorId": data.contractorId ?? 0, "note": "Phục hồi công trình" ]
+                return ["teamType": data.teamType, "contractorId": data.contractorId ?? 0, "note": "Phục hồi công trình" ]
             } else {
-            
-                  return ["teamType": data.teamType,"teamId": data.teamId ?? 0, "note": "Phục hồi công trình" ]
+                
+                return ["teamType": data.teamType,"teamId": data.teamId ?? 0, "note": "Phục hồi công trình" ]
             }
             
-      
+        case .getIssueDocs :
+            
+            return ["sort" : "id,desc" ]
+        case .getSysparams :
+            return  ["sort" : "id,desc" ]
+        case .getMarkSessions :
+            return  ["sort" : "id,desc" ]
+        case .getGoodsIssueDoccuments :
+            return  ["sort" : "id,desc" ]
+            
         case .getProducts(let page, let name) :
             return  [ "page": page,
                       "name": name, "sort" : "id,desc" ]
+        case .getProjectIsregister(let projectId, let contractorId) :
+            return  [ "contractorId": contractorId,
+                      "projectId": projectId]
         case .getGoodsReceivedNotes :
             return  ["sort" : "id,desc" ]
         case .createWorker(let data):
             return ["address": data.address, "isTeamLeader": data.isTeamLeader,"lineId": data.lineId, "bankName": data.bankName, "bankAccount": data.bankAccount, "fullName": data.fullName, "email": data.email, "phone": data.phone, "phone2": data.phone2, "avatarExtId": data.avatarExtId]
         case .updateWorker(let data):
             return ["address": data.address, "isTeamLeader": data.isTeamLeader,"lineId": data.lineId, "bankName": data.bankName, "bankAccount": data.bankAccount, "fullName": data.fullName, "email": data.email, "phone": data.phone, "phone2": data.phone2, "avatarExtId": data.avatarExtId]
+        case .updateProfile(let data):
+            return ["address": data.address, "fullName": data.fullName, "email": data.email, "phone": data.phone, "phone2": data.phone2, "avatarExtId": data.avatarExtId]
         case .getWorkers(let page, let name) :
             return  [ "page": page,
                       "fullName": name, "sort" : "id,desc"  ]
-            case .getWorkersNotInTeam(let page, let name) :
-                     return  [ "page": page,
-                               "fullName": name, "sort" : "id,desc", "inTeam" : false ]
+        case .getWorkersNotInTeam(let page, let name) :
+            return  [ "page": page,
+                      "fullName": name, "sort" : "id,desc", "inTeam" : false ]
         case .getWorkerNotLeader(let page, let name) :
             return  [ "page": page,
                       "name": name, "sort" : "id,desc", "isTeamLeader" : false ]
@@ -410,14 +463,14 @@ enum ApiRouter: URLRequestConvertible {
             
         case .checkin(let data) :
             return  [ "projectId": data.projectId,
-                      "workerIds": data.workerIds]
+                      "workerIds": data.workerIds, "checkinTime" : data.checkoutTime]
         case .checkout(let data) :
             return  [ "projectId": data.projectId,
-                      "workerIds": data.workerIds]
+                      "workerIds": data.workerIds, "checkoutTime" : data.checkoutTime]
             
-        case .getTransports(let page, let name) :
+        case .getTransports(let page, let name, let status) :
             return  [ "page": page,
-                      "name": name, "sort" : "id,desc" ]
+                      "name": name, "sort" : "id,desc", "status" : status ]
         case .getTrips(let page, let name) :
             return  [ "page": page,
                       "name": name, "sort" : "id,desc" ]
@@ -438,19 +491,19 @@ enum ApiRouter: URLRequestConvertible {
         case .addWorkerToProject(let id, let workerId):
             return  [
                 "workerId" : workerId ]
-        case .createProductRequirement(let data):
-                     return ["note": data.note ?? "", "expectedDatetime": data.expectedDatetime ?? "","linesAddNew": data.linesAddNew ?? [Product]()]
+        case .createProductRequirement(let data, let lines):
+            return ["note": data.note ?? "", "expectedDatetime": data.expectedDatetime ?? "","linesAddNew": lines]
             
-            case .createTrip(let data):
-                     return ["plannedDatetime": data.plannedDatetime, "lorryId": data.lorryId,"driverId": data.driverId, "transportReqIds": data.transportReqIds,"note": data.note]
+        case .createTrip(let data):
+            return ["plannedDatetime": data.plannedDatetime, "lorryId": data.lorryId,"driverId": data.driverId, "transportReqIds": data.transportReqIds,"note": data.note]
             
-            case .createProduct(let data):
-                      
-                      return ["name": data.name,"type": data.type, "thumbnailExtId": data.thumbnailExtId, "unit": data.unit, "code": data.code]
+        case .createProduct(let data):
             
-            case .updateProduct(let data):
-                           
-                           return ["name": data.name,"type": data.type, "thumbnailExtId": data.thumbnailExtId, "unit": data.unit, "code": data.code]
+            return ["name": data.name,"type": data.type, "thumbnailExtId": data.thumbnailExtId, "unit": data.unit, "code": data.code]
+            
+        case .updateProduct(let data):
+            
+            return ["name": data.name,"type": data.type, "thumbnailExtId": data.thumbnailExtId, "unit": data.unit, "code": data.code]
         }
     }
     

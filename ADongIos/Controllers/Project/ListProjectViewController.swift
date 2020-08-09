@@ -19,7 +19,7 @@ class ListProjectViewController: BaseViewController, LoadMoreControlDelegate, UI
     fileprivate var activityIndicator: LoadMoreActivityIndicator!
     var page = 0
     var totalPages = 0
-    
+      var total = 0
     @IBOutlet weak var tfSearch: UITextField!
     var removeTeamId = 0
     @IBOutlet weak var tbView: UITableView!
@@ -88,6 +88,9 @@ class ListProjectViewController: BaseViewController, LoadMoreControlDelegate, UI
     }
     
     func setupHeader() {
+        
+        header.isRightButtonHide = !Context.Permission.contains("c")
+        
         header.title = "Công Trình"
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
@@ -119,9 +122,13 @@ class ListProjectViewController: BaseViewController, LoadMoreControlDelegate, UI
                     }
                     
                     if(response.pagination != nil && response.pagination?.totalPages != nil) {
-                        let total = response.pagination?.totalRecords ?? 0
-                        self.tfSearch.placeholder = "Tìm kiếm trong \(total) Công trình"
-                        self.totalPages = response.pagination?.totalPages as! Int
+                        
+                        if(self.total == 0) {
+                            self.total = response.pagination?.totalRecords ?? 0
+                        }
+                     
+                        self.tfSearch.placeholder = "Tìm kiếm trong \(self.total) Công trình"
+                        self.totalPages = response.pagination?.totalPages ?? 0
                         self.page = self.page + 1
                     }
                 } else {

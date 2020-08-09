@@ -38,6 +38,10 @@ class DetailProjectViewController: BaseViewController {
             self.navigationController?.popViewController(animated: true)
         }
         
+        
+        
+        
+        
         self.title = "PAGE MENU"
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -55,16 +59,16 @@ class DetailProjectViewController: BaseViewController {
         var controllerArray : [UIViewController] = []
         
         if(project.teamType == "ADONG") {
-              let controller1 = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "CheckinoutViewController") as? CheckinoutViewController
-              controller1!.title = "Chấm Công"
-              controller1?.id = id
-              controller1?.callback = {(it) in
-                  self.typeOfUploadingImage = 1
-                  self.showTakePhotoPopup()
-              }
-              controllerArray.append(controller1!)
+            let controller1 = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "CheckinoutViewController") as? CheckinoutViewController
+            controller1!.title = "Chấm Công"
+            controller1?.id = id
+            controller1?.callback = {(it) in
+                self.typeOfUploadingImage = 1
+                self.showTakePhotoPopup()
+            }
+            controllerArray.append(controller1!)
         }
-
+        
         controller2!.title = "Tiến Độ"
         controller2?.id = id
         controller2?.callback = {(it) in
@@ -72,10 +76,14 @@ class DetailProjectViewController: BaseViewController {
                 self.typeOfUploadingImage = 2
                 self.workOutlineId = it ?? 0
                 self.showTakePhotoPopup()
-            } else {
+            } else  {
                 self.typeOfUploadingImage = 3
                 self.ChooseImagesToFinishProject()
             }
+        }
+        
+        controller2?.callbackPreviewImage = {(url) in
+            self.goToImagePreview(url: url ?? "")
         }
         controllerArray.append(controller2!)
         
@@ -95,7 +103,7 @@ class DetailProjectViewController: BaseViewController {
                 self.goToProductRequirement()
                 break
             case ProjectTitle.title4:
-                //                self.goToBaseInformation()
+                self.goToRating()
                 break
             case ProjectTitle.title5:
                 self.goToChooseWorker()
@@ -106,10 +114,11 @@ class DetailProjectViewController: BaseViewController {
             case ProjectTitle.title7:
                 self.goToFiles()
             case ProjectTitle.title8:
-//                self.pickImage(isLibrary: true)
+                //                self.pickImage(isLibrary: true)
                 break
             case ProjectTitle.title9:
                 self.goToAlbum()
+                
                 break
             default:
                 break
@@ -156,7 +165,7 @@ class DetailProjectViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-     
+        
     }
     
     
@@ -194,6 +203,7 @@ extension DetailProjectViewController {
     func goToBaseInformation() {
         if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "BaseInformationController") as? BaseInformationController {
             vc.id = id
+            vc.notificationType = "Show"
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -219,6 +229,21 @@ extension DetailProjectViewController {
             vc.isAddWorkerToProject = true
             vc.projectId = id
             navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func goToRating() {
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "RatingListViewController") as? RatingListViewController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func goToImagePreview(url : String) {
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "PreviewImageController") as? PreviewImageController {
+            vc.avatarUrl = url
+            navigationController?.pushViewController(vc, animated: true)
+            
         }
     }
     
@@ -290,7 +315,7 @@ extension DetailProjectViewController : TOCropViewControllerDelegate, UINavigati
         
         let cropVC = TOCropViewController.init(croppingStyle: .default, image: image )
         cropVC.delegate = self
-        cropVC.aspectRatioPreset = .presetSquare
+        cropVC.aspectRatioPreset = .presetOriginal
         
         cropVC.aspectRatioLockEnabled = true
         cropVC.resetAspectRatioEnabled = false

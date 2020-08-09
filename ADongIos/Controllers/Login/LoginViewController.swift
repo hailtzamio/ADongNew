@@ -51,6 +51,7 @@ class LoginViewController: BaseViewController {
                     print(user.accessToken)
                     self.preferences.set(user.accessToken, forKey: accessToken)
                     self.preferences.set(user.fullName, forKey: fullName)
+                     self.preferences.set(user.userId, forKey: userIdKey)
                 } else {
                     self.showToast(content: "Sai tên đăng nhập hoặc mật khẩu")
                 }

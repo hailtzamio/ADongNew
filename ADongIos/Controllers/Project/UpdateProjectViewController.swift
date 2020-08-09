@@ -18,17 +18,13 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
     
     func dateTimePicker(_ picker: DateTimePicker, didSelectDate: Date) {
         if(typeOfTfDate == 1) {
-            
             startDate = picker.selectedDateString
             tf3.text = "".convertDateFormatter(date: picker.selectedDateString)
         } else {
           tf4.text = "".convertDateFormatter(date: picker.selectedDateString)
             endDate = picker.selectedDateString
         }
-      
     }
-    
-    
     
     @IBOutlet weak var tf1: RadiusTextField!
     @IBOutlet weak var tf2: RadiusTextField!
@@ -201,10 +197,8 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             }
         }
         
-        
+
     }
-    
-    
     
     @IBAction func team(_ sender: Any) {
         project.teamType = "ADONG"
@@ -220,8 +214,8 @@ class UpdateProjectViewController: BaseViewController, UINavigationControllerDel
             // customize your picker
     //        picker.timeInterval = DateTimePicker.MinuteInterval.thirty
     //        picker.locale = Locale(identifier: "en_GB")
-
-    //        picker.todayButtonTitle = "Today"
+        picker.cancelButtonTitle = "Hủy"
+            picker.todayButtonTitle = "Hôm nay"
     //        picker.is12HourFormat = true
             picker.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
     //        picker.isDatePickerOnly = true

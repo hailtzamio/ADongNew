@@ -11,4 +11,5 @@ import UIKit
 class CheckInOut : Codable{
     var projectId: Int?
     var workerIds: [Int]?
+    var checkoutTime: String?
 }

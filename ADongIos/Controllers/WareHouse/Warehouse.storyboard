@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -11,28 +11,37 @@
         <!--Detail Ware House View Controller-->
         <scene sceneID="89E-7y-mGO">
             <objects>
-                <viewController storyboardIdentifier="DetailWareHouseViewController" id="fY7-EP-ePp" customClass="DetailWareHouseViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailWareHouseViewController" id="fY7-EP-ePp" customClass="DetailWareHouseViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kh1-ZG-tmI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBy-ys-BOy" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBy-ys-BOy" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="72E-gF-XOx"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ct-o8-KWD">
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="5Ct-o8-KWD" firstAttribute="leading" secondItem="SAb-Sw-FJC" secondAttribute="leading" id="CWd-wg-SMO"/>
+                            <constraint firstItem="SAb-Sw-FJC" firstAttribute="bottom" secondItem="5Ct-o8-KWD" secondAttribute="bottom" id="QnV-bW-4ag"/>
                             <constraint firstItem="eBy-ys-BOy" firstAttribute="top" secondItem="SAb-Sw-FJC" secondAttribute="top" id="WcU-6x-cN5"/>
+                            <constraint firstItem="SAb-Sw-FJC" firstAttribute="trailing" secondItem="5Ct-o8-KWD" secondAttribute="trailing" id="XJD-oa-Uff"/>
                             <constraint firstItem="eBy-ys-BOy" firstAttribute="trailing" secondItem="SAb-Sw-FJC" secondAttribute="trailing" id="XcQ-eW-oYC"/>
+                            <constraint firstItem="5Ct-o8-KWD" firstAttribute="top" secondItem="eBy-ys-BOy" secondAttribute="bottom" id="ZW7-cu-YbN"/>
                             <constraint firstItem="eBy-ys-BOy" firstAttribute="leading" secondItem="SAb-Sw-FJC" secondAttribute="leading" id="arR-Ix-PrC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SAb-Sw-FJC"/>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="5Ct-o8-KWD" id="Fsm-Ef-KBd"/>
                         <outlet property="header" destination="eBy-ys-BOy" id="UBG-ft-Dcl"/>
                     </connections>
                 </viewController>
@@ -43,12 +52,12 @@
         <!--List Goods Received Note View Controller-->
         <scene sceneID="B1U-M1-nbd">
             <objects>
-                <viewController storyboardIdentifier="ListGoodsReceivedNoteViewController" id="ocM-QJ-5ng" customClass="ListGoodsReceivedNoteViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListGoodsReceivedNoteViewController" id="ocM-QJ-5ng" customClass="ListGoodsReceivedNoteViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XHn-60-opZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRT-F6-NjF" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRT-F6-NjF" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -79,12 +88,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Q9-zJ-VDt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="177" y="70"/>
+            <point key="canvasLocation" x="393" y="44"/>
         </scene>
         <!--Factory Titles View Controller-->
         <scene sceneID="uf3-ae-x9y">
             <objects>
-                <viewController storyboardIdentifier="FactoryTitlesViewController" id="wIs-vQ-nr6" customClass="FactoryTitlesViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FactoryTitlesViewController" id="wIs-vQ-nr6" customClass="FactoryTitlesViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JLh-iJ-gRu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +123,7 @@
         <!--Create Warehouset View Controller-->
         <scene sceneID="ajb-rV-Dba">
             <objects>
-                <viewController storyboardIdentifier="CreateWarehousetViewController" id="DBs-AK-dTT" customClass="CreateWarehousetViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateWarehousetViewController" id="DBs-AK-dTT" customClass="CreateWarehousetViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Mu-E2-iOE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -122,14 +131,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjW-BW-ivh">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRQ-6v-Z7s" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRQ-6v-Z7s" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="ubn-gF-Wg2"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tên *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OYb-xC-M6I" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tên *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OYb-xC-M6I" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="15" y="65" width="384" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="RA2-Ld-CWI"/>
@@ -137,7 +146,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Địa chỉ *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="40P-ge-FWV" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Địa chỉ *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="40P-ge-FWV" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="15" y="125" width="384" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="zMH-eE-WD7"/>
@@ -163,7 +172,7 @@
                                             <action selector="createOrUpdate:" destination="DBs-AK-dTT" eventType="touchUpInside" id="IlA-RK-8pO"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Địa chỉ *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zqE-w7-iqv" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Địa chỉ *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zqE-w7-iqv" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="15" y="125" width="384" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="VBo-cz-sdW"/>
@@ -171,7 +180,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Thủ Kho  *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WrW-Sb-EtS" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Thủ Kho  *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WrW-Sb-EtS" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="15" y="185" width="384" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="lPO-VS-Qyu"/>
@@ -239,12 +248,12 @@
         <!--Detail Goods Received View Controller-->
         <scene sceneID="cSU-Vb-o4D">
             <objects>
-                <viewController storyboardIdentifier="DetailGoodsReceivedViewController" id="2um-cJ-Syg" customClass="DetailGoodsReceivedViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailGoodsReceivedViewController" id="2um-cJ-Syg" customClass="DetailGoodsReceivedViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gXw-uI-qcB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2t-HJ-PV8" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2t-HJ-PV8" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -280,7 +289,7 @@
         <!--Stock Titles View Controller-->
         <scene sceneID="TEt-af-DPo">
             <objects>
-                <viewController storyboardIdentifier="StockTitlesViewController" id="Kox-kn-dnf" customClass="StockTitlesViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StockTitlesViewController" id="Kox-kn-dnf" customClass="StockTitlesViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nxw-ih-qS9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -310,7 +319,7 @@
         <!--List Stock View Controller-->
         <scene sceneID="g8v-tw-YeQ">
             <objects>
-                <viewController storyboardIdentifier="ListStockViewController" id="ZKc-kQ-S0U" customClass="ListStockViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListStockViewController" id="ZKc-kQ-S0U" customClass="ListStockViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZD5-oi-OjE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -319,7 +328,7 @@
                                 <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8x-zA-NaH" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8x-zA-NaH" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -351,7 +360,7 @@
         <!--Create Goods Received View Controller-->
         <scene sceneID="gi3-FZ-GMt">
             <objects>
-                <viewController storyboardIdentifier="CreateGoodsReceivedViewController" id="6Lm-hk-4oZ" customClass="CreateGoodsReceivedViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateGoodsReceivedViewController" id="6Lm-hk-4oZ" customClass="CreateGoodsReceivedViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fj5-xS-bcm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -359,14 +368,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8aJ-Nr-jn7">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8r-Io-QNI" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8r-Io-QNI" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="wtc-Zp-UhH"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Người giao" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="af8-r1-Dwm" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Người giao" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="af8-r1-Dwm" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="15" y="65" width="384" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="0hu-kN-urn"/>
@@ -374,7 +383,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Địa chỉ *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wcv-Qb-9eW" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Địa chỉ *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wcv-Qb-9eW" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="15" y="125" width="384" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="KsK-wp-sIx"/>
@@ -400,7 +409,7 @@
                                             <action selector="createOrUpdate:" destination="6Lm-hk-4oZ" eventType="touchUpInside" id="3Be-Ed-4dc"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mã chứng từ gốc" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3g9-Lm-P6M" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mã chứng từ gốc" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3g9-Lm-P6M" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="15" y="125" width="384" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="cbE-5V-Idh"/>
@@ -408,7 +417,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kho hàng" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GPf-bA-bmP" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kho hàng" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GPf-bA-bmP" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="15" y="245" width="384" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="pqr-oE-BCk"/>
@@ -422,7 +431,7 @@
                                             <action selector="chooseKeeper:" destination="6Lm-hk-4oZ" eventType="touchUpInside" id="YRX-cC-8TB"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ghi chú" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pmU-od-Evz" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ghi chú" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pmU-od-Evz" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="15" y="185" width="384" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="ndU-i3-DT5"/>
@@ -485,12 +494,12 @@
         <!--List Goods Issue Note View Controller-->
         <scene sceneID="yaY-PP-Hfb">
             <objects>
-                <viewController storyboardIdentifier="ListGoodsIssueNoteViewController" id="ZXR-JZ-d9C" customClass="ListGoodsIssueNoteViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListGoodsIssueNoteViewController" id="ZXR-JZ-d9C" customClass="ListGoodsIssueNoteViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PaG-IM-xYI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6wY-w0-3H8" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6wY-w0-3H8" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -521,17 +530,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SjA-iY-Vnf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="70"/>
+            <point key="canvasLocation" x="1167" y="44"/>
         </scene>
         <!--Detail Goods Issue View Controller-->
         <scene sceneID="DX5-tY-KgS">
             <objects>
-                <viewController storyboardIdentifier="DetailGoodsIssueViewController" id="swZ-gG-jaE" customClass="DetailGoodsIssueViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailGoodsIssueViewController" id="swZ-gG-jaE" customClass="DetailGoodsIssueViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vM7-Xw-jve">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wlf-Eb-MXd" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wlf-Eb-MXd" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -567,12 +576,12 @@
         <!--List Goods Issue Doccument View Controller-->
         <scene sceneID="AHc-uB-Pc7">
             <objects>
-                <viewController storyboardIdentifier="ListGoodsIssueDoccumentViewController" id="8yf-v1-U3c" customClass="ListGoodsIssueDoccumentViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListGoodsIssueDoccumentViewController" id="8yf-v1-U3c" customClass="ListGoodsIssueDoccumentViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AeN-iE-LzR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7H9-lB-g8X" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7H9-lB-g8X" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -608,12 +617,12 @@
         <!--List Goods Issue Request View Controller-->
         <scene sceneID="DNz-oY-5T5">
             <objects>
-                <viewController storyboardIdentifier="ListGoodsIssueRequestViewController" id="WzE-ND-imu" customClass="ListGoodsIssueRequestViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListGoodsIssueRequestViewController" id="WzE-ND-imu" customClass="ListGoodsIssueRequestViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Map-mO-4X5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b89-iA-rLN" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b89-iA-rLN" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -649,12 +658,12 @@
         <!--Detail Goods Request View Controller-->
         <scene sceneID="zWX-SE-O97">
             <objects>
-                <viewController storyboardIdentifier="DetailGoodsRequestViewController" id="c0P-qa-443" customClass="DetailGoodsRequestViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailGoodsRequestViewController" id="c0P-qa-443" customClass="DetailGoodsRequestViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L74-2F-QKG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dT5-at-90p" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dT5-at-90p" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -686,6 +695,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LFb-ZX-2Bh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1351" y="-2446"/>
+        </scene>
+        <!--Detail Goods Issue Docs View Controller-->
+        <scene sceneID="eB6-ed-2xd">
+            <objects>
+                <viewController storyboardIdentifier="DetailGoodsIssueDocsViewController" id="BrO-2F-u35" customClass="DetailGoodsIssueDocsViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Kn-gl-hjK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRw-Qh-b9e" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="POR-Qf-YYH"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qyb-Cc-sJM">
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="XRw-Qh-b9e" firstAttribute="leading" secondItem="dmU-NH-3bo" secondAttribute="leading" id="1Lf-Ab-JPO"/>
+                            <constraint firstItem="qyb-Cc-sJM" firstAttribute="top" secondItem="XRw-Qh-b9e" secondAttribute="bottom" id="OYf-Qk-6kV"/>
+                            <constraint firstItem="XRw-Qh-b9e" firstAttribute="top" secondItem="dmU-NH-3bo" secondAttribute="top" id="Yuu-Hc-yVr"/>
+                            <constraint firstItem="XRw-Qh-b9e" firstAttribute="trailing" secondItem="dmU-NH-3bo" secondAttribute="trailing" id="eC7-dJ-Sao"/>
+                            <constraint firstItem="dmU-NH-3bo" firstAttribute="bottom" secondItem="qyb-Cc-sJM" secondAttribute="bottom" id="qdc-Gp-JXX"/>
+                            <constraint firstItem="qyb-Cc-sJM" firstAttribute="leading" secondItem="dmU-NH-3bo" secondAttribute="leading" id="xXu-x3-WKZ"/>
+                            <constraint firstItem="dmU-NH-3bo" firstAttribute="trailing" secondItem="qyb-Cc-sJM" secondAttribute="trailing" id="yjX-gx-7Lb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dmU-NH-3bo"/>
+                    </view>
+                    <connections>
+                        <outlet property="header" destination="XRw-Qh-b9e" id="HuI-y1-53a"/>
+                        <outlet property="tbView" destination="qyb-Cc-sJM" id="vM3-qO-XWV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p2z-ck-dGv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2397" y="-215"/>
         </scene>
     </scenes>
 </document>

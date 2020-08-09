@@ -24,6 +24,10 @@ class BaseViewController: UIViewController {
 //        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+//            self.navigationController?.interactivePopGestureRecognizer!.delegate = self
+       }
+    
     func showLoading()  {
         hud.show(in: self.view)
     }
@@ -44,10 +48,10 @@ class BaseViewController: UIViewController {
         Toast(text: content, duration: Delay.short).show()
     }
     
-    func swipeToPop() {
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true;
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil;
-    }
+//    func swipeToPop() {
+//        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true;
+//        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil;
+//    }
     
     func showAlert(message: String,
                    title: String? = "",
@@ -92,9 +96,17 @@ class BaseViewController: UIViewController {
 }
 
 extension BaseViewController:UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
+    
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//        return true
+//    }
+//    
+//    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+//        if gestureRecognizer.isEqual(navigationController?.interactivePopGestureRecognizer) {
+//            navigationController?.popViewController(animated: true)
+//        }
+//        return false
+//    }
     
     func showNoDataMessage(tbView : UITableView) {
         let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tbView.bounds.size.width, height: tbView.bounds.size.height))

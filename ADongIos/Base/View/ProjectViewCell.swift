@@ -64,6 +64,17 @@ class ProjectViewCell: UITableViewCell {
         }
     }
     
+    func setDataRegistration(data:Project) {
+           lb1.text = data.projectName
+           lb2.text = data.projectAddress
+           lb3.text = "".convertDateFormatter(date: data.plannedStartDate ?? "")
+           lb4.text = "".convertDateFormatter(date: data.plannedEndDate ?? "")
+           lb5.text = data.secretaryFullName
+           
+           bt1.setTitle("Đấu thầu", for: .normal)
+                    bt1.backgroundColor = UIColor.init(hexString: HexColorApp.red)
+       }
+    
     func setDataProject(data:Project) {
         lb1.text = data.name
         lb2.text = data.address
@@ -96,9 +107,6 @@ class ProjectViewCell: UITableViewCell {
         default:
             break
         }
-        
-        
-        
     }
     
     

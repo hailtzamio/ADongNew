@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/cuongvh/Desktop/ADongNew/ADongIos/Controllers/profile/MainMapViewController.swift">
-   </FileRef>
-   <FileRef
       location = "group:ADongIos.xcodeproj">
    </FileRef>
    <FileRef

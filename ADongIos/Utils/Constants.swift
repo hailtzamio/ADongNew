@@ -12,10 +12,12 @@ import UIKit
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 let accessToken = "accessToken"
+let userRoles = "userRoles"
 let number_phone_key = "number_phone_key"
 let user_address_key = "user_address_key"
 let passwork_key = "passwork_key"
 let fullName = "fullName"
+let userIdKey = "userIdKey"
 let user_role_key = "user_role_key"
 let quickly_hold_sim = "quickly_hold_sim"
 let copy_ctv_sim_price = "copy_ctv_sim_price"
@@ -23,7 +25,9 @@ let error_check_internet = "Không có kết nối mạng"
 
 struct K {
     struct ProductionServer {
-        static var baseURL = "http://adong-api-test.zamio.net/api/"
+//        static var baseURL = "http://adong-api-test.zamio.net/api/"
+        static var baseURL = "https://erp-api.adong.com.vn/api/"
+        
         static var  ACCESS_TOKEN: String = ""
     }
 }
@@ -39,6 +43,10 @@ struct HexColorApp {
     static let white = "#ffffff"
 }
 
+struct DateTimeDefalt {
+    static let date = ""
+}
+
 struct PopupMessages {
     static let nodata = "Không có dữ liệu"
 }
@@ -50,19 +58,21 @@ struct ProjectStatus {
     static let paused = "PAUSED"
 }
 
-
+struct NotificationType {
+    static let new = "NEW_PROJECT"
+    static let approve = "REG_APPROVED"
+}
 
 struct ProjectTitle {
     static let title1 = "Thông tin cơ bản"
     static let title2 = "Danh sách đăng ký thi công"
     static let title7 = "Bản thiết kế"
-    static let title3 = "Danh sách vật tư"
+    static let title3 = "Danh sách yêu cầu vật tư"
     static let title4 = "Đánh giá công trình"
     static let title8 = "An toàn lao động"
     static let title5 = "Thêm công nhân"
     static let title6 = "Lịch sử điểm danh"
     static let title9 = "Kho ảnh"
-    
 }
 
 struct APIParameterKey {
@@ -83,8 +93,6 @@ struct TypeOfWorker {
     static let secretary = 4
     static let suppervisor = 6
     static let keeper = 5
-    
-    
     static let emaifullNamel = "username"
 }
 

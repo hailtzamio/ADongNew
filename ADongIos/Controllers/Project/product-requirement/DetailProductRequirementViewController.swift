@@ -76,7 +76,7 @@ class DetailProductRequirementViewController: BaseViewController {
         data2.removeAll()
         self.data.append(Information(pKey: "Code",pValue: goodsReceivedNote.code ?? "---"))
         
-        self.data.append(Information(pKey: "Ngày dự kiến",pValue: goodsReceivedNote.expectedDatetime ?? "---"))
+        self.data.append(Information(pKey: "Ngày dự kiến",pValue: "".convertDateFormatter(date: goodsReceivedNote.expectedDatetime ?? "---")))
         
         self.data.append(Information(pKey: "Ghi chú",pValue: goodsReceivedNote.note ?? "---"))
         

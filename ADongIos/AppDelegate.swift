@@ -12,6 +12,7 @@ import IQKeyboardManagerSwift
 import GoogleMaps
 import GooglePlaces
 import OneSignal
+import SDDownloadManager
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSSubscriptionObserver  {
     
@@ -38,6 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
     
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let center = UNUserNotificationCenter.current()
+              // Request permission to display alerts and play sounds.
+              center.requestAuthorization(options: [.alert, .sound])
+              { (granted, error) in
+                  // Enable or disable features based on authorization.
+              }
+        
         // Override point for customization after application launch.
         openSplash()
      UINavigationBar.appearance().barTintColor = UIColor(red: 46.0/255.0, green: 14.0/255.0, blue: 74.0/255.0, alpha: 1.0)
@@ -136,6 +145,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
             }
         }
     }
+    
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+           debugPrint("handleEventsForBackgroundURLSession: \(identifier)")
+           SDDownloadManager.shared.backgroundCompletionHandler = completionHandler
+       }
     
 }
 

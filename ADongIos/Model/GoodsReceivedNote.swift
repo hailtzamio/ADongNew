@@ -11,6 +11,7 @@ import UIKit
 class GoodsReceivedNote : Codable {
     var id : Int?
     var code : String?
+     var receiver : String?
     var deliveredBy : String?
     var ref : String?
     var note : String?

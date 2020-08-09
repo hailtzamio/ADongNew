@@ -12,6 +12,7 @@ class StockTitlesViewController: BaseViewController {
     
     @IBOutlet weak var tbView: UITableView!
     var data = [TitleModel]()
+    var callback : ((Int?) -> Void)?
     var id = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +32,12 @@ class StockTitlesViewController: BaseViewController {
     
     func getData() {
         
-        data.append(TitleModel(pTitle: "Danh sách kho", pImagePath: "burning"))
+        data.append(TitleModel(pTitle: "Danh sách kho", pImagePath: "factory"))
         data.append(TitleModel(pTitle: "line", pImagePath: "check_green"))
-        data.append(TitleModel(pTitle: "Danh sách phiếu nhập kho", pImagePath: "print"))
-        data.append(TitleModel(pTitle: "Danh sách phiếu xuất kho", pImagePath: "drawing"))
+        data.append(TitleModel(pTitle: "Danh sách phiếu nhập kho", pImagePath: "import11"))
+        data.append(TitleModel(pTitle: "Danh sách phiếu xuất kho", pImagePath: "export22"))
         data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
-        data.append(TitleModel(pTitle: "Danh sách yêu cầu xuất kho", pImagePath: "healthcare"))
+        data.append(TitleModel(pTitle: "Danh sách yêu cầu xuất kho", pImagePath: "export11"))
         //        data.append(TitleModel(pTitle: "An toàn lao động", pImagePath: "hospital"))
         //        data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
         //        data.append(TitleModel(pTitle: "Thêm công nhân", pImagePath: "add_worker"))
@@ -70,57 +71,8 @@ extension StockTitlesViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch indexPath.row {
-        case 0:
-            goToStocks()
-            break
-        case 2:
-            goToGoodsReceivedNote()
-            break
-        case 3:
-            goToGoodsIssueDoccument()
-            break
-        case 5:
-            goToGoodsRequrement()
-            break
-        default:
-            break
-        }
-        
-        
+        callback!(indexPath.row)
     }
 }
 
-extension StockTitlesViewController {
-    
-    
-    func goToStocks() {
-        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListStockViewController") as? ListStockViewController {
-            vc.id = id
-            navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-    func goToGoodsReceivedNote() {
-        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListGoodsReceivedNoteViewController") as? ListGoodsReceivedNoteViewController {
-            vc.id = id
-            navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-    func goToGoodsIssueDoccument() {
-        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListGoodsIssueDoccumentViewController") as? ListGoodsIssueDoccumentViewController {
-            vc.id = id
-            navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-    func goToGoodsRequrement() {
-        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListGoodsIssueRequestViewController") as? ListGoodsIssueRequestViewController {
-            vc.id = id
-            navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-}
+

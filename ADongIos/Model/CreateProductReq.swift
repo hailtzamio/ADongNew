@@ -13,4 +13,5 @@ class CreateProductReq: Codable {
     var note : String?
     var expectedDatetime : String?
     var linesAddNew : [Product]?
+//    var newUploadFilesArray : [AnyObject]?
 }

@@ -58,6 +58,10 @@ class InformationDetailCell: UITableViewCell {
         lb1.text = data.code ?? "---"
         if(data.status == "NEW") {
             lb2.text = "Mới"
+        } else if(data.status == "PROCESSING") {
+         lb2.text = "Đang xử lý"
+        } else {
+         lb2.text = "Hoàn thành"
         }
         
     }

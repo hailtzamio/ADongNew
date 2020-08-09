@@ -7,10 +7,15 @@
 //
 
 import UIKit
-
+import Alamofire
+import Kingfisher
+import TOCropViewController
+import BSImagePicker
+import Photos
 class ProfileViewController: BaseViewController {
     var id = 0
-    var item:Worker? = nil
+    var item = Worker()
+    var avatarExtId = ""
     @IBOutlet weak var imvAva: UIImageView!
     
     @IBOutlet weak var tbView: UITableView!
@@ -34,6 +39,29 @@ class ProfileViewController: BaseViewController {
         getData()
     }
     
+    
+    @IBAction func changeAvatar(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Tùy chọn", message: "", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Album", style: .default , handler:{ (UIAlertAction)in
+            self.pickImage(isLibrary: true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Camera", style: .default , handler:{ (UIAlertAction)in
+            self.pickImage(isLibrary: false)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Hủy", style: .cancel, handler:{ (UIAlertAction)in
+            print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+        
+    }
+    
     func setupHeader() {
         header.title = "Chi Tiết"
         header.leftAction = {
@@ -41,8 +69,8 @@ class ProfileViewController: BaseViewController {
         }
         
         header.rightAction = {
-            if let vc = UIStoryboard.init(name: "Worker", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateWorkerViewController") as? UpdateWorkerViewController {
-                vc.data = self.item!
+            if let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "UpdateProfileViewController") as? UpdateProfileViewController {
+                vc.data = self.item
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
@@ -82,7 +110,7 @@ class ProfileViewController: BaseViewController {
                 if let value = response.data  {
                     print(value.address)
                     self.item = value
-                    
+                    self.data.removeAll()
                     self.convertData(value: value)
                     
                     //                    self.lbName.text = value.fullName ?? "---"
@@ -96,28 +124,29 @@ class ProfileViewController: BaseViewController {
                     
                     self.data.append(Information(pKey: "Họ tên",pValue: value.fullName ?? "---"))
                     self.data.append(Information(pKey: "Số điện thoại",pValue: value.phone ?? "---"))
-                    self.data.append(Information(pKey: "Địa chỉ",pValue: value.address ?? "---"))
+                    self.data.append(Information(pKey: "Email",pValue: value.email ?? "---"))
+//                    self.data.append(Information(pKey: "Địa chỉ",pValue: value.address ?? "---"))
                     
-                    self.data.append(Information(pKey: "Line ID",pValue: value.lineId ?? "---"))
-                    
-                    
-                    if let status = value.workingStatus {
-                        if(status == "working") {
-                            self.data.append(Information(pKey: "Trạng thái",pValue: "Đang bận"))
-                        } else {
-                            self.data.append(Information(pKey: "Trạng thái",pValue: "Đang rảnh"))
-                        }
-                    } else {
-                        self.data.append(Information(pKey: "Trạng thái",pValue: "---"))
-                    }
+                    //                    self.data.append(Information(pKey: "Line ID",pValue: value.lineId ?? "---"))
                     
                     
-                    self.data.append(Information(pKey: "Đội thi công",pValue: value.teamName ?? "---"))
+                    //                    if let status = value.workingStatus {
+                    //                        if(status == "working") {
+                    //                            self.data.append(Information(pKey: "Trạng thái",pValue: "Đang bận"))
+                    //                        } else {
+                    //                            self.data.append(Information(pKey: "Trạng thái",pValue: "Đang rảnh"))
+                    //                        }
+                    //                    } else {
+                    //                        self.data.append(Information(pKey: "Trạng thái",pValue: "---"))
+                    //                    }
                     
-                    self.data.append(Information(pKey: "Ngân hàng",pValue: value.bankName ?? "---"))
+                    
+                    //                    self.data.append(Information(pKey: "Đội thi công",pValue: value.teamName ?? "---"))
+                    
+                    //                    self.data.append(Information(pKey: "Ngân hàng",pValue: value.bankName ?? "---"))
                     
                     
-                    self.data.append(Information(pKey: "Số tài khoản",pValue: value.bankAccount ?? "---"))
+                    //                    self.data.append(Information(pKey: "Số tài khoản",pValue: value.bankAccount ?? "---"))
                     
                     let url = URL(string: value.avatarUrl ?? "")
                     self.imvAva.kf.setImage(with: url, placeholder: imageDf)
@@ -130,6 +159,28 @@ class ProfileViewController: BaseViewController {
                 self.showToast(content: error.localizedDescription)
             }
         }
+    }
+    
+    func updateProfile(pData : Worker) {
+        showLoading()
+        APIClient.updateProfile(data: pData) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if response.status == 1 {
+                    self.showToast(content: "Thành công")
+                    self.getData()
+                    return
+                } else {
+                    self.showToast(content: response.message ?? "Không thành công")
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
+        
     }
     
     private func convertData(value:Worker) {
@@ -171,19 +222,122 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InformationDetailCell.identifier, for: indexPath) as! InformationDetailCell
-        cell.setData(data: data[indexPath.row])
+
+        if(data.count > indexPath.row) {
+         cell.setData(data: data[indexPath.row])
+        }
         return cell
     }
     
     func yesNoHandle() {
-    
-            okAction = {
-                self.preferences.set(nil
-                        , forKey: accessToken)
-                    Context.AccessToken = ""
-                    Switcher.updateRootVC()
-                    //           One/ignal.deleteTag("user_id")
+        
+        okAction = {
+            self.preferences.set(nil
+                , forKey: accessToken)
+            Context.AccessToken = ""
+            Switcher.updateRootVC()
+            //           One/ignal.deleteTag("user_id")
         }
+        
+    }
+}
+
+extension ProfileViewController : UIImagePickerControllerDelegate {
     
+    @objc  func imagePickerController(_ picker: UIImagePickerController,
+                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        
+        let cropVC = TOCropViewController.init(croppingStyle: .default, image: image )
+        cropVC.delegate = self
+        cropVC.aspectRatioPreset = .presetSquare
+        
+        cropVC.aspectRatioLockEnabled = true
+        cropVC.resetAspectRatioEnabled = false
+        cropVC.aspectRatioPickerButtonHidden = true
+        picker.dismiss(animated: false) {
+            self.present(cropVC, animated: false, completion: nil)
+        }
+    }
+}
+
+extension ProfileViewController : TOCropViewControllerDelegate, UINavigationControllerDelegate {
+    func pickImage(isLibrary: Bool) {
+        
+        let picker = UIImagePickerController()
+        picker.sourceType = isLibrary ?  .photoLibrary : .camera
+        picker.allowsEditing = false;
+        picker.delegate = self;
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+    
+    func cropViewController(_ cropViewController: TOCropViewController, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
+        
+        
+        imvAva.image = image
+        //        imvAva.layer.cornerRadius = 40
+        
+        if(imvAva != nil){
+            uploadAvatar2(arrImage: image, withblock: {_response in
+                
+            })
+        }
+        
+        cropViewController.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
+        cropViewController.dismiss(animated: true, completion: {
+            
+        })
+    }
+    
+    func uploadAvatar2(arrImage:UIImage, withblock:@escaping (_ response: AnyObject?)->Void){
+        showLoading()
+        let url = K.ProductionServer.baseURL + "uploadAvatar"
+        
+        var headers: HTTPHeaders
+        headers = ["Content-type": "multipart/form-data",
+                   "Accept" : "application/json"]
+        headers["Authorization"] = Context.AccessToken
+        AF.upload(multipartFormData: { (multipartFormData) in
+            
+            let randomIntFrom0To10 = Int.random(in: 1..<1000)
+            
+            guard let imgData = arrImage.pngData() else { return }
+            multipartFormData.append(imgData, withName: "image", fileName: "image\(randomIntFrom0To10)", mimeType: "image/jpeg")
+            
+        },to: url, usingThreshold: UInt64.init(),
+          method: .post,
+          headers: headers).response{ response in
+            self.stopLoading()
+            if((response.data != nil)){
+                do{
+                    if let jsonData = response.data {
+                        let parsedData = try JSONSerialization.jsonObject(with: jsonData) as! Dictionary<String, AnyObject>
+                        print(parsedData)
+                        
+                        let status = parsedData["status"] as? NSInteger ?? 0
+                        
+                        if (status == 1){
+                            self.avatarExtId = parsedData["data"]?["id"] as! String
+                            self.item.avatarExtId = parsedData["data"]?["id"] as! String
+                            self.updateProfile(pData: self.item)
+             
+                        } else {
+                            self.showToast(content: "Không thành công")
+                        }
+                    }
+                } catch{
+                    print("error message")
+                }
+            }else{
+                self.showToast(content: "Không thành công")
+            }
+        }
     }
 }

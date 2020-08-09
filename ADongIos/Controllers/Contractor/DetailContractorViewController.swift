@@ -37,6 +37,9 @@ class DetailContractorViewController: BaseViewController {
     }
     
     func setupHeader() {
+        
+         header.isRightButtonHide = !Context.Permission.contains("u")
+        
         header.title = "Chi Tiết"
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)
@@ -54,6 +57,8 @@ class DetailContractorViewController: BaseViewController {
         if(isToChoose) {
             header.isRightButtonHide = true
             bt1.setTitle("ĐỒNG Ý", for: .normal)
+        } else {
+            bt1.isHidden = !Context.Permission.contains("d")
         }
     }
     

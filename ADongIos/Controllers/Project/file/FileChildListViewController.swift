@@ -90,20 +90,20 @@ extension FileChildListViewController: UITableViewDataSource, UITableViewDelegat
 
 extension FileChildListViewController:  URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        print("downloadLocation:", location)
-        // create destination URL with the original pdf name
-        guard let url = downloadTask.originalRequest?.url else { return }
-        let documentsPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        let destinationURL = documentsPath.appendingPathComponent(url.lastPathComponent)
-        // delete original copy
-        try? FileManager.default.removeItem(at: destinationURL)
-        // copy from temp to Document
-        do {
-            try FileManager.default.copyItem(at: location, to: destinationURL)
-            
-        } catch let error {
-            print("Copy Error: \(error.localizedDescription)")
-        }
+//        print("downloadLocation:", location)
+//        // create destination URL with the original pdf name
+//        guard let url = downloadTask.originalRequest?.url else { return }
+//        let documentsPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+//        let destinationURL = documentsPath.appendingPathComponent(url.lastPathComponent)
+//        // delete original copy
+//        try? FileManager.default.removeItem(at: destinationURL)
+//        // copy from temp to Document
+//        do {
+//            try FileManager.default.copyItem(at: location, to: destinationURL)
+//
+//        } catch let error {
+//            print("Copy Error: \(error.localizedDescription)")
+//        }
     }
     
     func downloadTest(data: DesignFile) {

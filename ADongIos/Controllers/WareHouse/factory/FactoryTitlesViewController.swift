@@ -13,6 +13,7 @@ class FactoryTitlesViewController: BaseViewController {
     @IBOutlet weak var tbView: UITableView!
     var data = [TitleModel]()
     var id = 0
+     var callback : ((Int?) -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         tbView.dataSource = self
@@ -28,10 +29,10 @@ class FactoryTitlesViewController: BaseViewController {
     
     
     func getData() {
-        data.append(TitleModel(pTitle: "Danh sách xưởng", pImagePath: "burning"))
+        data.append(TitleModel(pTitle: "Danh sách xưởng", pImagePath: "factory"))
         data.append(TitleModel(pTitle: "line", pImagePath: "check_green"))
-        data.append(TitleModel(pTitle: "Danh sách yêu cầu sản xuất", pImagePath: "print"))
-        data.append(TitleModel(pTitle: "Danh sách phiếu xuất kho", pImagePath: "drawing"))
+        data.append(TitleModel(pTitle: "Danh sách yêu cầu sản xuất", pImagePath: "import11"))
+        data.append(TitleModel(pTitle: "Danh sách phiếu xuất kho", pImagePath: "export22"))
     }
     
 }
@@ -58,37 +59,8 @@ extension FactoryTitlesViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch indexPath.row {
-        case 0:
-            goToFatories()
-            break
-            case 2:
-                  goToGoodsIssuesList()
-                  break
-        default:
-            break
-        }
+         callback!(indexPath.row)
     }
 }
 
-extension FactoryTitlesViewController {
-    
-    
-    func goToFatories() {
-        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListStockViewController") as? ListStockViewController {
-            vc.id = id
-            vc.titleHeader = "Xưởng"
-            vc.type = "FACTORY"
-            navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-    func goToGoodsIssuesList() {
-           if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListGoodsIssueNoteViewController") as? ListGoodsIssueNoteViewController {
-               vc.id = id
-               vc.titleHeader = "Yêu Cầu Sản Xuất"
-               navigationController?.pushViewController(vc, animated: true)
-           }
-       }
-}
+

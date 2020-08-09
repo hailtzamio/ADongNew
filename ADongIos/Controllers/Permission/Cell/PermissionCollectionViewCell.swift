@@ -78,6 +78,11 @@ class PermissionCollectionViewCell: UICollectionViewCell {
             title = "Kho / Xưởng"
          }
         
+        if(data.appEntityCode == "Bidding") {
+                   imv1.image = UIImage(named: "law")
+                  title = "Đấu thầu"
+              }
+        
         //        else {
         //            title = data.appEntityCode!
         //        }

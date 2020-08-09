@@ -105,13 +105,13 @@ extension ListGoodsIssueDoccumentViewController: UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WareHouseViewCell.identifier, for: indexPath) as! WareHouseViewCell
-        cell.setDataGoodsReceivedNote(data: data[indexPath.row])
+        cell.setDataGoodsIssue(data: data[indexPath.row])
     cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailGoodsReceivedViewController") as? DetailGoodsReceivedViewController {
+        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailGoodsIssueDocsViewController") as? DetailGoodsIssueDocsViewController {
             vc.id = data[indexPath.row].id!
             navigationController?.pushViewController(vc, animated: true)
         }

@@ -81,7 +81,46 @@ class WareHouseViewCell: UITableViewCell {
         lb2.text = data.driverFullName ?? "---"
         lb3.text = data.driverPhone ?? "---"
         lb4.text = data.lorryPlateNumber ?? "---"
-        lb5.text = data.plannedDatetime ?? "---"
+        lb5.text = "".convertDateFormatter(date: data.plannedDatetime ?? DateTimeDefalt.date)
+        switch data.status ?? 1 {
+        case 1:
+            lb6.text = "Mới"
+            lb6.textColor = UIColor.init(hexString: HexColorApp.red)
+            break
+        case 2:
+            lb6.text = "Đã hủy"
+            break
+            
+        case 3:
+            lb6.text = "Hoàn thành"
+              lb6.textColor = UIColor.init(hexString: HexColorApp.orange)
+            break
+        case 4:
+            lb6.text = "Đang xử lý"
+              lb6.textColor = UIColor.init(hexString: HexColorApp.green)
+            break
+        default:
+            break
+        }
+        
+        
+    }
+    
+    func setDataGoodsIssue(data:GoodsReceivedNote) {
+        lb1.text = data.code
+        lb2.text = data.projectName ?? "---"
+        lb3.text = data.receiver ?? "---"
+        lb4.text = data.note ?? "---"
+        lb5.text = data.warehouseName ?? "---"
+        if(data.status == "DONE") {
+            lb6.textColor = UIColor.init(hexString: HexColorApp.green)
+            lb6.text = "Hoàn thành"
+        } else {
+            lb6.textColor = UIColor.init(hexString: HexColorApp.red)
+            lb6.text = "Nháp"
+        }
+        
+        
     }
     
     func setDataGoodsReceivedNote(data:GoodsReceivedNote) {
@@ -89,12 +128,12 @@ class WareHouseViewCell: UITableViewCell {
         lb2.text = data.ref ?? "---"
         lb3.text = data.deliveredBy ?? "---"
         lb4.text = data.warehouseName ?? "---"
-         lb5.text = data.note ?? "---"
+        lb5.text = data.note ?? "---"
         if(data.status == "DONE") {
             lb6.textColor = UIColor.init(hexString: HexColorApp.green)
             lb6.text = "Hoàn thành"
         } else {
-             lb6.textColor = UIColor.init(hexString: HexColorApp.red)
+            lb6.textColor = UIColor.init(hexString: HexColorApp.red)
             lb6.text = "Nháp"
         }
         
@@ -108,12 +147,12 @@ class WareHouseViewCell: UITableViewCell {
         lb2.text = data.warehouseName ?? "---"
         lb3.text = data.projectName ?? "---"
         lb4.text = data.projectAddress ?? "---"
-         lb5.text = data.plannedDatetime ?? "---"
+        lb5.text = data.plannedDatetime ?? "---"
         if(data.status == 1) {
             lb6.textColor = UIColor.init(hexString: HexColorApp.green)
             lb6.text = "Hoàn thành"
         } else {
-             lb6.textColor = UIColor.init(hexString: HexColorApp.red)
+            lb6.textColor = UIColor.init(hexString: HexColorApp.red)
             lb6.text = "Nháp"
         }
     }
@@ -128,6 +167,7 @@ class WareHouseViewCell: UITableViewCell {
         lb3.text = data.plannedDatetime ?? "---"
         var status = "Mới"
         if(data.status == 1) {
+            lb6.textColor = UIColor.init(hexString: HexColorApp.red)
             status = "Mới"
         }
         
@@ -136,7 +176,7 @@ class WareHouseViewCell: UITableViewCell {
         }
         
         if(data.status == 3) {
-            status = "Đã xong"
+            status = "Hoàn thành"
         }
         
         if(data.status == 4) {

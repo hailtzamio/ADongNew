@@ -99,7 +99,7 @@ class DetailWorkerViewController: BaseViewController {
                         self.lbPosition.text = "Công nhân"
                     }
                     
-             
+                    self.data.append(Information(pKey: "Tên đăng nhập",pValue: value.username ?? "---"))
                     self.data.append(Information(pKey: "Địa chỉ",pValue: value.address ?? "---"))
                     
                     self.data.append(Information(pKey: "Line ID",pValue: value.lineId ?? "---"))

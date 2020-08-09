@@ -23,6 +23,8 @@ class BaseInformationController: BaseViewController {
     var data2 = [Information]()
     var project = Project()
     var status = "PAUSED"
+    var isHideButtonRegister = false
+    var notificationType = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeader()
@@ -54,43 +56,75 @@ class BaseInformationController: BaseViewController {
             }
         }
         
+        if(notificationType != "" || isHideButtonRegister) {
+            header.isRightButtonHide = true
+        }
+        
+        btnPauseAndResume.isHidden = isHideButtonRegister
         header.changeUpdateIcon()
+    }
+    
+    func registerProject() {
+        self.showLoading()
+        APIClient.registerProject(id: self.id) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                if (response.status == 1) {
+                    self.goBack()
+                } else {
+                self.showToast(content: response.message ?? "Không thành công")
+                }
+                break
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
     }
     
     func popupHandle() {
         okAction = {
             
-            if(self.status == "PAUSED") {
-                self.showLoading()
-                APIClient.resumeProject(data: self.item) { result in
-                    self.stopLoading()
-                    switch result {
-                    case .success(let response):
-                        if (response.status == 1) {
-                            self.getData()
-                        }
-                        break
-                        
-                    case .failure(let error):
-                        self.showToast(content: error.localizedDescription)
-                    }
-                }
+            if(self.notificationType == NotificationType.new) {
+                self.registerProject()
             } else {
-                self.showLoading()
-                APIClient.pauseProject(id: self.id) { result in
-                    self.stopLoading()
-                    switch result {
-                    case .success(let response):
-                        if (response.status == 1) {
-                            self.getData()
+                if(self.status == "PAUSED") {
+                    self.showLoading()
+                    APIClient.resumeProject(data: self.item) { result in
+                        self.stopLoading()
+                        switch result {
+                        case .success(let response):
+                            if (response.status == 1) {
+                                self.getData()
+                            }
+                            break
+                            
+                        case .failure(let error):
+                            self.showToast(content: error.localizedDescription)
                         }
-                        break
-                        
-                    case .failure(let error):
-                        self.showToast(content: error.localizedDescription)
+                    }
+                } else {
+                    self.showLoading()
+                    APIClient.pauseProject(id: self.id) { result in
+                        self.stopLoading()
+                        switch result {
+                        case .success(let response):
+                            if (response.status == 1) {
+                                self.getData()
+                            } else {
+                                self.showToast(content: response.message ?? "Không thành công")
+                                }
+                            break
+                            
+                        case .failure(let error):
+                            self.showToast(content: error.localizedDescription)
+                        }
                     }
                 }
             }
+            
+            
             
             
             
@@ -115,20 +149,26 @@ class BaseInformationController: BaseViewController {
                     self.data.append(Information(pKey: "Tên",pValue: value.name!))
                     self.data.append(Information(pKey: "Địa chỉ", pValue: value.address!))
                     
-                    if(value.status == "PAUSED") {
-                        self.btnPauseAndResume.setTitle("Phục Hồi", for: .normal)
-                        self.data.append(Information(pKey: "Trạng thái", pValue: "Tạm dừng"))
-                    } else if(value.status == "PROCESSING") {
-                        self.btnPauseAndResume.setTitle("Tạm Dừng", for: .normal)
-                        self.data.append(Information(pKey: "Trạng thái", pValue: "Đang thi công"))
-                    } else if(value.status == "NEW") {
-                        self.btnPauseAndResume.setTitle("Tạm Dừng", for: .normal)
-                        self.data.append(Information(pKey: "Trạng thái", pValue: "Mới"))
+                    
+                    if(self.notificationType == NotificationType.new) {
+                        self.btnPauseAndResume.setTitle("Đăng Ký", for: .normal)
+                    } else {
+                        if(value.status == "PAUSED") {
+                            self.btnPauseAndResume.setTitle("Phục Hồi", for: .normal)
+                            self.data.append(Information(pKey: "Trạng thái", pValue: "Tạm dừng"))
+                        } else if(value.status == "PROCESSING") {
+                            self.btnPauseAndResume.setTitle("Tạm Dừng", for: .normal)
+                            self.data.append(Information(pKey: "Trạng thái", pValue: "Đang thi công"))
+                        } else if(value.status == "NEW") {
+                            self.btnPauseAndResume.setTitle("Tạm Dừng", for: .normal)
+                            self.data.append(Information(pKey: "Trạng thái", pValue: "Mới"))
+                        }
+                        else {
+                            self.data.append(Information(pKey: "Trạng thái", pValue: "Hoàn Thành"))
+                            self.btnPauseAndResume.isHidden = true
+                        }
                     }
-                    else {
-                        self.data.append(Information(pKey: "Trạng thái", pValue: "Hoàn Thành"))
-                        self.btnPauseAndResume.isHidden = true
-                    }
+                    
                     
                     self.data1.append(Information(pKey: "Ngày bắt đầu",pValue: "".convertDateFormatter(date: value.plannedStartDate ?? "11/11/2020T11:11:11")))
                     self.data1.append(Information(pKey: "Ngày kết thúc",pValue: "".convertDateFormatter(date: value.plannedEndDate ?? "11/11/2020T11:11:11")))
@@ -140,22 +180,25 @@ class BaseInformationController: BaseViewController {
                         
                     } else {
                         self.data2.append(Information(pKey: "Nhà thầu phụ",pValue: value.contractorName  ?? "---"))
-                        self.data2.append(Information(pKey: "Giám sát",pValue: value.supervisorFullName  ?? "---"))
+//                        self.data2.append(Information(pKey: "Giám sát",pValue: value.supervisorFullName  ?? "---"))
                     }
                     
-                    
-                    if(value.investorContacts != nil && value.investorContacts?.manager != nil) {
-                        self.data2.append(Information(pKey: "Trưởng bộ phận",pValue: value.investorContacts?.manager?.name ?? "---"))
+                    if(self.notificationType != "") {
+                        if(value.investorContacts != nil && value.investorContacts?.manager != nil) {
+                            self.data2.append(Information(pKey: "Trưởng bộ phận",pValue: value.investorContacts?.manager?.name ?? "---"))
+                        }
+                        
+                        if(value.investorContacts != nil && value.investorContacts?.deputyManager != nil) {
+                            self.data2.append(Information(pKey: "Phó bộ phận",pValue: value.investorContacts?.deputyManager?.name ?? "---"))
+                        }
                     }
-                    
-                    if(value.investorContacts != nil && value.investorContacts?.deputyManager != nil) {
-                        self.data2.append(Information(pKey: "Phó bộ phận",pValue: value.investorContacts?.deputyManager?.name ?? "---"))
-                    }
-                    
-                    
                     
                     self.data2.append(Information(pKey: "Quản lý vùng",pValue: value.supervisorFullName ?? "---"))
                     self.data2.append(Information(pKey: "Thư Ký",pValue: value.secretaryFullName ?? "---"))
+                    
+                    
+                    
+                    
                     
                     self.tbView.reloadData()
                     
@@ -175,13 +218,16 @@ class BaseInformationController: BaseViewController {
     
     
     @IBAction func pauseProject(_ sender: Any) {
-        if(self.status == "PROCESSING") {
-            showYesNoPopup(title: "Xác nhận", message: "Tạm dừng công trình?")
-        } else{
-            showYesNoPopup(title: "Xác nhận", message: "Phục hồi công trình?")
-            
+        if(notificationType == NotificationType.new) {
+            showYesNoPopup(title: "Xác nhận", message: "Đăng ký thi công?")
+        } else {
+            if(self.status == "PROCESSING") {
+                showYesNoPopup(title: "Xác nhận", message: "Tạm dừng công trình?")
+            } else{
+                showYesNoPopup(title: "Xác nhận", message: "Phục hồi công trình?")
+                
+            }
         }
-        
     }
     
     @IBAction func viewMap(_ sender: Any) {
