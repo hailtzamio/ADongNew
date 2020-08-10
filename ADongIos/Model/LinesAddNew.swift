@@ -12,9 +12,10 @@ struct LinesAddNew {
 
     let productId: Int
     let quantity: Int
+     let note: String
     var linesAddNew: [String: Any] {
         return ["productId": productId,
-                "quantity": quantity]
+                "quantity": quantity, "note" : note]
     }
     var nsDictionary: NSDictionary {
         return linesAddNew as NSDictionary

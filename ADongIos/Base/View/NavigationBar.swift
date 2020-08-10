@@ -52,7 +52,7 @@ final class NavigationBar: UIView {
     }
     
     func changePhotoIcon() {
-         rightSecondButton.setImage(UIImage(named: "photo"), for: .normal)
+         rightSecondButton.setImage(UIImage(named: "gallery"), for: .normal)
      }
     
     func changeDoneIcon() {

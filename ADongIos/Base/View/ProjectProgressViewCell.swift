@@ -35,9 +35,9 @@ class ProjectProgressViewCell: UITableViewCell {
     }
     
     func setDataWorkOutline(data:ProgressProject) {
-        lb1.text = data.workOutlineName
+        lb1.text = data.workOutlineName ?? "---"
         if(data.finishDatetime != nil) {
-            lb2.text = data.finishDatetime
+            lb2.text = "".convertDateFormatter(date: data.finishDatetime ?? "")
             
             if let image = UIImage(named: "check_green") {
                 imvAva.image = image

@@ -30,6 +30,9 @@ class LorryListViewController: BaseViewController {
     }
     
     func setupHeader() {
+        
+        header.isRightButtonHide = !Context.Permission.contains("c")
+        
         header.title = "Xe Hàng"
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)

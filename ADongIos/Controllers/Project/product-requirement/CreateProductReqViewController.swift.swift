@@ -78,8 +78,8 @@ class CreateProductReqViewController: BaseViewController , DateTimePickerDelegat
     
     func setupHeader() {
         header.title = "Vật Tư"
-         tfSearch.returnKeyType = UIReturnKeyType.search
-          tfSearch.addPadding(.left(20.0))
+        tfSearch.returnKeyType = UIReturnKeyType.search
+        tfSearch.addPadding(.left(20.0))
         if(!isHideTf) {
             header.changeDoneIcon()
         }
@@ -100,7 +100,7 @@ class CreateProductReqViewController: BaseViewController , DateTimePickerDelegat
                 self.data.forEach { (value) in
                     if(value.count != nil) {
                         
-                        let d = LinesAddNew(productId: value.id ?? 0, quantity: Int(value.count!) ?? 0)
+                        let d = LinesAddNew(productId: value.id ?? 0, quantity: Int(value.count!) ?? 0, note: value.note ?? "")
                         lines.append(d.nsDictionary)
                     }
                 }
@@ -110,7 +110,7 @@ class CreateProductReqViewController: BaseViewController , DateTimePickerDelegat
                 self.createProductReq.note = self.tf1.text ?? ""
                 
                 if(lines.count == 0) {
-                
+                    
                     self.showToast(content: "Chọn vật tư")
                     return
                 }
@@ -175,8 +175,20 @@ extension CreateProductReqViewController: UITableViewDataSource, UITableViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: CountViewCell.identifier, for: indexPath) as! CountViewCell
         cell.tf1.isHidden = isHideTf
         if(!isHideTf) {
-            cell.tf1.tag = indexPath.row
-            cell.tf1.delegate = self
+            cell.newText = {value, type in
+                // 1.Count 2.Comment
+                print(value)
+                switch type {
+                case 1:
+                    self.data[indexPath.row].count = value
+                    break
+                case 2:
+                    self.data[indexPath.row].note = value
+                    break
+                default:
+                    break
+                }
+            }
         }
         cell.setDataProduct(data: data[indexPath.row])
         return cell
@@ -195,11 +207,11 @@ extension CreateProductReqViewController: UITableViewDataSource, UITableViewDele
     }
 }
 
-extension  CreateProductReqViewController : UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        //        print(textField.text)
-        //        let quantity = (textField.text ?? "0") as Int
-        data[textField.tag].count = textField.text!
-    }
-    
-}
+//extension  CreateProductReqViewController : UITextFieldDelegate {
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        //        print(textField.text)
+//        //        let quantity = (textField.text ?? "0") as Int
+//        data[textField.tag].count = textField.text!
+//    }
+//    
+//}

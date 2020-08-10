@@ -44,7 +44,7 @@ class SmallInformationViewCell: UITableViewCell {
     func setDataProduct(data:Product) {
           lb1.text = data.productName
         let qt = data.quantity ?? 0
-        lb2.text = "\(qt) \(data.productUnit ?? "")"
+        lb2.text = "\(qt) \(data.productUnit ?? "") \n\(data.note ?? "")"
      
       }
     

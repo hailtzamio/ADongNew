@@ -94,6 +94,6 @@ extension TransportImagesViewController: UICollectionViewDelegateFlowLayout {
         let numberOfItemsPerRow: CGFloat = 2.0
         let itemWidth = (collectionView.bounds.width - layout.minimumLineSpacing) / numberOfItemsPerRow
         
-        return CGSize(width: itemWidth, height: 100)
+        return CGSize(width: itemWidth, height: itemWidth)
     }
 }

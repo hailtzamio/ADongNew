@@ -16,6 +16,11 @@ extension String {
     }
     
     func convertDateFormatter(date: String) -> String {
+        
+        if(date == "") {
+            return ""
+        }
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"//this your string date format
         dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?

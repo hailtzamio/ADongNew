@@ -90,8 +90,13 @@ class DetailTeamViewController: BaseViewController {
  
                     self.data.append(Information(pKey: "Tên",pValue: value.name ?? "---"))
                     
+                    var address = ""
+                                       
+                           
+                                           address = "\(value.address ?? "") - \(value.districtName ?? "") - \(value.provinceName ?? "")"
                     
-                    self.data.append(Information(pKey: "Địa chỉ",pValue: value.address ?? "---"))
+                    
+                    self.data.append(Information(pKey: "Địa chỉ",pValue: address))
                     
                     self.data.append(Information(pKey: "Số điện thoại",pValue: value.phone ?? "---"))
                     
@@ -184,7 +189,7 @@ class DetailTeamViewController: BaseViewController {
             case .success(let response):
                 
                 if let value = response.data  {
-                    self.data.insert(Information(pKey: "Đội trưởng",pValue: value.fullName ?? "---"),at: 1)
+                    self.data.insert(Information(pKey: "Đội trưởng",pValue: value.fullName ?? "---"),at: 0)
                     self.getTeamWorkers()
                     return
                 } else {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="170" id="KGk-i7-Jjw" customClass="SmallInformationViewCell" customModule="ADongIos" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="170" id="KGk-i7-Jjw" customClass="SmallInformationViewCell" customModule="Á_Đông" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="408" height="170"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -41,7 +41,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdC-6s-izD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdC-6s-izD">
                                 <rect key="frame" x="65" y="36" width="37.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -54,9 +54,9 @@
                             <constraint firstItem="3Wc-X5-ZZt" firstAttribute="top" secondItem="fRq-v0-CfK" secondAttribute="top" constant="10" id="Txq-ri-Dgf"/>
                             <constraint firstItem="3Wc-X5-ZZt" firstAttribute="leading" secondItem="fRq-v0-CfK" secondAttribute="leading" constant="15" id="a7Y-pm-YvQ"/>
                             <constraint firstItem="zdC-6s-izD" firstAttribute="top" secondItem="BzL-8i-63S" secondAttribute="bottom" constant="5" id="brH-hn-Gob"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3Wc-X5-ZZt" secondAttribute="bottom" constant="10" id="iY2-8n-KW2"/>
                             <constraint firstItem="zdC-6s-izD" firstAttribute="leading" secondItem="3Wc-X5-ZZt" secondAttribute="trailing" constant="10" id="kNN-Nh-Kuk"/>
                             <constraint firstItem="BzL-8i-63S" firstAttribute="leading" secondItem="3Wc-X5-ZZt" secondAttribute="trailing" constant="10" id="kkS-wt-LDo"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zdC-6s-izD" secondAttribute="bottom" constant="10" id="vsZ-L3-eW4"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -77,6 +77,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="default" width="128" height="128"/>
+        <image name="default" width="88" height="74"/>
     </resources>
 </document>

@@ -64,6 +64,8 @@ class ListWorkerViewController: BaseViewController, UISearchBarDelegate, LoadMor
     
     
     func setupHeader() {
+        header.isRightButtonHide = !Context.Permission.contains("c")
+        
         header.title = "Công Nhân"
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)

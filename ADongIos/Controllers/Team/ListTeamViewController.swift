@@ -47,6 +47,9 @@ class ListTeamViewController: BaseViewController, UISearchBarDelegate, LoadMoreC
     }
     
     func setupHeader() {
+        
+        header.isRightButtonHide = !Context.Permission.contains("c")
+        
         header.title = "Đội Á Đông"
         header.leftAction = {
             self.navigationController?.popViewController(animated: true)

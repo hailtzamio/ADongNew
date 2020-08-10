@@ -127,10 +127,12 @@ class DetailContractorViewController: BaseViewController {
                     var address = ""
                     
         
-                        address = "\(value.districtName ?? "") - \(value.provinceName ?? "") - \(value.address ?? "") "
+                        address = "\(value.address ?? "") - \(value.districtName ?? "") - \(value.provinceName ?? "")"
                 
                     
                     self.data.append(Information(pKey: "Địa chỉ",pValue: address))
+                    
+                    
                     
                     var status = "---"
                     if(value.workingStatus == "idle") {

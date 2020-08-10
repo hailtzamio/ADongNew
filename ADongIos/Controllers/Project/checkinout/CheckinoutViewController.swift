@@ -111,7 +111,7 @@ class CheckinoutViewController: BaseViewController, UISearchBarDelegate, LoadMor
     }
     
     func showTimePopup() {
-        let min = Date().addingTimeInterval(-0 * 60 * 24 * 4)
+        let min = Date().addingTimeInterval(-60 * 60 * 24 * 4)
         let max = Date().addingTimeInterval(25 * 60 * 24 * 4)
         let picker = DateTimePicker.create(minimumDate: min, maximumDate: max)
         

@@ -35,6 +35,9 @@ class ListProductViewController: BaseViewController {
     }
     
     func setupHeader() {
+        
+        header.isRightButtonHide = !Context.Permission.contains("c")
+        
         header.title = "Vật Tư"
         
         if(!isHideTf) {
