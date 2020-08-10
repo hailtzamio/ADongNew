@@ -17,6 +17,10 @@ class CreateProductReqViewController: BaseViewController , DateTimePickerDelegat
     @IBOutlet weak var tf1: UITextField!
     @IBOutlet weak var tf2: UITextField!
     @IBOutlet weak var tfSearch: UITextField!
+    
+   
+    var searchArrRes = [Product]()
+    var searching:Bool = false
     var endDate = ""
     //
     var isHideTf = true
@@ -29,6 +33,7 @@ class CreateProductReqViewController: BaseViewController , DateTimePickerDelegat
         tbView.dataSource = self
         tbView.delegate = self
         tbView.register(CountViewCell.nib, forCellReuseIdentifier: CountViewCell.identifier)
+        tfSearch.delegate = self
         
     }
     
@@ -168,7 +173,11 @@ class CreateProductReqViewController: BaseViewController , DateTimePickerDelegat
 extension CreateProductReqViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        if( searching == true){
+             return searchArrRes.count
+          }else{
+             return data.count
+          }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -190,7 +199,20 @@ extension CreateProductReqViewController: UITableViewDataSource, UITableViewDele
                 }
             }
         }
-        cell.setDataProduct(data: data[indexPath.row])
+       
+        
+        if( searching == true){
+            var dict = searchArrRes[indexPath.row]
+             cell.setDataProduct(data: dict)
+            
+        }else{
+            var dict = data[indexPath.row]
+              cell.setDataProduct(data: dict)
+            
+            
+        }
+        
+        
         return cell
     }
     
@@ -207,11 +229,27 @@ extension CreateProductReqViewController: UITableViewDataSource, UITableViewDele
     }
 }
 
-//extension  CreateProductReqViewController : UITextFieldDelegate {
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        //        print(textField.text)
-//        //        let quantity = (textField.text ?? "0") as Int
-//        data[textField.tag].count = textField.text!
-//    }
-//    
-//}
+extension  CreateProductReqViewController : UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+       textField.resignFirstResponder()
+       return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool{
+        //input text
+        let searchText  = textField.text! + string
+        //add matching text to arrya
+        searchArrRes = self.data.filter({(($0.name?.lowercased() as! String).contains(searchText))})
+        
+        if(searchArrRes.count == 0){
+            searching = false
+        } else {
+            searching = true
+        }
+        self.tbView.reloadData();
+        
+        return true
+    }
+    
+}
