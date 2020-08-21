@@ -146,6 +146,13 @@ class CommonNoAvatarCell: UITableViewCell {
         
     }
     
+    func setDataLog(data:Log) {
+        lb1.text = data.content ?? "---"
+        lb2.text = data.userFullName ?? "---"
+        lb3.text = "".convertDateFormatter(date: data.createdTime ?? "")
+        
+    }
+    
     func setDataCheckOutIn(data:Worker) {
         lb1.text = data.workerFullName
         if(data.checkinTime == nil) {

@@ -22,4 +22,5 @@ target 'ADongIos' do
   pod 'DateTimePicker'
   pod 'SDDownloadManager'
   pod 'Cosmos'
+  pod 'AlamofireImage', '~> 4.1'
 end

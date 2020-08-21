@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -12,7 +12,7 @@
         <!--List Transport View Controller-->
         <scene sceneID="WGT-v4-Ztj">
             <objects>
-                <viewController storyboardIdentifier="ListTransportViewController" id="n78-42-2gG" customClass="ListTransportViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListTransportViewController" id="n78-42-2gG" customClass="ListTransportViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ANU-yr-r08">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,12 +42,12 @@
         <!--Transport Images View Controller-->
         <scene sceneID="N5o-gm-vWg">
             <objects>
-                <viewController storyboardIdentifier="TransportImagesViewController" id="MwH-lN-xEp" customClass="TransportImagesViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TransportImagesViewController" id="MwH-lN-xEp" customClass="TransportImagesViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gr6-zE-HUg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wbu-6e-m41" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wbu-6e-m41" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -99,7 +99,7 @@
         <!--List Trip View Controller-->
         <scene sceneID="OBW-pl-OwX">
             <objects>
-                <viewController storyboardIdentifier="ListTripViewController" id="Mh5-HW-eLK" customClass="ListTripViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListTripViewController" id="Mh5-HW-eLK" customClass="ListTripViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ou3-yt-pAF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,7 +129,7 @@
         <!--Trip Detail Controller-->
         <scene sceneID="Pu4-wK-is5">
             <objects>
-                <viewController storyboardIdentifier="TripDetailController" id="jP3-Be-jve" customClass="TripDetailController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TripDetailController" id="jP3-Be-jve" customClass="TripDetailController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zfr-Ut-7b7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,7 +138,7 @@
                                 <rect key="frame" x="0.0" y="99" width="414" height="763"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rr0-9N-vP0" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rr0-9N-vP0" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -170,12 +170,12 @@
         <!--Transport Detail Controller-->
         <scene sceneID="li6-5i-Yl3">
             <objects>
-                <viewController storyboardIdentifier="TransportDetailController" id="8zn-dV-RVS" customClass="TransportDetailController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TransportDetailController" id="8zn-dV-RVS" customClass="TransportDetailController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QMn-Pn-dIL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k27-3R-CIH" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k27-3R-CIH" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -234,12 +234,12 @@
         <!--Trip Transport View Controller-->
         <scene sceneID="lQq-OF-jFE">
             <objects>
-                <viewController storyboardIdentifier="TripTransportViewController" id="LiI-3C-Hhb" customClass="TripTransportViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TripTransportViewController" id="LiI-3C-Hhb" customClass="TripTransportViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ovQ-RZ-mU0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JqJ-2Q-e0r" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JqJ-2Q-e0r" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -272,24 +272,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pE5-bk-dKn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-226" y="-60"/>
+            <point key="canvasLocation" x="-164" y="-60"/>
         </scene>
         <!--Create New Trip For Transport View Controller-->
         <scene sceneID="54b-pI-FlF">
             <objects>
-                <viewController storyboardIdentifier="CreateNewTripForTransportViewController" id="lxm-R8-0e5" customClass="CreateNewTripForTransportViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateNewTripForTransportViewController" id="lxm-R8-0e5" customClass="CreateNewTripForTransportViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OdN-VD-ZTK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GL6-Tt-2ZN" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GL6-Tt-2ZN" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cPt-aP-EpF"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Xe *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ks0-Ut-Zhq" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Xe *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ks0-Ut-Zhq" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="15" y="109" width="384" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Uli-v2-80U"/>
@@ -297,7 +297,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tài xế *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XRh-T4-pgq" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tài xế *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XRh-T4-pgq" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="15" y="169" width="384" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="dKW-Ua-iw5"/>
@@ -313,7 +313,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="tel"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ghi chú" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6O9-yc-FQg" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ghi chú" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6O9-yc-FQg" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="15" y="289" width="384" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="JKW-AF-cJ8"/>
@@ -394,6 +394,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSZ-lS-X7u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1817" y="-558"/>
+        </scene>
+        <!--List Trip Choose View Controller-->
+        <scene sceneID="RiP-Au-3IR">
+            <objects>
+                <viewController storyboardIdentifier="ListTripChooseViewController" id="SQp-aN-Xae" customClass="ListTripChooseViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BEA-zb-aNd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbe-l1-C8a" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="0zM-BS-NJu"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="EYb-Gd-IHP"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="X0f-1E-ln0"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Ky-al-mDh">
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8Ky-al-mDh" firstAttribute="leading" secondItem="cIS-fl-r3r" secondAttribute="leading" id="9NN-HW-Rw4"/>
+                            <constraint firstItem="8Ky-al-mDh" firstAttribute="top" secondItem="Xbe-l1-C8a" secondAttribute="bottom" id="KCF-ve-fFi"/>
+                            <constraint firstItem="cIS-fl-r3r" firstAttribute="bottom" secondItem="8Ky-al-mDh" secondAttribute="bottom" id="VEW-HJ-QPx"/>
+                            <constraint firstItem="cIS-fl-r3r" firstAttribute="trailing" secondItem="8Ky-al-mDh" secondAttribute="trailing" id="XBm-zY-aNK"/>
+                            <constraint firstItem="Xbe-l1-C8a" firstAttribute="top" secondItem="cIS-fl-r3r" secondAttribute="top" id="c3C-ot-jGj"/>
+                            <constraint firstItem="Xbe-l1-C8a" firstAttribute="leading" secondItem="cIS-fl-r3r" secondAttribute="leading" id="lro-Du-A8w"/>
+                            <constraint firstItem="Xbe-l1-C8a" firstAttribute="trailing" secondItem="cIS-fl-r3r" secondAttribute="trailing" id="uY5-KM-o8l"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cIS-fl-r3r"/>
+                    </view>
+                    <connections>
+                        <outlet property="header" destination="Xbe-l1-C8a" id="lpY-fT-2OA"/>
+                        <outlet property="tbView" destination="8Ky-al-mDh" id="HTe-au-90H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dyg-kA-Cf6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="678" y="-60"/>
         </scene>
     </scenes>
 </document>

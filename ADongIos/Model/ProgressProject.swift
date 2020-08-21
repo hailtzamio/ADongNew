@@ -26,6 +26,7 @@ class ProgressProject: Codable {
 }
 
 class PhotoProject: Codable {
+      var photoId : Int?
     let thumbnailUrl: String?
     let fullSizeUrl: String?
 }

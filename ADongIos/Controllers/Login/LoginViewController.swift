@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-
+import OneSignal
 class LoginViewController: BaseViewController {
     
     
@@ -46,6 +46,11 @@ class LoginViewController: BaseViewController {
             case .success(let user):
                 
                 if(user.accessToken != nil) {
+//                    OneSignal.sendTags("",String(user.userId ?? ""))
+                    
+                    OneSignal.sendTags(["user_id": String(user.userId ?? 0)])
+                    
+                    
                     Context.AccessToken = user.accessToken ?? ""
                     self.gotoNextPage()
                     print(user.accessToken)

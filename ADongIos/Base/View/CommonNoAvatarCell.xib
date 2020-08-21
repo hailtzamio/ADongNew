@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="299" id="KGk-i7-Jjw" customClass="CommonNoAvatarCell" customModule="ADongIos" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="299" id="KGk-i7-Jjw" customClass="CommonNoAvatarCell" customModule="Á_Đông" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="539" height="299"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -20,20 +20,20 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q0z-ml-27K">
                         <rect key="frame" x="0.0" y="0.0" width="539" height="299"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oF0-by-FXb">
-                                <rect key="frame" x="35" y="12" width="489" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oF0-by-FXb">
+                                <rect key="frame" x="35" y="12.5" width="489" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6I-To-df7">
-                                <rect key="frame" x="15" y="35" width="509" height="18"/>
+                                <rect key="frame" x="15" y="38" width="509" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.48627450980392156" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTK-RE-RHh">
-                                <rect key="frame" x="15" y="58" width="509" height="18"/>
+                                <rect key="frame" x="15" y="61" width="509" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.40999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5aL-1E-BKs">
-                                <rect key="frame" x="15" y="91" width="509" height="0.5"/>
+                                <rect key="frame" x="15" y="94" width="509" height="0.5"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="d6i-PS-e7Q"/>
@@ -67,7 +67,7 @@
                             <constraint firstItem="5aL-1E-BKs" firstAttribute="top" secondItem="vTK-RE-RHh" secondAttribute="bottom" constant="15" id="F0b-tg-duz"/>
                             <constraint firstItem="cmR-YO-aTe" firstAttribute="leading" secondItem="Q0z-ml-27K" secondAttribute="leading" constant="15" id="Gzb-Bx-77X"/>
                             <constraint firstItem="vTK-RE-RHh" firstAttribute="top" secondItem="m6I-To-df7" secondAttribute="bottom" constant="5" id="Hvf-qe-MDv"/>
-                            <constraint firstItem="m6I-To-df7" firstAttribute="top" secondItem="cmR-YO-aTe" secondAttribute="bottom" constant="5" id="SAN-v7-9tS"/>
+                            <constraint firstItem="m6I-To-df7" firstAttribute="top" secondItem="oF0-by-FXb" secondAttribute="bottom" constant="5" id="Jww-sS-mnR"/>
                             <constraint firstItem="oF0-by-FXb" firstAttribute="leading" secondItem="cmR-YO-aTe" secondAttribute="trailing" constant="5" id="U4M-7Y-QDK"/>
                             <constraint firstItem="vTK-RE-RHh" firstAttribute="leading" secondItem="cmR-YO-aTe" secondAttribute="leading" id="WJY-37-C3J"/>
                             <constraint firstAttribute="trailing" secondItem="oF0-by-FXb" secondAttribute="trailing" constant="15" id="YwA-tN-rCN"/>

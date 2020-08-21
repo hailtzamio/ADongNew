@@ -15,7 +15,7 @@ class User: Codable {
     var avatarUrl:String?
     var message:String?
     var userId:Int?
-    
+        var code:String?
         var name: String?
         var phone: String?
         var email: String?

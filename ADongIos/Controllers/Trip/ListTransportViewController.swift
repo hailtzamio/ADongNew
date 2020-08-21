@@ -54,6 +54,8 @@ class ListTransportViewController : BaseViewController, UISearchBarDelegate, Loa
     //    }
     
     func getData() {
+        data.removeAll()
+        page = 0
         showLoading()
         APIClient.getTransports(page : page, name : "" , status : 1) { result in
             self.stopLoading()
@@ -71,7 +73,7 @@ class ListTransportViewController : BaseViewController, UISearchBarDelegate, Loa
                     self.data.append(contentsOf: response.data!)
                     
                     if(self.data.count == 0) {
-                        self.showNoDataMessage(tbView: self.tbView)
+//                        self.showNoDataMessage(tbView: self.tbView)
                     }
                     self.callbackRq!(self.data)
                     self.tbView.reloadData()

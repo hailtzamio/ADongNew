@@ -22,13 +22,17 @@ class UpdateContractorViewController: BaseViewController, UINavigationController
     var districts = [Address]()
     var districtId = 1
     
- 
+    
     @IBOutlet weak var tf1: RadiusTextField!
     @IBOutlet weak var tf2: RadiusTextField!
     @IBOutlet weak var tf3: IQDropDownTextField!
     @IBOutlet weak var tf4: IQDropDownTextField!
     @IBOutlet weak var tf5: RadiusTextField!
     @IBOutlet weak var tf6: RadiusTextField!
+    
+    @IBOutlet weak var tf7: RadiusTextField!
+    
+    @IBOutlet weak var tf8: RadiusTextField!
     @IBOutlet weak var header: NavigationBar!
     
     var data = Contractor()
@@ -43,7 +47,10 @@ class UpdateContractorViewController: BaseViewController, UINavigationController
             tf2.text = data.address
             tf5.text = data.phone
             tf6.text = data.email
-            
+            tf7.text = data.password ?? "......"
+            tf8.text = data.password ?? "......"
+            tf7.isEnabled = false
+            tf8.isEnabled = false
             if(data.provinceId != nil) {
                 provinceId = data.provinceId!
                 getDistrict()
@@ -81,31 +88,45 @@ class UpdateContractorViewController: BaseViewController, UINavigationController
     }
     
     @IBAction func createOrUpdate(_ sender: Any) {
-           
-           if ( tf1.text == "" || tf2.text == "" || tf5.text == "" ) {
-               showToast(content: "Nhập thiếu thông tin")
-               return
-           }
-           
-           if(districtId == -1){
-               showToast(content: "Chọn Quận/Huyện")
-               return
-           }
-           
-           data.name = tf1.text
-           data.address = tf2.text
-           data.phone = tf5.text
+        
+        if ( tf1.text == "" || tf2.text == "" || tf5.text == "" ) {
+            showToast(content: "Nhập thiếu thông tin")
+            return
+        }
+        
+        if(!isUpdate) {
+            if ( tf7.text == "" || tf8.text == "") {
+                showToast(content: "Nhập mật khẩu")
+                return
+            }
+            
+            if ( tf7.text != tf8.text ) {
+                showToast(content: "Mật khẩu không trùng khớp")
+                return
+            }
+            
+        } 
+        
+        if(districtId == -1){
+            showToast(content: "Chọn Quận/Huyện")
+            return
+        }
+        
+        data.name = tf1.text
+        data.address = tf2.text
+        data.phone = tf5.text
         data.email = tf6.text
-           data.provinceId = provinceId
-           data.districtId = districtId
-           
-           if(isUpdate) {
-               // Update
-               update(pData: data)
-           } else {
-               create(pData: data)
-           }
-       }
+        data.provinceId = provinceId
+        data.districtId = districtId
+        
+        if(isUpdate) {
+            // Update
+            update(pData: data)
+        } else {
+            data.password = tf7.text
+            create(pData: data)
+        }
+    }
     
     func update(pData:Contractor) {
         
@@ -131,23 +152,23 @@ class UpdateContractorViewController: BaseViewController, UINavigationController
     
     func create(pData:Contractor) {
         showLoading()
-           APIClient.createContractor(data: pData) { result in
-               self.stopLoading()
-               switch result {
-               case .success(let response):
-                   
-                   if response.status == 1 {
-                       self.showToast(content: "Thành công")
-                       self.goBack()
-                       return
-                   } else {
-                       self.showToast(content: response.message!)
-                   }
-                   
-               case .failure(let error):
-                   self.showToast(content: error.localizedDescription)
-               }
-           }
+        APIClient.createContractor(data: pData) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                
+                if response.status == 1 {
+                    self.showToast(content: "Thành công")
+                    self.goBack()
+                    return
+                } else {
+                    self.showToast(content: response.message!)
+                }
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
     }
 }
 

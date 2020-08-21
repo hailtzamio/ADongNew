@@ -56,7 +56,24 @@ extension FileChildListViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        downloadFile(fileUrl: data[indexPath.row].downloadUrl ?? "")
         item = data[indexPath.row]
-        showYesNoPopup(title: "Xác nhận", message: "Tải file này?")
+        
+        if(item.fileName == nil) {
+            return
+        }
+        
+        if(item.fileName!.contains("PNG") || item.fileName!.contains("png") || item.fileName!.contains("jpg") || item.fileName!.contains("JPG") || item.fileName!.contains("jpeg") || item.fileName!.contains("JPEG")) {
+            
+            if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "PreviewImageController") as? PreviewImageController {
+                vc.avatarUrl = item.downloadUrl ?? ""
+                      navigationController?.pushViewController(vc, animated: true)
+                      
+                  }
+            
+        } else {
+        
+        showToast(content: "Không hỗ trợ xem")
+        }
+        
         
         
     }

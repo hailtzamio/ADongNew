@@ -17,7 +17,7 @@ class DetailProjectViewController: BaseViewController {
     var pageMenu : CAPSPageMenu?
     var id = 0
     var ptitle = ""
-    
+    var isJustChangeWorkoutImage = false
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var header: NavigationBar!
     var project = Project()
@@ -82,8 +82,14 @@ class DetailProjectViewController: BaseViewController {
             }
         }
         
-        controller2?.callbackPreviewImage = {(url) in
-            self.goToImagePreview(url: url ?? "")
+     
+        
+        controller2?.callbackPreviewImage = {(url, id) in
+            if(id == 0) {
+             self.isJustChangeWorkoutImage = true
+            } else {
+                self.goToImagePreview(url: url ?? "",id : id ?? 0)
+            }
         }
         controllerArray.append(controller2!)
         
@@ -118,6 +124,8 @@ class DetailProjectViewController: BaseViewController {
                 break
             case ProjectTitle.title9:
                 self.goToAlbum()
+                case ProjectTitle.title10:
+                              self.goToLog()
                 
                 break
             default:
@@ -239,9 +247,14 @@ extension DetailProjectViewController {
         }
     }
     
-    func goToImagePreview(url : String) {
+    func goToImagePreview(url : String, id : Int) {
         if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "PreviewImageController") as? PreviewImageController {
             vc.avatarUrl = url
+            vc.isHideRemoveButton = false
+            vc.id = id
+            vc.reloadCallback = {(isReload) in
+                self.controller2?.getData()
+            }
             navigationController?.pushViewController(vc, animated: true)
             
         }
@@ -254,7 +267,12 @@ extension DetailProjectViewController {
         }
     }
     
-    
+    func goToLog() {
+         if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "LogsListViewController") as? LogsListViewController {
+             vc.id = id
+             navigationController?.pushViewController(vc, animated: true)
+         }
+     }
     
     func goToAlbum() {
         if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "ProjectImagesViewController") as? ProjectImagesViewController {
@@ -374,7 +392,14 @@ extension DetailProjectViewController : TOCropViewControllerDelegate, UINavigati
                         let status = parsedData["status"] as? NSInteger ?? 0
                         
                         if (status == 1){
-                            self.finishWorkOutline()
+                            if(!self.isJustChangeWorkoutImage) {
+                                self.finishWorkOutline()
+                            } else {
+                                self.controller2?.getData()
+                            }
+                            
+                            self.isJustChangeWorkoutImage = false
+                            
                         } else{
                             self.showToast(content: "Không thành công")
                         }

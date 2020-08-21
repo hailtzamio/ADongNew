@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (5.2.1)
+  - AlamofireImage (4.1.0):
+    - Alamofire (~> 5.1)
   - BSImagePicker (3.2.0)
   - Cosmos (22.1.0)
   - DateTimePicker (2.4.1)
@@ -27,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AlamofireImage (~> 4.1)
   - BSImagePicker (~> 3.1)
   - Cosmos
   - DateTimePicker
@@ -48,6 +51,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AlamofireImage
     - BSImagePicker
     - Cosmos
     - DateTimePicker
@@ -68,6 +72,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
+  AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
   BSImagePicker: 1c0d14fa6f1b55380cd49cbebe47584f10e180c6
   Cosmos: 2795b36ad4bbea1af3050d6d65576ed63875f86a
   DateTimePicker: 997176ea28954f3c18817b9565a53b28ee4400b8
@@ -86,6 +91,6 @@ SPEC CHECKSUMS:
   Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
   TOCropViewController: e9da34f484aedd4e5d5a8ab230ba217cfe16c729
 
-PODFILE CHECKSUM: 26af1fd9296f2c06601484d928eb0a32d742cee2
+PODFILE CHECKSUM: 01c394ec4259ee00fbd49cd64e93ce5458a2012d
 
 COCOAPODS: 1.9.1

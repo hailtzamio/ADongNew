@@ -73,6 +73,7 @@ struct ProjectTitle {
     static let title5 = "Thêm công nhân"
     static let title6 = "Lịch sử điểm danh"
     static let title9 = "Kho ảnh"
+    static let title10 = "Lịch sử thay đổi"
 }
 
 struct APIParameterKey {

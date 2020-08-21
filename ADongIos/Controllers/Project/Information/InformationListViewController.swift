@@ -38,20 +38,24 @@ class InformationListViewController: BaseViewController {
         if(project.teamType != "ADONG") {
             data.append(TitleModel(pTitle: "Danh sách đăng ký thi công", pImagePath: "regpro2"))
         } else {
-             data.append(TitleModel(pTitle: "Thêm công nhân", pImagePath: "add_worker"))
+            data.append(TitleModel(pTitle: "Thêm công nhân", pImagePath: "add_worker"))
         }
         data.append(TitleModel(pTitle: "Danh sách yêu cầu vật tư", pImagePath: "print"))
         data.append(TitleModel(pTitle: "Bản thiết kế", pImagePath: "drawing"))
         data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
         data.append(TitleModel(pTitle: "Đánh giá công trình", pImagePath: "healthcare"))
-   
+        
         
         if(project.teamType == "ADONG") {
             data.append(TitleModel(pTitle: "Line", pImagePath: "check_green"))
-           
+            
             data.append(TitleModel(pTitle: "Kho ảnh", pImagePath: "picture"))
             data.append(TitleModel(pTitle: "Lịch sử điểm danh", pImagePath: "history"))
         }
+        
+        data.append(TitleModel(pTitle: "Lịch sử thay đổi", pImagePath: "change_icon"))
+
+        data.append(TitleModel(pTitle: "Báo cáo", pImagePath: "report_icon"))
     }
     
 }

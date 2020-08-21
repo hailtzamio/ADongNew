@@ -89,7 +89,7 @@ class TripDetailController: BaseViewController {
                     self.data.append(Information(pKey: "Tài xế", pValue: value.driverFullName!))
                     self.data.append(Information(pKey: "Số điện thoại", pValue: value.driverPhone!))
                     self.data.append(Information(pKey: "Tạo bởi", pValue: value.createdByFullName!))
-                    self.data.append(Information(pKey: "Tạo lúc", pValue: value.createdTime!))
+                    self.data.append(Information(pKey: "Tạo lúc", pValue: "".convertDateFormatter(date: value.createdTime!)))
                     
                     if(value.transportRequests != nil) {
                         self.data1 = value.transportRequests!

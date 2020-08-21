@@ -21,7 +21,7 @@ class BaseSearchViewController: UISearchController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-       
+
     }
     
     override func viewDidAppear(_ animated: Bool) {

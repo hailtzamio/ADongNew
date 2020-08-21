@@ -19,7 +19,7 @@ class ProgessViewController: BaseViewController, UINavigationControllerDelegate 
     var SelectedAssets = [PHAsset]()
     var PhotoArray = [UIImage]()
     var callback : ((Int?) -> Void)?
-     var callbackPreviewImage : ((String?) -> Void)?
+     var callbackPreviewImage : ((String?, Int?) -> Void)?
     @IBOutlet weak var tbView: UITableView!
     @IBOutlet weak var btnFinish: UIButton!
     var id = 0
@@ -173,7 +173,10 @@ extension ProgessViewController: UITableViewDataSource, UITableViewDelegate {
             // view Image
             
             if(data[indexPath.row].photos?.count ?? 0 > 0) {
-                callbackPreviewImage!(data[indexPath.row].photos?[0].thumbnailUrl ?? "")
+                callbackPreviewImage!(data[indexPath.row].photos?[0].thumbnailUrl ?? "", data[indexPath.row].photos?[0].photoId ?? 0)
+            } else {
+                    callbackPreviewImage!("",0)
+                  callback!(data[indexPath.row].id)
             }
             
         }

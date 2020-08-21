@@ -118,7 +118,7 @@ class TransportDetailController: BaseViewController, UINavigationControllerDeleg
                 if let value = response.data  {
                     self.item = value
                     self.data.append(Information(pKey: "Code",pValue: value.code ?? "---"))
-                           self.data.append(Information(pKey: "Ngày dự kiến",pValue: value.plannedDatetime ?? "---"))
+                    self.data.append(Information(pKey: "Ngày dự kiến",pValue: "".convertDateFormatter(date: value.plannedDatetime ?? "") ?? "---"))
                     self.data.append(Information(pKey: "Kho / Xưởng", pValue: value.warehouseName ?? "---"))
                           self.data.append(Information(pKey: "Địa chỉ Kho / Xưởng", pValue: value.warehouseAddress ?? "---"))
                     self.data.append(Information(pKey: "Tên dự án", pValue: value.projectName ?? "---"))

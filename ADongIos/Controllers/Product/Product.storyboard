@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -11,7 +11,7 @@
         <!--List Product View Controller-->
         <scene sceneID="KV9-Jf-Ztk">
             <objects>
-                <viewController storyboardIdentifier="ListProductViewController" id="uyn-aX-6Bf" customClass="ListProductViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListProductViewController" id="uyn-aX-6Bf" customClass="ListProductViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KRE-cd-R7e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,7 +19,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZTs-wh-LV9">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckD-dO-RPf" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckD-dO-RPf" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <color key="backgroundColor" red="0.29800295829772949" green="0.29806005954742432" blue="0.29799938201904297" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -65,12 +65,12 @@
         <!--Detail Product View Controller-->
         <scene sceneID="xYl-E5-liH">
             <objects>
-                <viewController storyboardIdentifier="DetailProductViewController" id="cj1-6j-n4F" customClass="DetailProductViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailProductViewController" id="cj1-6j-n4F" customClass="DetailProductViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IWd-EV-wUW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxW-4d-U4A" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxW-4d-U4A" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -142,7 +142,7 @@
         <!--Update Product View Controller-->
         <scene sceneID="clb-0S-9ur">
             <objects>
-                <viewController storyboardIdentifier="UpdateProductViewController" id="Q5d-lp-ZaT" customClass="UpdateProductViewController" customModule="ADongIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UpdateProductViewController" id="Q5d-lp-ZaT" customClass="UpdateProductViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nt2-90-HHM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -150,14 +150,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5O-DR-XPh">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgE-Ox-3Jy" customClass="NavigationBar" customModule="ADongIos" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgE-Ox-3Jy" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="f1t-k0-Gym"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tên *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31L-cl-jLf" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tên *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31L-cl-jLf" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="20" y="190" width="374" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="bmq-0T-SZu"/>
@@ -165,7 +165,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mã *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6FY-5K-VdK" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mã *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6FY-5K-VdK" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="20" y="255" width="374" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="MCH-w8-0iK"/>
@@ -173,7 +173,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Đơn vị tính *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vf6-FB-MSK" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Đơn vị tính *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vf6-FB-MSK" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="20" y="320" width="374" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="qOz-ko-Lf4"/>
@@ -181,7 +181,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Loại" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2Q-Ye-wM5" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Loại" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2Q-Ye-wM5" customClass="RadiusTextField" customModule="Á_Đông" customModuleProvider="target">
                                         <rect key="frame" x="20" y="385" width="374" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="OCZ-fe-tK3"/>
@@ -190,7 +190,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z8r-On-f0C">
-                                        <rect key="frame" x="20" y="450" width="374" height="45"/>
+                                        <rect key="frame" x="20" y="560" width="374" height="45"/>
                                         <color key="backgroundColor" red="0.29800295829772949" green="0.29806005954742432" blue="0.29799938201904297" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="JNB-6f-V7Y"/>
@@ -236,35 +236,75 @@
                                             <action selector="chooseImage:" destination="Q5d-lp-ZaT" eventType="touchUpInside" id="IRS-gK-0Di"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Chiều dài" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B4H-AZ-tsv">
+                                        <rect key="frame" x="20" y="440" width="178" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="P30-U1-CB6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Chiều rộng" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eHQ-Lk-2Gx">
+                                        <rect key="frame" x="216" y="440" width="178" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Chiều cao" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9oX-XW-57K">
+                                        <rect key="frame" x="20" y="495" width="178" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="IPk-18-mQa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cân nặng" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HSR-oE-2fw">
+                                        <rect key="frame" x="216" y="495" width="178" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="z8r-On-f0C" secondAttribute="trailing" constant="20" id="0JG-1W-qc5"/>
                                     <constraint firstItem="31L-cl-jLf" firstAttribute="leading" secondItem="c5O-DR-XPh" secondAttribute="leading" constant="20" id="1Ef-Cf-kdT"/>
                                     <constraint firstItem="6FY-5K-VdK" firstAttribute="leading" secondItem="31L-cl-jLf" secondAttribute="leading" id="1K0-kC-OQ2"/>
+                                    <constraint firstItem="9oX-XW-57K" firstAttribute="width" secondItem="B4H-AZ-tsv" secondAttribute="width" id="3ly-nz-k35"/>
+                                    <constraint firstItem="eHQ-Lk-2Gx" firstAttribute="trailing" secondItem="z2Q-Ye-wM5" secondAttribute="trailing" id="3xv-RB-y4C"/>
+                                    <constraint firstItem="z8r-On-f0C" firstAttribute="top" secondItem="9oX-XW-57K" secondAttribute="bottom" constant="20" id="6il-sC-YLc"/>
+                                    <constraint firstItem="eHQ-Lk-2Gx" firstAttribute="width" secondItem="B4H-AZ-tsv" secondAttribute="width" id="8nN-ma-ySf"/>
                                     <constraint firstItem="z2Q-Ye-wM5" firstAttribute="top" secondItem="vf6-FB-MSK" secondAttribute="bottom" constant="20" id="8xU-kJ-u2v"/>
                                     <constraint firstItem="GH2-09-S6M" firstAttribute="centerX" secondItem="c5O-DR-XPh" secondAttribute="centerX" id="9CB-zw-z4M"/>
+                                    <constraint firstItem="eHQ-Lk-2Gx" firstAttribute="top" secondItem="nYi-3e-0ga" secondAttribute="bottom" constant="25" id="EwC-n6-2cg"/>
                                     <constraint firstItem="TgE-Ox-3Jy" firstAttribute="top" secondItem="c5O-DR-XPh" secondAttribute="top" id="F7D-jP-ePL"/>
                                     <constraint firstItem="vf6-FB-MSK" firstAttribute="leading" secondItem="6FY-5K-VdK" secondAttribute="leading" id="Gfg-IC-jJO"/>
                                     <constraint firstItem="6FY-5K-VdK" firstAttribute="top" secondItem="31L-cl-jLf" secondAttribute="bottom" constant="20" id="HT9-Q6-V0v"/>
                                     <constraint firstItem="nYi-3e-0ga" firstAttribute="top" secondItem="z2Q-Ye-wM5" secondAttribute="top" id="I2l-Ja-gc3"/>
                                     <constraint firstItem="nYi-3e-0ga" firstAttribute="height" secondItem="z2Q-Ye-wM5" secondAttribute="height" multiplier="0.666667" id="Idk-WO-mRK"/>
+                                    <constraint firstItem="9oX-XW-57K" firstAttribute="leading" secondItem="B4H-AZ-tsv" secondAttribute="leading" id="K3O-9L-eqX"/>
+                                    <constraint firstItem="HSR-oE-2fw" firstAttribute="height" secondItem="9oX-XW-57K" secondAttribute="height" id="K7c-gC-nuC"/>
                                     <constraint firstItem="6FY-5K-VdK" firstAttribute="trailing" secondItem="31L-cl-jLf" secondAttribute="trailing" id="KA3-1g-nkA"/>
                                     <constraint firstItem="TgE-Ox-3Jy" firstAttribute="leading" secondItem="c5O-DR-XPh" secondAttribute="leading" id="MfK-Dh-fsq"/>
+                                    <constraint firstItem="eHQ-Lk-2Gx" firstAttribute="height" secondItem="B4H-AZ-tsv" secondAttribute="height" id="RDT-G2-xdd"/>
                                     <constraint firstItem="z2Q-Ye-wM5" firstAttribute="trailing" secondItem="vf6-FB-MSK" secondAttribute="trailing" id="RDv-3j-JTr"/>
+                                    <constraint firstItem="B4H-AZ-tsv" firstAttribute="leading" secondItem="z2Q-Ye-wM5" secondAttribute="leading" id="VW2-Qg-aCq"/>
                                     <constraint firstItem="GH2-09-S6M" firstAttribute="top" secondItem="TgE-Ox-3Jy" secondAttribute="bottom" constant="20" id="XcG-gY-5o6"/>
+                                    <constraint firstItem="HSR-oE-2fw" firstAttribute="trailing" secondItem="eHQ-Lk-2Gx" secondAttribute="trailing" id="YVZ-Ea-yil"/>
                                     <constraint firstItem="nYi-3e-0ga" firstAttribute="leading" secondItem="z2Q-Ye-wM5" secondAttribute="leading" id="b4F-kc-lLB"/>
-                                    <constraint firstItem="z8r-On-f0C" firstAttribute="top" secondItem="z2Q-Ye-wM5" secondAttribute="bottom" constant="20" id="d0b-sH-nWm"/>
                                     <constraint firstItem="GH2-09-S6M" firstAttribute="leading" secondItem="1cY-IN-c9W" secondAttribute="leading" id="keS-vb-OkH"/>
                                     <constraint firstAttribute="trailing" secondItem="TgE-Ox-3Jy" secondAttribute="trailing" id="lSu-S5-tUq"/>
+                                    <constraint firstItem="B4H-AZ-tsv" firstAttribute="width" secondItem="z2Q-Ye-wM5" secondAttribute="width" multiplier="1/2.1" id="m3o-l8-nlV"/>
                                     <constraint firstItem="nYi-3e-0ga" firstAttribute="width" secondItem="z2Q-Ye-wM5" secondAttribute="width" id="o9L-fY-TTP"/>
                                     <constraint firstItem="GH2-09-S6M" firstAttribute="top" secondItem="1cY-IN-c9W" secondAttribute="top" id="okK-FN-9uo"/>
                                     <constraint firstAttribute="trailing" secondItem="31L-cl-jLf" secondAttribute="trailing" constant="20" id="pYu-qO-t21"/>
+                                    <constraint firstItem="HSR-oE-2fw" firstAttribute="width" secondItem="9oX-XW-57K" secondAttribute="width" id="r6m-ph-y65"/>
                                     <constraint firstItem="vf6-FB-MSK" firstAttribute="top" secondItem="6FY-5K-VdK" secondAttribute="bottom" constant="20" id="reo-mg-fBS"/>
                                     <constraint firstItem="z8r-On-f0C" firstAttribute="leading" secondItem="c5O-DR-XPh" secondAttribute="leading" constant="20" id="suB-oN-TUT"/>
                                     <constraint firstItem="z2Q-Ye-wM5" firstAttribute="leading" secondItem="vf6-FB-MSK" secondAttribute="leading" id="tpq-q4-b7d"/>
+                                    <constraint firstItem="HSR-oE-2fw" firstAttribute="centerY" secondItem="9oX-XW-57K" secondAttribute="centerY" id="uIH-nL-P7U"/>
                                     <constraint firstItem="31L-cl-jLf" firstAttribute="top" secondItem="1cY-IN-c9W" secondAttribute="bottom" constant="20" id="uzG-LD-XIA"/>
                                     <constraint firstItem="vf6-FB-MSK" firstAttribute="trailing" secondItem="6FY-5K-VdK" secondAttribute="trailing" id="vGq-Nc-ulT"/>
+                                    <constraint firstItem="9oX-XW-57K" firstAttribute="top" secondItem="B4H-AZ-tsv" secondAttribute="bottom" constant="10" id="wLT-lM-ymI"/>
+                                    <constraint firstItem="B4H-AZ-tsv" firstAttribute="top" secondItem="z2Q-Ye-wM5" secondAttribute="bottom" constant="10" id="yRG-aX-8MS"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -284,6 +324,10 @@
                         <outlet property="tf2" destination="6FY-5K-VdK" id="2Mc-Ek-pKe"/>
                         <outlet property="tf3" destination="vf6-FB-MSK" id="PkX-UC-FaA"/>
                         <outlet property="tf4" destination="z2Q-Ye-wM5" id="FEM-LT-9pv"/>
+                        <outlet property="tf5" destination="B4H-AZ-tsv" id="f96-jb-6MC"/>
+                        <outlet property="tf6" destination="eHQ-Lk-2Gx" id="9bN-m8-t7Q"/>
+                        <outlet property="tf7" destination="9oX-XW-57K" id="GPd-Kk-97l"/>
+                        <outlet property="tf8" destination="HSR-oE-2fw" id="0ff-Rj-jVA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qU5-T5-kZ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

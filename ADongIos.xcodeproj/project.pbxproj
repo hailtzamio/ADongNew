@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		758569A1F07325D9965FD903 /* Pods_ADongIos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7B6E12349ED51D34D317F8 /* Pods_ADongIos.framework */; };
+		B50748B424E256370071AFD8 /* ListTripChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50748B324E256360071AFD8 /* ListTripChooseViewController.swift */; };
+		B50748B624E275230071AFD8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B50748B524E275230071AFD8 /* StoreKit.framework */; };
 		B5089D3724DF99EE0019C419 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5089D3624DF99EE0019C419 /* MainMapViewController.swift */; };
+		B5105FFF24E7BA6000D34420 /* LogsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5105FFE24E7BA5F00D34420 /* LogsListViewController.swift */; };
+		B510600124E7BD0700D34420 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B510600024E7BD0700D34420 /* Log.swift */; };
 		B514B4E024A6339A00913E3D /* CardViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B514B4DF24A6339A00913E3D /* CardViewCustom.swift */; };
 		B514B4E424A74FFB00913E3D /* YesNoPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B514B4E224A74FFB00913E3D /* YesNoPopup.swift */; };
 		B514B4E524A74FFB00913E3D /* YesNoPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = B514B4E324A74FFB00913E3D /* YesNoPopup.xib */; };
@@ -199,6 +203,8 @@
 		B5DACF2B249E089D007656ED /* CheckBoxCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DACF2A249E089D007656ED /* CheckBoxCustom.swift */; };
 		B5DACF2D249E0AE8007656ED /* RadioButtonCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DACF2C249E0AE8007656ED /* RadioButtonCustom.swift */; };
 		B5DACF2F249E505C007656ED /* LocationAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DACF2E249E505C007656ED /* LocationAddress.swift */; };
+		B5FB3BAC24E7CACF00247038 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB3BAA24E7CACF00247038 /* ProductCell.swift */; };
+		B5FB3BAD24E7CACF00247038 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5FB3BAB24E7CACF00247038 /* ProductCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,7 +227,11 @@
 /* Begin PBXFileReference section */
 		7D7B6E12349ED51D34D317F8 /* Pods_ADongIos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ADongIos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EC7718238FE0E3993A8CC68 /* Pods-ADongIos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADongIos.release.xcconfig"; path = "Target Support Files/Pods-ADongIos/Pods-ADongIos.release.xcconfig"; sourceTree = "<group>"; };
+		B50748B324E256360071AFD8 /* ListTripChooseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTripChooseViewController.swift; sourceTree = "<group>"; };
+		B50748B524E275230071AFD8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B5089D3624DF99EE0019C419 /* MainMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMapViewController.swift; sourceTree = "<group>"; };
+		B5105FFE24E7BA5F00D34420 /* LogsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsListViewController.swift; sourceTree = "<group>"; };
+		B510600024E7BD0700D34420 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		B514B4DF24A6339A00913E3D /* CardViewCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewCustom.swift; sourceTree = "<group>"; };
 		B514B4E224A74FFB00913E3D /* YesNoPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YesNoPopup.swift; sourceTree = "<group>"; };
 		B514B4E324A74FFB00913E3D /* YesNoPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YesNoPopup.xib; sourceTree = "<group>"; };
@@ -314,6 +324,7 @@
 		B54A01B02478329900E5F310 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		B54A01B12478329900E5F310 /* RadiusTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadiusTextField.swift; sourceTree = "<group>"; };
 		B54A01BB24783F5000E5F310 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		B552655E24EA5ECD00A17402 /* Á ĐôngRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Á ĐôngRelease.entitlements"; sourceTree = "<group>"; };
 		B55CD0272490E5F900662427 /* TransportImagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportImagesViewController.swift; sourceTree = "<group>"; };
 		B55CD02A2490E6C000662427 /* TransportViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportViewCell.swift; sourceTree = "<group>"; };
 		B55CD02B2490E6C000662427 /* TransportViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransportViewCell.xib; sourceTree = "<group>"; };
@@ -418,6 +429,9 @@
 		B5DACF2A249E089D007656ED /* CheckBoxCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxCustom.swift; sourceTree = "<group>"; };
 		B5DACF2C249E0AE8007656ED /* RadioButtonCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonCustom.swift; sourceTree = "<group>"; };
 		B5DACF2E249E505C007656ED /* LocationAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAddress.swift; sourceTree = "<group>"; };
+		B5F5180924EA7B9B00E83A49 /* Á Đông.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Á Đông.entitlements"; sourceTree = "<group>"; };
+		B5FB3BAA24E7CACF00247038 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		B5FB3BAB24E7CACF00247038 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		C90D160841DABBAA3377923F /* Pods-ADongIos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADongIos.debug.xcconfig"; path = "Target Support Files/Pods-ADongIos/Pods-ADongIos.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -427,6 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				758569A1F07325D9965FD903 /* Pods_ADongIos.framework in Frameworks */,
+				B50748B624E275230071AFD8 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +469,14 @@
 				8EC7718238FE0E3993A8CC68 /* Pods-ADongIos.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B5105FFD24E7B95E00D34420 /* logs */ = {
+			isa = PBXGroup;
+			children = (
+				B5105FFE24E7BA5F00D34420 /* LogsListViewController.swift */,
+			);
+			path = logs;
 			sourceTree = "<group>";
 		};
 		B514B4E124A74FBB00913E3D /* popup */ = {
@@ -536,6 +559,8 @@
 		B54A010424781E9E00E5F310 /* ADongIos */ = {
 			isa = PBXGroup;
 			children = (
+				B5F5180924EA7B9B00E83A49 /* Á Đông.entitlements */,
+				B552655E24EA5ECD00A17402 /* Á ĐôngRelease.entitlements */,
 				B54A01A82478328100E5F310 /* Extension */,
 				B54A015D24782C1F00E5F310 /* Base */,
 				B54A014924782ACD00E5F310 /* Controllers */,
@@ -625,6 +650,7 @@
 				B59AE98824AB286C002C5BF4 /* NotificationOb.swift */,
 				B597483824B75F1300879825 /* LinesAddNew.swift */,
 				B57F963124CB077600F68C85 /* CriteriaMenu.swift */,
+				B510600024E7BD0700D34420 /* Log.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -748,6 +774,8 @@
 				B514B4DF24A6339A00913E3D /* CardViewCustom.swift */,
 				B57F962A24CB046300F68C85 /* RatingViewCell.swift */,
 				B57F962B24CB046300F68C85 /* RatingViewCell.xib */,
+				B5FB3BAA24E7CACF00247038 /* ProductCell.swift */,
+				B5FB3BAB24E7CACF00247038 /* ProductCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -864,6 +892,8 @@
 		B58E15D9248E2ECC0054E9A0 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				B5FB3BAE24E7E5E800247038 /* report */,
+				B5105FFD24E7B95E00D34420 /* logs */,
 				B57F962E24CB06D300F68C85 /* rating */,
 				B58C5A7624A60D44004F6180 /* album */,
 				B5B00854249F588A00A9EEFB /* file */,
@@ -961,6 +991,7 @@
 				B5A68D4B248F9AE200FD76A4 /* TransportDetailController.swift */,
 				B5A68D49248F939400FD76A4 /* TripDetailController.swift */,
 				B5A68D45248F8D0300FD76A4 /* ListTripViewController.swift */,
+				B50748B324E256360071AFD8 /* ListTripChooseViewController.swift */,
 				B5A68D43248F88F100FD76A4 /* TripTransportViewController.swift */,
 				B5A68D3B248F7EC600FD76A4 /* ListTransportViewController.swift */,
 				B5A68D37248F78EF00FD76A4 /* Trip.storyboard */,
@@ -997,9 +1028,17 @@
 			path = file;
 			sourceTree = "<group>";
 		};
+		B5FB3BAE24E7E5E800247038 /* report */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = report;
+			sourceTree = "<group>";
+		};
 		EB3F6758A88AA809E35C2B65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B50748B524E275230071AFD8 /* StoreKit.framework */,
 				7D7B6E12349ED51D34D317F8 /* Pods_ADongIos.framework */,
 			);
 			name = Frameworks;
@@ -1114,6 +1153,7 @@
 			files = (
 				B51F5639247954CD00B3851A /* Worker.storyboard in Resources */,
 				B56FD90D248F3D7A00DCAA54 /* TitleViewCell.xib in Resources */,
+				B5FB3BAD24E7CACF00247038 /* ProductCell.xib in Resources */,
 				B55CD02D2490E6C000662427 /* TransportViewCell.xib in Resources */,
 				B54A01A22478326C00E5F310 /* CommonTableViewCell.xib in Resources */,
 				B56FD906248F2D7500DCAA54 /* ProjectProgressViewCell.xib in Resources */,
@@ -1287,8 +1327,10 @@
 				B57F963C24CC0A3C00F68C85 /* ListDocsIssueNoteViewController.swift in Sources */,
 				B5A68D4C248F9AE200FD76A4 /* TransportDetailController.swift in Sources */,
 				B54A01BA2478329900E5F310 /* RadiusTextField.swift in Sources */,
+				B510600124E7BD0700D34420 /* Log.swift in Sources */,
 				B58561B924936A91000A5675 /* CreateGoodsReceivedViewController.swift in Sources */,
 				B58E15FF248E3D660054E9A0 /* CAPSPageMenu+Options.swift in Sources */,
+				B50748B424E256370071AFD8 /* ListTripChooseViewController.swift in Sources */,
 				B5089D3724DF99EE0019C419 /* MainMapViewController.swift in Sources */,
 				B535648F248CE20D00FF5883 /* UpdateContractorViewController.swift in Sources */,
 				B597483724B5CD5800879825 /* RegistrationsViewController.swift in Sources */,
@@ -1298,6 +1340,7 @@
 				B54A018424782D7100E5F310 /* Error.swift in Sources */,
 				B58E15E5248E3B130054E9A0 /* DetailProjectViewController.swift in Sources */,
 				B54A016124782C3D00E5F310 /* BaseViewController.swift in Sources */,
+				B5105FFF24E7BA6000D34420 /* LogsListViewController.swift in Sources */,
 				B5A68D41248F847C00FD76A4 /* WareHouseViewCell.swift in Sources */,
 				B54A01A72478326C00E5F310 /* InformationDetailCell.swift in Sources */,
 				B59AE98724AB2679002C5BF4 /* NotificationsViewController.swift in Sources */,
@@ -1352,6 +1395,7 @@
 				B58561AA24933182000A5675 /* Warehouse.swift in Sources */,
 				B58561A824932FCC000A5675 /* ListStockViewController.swift in Sources */,
 				B58561B6249368A9000A5675 /* CountViewCell.swift in Sources */,
+				B5FB3BAC24E7CACF00247038 /* ProductCell.swift in Sources */,
 				B58E1604248E3D660054E9A0 /* CAPSPageMenu+UIGestureRecognizerDelegate.swift in Sources */,
 				B5A68D48248F8E5000FD76A4 /* Trip.swift in Sources */,
 				B51F56312478F06B00B3851A /* Product.swift in Sources */,
@@ -1549,9 +1593,11 @@
 			baseConfigurationReference = C90D160841DABBAA3377923F /* Pods-ADongIos.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ADongIos/Á Đông.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"ADongIos/Preview Content\"";
-				DEVELOPMENT_TEAM = QD7Y5U92WJ;
+				DEVELOPMENT_TEAM = 9V374F77M5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ADongIos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -1559,7 +1605,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zamio.haiphamm;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zamio.adong;
 				PRODUCT_NAME = "Á Đông";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1571,9 +1618,11 @@
 			baseConfigurationReference = 8EC7718238FE0E3993A8CC68 /* Pods-ADongIos.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ADongIos/Á ĐôngRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"ADongIos/Preview Content\"";
-				DEVELOPMENT_TEAM = 8HLH79724S;
+				DEVELOPMENT_TEAM = 9V374F77M5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ADongIos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -1581,7 +1630,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zamio.adongg;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zamio.adong;
 				PRODUCT_NAME = "Á Đông";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

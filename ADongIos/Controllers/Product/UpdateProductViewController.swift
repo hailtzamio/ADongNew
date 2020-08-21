@@ -20,6 +20,12 @@
             @IBOutlet weak var tf2: RadiusTextField!
             @IBOutlet weak var tf3: RadiusTextField!
             @IBOutlet weak var tf4: RadiusTextField!
+            
+            @IBOutlet weak var tf5: UITextField!
+            @IBOutlet weak var tf6: UITextField!
+            @IBOutlet weak var tf7: UITextField!
+            @IBOutlet weak var tf8: UITextField!
+            
             @IBOutlet weak var imvAva: UIImageView!
             var productType = ""
             var thumbnailExtId = ""
@@ -33,6 +39,7 @@
                     tf1.text = data?.name
                     tf2.text = data?.code
                     tf3.text = data?.unit
+                    thumbnailExtId = data?.thumbnailExtId ?? ""
                     thumbnailUrl = data?.thumbnailUrl ?? ""
                     let url = URL(string: thumbnailUrl)
                     imvAva.kf.setImage(with: url, placeholder: UIImage(named: "default"))
@@ -53,6 +60,11 @@
                         break
                     }
                     
+                    
+                    tf5.text = String(data?.length ?? 0.0)
+                       tf6.text = String(data?.width ?? 0.0)
+                       tf7.text = String(data?.height ?? 0.0)
+                       tf8.text = String(data?.weight ?? 0.0)
                 }
             }
             
@@ -83,7 +95,7 @@
             @IBAction func createOrUpdate(_ sender: Any) {
                 
                 
-                if ( tf1.text == "" || tf2.text == "" || tf3.text == "" || tf4.text == "") {
+                if ( tf1.text == "" || tf2.text == "" || tf3.text == "" || tf4.text == "" || tf5.text == "" || tf6.text == "" || tf7.text == "" || tf8.text == "") {
                     showToast(content: "Nhập thiếu thông tin")
                     return
                 }
@@ -93,7 +105,16 @@
                 dataRq.type = productType
                 dataRq.unit = tf3.text
                 dataRq.code = tf2.text
-                dataRq.thumbnailExtId = thumbnailExtId
+                
+                    dataRq.length = Double(tf5.text ?? "")
+                    dataRq.width = Double(tf6.text ?? "")
+                    dataRq.weight = Double(tf8.text ?? "")
+                    dataRq.height = Double(tf7.text ?? "")
+                
+                if(thumbnailExtId != "") {
+                    dataRq.thumbnailExtId = thumbnailExtId
+                }
+                
                 
                 if(isUpdate) {
                     // Update

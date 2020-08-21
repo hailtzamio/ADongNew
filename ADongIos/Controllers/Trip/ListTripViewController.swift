@@ -56,7 +56,7 @@ class ListTripViewController : BaseViewController, UISearchBarDelegate, LoadMore
     
     func getData() {
         showLoading()
-        APIClient.getTrips(page : page, name : "") { result in
+        APIClient.getTrips(page : page, name : "", status: "") { result in
             self.stopLoading()
             switch result {
             case .success(let response):

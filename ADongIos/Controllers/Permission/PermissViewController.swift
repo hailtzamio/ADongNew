@@ -17,6 +17,7 @@ class PermissViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var someProtocol = [String : Permission]()
     var permissions = [Permission]()
+    var mainPermissions = [Permission]()
     override func viewDidLoad() {
         super.viewDidLoad()
         hideNavigationBar()
@@ -27,7 +28,8 @@ class PermissViewController: BaseViewController {
         //        K.ProductionServer.ACCESS_TOKEN = preferences.object(forKey: accessToken) as! String
         
         
-        getData()
+     
+        getMyRole()
     }
     
     
@@ -68,8 +70,42 @@ class PermissViewController: BaseViewController {
         }
     }
     
-    func setupView(data:[Permission]) {
+    var isContractor = false
+        var rolesString = ""
+    func getMyRole() {
         
+        
+        APIClient.getMyRoles{ result in
+            self.stopLoading()
+            switch result {
+            case .success(let res):
+                self.getData()
+                if(res.data!.count > 0 ) {
+                    
+                
+                    res.data!.forEach { (role) in
+                        
+//                        self.rolesString = self.rolesString + (role.name ?? "") + "-" + (role.code ?? "") + ","
+                        if(role.code ?? "" == "CONTRACTOR") {
+                            self.isContractor = true
+                        }
+                        
+                        print(role.code ?? "")
+                    
+                    }
+                    
+                 
+              
+                }
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func setupView(data:[Permission]) {
+        mainPermissions = data
         data.forEach { (value) in
             self.someProtocol[value.appEntityCode ?? ""] = value
         }
@@ -123,9 +159,12 @@ extension PermissViewController : UICollectionViewDataSource, UICollectionViewDe
         
         var vC = UIViewController()
         var actionString = ""
-        permissions.forEach { (permission) in
+        mainPermissions.forEach { (permission) in
+            
+            print(permission.action)
+            
             if(permissions[indexPath.row].appEntityCode == permission.appEntityCode) {
-            actionString = actionString + "-" + (permission.action ?? "")
+                actionString = actionString + "-" + (permission.action ?? "")
             }
         }
         

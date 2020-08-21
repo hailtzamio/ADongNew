@@ -38,6 +38,12 @@ class APIClient {
         performRequest(route: ApiRouter.getPermissions, decoder: jsonDecoder, completion: completion)
     }
     
+    static func getMyRoles(completion:@escaping (Result<BaseResponseList<User>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getMyRoles, decoder: jsonDecoder, completion: completion)
+    }
+    
     // Product
     static func getProvinces(completion:@escaping (Result<BaseResponseList<Address>, AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
@@ -100,6 +106,12 @@ class APIClient {
            jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
            performRequest(route: ApiRouter.removeLorry(id: id), decoder: jsonDecoder, completion: completion)
        }
+    
+    static func removeWorkOutlineImage(id:Int,completion:@escaping (Result<ResponseDefault, AFError>)->Void) {
+              let jsonDecoder = JSONDecoder()
+              jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+              performRequest(route: ApiRouter.removeWorkOutlineImage(id: id), decoder: jsonDecoder, completion: completion)
+          }
     
     // Product
     static func getProducts(page : Int, name : String,completion:@escaping (Result<BaseResponseList<Product>, AFError>)->Void) {
@@ -362,10 +374,10 @@ class APIClient {
         performRequest(route: ApiRouter.getTransports(page: page, name: name, status: status), decoder: jsonDecoder, completion: completion)
     }
     
-    static func getTrips(page : Int, name : String,completion:@escaping (Result<BaseResponseList<Trip>, AFError>)->Void) {
+    static func getTrips(page : Int, name : String, status : String,completion:@escaping (Result<BaseResponseList<Trip>, AFError>)->Void) {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
-        performRequest(route: ApiRouter.getTrips(page: page, name: name), decoder: jsonDecoder, completion: completion)
+        performRequest(route: ApiRouter.getTrips(page: page, name: name, status: status), decoder: jsonDecoder, completion: completion)
     }
     
     static func getTrip(id:Int,completion:@escaping (Result<BaseResponse<Trip>, AFError>)->Void) {
@@ -528,6 +540,12 @@ class APIClient {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
         performRequest(route: ApiRouter.getProjectCheckOut(id: id), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func getLogs(id : Int,completion:@escaping (Result<BaseResponseList<Log>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getLogs(id: id), decoder: jsonDecoder, completion: completion)
     }
     
     static func getProjectFiles(id : Int,completion:@escaping (Result<BaseResponseList<Project>, AFError>)->Void) {

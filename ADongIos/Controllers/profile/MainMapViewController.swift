@@ -12,7 +12,7 @@ class MainMapViewController:UITabBarController, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
+//        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         // Do any additional setup after loading the view.
     }
     

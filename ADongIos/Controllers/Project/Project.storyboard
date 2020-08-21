@@ -21,31 +21,51 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHW-Ak-Jly">
-                                <rect key="frame" x="271" y="59" width="128" height="128"/>
-                                <state key="normal" image="add_circle"/>
+                                <rect key="frame" x="369" y="59" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="tA3-aS-pYN"/>
+                                    <constraint firstAttribute="height" constant="30" id="tPk-Nd-isJ"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <state key="normal" image="close_black"/>
                                 <connections>
                                     <action selector="close:" destination="0Cd-Te-Q64" eventType="touchUpInside" id="qcT-HK-hfr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkj-hT-piQ">
+                                <rect key="frame" x="182" y="797" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="UKO-y7-PRK"/>
+                                    <constraint firstAttribute="height" constant="50" id="w9A-Fi-amE"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <state key="normal" image="remove_icon"/>
+                                <connections>
+                                    <action selector="removeImage:" destination="0Cd-Te-Q64" eventType="touchUpInside" id="x2S-NP-dM0"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="Y6D-SA-dQg" secondAttribute="bottom" id="10o-8w-8fR"/>
+                            <constraint firstItem="gkj-hT-piQ" firstAttribute="centerX" secondItem="Slc-KE-SiY" secondAttribute="centerX" id="4Qe-uI-To7"/>
                             <constraint firstItem="Y6D-SA-dQg" firstAttribute="leading" secondItem="Zee-BB-mVt" secondAttribute="leading" id="6md-Tf-TOk"/>
                             <constraint firstItem="vHW-Ak-Jly" firstAttribute="top" secondItem="Zee-BB-mVt" secondAttribute="top" constant="15" id="CBd-IC-MQm"/>
                             <constraint firstItem="Y6D-SA-dQg" firstAttribute="top" secondItem="Zee-BB-mVt" secondAttribute="top" id="KcV-ph-8Cx"/>
                             <constraint firstItem="Y6D-SA-dQg" firstAttribute="trailing" secondItem="Zee-BB-mVt" secondAttribute="trailing" id="XJ1-rb-dsJ"/>
+                            <constraint firstItem="Zee-BB-mVt" firstAttribute="bottom" secondItem="gkj-hT-piQ" secondAttribute="bottom" constant="15" id="hNs-mJ-BZV"/>
                             <constraint firstItem="Zee-BB-mVt" firstAttribute="trailing" secondItem="vHW-Ak-Jly" secondAttribute="trailing" constant="15" id="tZC-z8-qcp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zee-BB-mVt"/>
                     </view>
                     <connections>
+                        <outlet property="btnRemove" destination="gkj-hT-piQ" id="wTk-zL-uoV"/>
                         <outlet property="imv1" destination="Y6D-SA-dQg" id="Wr1-fd-muI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tly-oZ-oY4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9228" y="-1158"/>
+            <point key="canvasLocation" x="-9712" y="-1349"/>
         </scene>
         <!--Update Project View Controller-->
         <scene sceneID="GsN-LT-zI9">
@@ -1669,13 +1689,68 @@
             </objects>
             <point key="canvasLocation" x="5435" y="-1252"/>
         </scene>
+        <!--Logs List View Controller-->
+        <scene sceneID="iME-dn-mEr">
+            <objects>
+                <viewController storyboardIdentifier="LogsListViewController" id="iXN-ZT-NRX" customClass="LogsListViewController" customModule="Á_Đông" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3iD-hl-hir">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rFO-WN-pJd">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NaU-vF-Rtd" customClass="NavigationBar" customModule="Á_Đông" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <color key="backgroundColor" red="0.29800295830000001" green="0.29806005949999997" blue="0.29799938199999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="6FM-sw-Gq8"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EkB-sR-Vdl">
+                                        <rect key="frame" x="0.0" y="50" width="414" height="768"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="EkB-sR-Vdl" firstAttribute="leading" secondItem="rFO-WN-pJd" secondAttribute="leading" id="7Za-FG-RQh"/>
+                                    <constraint firstItem="NaU-vF-Rtd" firstAttribute="leading" secondItem="rFO-WN-pJd" secondAttribute="leading" id="FP1-qV-EHW"/>
+                                    <constraint firstItem="NaU-vF-Rtd" firstAttribute="top" secondItem="rFO-WN-pJd" secondAttribute="top" id="K10-om-tYi"/>
+                                    <constraint firstAttribute="trailing" secondItem="NaU-vF-Rtd" secondAttribute="trailing" id="ORf-hr-p2u"/>
+                                    <constraint firstAttribute="trailing" secondItem="EkB-sR-Vdl" secondAttribute="trailing" id="SkE-Qg-7hZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="EkB-sR-Vdl" secondAttribute="bottom" id="mNP-3o-pc9"/>
+                                    <constraint firstItem="EkB-sR-Vdl" firstAttribute="top" secondItem="NaU-vF-Rtd" secondAttribute="bottom" id="zKh-pW-LjU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rFO-WN-pJd" firstAttribute="trailing" secondItem="ivD-rt-seU" secondAttribute="trailing" id="8Kn-5K-7gG"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="rFO-WN-pJd" secondAttribute="bottom" id="VpT-o2-dHO"/>
+                            <constraint firstItem="rFO-WN-pJd" firstAttribute="top" secondItem="ivD-rt-seU" secondAttribute="top" id="fnp-bk-qp5"/>
+                            <constraint firstItem="rFO-WN-pJd" firstAttribute="leading" secondItem="ivD-rt-seU" secondAttribute="leading" id="vW6-bw-2eW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ivD-rt-seU"/>
+                    </view>
+                    <connections>
+                        <outlet property="header" destination="NaU-vF-Rtd" id="hjh-hM-qhn"/>
+                        <outlet property="tbView" destination="EkB-sR-Vdl" id="j72-vo-STo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OPm-rc-8e6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2777" y="-666"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="add_circle" width="128" height="128"/>
         <image name="camera_ic" width="32" height="32"/>
+        <image name="close_black" width="32" height="32"/>
         <image name="filter_ic" width="32" height="32"/>
         <image name="map_vew" width="64" height="64"/>
         <image name="play" catalog="system" width="120" height="128"/>
+        <image name="remove_icon" width="32" height="32"/>
         <image name="search_ic" width="32" height="32"/>
     </resources>
 </document>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="ADongIos" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Á_Đông" customModuleProvider="target">
             <connections>
                 <outlet property="tf1" destination="AfI-cf-S8Q" id="Im3-bB-5Ol"/>
                 <outlet property="tf2" destination="LVt-fJ-GVP" id="Wx0-U0-n8A"/>
@@ -52,7 +52,7 @@
                         <constraint firstAttribute="height" constant="45" id="n2z-Xf-xGM"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="5"/>
@@ -89,14 +89,14 @@
                     <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="pNH-Ip-Nu9">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username_ic2" translatesAutoresizingMaskIntoConstraints="NO" id="pNH-Ip-Nu9">
                     <rect key="frame" x="30" y="335" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="7PR-BU-Bbe"/>
                         <constraint firstAttribute="height" constant="15" id="rZr-Hx-aiX"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="4oq-Gy-JGb">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username_ic" translatesAutoresizingMaskIntoConstraints="NO" id="4oq-Gy-JGb">
                     <rect key="frame" x="30" y="390" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="pfw-iF-usP"/>
@@ -127,12 +127,12 @@
                 <constraint firstItem="4oq-Gy-JGb" firstAttribute="leading" secondItem="LVt-fJ-GVP" secondAttribute="leading" constant="10" id="xL6-AP-cvW"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-1539.1304347826087" y="-78.348214285714278"/>
+            <point key="canvasLocation" x="-1754" y="-104"/>
         </view>
     </objects>
     <resources>
         <image name="adong_logo" width="250" height="124"/>
-        <image name="lock" width="64" height="64"/>
-        <image name="user" width="64" height="64"/>
+        <image name="username_ic" width="32" height="32"/>
+        <image name="username_ic2" width="32" height="32"/>
     </resources>
 </document>

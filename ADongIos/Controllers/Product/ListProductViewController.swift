@@ -25,7 +25,7 @@ class ListProductViewController: BaseViewController {
         setupHeader()
         tbView.dataSource = self
         tbView.delegate = self
-        tbView.register(CountViewCell.nib, forCellReuseIdentifier: CountViewCell.identifier)
+        tbView.register(ProductCell.nib, forCellReuseIdentifier: ProductCell.identifier)
         
     }
     
@@ -122,12 +122,7 @@ extension ListProductViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CountViewCell.identifier, for: indexPath) as! CountViewCell
-        cell.tf1.isHidden = isHideTf
-        if(!isHideTf) {
-            cell.tf1.tag = indexPath.row
-            cell.tf1.delegate = self
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as! ProductCell
         cell.setDataProduct(data: data[indexPath.row])
         return cell
     }

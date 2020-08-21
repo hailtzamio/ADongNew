@@ -33,7 +33,10 @@ class Product : Codable {
     
     var count : String?
     
-    
+        var length : Double?
+    var width : Double?
+    var weight : Double?
+    var height : Double?
     
     
 

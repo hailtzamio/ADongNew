@@ -16,6 +16,7 @@ class TripTransportViewController: UIViewController {
     var transports = [Transport]()
     @IBOutlet weak var contenView: UIView!
     @IBOutlet weak var header: NavigationBar!
+           let controller1 = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListTransportViewController") as? ListTransportViewController
     override func viewDidLoad() {
         // MARK: - UI Setup
         header.title = ptitle
@@ -70,7 +71,7 @@ class TripTransportViewController: UIViewController {
         // Initialize view controllers to display and place in array
         var controllerArray : [UIViewController] = []
         
-        let controller1 = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListTransportViewController") as? ListTransportViewController
+ 
         controller1!.title = "Yêu Cầu"
         controller1?.callbackRq = {(trans) in
             
@@ -179,11 +180,28 @@ extension TripTransportViewController {
     }
     
     func goToListTrip() {
-           if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListTripViewController") as? ListTripViewController {
+           if let vc = UIStoryboard.init(name: "Trip", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListTripChooseViewController") as? ListTripChooseViewController {
+            vc.callback = { (value) in
+                print(value?.code)
+                if(value != nil) {
+                    self.mergeTrip(data: value!)
+                }
+            }
 //               vc.transports = transports
                navigationController?.pushViewController(vc, animated: true)
            }
        }
+    
+    func mergeTrip(data: Trip) {
+        // Run api to merge Trip ( already have )
+        // self.transports and Trip
+        // reload data
+        self.controller1?.getData()
+        self.transports.removeAll()
+        self.header.isRightButton2Hide = true
+        
+    
+    }
     
 }
 

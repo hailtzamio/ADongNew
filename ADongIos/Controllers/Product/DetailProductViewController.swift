@@ -91,10 +91,10 @@ class DetailProductViewController: BaseViewController {
                         type = "Mua"
                         break
                     case "manufacture":
-                        type = "Xuất kho"
+                        type = "Sản xuất"
                         break
                     case "tool":
-                        type = "Sản xuất"
+                        type = "Xuất kho"
                         break
                     default:
                         break
@@ -108,6 +108,10 @@ class DetailProductViewController: BaseViewController {
               
                     self.data.append(Information(pKey: "Đơn vị tính",pValue: value.unit ?? "---"))
                     self.data.append(Information(pKey: "Loại",pValue: type))
+                    self.data.append(Information(pKey: "Chiều dài",pValue: String(value.length ?? 0.0)))
+                     self.data.append(Information(pKey: "Chiều rộng",pValue: String(value.width ?? 0.0)))
+                     self.data.append(Information(pKey: "Chiều cao",pValue: String(value.height ?? 0.0)))
+                     self.data.append(Information(pKey: "Cân nặng",pValue: String(value.weight ?? 0.0)))
                     self.tbView.reloadData()
                     return
                 }

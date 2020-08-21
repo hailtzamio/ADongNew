@@ -111,7 +111,11 @@ class DetailLorryViewController: BaseViewController, GMSMapViewDelegate {
                     self.data.append(Information(pKey: "Thương hiệu",pValue: value.brand ?? "---"))
                     self.data.append(Information(pKey: "Model",pValue: value.model ?? "---"))
                     self.data.append(Information(pKey: "Biển số xe",pValue: value.plateNumber ?? "---"))
+                    if(value.capacity == "") {
+                        value.capacity = nil
+                    }
                     self.data.append(Information(pKey: "Trọng tải",pValue: value.capacity ?? "---"))
+                    self.data.append(Information(pKey: "Địa chỉ",pValue: value.address ?? "---"))
                     self.tbView.reloadData()
                     
                     self.setupView()
