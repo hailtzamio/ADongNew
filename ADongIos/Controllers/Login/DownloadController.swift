@@ -24,83 +24,83 @@
 //  THE SOFTWARE.
 
 import UIKit
-import SDDownloadManager
+
 class DownloadController: UIViewController {
 
     //MARK:- Properties
     
  
-    
-    
-    @IBOutlet weak var progressView: UIProgressView!
-     @IBOutlet weak var progressLabel: UILabel!
-     @IBOutlet weak var finalUrlLabel: UILabel!
-    private let downloadManager = SDDownloadManager.shared
-    let directoryName : String = "ADong"
-    
-    let fiveMBUrl = "http://adong-api-test.zamio.net/api/design-file?extId=8bba814d74bc47c5ac04835f4fa097af"
-    let tenMBUrl = "http://adong-api-test.zamio.net/api/design-file?extId=8bba814d74bc47c5ac04835f4fa097af"
-    
-    //MARK:- Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.setupUI()
-        self.foregrounDownloadDemo()
-//        self.backgroundDownloadDemo()
-    }
-    
-    private func setupUI() {
-        self.progressView.setProgress(0, animated: false)
-        self.progressLabel.text = "0.0 %"
-        self.finalUrlLabel.text = ""
-    }
-    
-    private func foregrounDownloadDemo() {
-        let request = URLRequest(url: URL(string: self.fiveMBUrl)!)
-        
-        let downloadKey = self.downloadManager.downloadFile(withRequest: request,
-                                                           inDirectory: directoryName,
-                                                           onProgress:  { [weak self] (progress) in
-                                                            let percentage = String(format: "%.1f %", (progress * 100))
-                                                            self?.progressView.setProgress(Float(progress), animated: true)
-                                                            self?.progressLabel.text = "\(percentage) %"
-        }) { [weak self] (error, url) in
-            if let error = error {
-                print("Error is \(error as NSError)")
-            } else {
-                if let url = url {
-                    print("Downloaded file's url is \(url.path)")
-                    self?.finalUrlLabel.text = url.path
-                }
-            }
-        }
-        
-        print("The key is \(downloadKey!)")
-    }
-    
-    private func backgroundDownloadDemo() {
-        let request = URLRequest(url: URL(string: self.tenMBUrl)!)
-        
-        self.downloadManager.showLocalNotificationOnBackgroundDownloadDone = true
-        self.downloadManager.localNotificationText = "All background downloads complete"
-        
-        let downloadKey = self.downloadManager.downloadFile(withRequest: request, inDirectory: directoryName, withName: directoryName, shouldDownloadInBackground: true, onProgress: { (progress) in
-            let percentage = String(format: "%.1f %", (progress * 100))
-            debugPrint("Background progress : \(percentage)")
-        }) { [weak self] (error, url) in
-            if let error = error {
-                print("Error is \(error as NSError)")
-            } else {
-                if let url = url {
-                    print("Downloaded file's url is \(url.path)")
-                    self?.finalUrlLabel.text = url.path
-                }
-            }
-        }
-        
+//
+//
+//    @IBOutlet weak var progressView: UIProgressView!
+//     @IBOutlet weak var progressLabel: UILabel!
+//     @IBOutlet weak var finalUrlLabel: UILabel!
+//    private let downloadManager = SDDownloadManager.shared
+//    let directoryName : String = "ADong"
+//
+//    let fiveMBUrl = "http://adong-api-test.zamio.net/api/design-file?extId=8bba814d74bc47c5ac04835f4fa097af"
+//    let tenMBUrl = "http://adong-api-test.zamio.net/api/design-file?extId=8bba814d74bc47c5ac04835f4fa097af"
+//
+//    //MARK:- Lifecycle
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        self.setupUI()
+//        self.foregrounDownloadDemo()
+////        self.backgroundDownloadDemo()
+//    }
+//
+//    private func setupUI() {
+//        self.progressView.setProgress(0, animated: false)
+//        self.progressLabel.text = "0.0 %"
+//        self.finalUrlLabel.text = ""
+//    }
+//
+//    private func foregrounDownloadDemo() {
+//        let request = URLRequest(url: URL(string: self.fiveMBUrl)!)
+//
+//        let downloadKey = self.downloadManager.downloadFile(withRequest: request,
+//                                                           inDirectory: directoryName,
+//                                                           onProgress:  { [weak self] (progress) in
+//                                                            let percentage = String(format: "%.1f %", (progress * 100))
+//                                                            self?.progressView.setProgress(Float(progress), animated: true)
+//                                                            self?.progressLabel.text = "\(percentage) %"
+//        }) { [weak self] (error, url) in
+//            if let error = error {
+//                print("Error is \(error as NSError)")
+//            } else {
+//                if let url = url {
+//                    print("Downloaded file's url is \(url.path)")
+//                    self?.finalUrlLabel.text = url.path
+//                }
+//            }
+//        }
+//
 //        print("The key is \(downloadKey!)")
-    }
+//    }
+//
+//    private func backgroundDownloadDemo() {
+//        let request = URLRequest(url: URL(string: self.tenMBUrl)!)
+//
+//        self.downloadManager.showLocalNotificationOnBackgroundDownloadDone = true
+//        self.downloadManager.localNotificationText = "All background downloads complete"
+//
+//        let downloadKey = self.downloadManager.downloadFile(withRequest: request, inDirectory: directoryName, withName: directoryName, shouldDownloadInBackground: true, onProgress: { (progress) in
+//            let percentage = String(format: "%.1f %", (progress * 100))
+//            debugPrint("Background progress : \(percentage)")
+//        }) { [weak self] (error, url) in
+//            if let error = error {
+//                print("Error is \(error as NSError)")
+//            } else {
+//                if let url = url {
+//                    print("Downloaded file's url is \(url.path)")
+//                    self?.finalUrlLabel.text = url.path
+//                }
+//            }
+//        }
+//
+////        print("The key is \(downloadKey!)")
+//    }
 }
 

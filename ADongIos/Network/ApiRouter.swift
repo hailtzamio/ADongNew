@@ -96,6 +96,7 @@ enum ApiRouter: URLRequestConvertible {
     case getGoodsReceivedNote(id: Int)
     case createGoodsReceivedNote(data: GoodsReceivedNote)
     case getProductRequirements(id: Int)
+    case getProductRequirement(id: Int)
     case getGoodsRequest(id: Int)
     
     case getBiddings(id:Int)
@@ -127,7 +128,7 @@ enum ApiRouter: URLRequestConvertible {
              .getTeams, .getTeam, .getTeamWorkers,
              .getDrivers, .getDriver,
              .getContractors, .getContractor,
-             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote, .getProductRequirements, .getBiddings, .getWorkerNotLeader, .getProjectCheckOut, .getProjectFiles, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest, .getNotifications,  .getMyProfile, .getWorkersNotInTeam, .getNotificationsNotSeen, .getNotification, .getRegistrations, .getProjectIsregister, .getMarkSessions, .getSysparams, .getIssueDocs, .getGoodsIssueDoccument, .getLogs, .getMyRoles
+             .getProjects, .getProject, .getProjectWokers, .getProjectWokerOutline, .getTransports, .getTrips,.getTrip, .getTransport, .getWorkersForTeam, .getTransportImages, .getWarehouses, .getGoodsReceivedNotes, .getGoodsReceivedNote, .getProductRequirements, .getBiddings, .getWorkerNotLeader, .getProjectCheckOut, .getProjectFiles, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById, .getGoodsIssueDoccuments, .getGoodsIssueRequests, .getGoodsRequest, .getNotifications,  .getMyProfile, .getWorkersNotInTeam, .getNotificationsNotSeen, .getNotification, .getRegistrations, .getProjectIsregister, .getMarkSessions, .getSysparams, .getIssueDocs, .getGoodsIssueDoccument, .getLogs, .getMyRoles, .getProductRequirement
             :
             return .get
         }
@@ -311,8 +312,7 @@ enum ApiRouter: URLRequestConvertible {
             return "project/\(id)/checkinPhotos"
         case .getProjectCompletionImages(let id):
             return "project/\(id)/projectCompletionPhotos"
-            
-            
+        
         case .createWarehouse :
             return "warehouse"
             
@@ -352,6 +352,8 @@ enum ApiRouter: URLRequestConvertible {
         case .createProductRequirement(let data, let lines) :
             let id = data.projectId ?? 0
             return "project/\(id)/productRequirement"
+        case .getProductRequirement(let id) :
+            return "productRequirement/\(id)"
             
         case .createTrip(let data):
             return "trip"
@@ -372,37 +374,37 @@ enum ApiRouter: URLRequestConvertible {
         case .createLorry(let data):
             return ["brand": data.brand, "model": data.model,"plateNumber": data.plateNumber, "capacity": data.capacity]
             
-        case .getPermissions, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById,  .getGoodsIssueRequests, .getGoodsRequest, .getNotifications, .getMyProfile, .getNotificationsNotSeen, .getNotification, .getRegistrations, .getGoodsIssueDoccument, .removeWorkOutlineImage, .getMyRoles :
+        case .getPermissions, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .getProductRequirement, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById,  .getGoodsIssueRequests, .getGoodsRequest, .getNotifications, .getMyProfile, .getNotificationsNotSeen, .getNotification, .getRegistrations, .getGoodsIssueDoccument, .removeWorkOutlineImage, .getMyRoles :
             return nil
             
         case .registerProject :
-            return [ "note": "Đăng ký thi công" ]
+            return [ "note": "Đăng ký thi công"]
             
         case .pauseProject :
-            return [ "note": "Tạm dừng công trình" ]
+            return [ "note": "Tạm dừng công trình"]
         case .resumeProject(let data) :
             
             if(data.teamId == nil) {
-                return ["teamType": data.teamType, "contractorId": data.contractorId ?? 0, "note": "Phục hồi công trình" ]
+                return ["teamType": data.teamType, "contractorId": data.contractorId ?? 0, "note": "Phục hồi công trình"]
             } else {
                 
-                return ["teamType": data.teamType,"teamId": data.teamId ?? 0, "note": "Phục hồi công trình" ]
+                return ["teamType": data.teamType,"teamId": data.teamId ?? 0, "note": "Phục hồi công trình"]
             }
         case .getLogs :
-             return ["sort" : "id,desc" ]
+             return ["sort" : "id,desc"]
             
         case .getIssueDocs :
             
-            return ["sort" : "id,desc" ]
+            return ["sort" : "id,desc"]
         case .getSysparams :
-            return  ["sort" : "id,desc" ]
+            return  ["sort" : "id,desc"]
         case .getMarkSessions :
-            return  ["sort" : "id,desc" ]
+            return  ["sort" : "id,desc"]
         case .getGoodsIssueDoccuments :
-            return  ["sort" : "id,desc" ]
+            return  ["sort" : "id,desc"]
             
         case .getProducts(let page, let name) :
-            return  [ "page": page,
+            return  [ "size" : 200, "page": page,
                       "name": name, "sort" : "id,desc" ]
         case .getProjectIsregister(let projectId, let contractorId) :
             return  [ "contractorId": contractorId,

@@ -14,15 +14,16 @@ class APIClient {
         return AF.request(route)
             .responseDecodable (decoder: decoder){ (response: DataResponse<T, AFError>) in
                 completion(response.result)
-                print(response.response?.statusCode)
-                print(response.result)
+//                print(response.response?)
+                print("Data=== \(response.result)" )
                 
 //                if(response.data != nil) {
 //                    let jsonEncoder = JSONEncoder()
 //                    let jsonData = try? jsonEncoder.encode(response.data)
 //                    let json = String(data: jsonData!, encoding: String.Encoding.utf8)
-//                               
-//                               print(json)
+//                    let jsonDecoder = JSONDecoder()
+//                    let secondDog = try? jsonDecoder.decode(response.data, from: json)
+//                               print(secondDog)
 //                }
               
         }
@@ -504,6 +505,12 @@ class APIClient {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
         performRequest(route: ApiRouter.getProductRequirements(id: id), decoder: jsonDecoder, completion: completion)
+    }
+    
+    static func getProductRequirement(id : Int, completion:@escaping (Result<BaseResponse<GoodsReceivedNote>, AFError>)->Void) {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(.articleDateFormatter)
+        performRequest(route: ApiRouter.getProductRequirement(id: id), decoder: jsonDecoder, completion: completion)
     }
     
     static func getBiddings(id : Int,completion:@escaping (Result<BaseResponseList<Contractor>, AFError>)->Void) {

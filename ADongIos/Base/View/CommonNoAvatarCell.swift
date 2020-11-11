@@ -135,7 +135,9 @@ class CommonNoAvatarCell: UITableViewCell {
     
     func setDataNotification(data:NotificationOb) {
         lb1.text = data.title
+//        lb1.text = data.objectType
         lb2.text = data.content
+        
         if(data.seen ?? false) {
             lb3.text = "Đã đọc"
             lb3.textColor = UIColor.init(hexString: HexColorApp.green)

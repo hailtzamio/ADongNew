@@ -83,15 +83,32 @@ extension NotificationsViewController : UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let objectId = data[indexPath.row].objectId ?? 0
+        
         readNotification(id: data[indexPath.row].id!)
-          checkIsRegisterOrNot(projectId: data[indexPath.row].objectId!)
-//        if(data[indexPath.row].objectType == "Project") {
-//            if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "BaseInformationController") as? BaseInformationController {
-//                vc.id = data[indexPath.row].objectId!
-//                vc.notificationType =  data[indexPath.row].type ?? ""
-//                navigationController?.pushViewController(vc, animated: true)
-//            }
-//        }
+        if(data[indexPath.row].objectType == "Project") {
+            goToProjectDetail(id: objectId)
+//            checkIsRegisterOrNot(projectId: data[indexPath.row].objectId!)
+        } else if(data[indexPath.row].objectType == "ProductRequirement") {
+            goToDetailProductRequirement(id: objectId)
+        }
+    }
+    
+    func goToProjectDetail(id : Int) {
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "BaseInformationController") as? BaseInformationController {
+            vc.id = id
+            vc.notificationType =  NotificationType.new
+            vc.isHideButtonRegister = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func goToDetailProductRequirement(id: Int) {
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailProductRequirementViewController") as? DetailProductRequirementViewController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func readNotification(id : Int) {

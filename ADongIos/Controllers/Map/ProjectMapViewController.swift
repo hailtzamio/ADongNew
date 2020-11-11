@@ -89,28 +89,28 @@ class ProjectMapViewController: BaseViewController, GMSMapViewDelegate, CAAnimat
                 //                marker.iconView?.addSubview(uiButton)
                 
                 if(project.status != "DONE") {
-                
-                  if(project.status == "PROCESSING") {
-                                    if(project.teamType == "ADONG") {
-                                        marker.iconView = UIImageView(image: UIImage(named: "greendot2"))
-                                    } else {
-                                        marker.iconView = UIImageView(image: UIImage(named: "dotblue"))
-                                    }
-                                    
-                                } else if(project.status == "NEW") {
-                                    
-                                    marker.iconView = UIImageView(image: UIImage(named: "dotred2"))
-                                } else {
-                                    
-//                                    marker.iconView = UIImageView(image: UIImage(named: "dotred2"))
-                                }
+                    
+                    if(project.status == "PROCESSING") {
+                        if(project.teamType == "ADONG") {
+                            marker.iconView = UIImageView(image: UIImage(named: "greendot2"))
+                        } else {
+                            marker.iconView = UIImageView(image: UIImage(named: "dotblue"))
+                        }
+                        
+                    } else if(project.status == "NEW") {
+                        
+                        marker.iconView = UIImageView(image: UIImage(named: "dotred2"))
+                    } else {
+                        
+                        //                                    marker.iconView = UIImageView(image: UIImage(named: "dotred2"))
+                    }
                     
                     UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat, .autoreverse], animations: {
-                                    if(marker.iconView != nil) {
-                                        marker.iconView!.alpha = 0.0
-                                    }
-                           
-                                }, completion: nil)
+                        if(marker.iconView != nil) {
+                            marker.iconView!.alpha = 0.0
+                        }
+                        
+                    }, completion: nil)
                 }
             }
         }

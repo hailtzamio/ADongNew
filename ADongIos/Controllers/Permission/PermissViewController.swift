@@ -28,7 +28,7 @@ class PermissViewController: BaseViewController {
         //        K.ProductionServer.ACCESS_TOKEN = preferences.object(forKey: accessToken) as! String
         
         
-     
+        
         getMyRole()
     }
     
@@ -71,7 +71,7 @@ class PermissViewController: BaseViewController {
     }
     
     var isContractor = false
-        var rolesString = ""
+    var rolesString = ""
     func getMyRole() {
         
         
@@ -82,20 +82,20 @@ class PermissViewController: BaseViewController {
                 self.getData()
                 if(res.data!.count > 0 ) {
                     
-                
+                    
                     res.data!.forEach { (role) in
                         
-//                        self.rolesString = self.rolesString + (role.name ?? "") + "-" + (role.code ?? "") + ","
+                        //                        self.rolesString = self.rolesString + (role.name ?? "") + "-" + (role.code ?? "") + ","
                         if(role.code ?? "" == "CONTRACTOR") {
                             self.isContractor = true
                         }
                         
                         print(role.code ?? "")
-                    
+                        
                     }
                     
-                 
-              
+                    
+                    
                 }
                 
             case .failure(let error):
@@ -284,7 +284,12 @@ extension PermissViewController: UICollectionViewDelegateFlowLayout {
                     let notSeenCount = response.data!.notSeenCount ?? 0
                     if(notSeenCount > 0) {
                         self.notificationNum.isHidden = false
-                        self.notificationNum.setTitle("\(notSeenCount)", for: .normal)
+                        if(notSeenCount > 99) {
+                            self.notificationNum.setTitle("99+", for: .normal)
+                        } else {
+                            self.notificationNum.setTitle("\(notSeenCount)", for: .normal)
+                        }
+                        
                     } else {
                         self.notificationNum.isHidden = true
                     }

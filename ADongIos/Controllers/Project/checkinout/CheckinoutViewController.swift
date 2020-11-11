@@ -214,7 +214,7 @@ extension CheckinoutViewController {
             var ints = [Int]()
             ints.append(self.currentData.id!)
             
-            var rq = CheckInOut()
+            let rq = CheckInOut()
             rq.projectId = self.id
             rq.workerIds = ints
             

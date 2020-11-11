@@ -20,7 +20,6 @@ target 'ADongIos' do
   pod 'SnapKit'
   pod 'OneSignal', '>= 2.6.2', '< 3.0'
   pod 'DateTimePicker'
-  pod 'SDDownloadManager'
   pod 'Cosmos'
   pod 'AlamofireImage', '~> 4.1'
 end

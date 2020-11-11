@@ -12,7 +12,8 @@ import IQKeyboardManagerSwift
 import GoogleMaps
 import GooglePlaces
 import OneSignal
-import SDDownloadManager
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSSubscriptionObserver  {
 //    dd299d1f-50fd-497e-9007-4889d0160097
@@ -39,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
     
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+      
         
 //        let center = UNUserNotificationCenter.current()
 //              // Request permission to display alerts and play sounds.
@@ -82,6 +83,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSPermissionObserver, OSS
          OneSignal.promptForPushNotifications(userResponse: { accepted in
            print("User accepted notifications: \(accepted)")
          })
+        
+        
+        
+//        let status: OSPermissionSubscriptionState = OneSignal.getPermissionSubscriptionState()
+//
+//        let hasPrompted = status.permissionStatus.hasPrompted
+//        print("hasPrompted = \(hasPrompted)")
+//        if hasPrompted == false {
+//          OneSignal.addTrigger("prompt_ios", withValue: "true")
+//        }
+        
+        
+        
 
         // Add your AppDelegate as an obsserver
        OneSignal.add(self as OSPermissionObserver)

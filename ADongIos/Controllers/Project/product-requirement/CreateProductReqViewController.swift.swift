@@ -240,7 +240,7 @@ extension  CreateProductReqViewController : UITextFieldDelegate {
         //input text
         let searchText  = textField.text! + string
         //add matching text to arrya
-        searchArrRes = self.data.filter({(($0.name?.lowercased() as! String).contains(searchText))})
+        searchArrRes = self.data.filter({(($0.name?.lowercased() as! String).localizedCaseInsensitiveContains(searchText))})
         
         if(searchArrRes.count == 0){
             searching = false

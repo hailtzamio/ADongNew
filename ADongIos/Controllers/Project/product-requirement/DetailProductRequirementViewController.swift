@@ -30,12 +30,16 @@ class DetailProductRequirementViewController: BaseViewController {
         tbView.register(InformationDetailCell.nib, forCellReuseIdentifier: InformationDetailCell.identifier)
         tbView.register(SmallInformationViewCell.nib, forCellReuseIdentifier: SmallInformationViewCell.identifier)
         
-        getData()
+      
     }
     
     override func viewWillAppear(_ animated: Bool) {
         data.removeAll()
-        getData()
+        if(goodsReceivedNote.id != nil) {
+            getData()
+        } else {
+            getDataFromApi()
+        }
     }
     
     func setupHeader() {
@@ -47,6 +51,24 @@ class DetailProductRequirementViewController: BaseViewController {
         header.isRightButtonHide = true
         
         header.changeUpdateIcon()
+    }
+    
+    func getDataFromApi() {
+        self.showLoading()
+        APIClient.getProductRequirement(id: self.id) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                if (response.status == 1 && response.data != nil) {
+                    self.goodsReceivedNote = response.data!
+                    self.getData()
+                }
+                break
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
     }
     
     func popupHandle() {
