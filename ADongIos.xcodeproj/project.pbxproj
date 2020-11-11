@@ -1595,7 +1595,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ADongIos/Á Đông.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"ADongIos/Preview Content\"";
 				DEVELOPMENT_TEAM = 9V374F77M5;
 				ENABLE_PREVIEWS = YES;
@@ -1605,7 +1605,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zamio.adong;
 				PRODUCT_NAME = "A Dong";
 				SWIFT_VERSION = 5.0;
@@ -1620,7 +1620,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ADongIos/Á ĐôngRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"ADongIos/Preview Content\"";
 				DEVELOPMENT_TEAM = 9V374F77M5;
 				ENABLE_PREVIEWS = YES;
@@ -1630,7 +1630,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zamio.adong;
 				PRODUCT_NAME = "A Dong";
 				SWIFT_VERSION = 5.0;

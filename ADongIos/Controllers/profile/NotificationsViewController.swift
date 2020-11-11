@@ -85,13 +85,19 @@ extension NotificationsViewController : UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let objectId = data[indexPath.row].objectId ?? 0
-        
         readNotification(id: data[indexPath.row].id!)
-        if(data[indexPath.row].objectType == "Project") {
+        switch data[indexPath.row].objectType {
+        case "Project":
             goToProjectDetail(id: objectId)
-//            checkIsRegisterOrNot(projectId: data[indexPath.row].objectId!)
-        } else if(data[indexPath.row].objectType == "ProductRequirement") {
+            break
+        case "ProductRequirement":
             goToDetailProductRequirement(id: objectId)
+            break
+        case "GoodsIssueReq":
+            goToDetailGoodsIssue(id: objectId)
+            break
+        default:
+            break
         }
     }
     
@@ -106,6 +112,13 @@ extension NotificationsViewController : UITableViewDataSource, UITableViewDelega
     
     func goToDetailProductRequirement(id: Int) {
         if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailProductRequirementViewController") as? DetailProductRequirementViewController {
+            vc.id = id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func goToDetailGoodsIssue(id: Int) {
+        if let vc = UIStoryboard.init(name: "Warehouse", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailGoodsRequestViewController") as? DetailGoodsRequestViewController {
             vc.id = id
             navigationController?.pushViewController(vc, animated: true)
         }

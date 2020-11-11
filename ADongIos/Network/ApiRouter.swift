@@ -374,8 +374,10 @@ enum ApiRouter: URLRequestConvertible {
         case .createLorry(let data):
             return ["brand": data.brand, "model": data.model,"plateNumber": data.plateNumber, "capacity": data.capacity]
             
-        case .getPermissions, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .getProductRequirement, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById,  .getGoodsIssueRequests, .getGoodsRequest, .getNotifications, .getMyProfile, .getNotificationsNotSeen, .getNotification, .getRegistrations, .getGoodsIssueDoccument, .removeWorkOutlineImage, .getMyRoles :
+        case .getPermissions, .getDistrict, .getLorries, .getLorry, .removeLorry, .getProduct, .removeProduct, .getWorker, .removeWorker, .getTeam, .removeTeam, .getTeamWorkers, .removeDriver, .getDriver, .removeContractor,.getContractor, .getProject, .removeProject, .getProjectWokers, .getProjectWokerOutline, .finishWorkOutline, .getTrip, .getTransport, .transportPickup, .transportUnload, .getTransportImages, .getGoodsReceivedNote, .getProductRequirements, .getProductRequirement, .projectBiddingApprove, .getProjectCheckOut, .getProjectFiles, .finishProject, .getProjectImages, .getProjectCompletionImages, .getManuFactureRequest, .getManuFactureRequestById,  .getGoodsIssueRequests, .getGoodsRequest, .getMyProfile, .getNotificationsNotSeen, .getNotification, .getRegistrations, .getGoodsIssueDoccument, .removeWorkOutlineImage, .getMyRoles :
             return nil
+        case .getNotifications:
+            return ["size" : 200]
             
         case .registerProject :
             return [ "note": "Đăng ký thi công"]
