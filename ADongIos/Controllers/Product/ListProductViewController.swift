@@ -61,7 +61,7 @@ class ListProductViewController: BaseViewController {
                         
                     if(value.count != nil) {
                         value.productId = value.id
-                        value.quantity = Int(value.count!) ?? 0
+                        value.quantity = Float(value.count!) ?? 0.0
                         lines.append(value)
                     }
                             

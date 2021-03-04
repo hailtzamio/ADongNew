@@ -13,7 +13,7 @@ class Product : Codable {
     var name : String?
     var type : String?
     var unit : String?
-    var quantity : Int?
+    var quantity : Float?
     var code : String?
     var updatedTime : String?
     var createdById : Int?
