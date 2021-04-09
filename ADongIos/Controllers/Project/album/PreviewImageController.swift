@@ -14,6 +14,7 @@ import Alamofire
 class PreviewImageController: BaseViewController {
     
     
+    @IBOutlet weak var header: NavigationBar!
     @IBOutlet weak var imv1: UIImageView!
     var isHideRemoveButton = true
     var avatarUrl =  ""
@@ -30,40 +31,53 @@ class PreviewImageController: BaseViewController {
         print(avatarUrl)
         btnRemove.isHidden = isHideRemoveButton
         
-        
+        setupHeader(imagestring: avatarUrl)
         popupHandle()
     }
     
+    func setupHeader(imagestring: String) {
+        header.title = "Album"
+        
+        header.leftAction = {
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        header.rightAction = {
+            if let url = URL(string: imagestring),
+               let data = try? Data(contentsOf: url),
+               let image = UIImage(data: data) {
+                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                self.showToast(content: "Tải ảnh thành công")
+            }
+            
+        }
+        
+    }
+    
     func popupHandle() {
-           okAction = {
-               self.showLoading()
-               APIClient.removeWorkOutlineImage(id: self.id) { result in
-                   self.stopLoading()
-                   switch result {
-                   case .success(let response):
-                       if (response.status == 1) {
-                           self.goBack()
+        okAction = {
+            self.showLoading()
+            APIClient.removeWorkOutlineImage(id: self.id) { result in
+                self.stopLoading()
+                switch result {
+                case .success(let response):
+                    if (response.status == 1) {
+                        self.goBack()
                         self.reloadCallback!(true)
-                       }
-                       self.showToast(content: response.message ?? "")
-                       break
-                       
-                   case .failure(let error):
-                       self.showToast(content: error.localizedDescription)
-                   }
-               }
-               
-           }
-           
-       }
-    
-    
-  
-    @IBAction func close(_ sender: Any) {
-          navigationController?.popViewController(animated: false)
-      }
+                    }
+                    self.showToast(content: response.message ?? "")
+                    break
+                    
+                case .failure(let error):
+                    self.showToast(content: error.localizedDescription)
+                }
+            }
+            
+        }
+        
+    }
     
     @IBAction func removeImage(_ sender: Any) {
-         showYesNoPopup(title: "Xóa", message: "Chắc chắn xóa?")
+        showYesNoPopup(title: "Xóa", message: "Chắc chắn xóa?")
     }
 }
