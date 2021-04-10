@@ -11,9 +11,10 @@ import Kingfisher
 import AlamofireImage
 import Alamofire
 
-class PreviewImageController: BaseViewController {
+class PreviewImageController: BaseViewController, UIScrollViewDelegate {
     
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var header: NavigationBar!
     @IBOutlet weak var imv1: UIImageView!
     var isHideRemoveButton = true
@@ -24,15 +25,20 @@ class PreviewImageController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let imageDf = UIImage(named: "default")
-        
+        imv1.isUserInteractionEnabled = true
         let url = URL(string: avatarUrl ?? "")
         imv1.kf.setImage(with: url, placeholder: imageDf)
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 6.0
         
         print(avatarUrl)
         btnRemove.isHidden = isHideRemoveButton
-        
         setupHeader(imagestring: avatarUrl)
         popupHandle()
+        
+        
+        
     }
     
     func setupHeader(imagestring: String) {
@@ -79,5 +85,10 @@ class PreviewImageController: BaseViewController {
     
     @IBAction func removeImage(_ sender: Any) {
         showYesNoPopup(title: "Xóa", message: "Chắc chắn xóa?")
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        
+        return imv1
     }
 }

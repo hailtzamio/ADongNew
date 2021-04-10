@@ -11,59 +11,84 @@
     </dependencies>
     <scenes>
         <!--Preview Image Controller-->
-        <scene sceneID="7m3-9s-XpM">
+        <scene sceneID="S2l-6t-Cxn">
             <objects>
-                <viewController storyboardIdentifier="PreviewImageController" id="0Cd-Te-Q64" customClass="PreviewImageController" customModule="A_Dong" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Slc-KE-SiY">
+                <viewController restorationIdentifier="PreviewImageController" storyboardIdentifier="PreviewImageController" id="dXK-Dw-OWW" customClass="PreviewImageController" customModule="A_Dong" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZGH-Hf-YMB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y6D-SA-dQg">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkj-hT-piQ">
-                                <rect key="frame" x="182" y="797" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="UKO-y7-PRK"/>
-                                    <constraint firstAttribute="height" constant="50" id="w9A-Fi-amE"/>
-                                </constraints>
-                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                <state key="normal" image="remove_icon"/>
-                                <connections>
-                                    <action selector="removeImage:" destination="0Cd-Te-Q64" eventType="touchUpInside" id="x2S-NP-dM0"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2A-EW-WfY" customClass="NavigationBar" customModule="A_Dong" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQx-Jo-kar" customClass="NavigationBar" customModule="A_Dong" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="k6a-BE-H4c"/>
+                                    <constraint firstAttribute="height" constant="50" id="48J-3M-scb"/>
                                 </constraints>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ogr-N3-qb2">
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwY-BO-KVa">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fsj-YB-Js6">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="fsj-YB-Js6" firstAttribute="top" secondItem="mwY-BO-KVa" secondAttribute="top" id="7qw-Yb-hJ5"/>
+                                            <constraint firstAttribute="trailing" secondItem="fsj-YB-Js6" secondAttribute="trailing" id="FIq-zX-7mW"/>
+                                            <constraint firstAttribute="bottom" secondItem="fsj-YB-Js6" secondAttribute="bottom" id="cEe-3P-e5l"/>
+                                            <constraint firstItem="fsj-YB-Js6" firstAttribute="leading" secondItem="mwY-BO-KVa" secondAttribute="leading" id="v1X-vu-SmF"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ur0-eA-x5i">
+                                        <rect key="frame" x="20" y="708" width="374" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="YCP-g4-qHU"/>
+                                        </constraints>
+                                        <state key="normal" image="remove_icon"/>
+                                        <connections>
+                                            <action selector="removeImage:" destination="dXK-Dw-OWW" eventType="touchUpInside" id="0r1-mP-zBr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="mwY-BO-KVa" secondAttribute="trailing" id="8AX-sg-mlw"/>
+                                    <constraint firstItem="mwY-BO-KVa" firstAttribute="leading" secondItem="ogr-N3-qb2" secondAttribute="leading" id="Gk5-B5-TUj"/>
+                                    <constraint firstAttribute="trailing" secondItem="ur0-eA-x5i" secondAttribute="trailing" constant="20" id="HPj-Gd-GBv"/>
+                                    <constraint firstItem="mwY-BO-KVa" firstAttribute="top" secondItem="ogr-N3-qb2" secondAttribute="top" id="R1Y-SU-88X"/>
+                                    <constraint firstAttribute="bottom" secondItem="mwY-BO-KVa" secondAttribute="bottom" id="ZVp-Zo-BUC"/>
+                                    <constraint firstAttribute="bottom" secondItem="ur0-eA-x5i" secondAttribute="bottom" constant="20" id="cDr-xE-YXf"/>
+                                    <constraint firstItem="mwY-BO-KVa" firstAttribute="centerY" secondItem="ogr-N3-qb2" secondAttribute="centerY" id="fU3-5X-1vt"/>
+                                    <constraint firstItem="mwY-BO-KVa" firstAttribute="centerX" secondItem="ogr-N3-qb2" secondAttribute="centerX" id="u2J-ji-tzJ"/>
+                                    <constraint firstItem="ur0-eA-x5i" firstAttribute="leading" secondItem="ogr-N3-qb2" secondAttribute="leading" constant="20" id="utm-9U-ipw"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="Zee-BB-mVt"/>
+                        <viewLayoutGuide key="safeArea" id="pmx-m6-Pcs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="Y6D-SA-dQg" secondAttribute="bottom" id="10o-8w-8fR"/>
-                            <constraint firstItem="gkj-hT-piQ" firstAttribute="centerX" secondItem="Slc-KE-SiY" secondAttribute="centerX" id="4Qe-uI-To7"/>
-                            <constraint firstItem="Y6D-SA-dQg" firstAttribute="leading" secondItem="Zee-BB-mVt" secondAttribute="leading" id="6md-Tf-TOk"/>
-                            <constraint firstItem="Y6D-SA-dQg" firstAttribute="trailing" secondItem="Zee-BB-mVt" secondAttribute="trailing" id="B4d-D7-hqL"/>
-                            <constraint firstItem="k2A-EW-WfY" firstAttribute="top" secondItem="Zee-BB-mVt" secondAttribute="top" id="E7A-es-8VB"/>
-                            <constraint firstItem="Y6D-SA-dQg" firstAttribute="top" secondItem="k2A-EW-WfY" secondAttribute="top" id="KcV-ph-8Cx"/>
-                            <constraint firstItem="Zee-BB-mVt" firstAttribute="bottom" secondItem="gkj-hT-piQ" secondAttribute="bottom" constant="15" id="hNs-mJ-BZV"/>
-                            <constraint firstItem="k2A-EW-WfY" firstAttribute="leading" secondItem="Zee-BB-mVt" secondAttribute="leading" id="isU-ZI-BNX"/>
-                            <constraint firstItem="Zee-BB-mVt" firstAttribute="trailing" secondItem="k2A-EW-WfY" secondAttribute="trailing" id="kyj-5C-Ykj"/>
+                            <constraint firstItem="pmx-m6-Pcs" firstAttribute="trailing" secondItem="ogr-N3-qb2" secondAttribute="trailing" id="Cbz-e4-flE"/>
+                            <constraint firstItem="WQx-Jo-kar" firstAttribute="top" secondItem="pmx-m6-Pcs" secondAttribute="top" id="I57-eA-VQN"/>
+                            <constraint firstItem="pmx-m6-Pcs" firstAttribute="trailing" secondItem="WQx-Jo-kar" secondAttribute="trailing" id="Lod-b9-ao5"/>
+                            <constraint firstItem="ogr-N3-qb2" firstAttribute="top" secondItem="pmx-m6-Pcs" secondAttribute="top" constant="50" id="TkS-8c-MOb"/>
+                            <constraint firstItem="WQx-Jo-kar" firstAttribute="leading" secondItem="pmx-m6-Pcs" secondAttribute="leading" id="biV-iv-0I8"/>
+                            <constraint firstItem="pmx-m6-Pcs" firstAttribute="bottom" secondItem="ogr-N3-qb2" secondAttribute="bottom" id="hVb-7I-JvZ"/>
+                            <constraint firstItem="ogr-N3-qb2" firstAttribute="leading" secondItem="pmx-m6-Pcs" secondAttribute="leading" id="iIk-xL-tXw"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnRemove" destination="gkj-hT-piQ" id="wTk-zL-uoV"/>
-                        <outlet property="header" destination="k2A-EW-WfY" id="Hdn-ZD-w1q"/>
-                        <outlet property="imv1" destination="Y6D-SA-dQg" id="Wr1-fd-muI"/>
+                        <outlet property="btnRemove" destination="ur0-eA-x5i" id="XoS-3c-msK"/>
+                        <outlet property="header" destination="WQx-Jo-kar" id="h6K-Fi-rg3"/>
+                        <outlet property="imv1" destination="fsj-YB-Js6" id="Vi0-qI-9WK"/>
+                        <outlet property="scrollView" destination="ogr-N3-qb2" id="Jxq-7Y-hTD"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tly-oZ-oY4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sUb-pB-R9p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9713.04347826087" y="-1349.3303571428571"/>
+            <point key="canvasLocation" x="-8844.927536231884" y="-1355.3571428571429"/>
         </scene>
         <!--Update Project View Controller-->
         <scene sceneID="GsN-LT-zI9">
