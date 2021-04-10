@@ -17,6 +17,8 @@ final class NavigationBar: UIView {
     var title: String = "" {
         didSet {
             titleLabel.text = title
+            titleLabel.adjustsFontSizeToFitWidth = false
+            titleLabel.lineBreakMode = .byTruncatingTail
         }
     }
     

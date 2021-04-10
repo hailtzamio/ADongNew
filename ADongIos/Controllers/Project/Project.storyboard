@@ -43,29 +43,26 @@
                                             <constraint firstItem="fsj-YB-Js6" firstAttribute="leading" secondItem="mwY-BO-KVa" secondAttribute="leading" id="v1X-vu-SmF"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ur0-eA-x5i">
-                                        <rect key="frame" x="20" y="708" width="374" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="YCP-g4-qHU"/>
-                                        </constraints>
-                                        <state key="normal" image="remove_icon"/>
-                                        <connections>
-                                            <action selector="removeImage:" destination="dXK-Dw-OWW" eventType="touchUpInside" id="0r1-mP-zBr"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="mwY-BO-KVa" secondAttribute="trailing" id="8AX-sg-mlw"/>
                                     <constraint firstItem="mwY-BO-KVa" firstAttribute="leading" secondItem="ogr-N3-qb2" secondAttribute="leading" id="Gk5-B5-TUj"/>
-                                    <constraint firstAttribute="trailing" secondItem="ur0-eA-x5i" secondAttribute="trailing" constant="20" id="HPj-Gd-GBv"/>
                                     <constraint firstItem="mwY-BO-KVa" firstAttribute="top" secondItem="ogr-N3-qb2" secondAttribute="top" id="R1Y-SU-88X"/>
                                     <constraint firstAttribute="bottom" secondItem="mwY-BO-KVa" secondAttribute="bottom" id="ZVp-Zo-BUC"/>
-                                    <constraint firstAttribute="bottom" secondItem="ur0-eA-x5i" secondAttribute="bottom" constant="20" id="cDr-xE-YXf"/>
                                     <constraint firstItem="mwY-BO-KVa" firstAttribute="centerY" secondItem="ogr-N3-qb2" secondAttribute="centerY" id="fU3-5X-1vt"/>
                                     <constraint firstItem="mwY-BO-KVa" firstAttribute="centerX" secondItem="ogr-N3-qb2" secondAttribute="centerX" id="u2J-ji-tzJ"/>
-                                    <constraint firstItem="ur0-eA-x5i" firstAttribute="leading" secondItem="ogr-N3-qb2" secondAttribute="leading" constant="20" id="utm-9U-ipw"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ur0-eA-x5i">
+                                <rect key="frame" x="0.0" y="802" width="414" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="YCP-g4-qHU"/>
+                                </constraints>
+                                <state key="normal" image="remove_icon"/>
+                                <connections>
+                                    <action selector="removeImage:" destination="dXK-Dw-OWW" eventType="touchUpInside" id="0r1-mP-zBr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pmx-m6-Pcs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -73,9 +70,12 @@
                             <constraint firstItem="pmx-m6-Pcs" firstAttribute="trailing" secondItem="ogr-N3-qb2" secondAttribute="trailing" id="Cbz-e4-flE"/>
                             <constraint firstItem="WQx-Jo-kar" firstAttribute="top" secondItem="pmx-m6-Pcs" secondAttribute="top" id="I57-eA-VQN"/>
                             <constraint firstItem="pmx-m6-Pcs" firstAttribute="trailing" secondItem="WQx-Jo-kar" secondAttribute="trailing" id="Lod-b9-ao5"/>
+                            <constraint firstItem="pmx-m6-Pcs" firstAttribute="bottom" secondItem="ur0-eA-x5i" secondAttribute="bottom" constant="20" id="P0S-ve-06o"/>
+                            <constraint firstItem="pmx-m6-Pcs" firstAttribute="trailing" secondItem="ur0-eA-x5i" secondAttribute="trailing" id="P9Y-BP-jah"/>
                             <constraint firstItem="ogr-N3-qb2" firstAttribute="top" secondItem="pmx-m6-Pcs" secondAttribute="top" constant="50" id="TkS-8c-MOb"/>
                             <constraint firstItem="WQx-Jo-kar" firstAttribute="leading" secondItem="pmx-m6-Pcs" secondAttribute="leading" id="biV-iv-0I8"/>
                             <constraint firstItem="pmx-m6-Pcs" firstAttribute="bottom" secondItem="ogr-N3-qb2" secondAttribute="bottom" id="hVb-7I-JvZ"/>
+                            <constraint firstItem="ur0-eA-x5i" firstAttribute="leading" secondItem="pmx-m6-Pcs" secondAttribute="leading" id="i3V-KK-VBZ"/>
                             <constraint firstItem="ogr-N3-qb2" firstAttribute="leading" secondItem="pmx-m6-Pcs" secondAttribute="leading" id="iIk-xL-tXw"/>
                         </constraints>
                     </view>
