@@ -68,6 +68,26 @@ class ProductRequirementViewController: BaseViewController {
         }
     }
     
+    func removeProductRequirement(productRequirementId: Int) {
+        self.showLoading()
+        APIClient.removeProductRequirement(id: productRequirementId) { result in
+            self.stopLoading()
+            switch result {
+            case .success(let response):
+                if (response.status == 1) {
+                    self.showToast(content: "Thành công")
+                    self.getData()
+                } else {
+                    self.showToast(content: response.message ?? "error")
+                }
+                break
+                
+            case .failure(let error):
+                self.showToast(content: error.localizedDescription)
+            }
+        }
+    }
+    
 }
 
 extension ProductRequirementViewController: UITableViewDataSource, UITableViewDelegate {
@@ -85,7 +105,27 @@ extension ProductRequirementViewController: UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailProductRequirementViewController") as? DetailProductRequirementViewController {
             vc.goodsReceivedNote = data[indexPath.row]
+            vc.id = data[indexPath.row].id!
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        // delete
+        let delete = UIContextualAction(style: .normal, title: "Xoá") { [self] (action, view, completionHandler) in
+            self.removeProductRequirement(productRequirementId: self.data[indexPath.row].id!)
+            completionHandler(true)
+        }
+        if #available(iOS 13.0, *) {
+            delete.image = UIImage(systemName: "Compose")
+        } else {
+            // Fallback on earlier versions
+        }
+        delete.backgroundColor = .red
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        
+        return swipe
+        
     }
 }

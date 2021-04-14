@@ -11,7 +11,7 @@ import UIKit
 class GoodsReceivedNote : Codable {
     var id : Int?
     var code : String?
-     var receiver : String?
+    var receiver : String?
     var deliveredBy : String?
     var ref : String?
     var note : String?
@@ -25,11 +25,11 @@ class GoodsReceivedNote : Codable {
     var updatedById : Int?
     var updatedByFullName : String?
     var confirmationDate : String?
-        var projectId : Int?
-      var reason : String?
+    var projectId : Int?
+    var reason : String?
     var projectName : String?
-       var expectedDatetime : String?
-    
+    var expectedDatetime : String?
+    var linesRemove : [Int]?
     var lines : [Product]?
 }
 

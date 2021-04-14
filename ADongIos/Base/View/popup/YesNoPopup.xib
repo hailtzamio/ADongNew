@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YesNoPopup" customModule="ADongIos" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YesNoPopup" customModule="A_Dong" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="573" height="352"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUI-XU-EeX" customClass="SimDetailPopup" customModule="ADongIos" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUI-XU-EeX" customClass="SimDetailPopup" customModule="A_Dong" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="573" height="352"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yV7-C2-NMF">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yV7-C2-NMF">
                             <rect key="frame" x="15" y="248.5" width="543" height="40"/>
                             <color key="backgroundColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -47,7 +47,7 @@
                                 <action selector="btnClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="ROb-Td-lRs"/>
                             </connections>
                         </button>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tên *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rka-uC-zDe" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tên *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rka-uC-zDe" customClass="RadiusTextField" customModule="A_Dong" customModuleProvider="target">
                             <rect key="frame" x="15" y="68.5" width="543" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="WBv-wu-WEj"/>
@@ -55,7 +55,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Số điện thoại *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xn1-51-jO2" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Số điện thoại *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xn1-51-jO2" customClass="RadiusTextField" customModule="A_Dong" customModuleProvider="target">
                             <rect key="frame" x="15" y="128.5" width="543" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="cAB-2C-pbI"/>
@@ -63,7 +63,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PzZ-uR-xMX" customClass="RadiusTextField" customModule="ADongIos" customModuleProvider="target">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PzZ-uR-xMX" customClass="RadiusTextField" customModule="A_Dong" customModuleProvider="target">
                             <rect key="frame" x="15" y="188.5" width="543" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="bGm-xh-4qU"/>
@@ -77,6 +77,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="j2J-BN-lKR"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="eyg-5r-Ve6" firstAttribute="top" secondItem="jUI-XU-EeX" secondAttribute="top" constant="10" id="K0Y-TI-1Rc"/>
@@ -97,9 +98,9 @@
                         <constraint firstItem="yV7-C2-NMF" firstAttribute="top" secondItem="PzZ-uR-xMX" secondAttribute="bottom" constant="15" id="x4b-D6-vjH"/>
                         <constraint firstItem="xn1-51-jO2" firstAttribute="top" secondItem="rka-uC-zDe" secondAttribute="bottom" constant="15" id="xfv-AB-Bve"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="j2J-BN-lKR"/>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="jUI-XU-EeX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Er5-Nk-iGO"/>
@@ -108,14 +109,13 @@
                 <constraint firstItem="jUI-XU-EeX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="q02-wX-OUK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="lbTitle" destination="lW7-Uu-kBo" id="ekG-yU-vZn"/>
                 <outlet property="tf1" destination="rka-uC-zDe" id="uGU-h7-Idw"/>
                 <outlet property="tf2" destination="xn1-51-jO2" id="t70-S4-6Af"/>
                 <outlet property="tf3" destination="PzZ-uR-xMX" id="Irq-3H-YkG"/>
             </connections>
-            <point key="canvasLocation" x="301.60000000000002" y="-135.832083958021"/>
+            <point key="canvasLocation" x="278" y="-273"/>
         </view>
     </objects>
     <resources>

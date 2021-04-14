@@ -12,7 +12,7 @@ import Kingfisher
 class DetailProductRequirementViewController: BaseViewController {
     var id = 0
     var item:Team? = nil
-    var itemNames = ["THÔNG TIN CƠ BẢN ", "DANH SÁCH VẬT TƯ"]
+    var itemNames = ["THÔNG TIN CƠ BẢN ", "DANH SÁCH VẬT TƯ ( + )"]
     
     var goodsReceivedNote = GoodsReceivedNote()
     @IBOutlet weak var tbView: UITableView!
@@ -30,16 +30,19 @@ class DetailProductRequirementViewController: BaseViewController {
         tbView.register(InformationDetailCell.nib, forCellReuseIdentifier: InformationDetailCell.identifier)
         tbView.register(SmallInformationViewCell.nib, forCellReuseIdentifier: SmallInformationViewCell.identifier)
         
-      
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         data.removeAll()
-        if(goodsReceivedNote.id != nil) {
-            getData()
-        } else {
-            getDataFromApi()
-        }
+        id = goodsReceivedNote.id ?? 0
+        getDataFromApi()
+//        if(goodsReceivedNote.id != nil) {
+//            id = goodsReceivedNote.id ?? 0
+//            getData()
+//        } else {
+//            getDataFromApi()
+//        }
     }
     
     func setupHeader() {
@@ -154,12 +157,13 @@ class DetailProductRequirementViewController: BaseViewController {
 extension DetailProductRequirementViewController: UITableViewDataSource, UITableViewDelegate {
     
     @objc func handleRegister(){
-//        if let vc = UIStoryboard.init(name: "Product", bundle: Bundle.main).instantiateViewController(withIdentifier: "ListProductViewController") as? ListProductViewController {
-//
-//            vc.data = data2
-//
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
+        if let vc = UIStoryboard.init(name: "Project", bundle: Bundle.main).instantiateViewController(withIdentifier: "CreateProductReqViewController") as? CreateProductReqViewController {
+            vc.isHideTf = false
+            vc.projectId = self.id
+            vc.isFromUpdateProductRequirement = true
+            vc.goodsReceivedNote = goodsReceivedNote
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -173,8 +177,10 @@ extension DetailProductRequirementViewController: UITableViewDataSource, UITable
         sectionName.font = UIFont.systemFont(ofSize: 17)
         sectionName.font = UIFont.boldSystemFont(ofSize: 16)
         sectionName.textAlignment = .left
-        
+        sectionName.font = UIFont.boldSystemFont(ofSize: 16)
         let uiButton = UIButton(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 20))
+        uiButton.addTarget(self, action:#selector(handleRegister),
+                           for: .touchUpInside)
         uiButton.addTarget(self, action:#selector(handleRegister),
                            for: .touchUpInside)
         sectionView.addSubview(sectionName)
@@ -234,10 +240,106 @@ extension DetailProductRequirementViewController: UITableViewDataSource, UITable
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        // delete
+        let delete = UIContextualAction(style: .normal, title: "Xoá") { [self] (action, view, completionHandler) in
+            if let lines = goodsReceivedNote.lines {
+                let removeId = lines[indexPath.row].id
+                var lines = [Int]()
+                lines.append(removeId!)
+                goodsReceivedNote.linesRemove = lines
+                tbView.reloadData()
+                update()
+                completionHandler(true)
+            }
             
+        }
+        if #available(iOS 13.0, *) {
+            delete.image = UIImage(systemName: "Compose")
+        } else {
+            // Fallback on earlier versions
+        }
+        delete.backgroundColor = .red
+        
+        // share
+        let share = UIContextualAction(style: .normal, title: "Sửa") { [self] (action, view, completionHandler) in
+            print("Share: \(indexPath.row + 1)")
+            
+            if let lines = goodsReceivedNote.lines {
+                let product = lines[indexPath.row]
+                showPopupNoResult(product: product)
+                completionHandler(true)
+            }
+            
+            completionHandler(true)
+        }
+        if #available(iOS 13.0, *) {
+            share.image = UIImage(systemName: "Compose")
+        } else {
+            // Fallback on earlier versions
+        }
+        share.backgroundColor = .gray
+        let swipe = UISwipeActionsConfiguration(actions: [delete, share])
+        
+        return swipe
+        
+    }
+    
+    func update() {
+        APIClient.updateProductRequirement(data : self.goodsReceivedNote) { result in
+            //            self.stopLoading()
+            switch result {
+            case .success(let response):
+                self.showToast(content: response.message ?? "Thành công")
+                if(response.status == 1) {
+                    self.getDataFromApi()
+                }
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func showPopupNoResult(product: Product){
+        let popup = UpdateProductPopup.instanceFromNib(product: product)
+        popup.newText = { note, count in
+            product.note = note
+            product.quantity = Float(count!)
+            // Update
+            let req = try! DictionaryEncoder.encode(product)
+            
+            //            var lines = [product]
+            
+            var linesUpdate = [NSDictionary]()
+            linesUpdate.append(req as NSDictionary)
+            
+            APIClient.editProductRequirement(data : self.goodsReceivedNote, lines: linesUpdate) { result in
+                //            self.stopLoading()
+                switch result {
+                case .success(let response):
+                    self.showToast(content: response.message ?? "Thành công")
+                    if(response.status == 1) {
+                        self.getDataFromApi()
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            
+            
+        }
+        popup.show()
+    }
+    
+    struct DictionaryEncoder {
+        static func encode<T>(_ value: T) throws -> [String: Any] where T: Encodable {
+            let jsonData = try JSONEncoder().encode(value)
+            return try JSONSerialization.jsonObject(with: jsonData) as? [String: Any] ?? [:]
         }
     }
 }
+
 

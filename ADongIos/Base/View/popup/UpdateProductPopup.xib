@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ZyY-gu-pgg" customClass="UpdateProductPopup" customModule="A_Dong">
+            <rect key="frame" x="0.0" y="0.0" width="360" height="240"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f6t-VF-el0">
+                    <rect key="frame" x="0.0" y="50" width="360" height="0.5"/>
+                    <color key="backgroundColor" systemColor="systemGray4Color"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="GBT-Z9-5fG"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2F4-50-Njp">
+                    <rect key="frame" x="0.0" y="0.0" width="360" height="50"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="materials" translatesAutoresizingMaskIntoConstraints="NO" id="YWv-82-aVl">
+                            <rect key="frame" x="10" y="15" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="KEH-bH-Y4R"/>
+                                <constraint firstAttribute="height" constant="20" id="VRk-k5-sqB"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cập nhật vật tư" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dya-yk-rKc">
+                            <rect key="frame" x="40" y="14.5" width="116.5" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vln-ub-WSJ">
+                            <rect key="frame" x="161.5" y="25" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Vln-ub-WSJ" firstAttribute="leading" secondItem="dya-yk-rKc" secondAttribute="trailing" constant="5" id="2jU-PL-e73"/>
+                        <constraint firstItem="Vln-ub-WSJ" firstAttribute="centerY" secondItem="2F4-50-Njp" secondAttribute="centerY" id="DCX-26-MKn"/>
+                        <constraint firstItem="dya-yk-rKc" firstAttribute="leading" secondItem="YWv-82-aVl" secondAttribute="trailing" constant="10" id="HWE-3G-GEV"/>
+                        <constraint firstAttribute="height" constant="50" id="WWA-tz-In1"/>
+                        <constraint firstItem="YWv-82-aVl" firstAttribute="centerY" secondItem="2F4-50-Njp" secondAttribute="centerY" id="fZd-E6-CBC"/>
+                        <constraint firstItem="dya-yk-rKc" firstAttribute="centerY" secondItem="2F4-50-Njp" secondAttribute="centerY" id="gZ1-CP-VWT"/>
+                        <constraint firstItem="YWv-82-aVl" firstAttribute="leading" secondItem="2F4-50-Njp" secondAttribute="leading" constant="10" id="wCE-Mc-kCE"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Số lượng" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N8O-Lj-6Tm">
+                    <rect key="frame" x="15" y="65.5" width="330" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ESt-xg-Kut"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ghi chú" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NYY-Kv-mPt">
+                    <rect key="frame" x="15" y="120.5" width="330" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="qsk-SS-TWg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdN-kg-b26">
+                    <rect key="frame" x="15" y="185" width="330" height="40"/>
+                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="CcC-Sm-yEf"/>
+                    </constraints>
+                    <state key="normal" title="ĐỒNG Ý">
+                        <color key="titleColor" systemColor="systemBackgroundColor"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" systemColor="systemOrangeColor"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="confirm:" destination="ZyY-gu-pgg" eventType="touchUpInside" id="kOz-Ok-hRC"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="HIG-Lp-wNC"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="HIG-Lp-wNC" firstAttribute="trailing" secondItem="2F4-50-Njp" secondAttribute="trailing" id="0YO-K3-LKQ"/>
+                <constraint firstItem="HIG-Lp-wNC" firstAttribute="trailing" secondItem="HdN-kg-b26" secondAttribute="trailing" constant="15" id="4PX-In-h2k"/>
+                <constraint firstItem="2F4-50-Njp" firstAttribute="top" secondItem="HIG-Lp-wNC" secondAttribute="top" id="Ba7-Tz-cDn"/>
+                <constraint firstItem="N8O-Lj-6Tm" firstAttribute="top" secondItem="f6t-VF-el0" secondAttribute="bottom" constant="15" id="Jwm-Is-n2n"/>
+                <constraint firstItem="f6t-VF-el0" firstAttribute="top" secondItem="HIG-Lp-wNC" secondAttribute="top" constant="50" id="OBn-qJ-MkF"/>
+                <constraint firstItem="N8O-Lj-6Tm" firstAttribute="leading" secondItem="HIG-Lp-wNC" secondAttribute="leading" constant="15" id="OdB-y1-4Eh"/>
+                <constraint firstItem="2F4-50-Njp" firstAttribute="leading" secondItem="HIG-Lp-wNC" secondAttribute="leading" id="Oee-43-sI7"/>
+                <constraint firstItem="HIG-Lp-wNC" firstAttribute="bottom" secondItem="HdN-kg-b26" secondAttribute="bottom" constant="15" id="RwQ-Fd-m6c"/>
+                <constraint firstItem="HIG-Lp-wNC" firstAttribute="trailing" secondItem="NYY-Kv-mPt" secondAttribute="trailing" constant="15" id="X13-mb-Jgy"/>
+                <constraint firstItem="HIG-Lp-wNC" firstAttribute="trailing" secondItem="N8O-Lj-6Tm" secondAttribute="trailing" constant="15" id="YV1-ds-Xxr"/>
+                <constraint firstItem="NYY-Kv-mPt" firstAttribute="leading" secondItem="N8O-Lj-6Tm" secondAttribute="leading" id="YaJ-rz-v6g"/>
+                <constraint firstItem="f6t-VF-el0" firstAttribute="leading" secondItem="HIG-Lp-wNC" secondAttribute="leading" id="flT-1K-iaL"/>
+                <constraint firstItem="HIG-Lp-wNC" firstAttribute="trailing" secondItem="f6t-VF-el0" secondAttribute="trailing" id="mLW-LV-jbz"/>
+                <constraint firstItem="HdN-kg-b26" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NYY-Kv-mPt" secondAttribute="bottom" constant="5" id="vI8-9U-sHb"/>
+                <constraint firstItem="NYY-Kv-mPt" firstAttribute="top" secondItem="N8O-Lj-6Tm" secondAttribute="bottom" constant="15" id="xME-bp-Zrg"/>
+                <constraint firstItem="HdN-kg-b26" firstAttribute="leading" secondItem="HIG-Lp-wNC" secondAttribute="leading" constant="15" id="xmr-cw-sLa"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="10"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="lbHeart" destination="Vln-ub-WSJ" id="6H5-6u-lOP"/>
+                <outlet property="tfNote" destination="NYY-Kv-mPt" id="vgh-D7-ilr"/>
+                <outlet property="tfNumber" destination="N8O-Lj-6Tm" id="B1h-SL-maJ"/>
+            </connections>
+            <point key="canvasLocation" x="-1190.4000000000001" y="-81.859070464767626"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="materials" width="64" height="64"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

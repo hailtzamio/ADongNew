@@ -23,21 +23,21 @@ class Product : Codable {
     var thumbnailUrl : String?
     var thumbnailExtId : String?
     
-     var productName : String?
-     var note : String?
-     var productUnit : String?
-     var transportReqCode : String?
-     var transportReqId : Int?
-     var productId : Int?
+    var productName : String?
+    var note : String?
+    var productUnit : String?
+    var transportReqCode : String?
+    var transportReqId : Int?
+    var productId : Int?
     var goodsReceivedNoteId : Int?
     
     var count : String?
     
-        var length : Double?
+    var length : Double?
     var width : Double?
     var weight : Double?
     var height : Double?
     
     
-
+    
 }

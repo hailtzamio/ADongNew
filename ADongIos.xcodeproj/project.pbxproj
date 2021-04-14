@@ -205,6 +205,10 @@
 		B5DACF2F249E505C007656ED /* LocationAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DACF2E249E505C007656ED /* LocationAddress.swift */; };
 		B5FB3BAC24E7CACF00247038 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB3BAA24E7CACF00247038 /* ProductCell.swift */; };
 		B5FB3BAD24E7CACF00247038 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5FB3BAB24E7CACF00247038 /* ProductCell.xib */; };
+		E238E7122626A096001034A3 /* EditPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = E238E7112626A096001034A3 /* EditPopup.xib */; };
+		E238E7172626A10B001034A3 /* EditPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238E7162626A10B001034A3 /* EditPopup.swift */; };
+		E238E71D2626A2FB001034A3 /* UpdateProductPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = E238E71B2626A2FB001034A3 /* UpdateProductPopup.xib */; };
+		E238E71E2626A2FB001034A3 /* UpdateProductPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E238E71C2626A2FB001034A3 /* UpdateProductPopup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -433,6 +437,10 @@
 		B5FB3BAA24E7CACF00247038 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		B5FB3BAB24E7CACF00247038 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		C90D160841DABBAA3377923F /* Pods-ADongIos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADongIos.debug.xcconfig"; path = "Target Support Files/Pods-ADongIos/Pods-ADongIos.debug.xcconfig"; sourceTree = "<group>"; };
+		E238E7112626A096001034A3 /* EditPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditPopup.xib; sourceTree = "<group>"; };
+		E238E7162626A10B001034A3 /* EditPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPopup.swift; sourceTree = "<group>"; };
+		E238E71B2626A2FB001034A3 /* UpdateProductPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateProductPopup.xib; sourceTree = "<group>"; };
+		E238E71C2626A2FB001034A3 /* UpdateProductPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProductPopup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,10 +490,14 @@
 		B514B4E124A74FBB00913E3D /* popup */ = {
 			isa = PBXGroup;
 			children = (
+				E238E71C2626A2FB001034A3 /* UpdateProductPopup.swift */,
+				E238E71B2626A2FB001034A3 /* UpdateProductPopup.xib */,
 				B514B4E724A7515100913E3D /* NoticePopupView.swift */,
 				B514B4E624A7515100913E3D /* NoticePopupView.xib */,
 				B514B4E224A74FFB00913E3D /* YesNoPopup.swift */,
 				B514B4E324A74FFB00913E3D /* YesNoPopup.xib */,
+				E238E7112626A096001034A3 /* EditPopup.xib */,
+				E238E7162626A10B001034A3 /* EditPopup.swift */,
 			);
 			path = popup;
 			sourceTree = "<group>";
@@ -1159,6 +1171,7 @@
 				B56FD906248F2D7500DCAA54 /* ProjectProgressViewCell.xib in Resources */,
 				B51F56292478DB9B00B3851A /* Product.storyboard in Resources */,
 				B54A01A02478326C00E5F310 /* NavigationBar.xib in Resources */,
+				E238E7122626A096001034A3 /* EditPopup.xib in Resources */,
 				B54A015224782B2400E5F310 /* LoginViewController.xib in Resources */,
 				B535647C248CB78000FF5883 /* Driver.storyboard in Resources */,
 				B57F962D24CB046300F68C85 /* RatingViewCell.xib in Resources */,
@@ -1167,6 +1180,7 @@
 				B54A015B24782C0100E5F310 /* PermissionCollectionViewCell.xib in Resources */,
 				B5356489248CDA8700FF5883 /* Contractor.storyboard in Resources */,
 				B58E15DB248E2EDA0054E9A0 /* Project.storyboard in Resources */,
+				E238E71D2626A2FB001034A3 /* UpdateProductPopup.xib in Resources */,
 				B56FD913248F427400DCAA54 /* LineViewCell.xib in Resources */,
 				B5A68D552490C53900FD76A4 /* MapViewController.xib in Resources */,
 				B54A01A62478326C00E5F310 /* CommonNoAvatarCell.xib in Resources */,
@@ -1367,6 +1381,7 @@
 				B58561B324934E99000A5675 /* DetailGoodsReceivedViewController.swift in Sources */,
 				B54A016024782C3D00E5F310 /* PopupView.swift in Sources */,
 				B55CD03A2490F07100662427 /* StockTitlesViewController.swift in Sources */,
+				E238E71E2626A2FB001034A3 /* UpdateProductPopup.swift in Sources */,
 				B54A01A52478326C00E5F310 /* NavigationBar.swift in Sources */,
 				B54A018724782D7100E5F310 /* Category.swift in Sources */,
 				B597482924B46E4B00879825 /* UpdateProfileViewController.swift in Sources */,
@@ -1401,6 +1416,7 @@
 				B51F56312478F06B00B3851A /* Product.swift in Sources */,
 				B57F963624CBCB2500F68C85 /* RatingDetailController.swift in Sources */,
 				B5DACF2B249E089D007656ED /* CheckBoxCustom.swift in Sources */,
+				E238E7172626A10B001034A3 /* EditPopup.swift in Sources */,
 				B57F963924CBE2D000F68C85 /* PreviewImageController.swift in Sources */,
 				B535647E248CB7BB00FF5883 /* ListDriverViewController.swift in Sources */,
 				B5356486248CD77E00FF5883 /* Contractor.swift in Sources */,
@@ -1595,17 +1611,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ADongIos/Á Đông.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"ADongIos/Preview Content\"";
 				DEVELOPMENT_TEAM = 9V374F77M5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ADongIos/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.2;
+				MARKETING_VERSION = 1.9.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zamio.adong;
 				PRODUCT_NAME = "A Dong";
 				SWIFT_VERSION = 5.0;
@@ -1620,17 +1636,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ADongIos/Á ĐôngRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"ADongIos/Preview Content\"";
 				DEVELOPMENT_TEAM = 9V374F77M5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ADongIos/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.2;
+				MARKETING_VERSION = 1.9.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zamio.adong;
 				PRODUCT_NAME = "A Dong";
 				SWIFT_VERSION = 5.0;
