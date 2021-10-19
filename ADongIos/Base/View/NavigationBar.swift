@@ -61,6 +61,10 @@ final class NavigationBar: UIView {
           rightSecondButton.setImage(UIImage(named: "tick"), for: .normal)
       }
     
+    func changeToDownLoadIcon() {
+          rightSecondButton.setImage(UIImage(named: "icon_down_arrow"), for: .normal)
+      }
+    
     
     @IBAction func left(_ sender: Any) {
          self.leftAction?()

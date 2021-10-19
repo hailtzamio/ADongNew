@@ -55,9 +55,9 @@ class PreviewImageController: BaseViewController, UIScrollViewDelegate {
                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                 self.showToast(content: "Tải ảnh thành công")
             }
-            
         }
         
+        header.changeToDownLoadIcon()
     }
     
     func popupHandle() {

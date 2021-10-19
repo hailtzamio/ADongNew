@@ -496,7 +496,7 @@ enum ApiRouter: URLRequestConvertible {
             
         case .getProjects(let page, let name, let status, let size) :
             return  [ "page": page,
-                      "search": name, "status" : status, "sort" : "id,desc", "size" : size ]
+                      "search": name, "status" : status, "sort" : "plannedStartDate,desc", "size" : size ]
             
         case .checkin(let data) :
             return  [ "projectId": data.projectId,
